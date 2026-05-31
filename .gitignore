@@ -45,6 +45,7 @@ EnemizerCLI/
 /SNI/
 /sni-*/
 /appimagetool*
+/VC_redist.x64.exe
 /host.yaml
 /options.yaml
 /config.yaml
@@ -68,6 +69,8 @@ Output Logs/
 classifiers
 IslesOfSeaAndSky
 fuzz_output
+# stubgen output
+/out/
 
 fuzz.py
 # Byte-compiled / optimized / DLL files
