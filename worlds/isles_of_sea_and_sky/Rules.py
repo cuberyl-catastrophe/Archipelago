@@ -5,16 +5,6 @@ if TYPE_CHECKING:
     from . import IslesOfSeaAndSkyWorld
 
 
-def _isles_of_sea_and_sky_is_route(self, route: int):
-    if route == 0:
-        return self.options.route_required.current_key == "normal_ending"
-    if route == 1:
-        return self.options.route_required.current_key == "secret_ending"
-    if route == 2:
-        return self.options.route_required.current_key == "all_gems"
-    return False
-
-
 # Sets rules on entrances and advancements that are always applied
 def set_rules(self):
 
@@ -1737,17 +1727,18 @@ def set_completion_rules(self):
     player = self.player
     multiworld = self.multiworld
 
-    # Normal Ending
+    route = self.options.route_required.current_key
 
-    if _isles_of_sea_and_sky_is_route(self, 0):
+    # Normal Ending
+    if route == "normal_ending":
         multiworld.completion_condition[player] = lambda state: state.can_reach("Sanctum Peak", "Region", player)
 
     # Secret Ending
-    elif _isles_of_sea_and_sky_is_route(self, 1):
+    elif route == "secret_ending":
         multiworld.completion_condition[player] = lambda state: (state.can_reach("Sanctum Peak", "Region", player)
                                                                  and state.has("Star Piece", player, 91))
     # All Gems
-    elif _isles_of_sea_and_sky_is_route(self, 2):
+    elif route == "all_gems":
         multiworld.completion_condition[player] = lambda state: (state.has("Topaz", player, 12)
                                                                  and state.has("Sapphire", player, 12)
                                                                  and state.has("Ruby", player, 12)
