@@ -1,5 +1,4 @@
 import os.path
-import random
 import warnings
 
 from .Items import IslesOfSeaAndSkyItem, item_table, non_key_items, key_items, \
