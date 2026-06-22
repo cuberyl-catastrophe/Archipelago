@@ -2,9 +2,9 @@
 
 ### Required Software
 
--Steam page -  Isles Of Sea And Sky from the(https://store.steampowered.com/app/1233070/Isles_of_Sea_and_Sky/)
--APWorld -  Isles Of Sea And Sky(https://github.com/Kim-Delicious/Archipelago_IslesOfSeaAndSky/releases)
--Archipelago Releases Page -  Archipelago from the(https://github.com/ArchipelagoMW/Archipelago/releases)
+- Isles Of Sea And Sky from the [Steam page](https://store.steampowered.com/app/1233070/Isles_of_Sea_and_Sky/)
+- Isles Of Sea And Sky [APWorld](https://github.com/Kim-Delicious/Archipelago_IslesOfSeaAndSky/releases)
+- Archipelago from the [Archipelago Releases Page](https://github.com/ArchipelagoMW/Archipelago/releases)
 
 ## First time setup
 
