@@ -137,15 +137,6 @@ class IslesOfSeaAndSkyCommandProcessor(ClientCommandProcessor):
                 self.output("Failed to create patch")
                 self.output(str(e))
 
-    '''def _cmd_online(self):
-        """Toggles seeing other IslesOfSeaAndSky players."""
-        if isinstance(self.ctx, IslesOfSeaAndSkyContext):
-            self.ctx.update_online_mode(not ("Online" in self.ctx.tags))
-            if "Online" in self.ctx.tags:
-                self.output(f"Now online.")
-            else:
-                self.output(f"Now offline.")'''
-
     def _cmd_toggle_deathlink(self):
         """Toggles deathlink"""
         if isinstance(self.ctx, IslesOfSeaAndSkyContext):
@@ -164,7 +155,7 @@ class IslesOfSeaAndSkyCommandProcessor(ClientCommandProcessor):
 
 class IslesOfSeaAndSkyContext(CommonContext):
     theme = "ocean"
-    tags = {"AP", "Online"}
+    tags = {"AP"}
     game = "Isles Of Sea And Sky"
     command_processor = IslesOfSeaAndSkyCommandProcessor
     items_handling = 0b111
@@ -275,15 +266,6 @@ class IslesOfSeaAndSkyContext(CommonContext):
     async def shutdown(self):
         self.clear_isles_of_sea_and_sky_files()
         await super().shutdown()
-
-    def update_online_mode(self, online):
-        old_tags = self.tags.copy()
-        if online:
-            self.tags.add("Online")
-        else:
-            self.tags -= {"Online"}
-        if old_tags != self.tags and self.server and not self.server.socket.closed:
-            async_start(self.send_msgs([{"cmd": "ConnectUpdate", "tags": self.tags}]))
 
     def on_package(self, cmd: str, args: dict):
         if cmd == "Connected":
@@ -429,28 +411,6 @@ async def process_isles_of_sea_and_sky_cmd(ctx: IslesOfSeaAndSkyContext, cmd: st
                     f.write(str(ss) + "\n")
 
 
-async def multi_watcher(ctx: IslesOfSeaAndSkyContext):
-    ### Send a server packet that no one else receives except the original player.
-    while not ctx.exit_event.is_set():
-        path = ctx.save_game_folder + "/AP/OUT"
-        for root, dirs, files in os.walk(path):
-            for file in files:
-                if "Online" in ctx.tags:
-                    with open(os.path.join(root, file), "r") as mine:
-                        this_room = mine.readline().replace("\n", "")
-                        this_name = mine.readline().replace("\n", "")
-                        this_type = mine.readline().replace("\n", "")
-                        this_obj_index = mine.readline().replace("\n", "")
-                        this_room_total = mine.readline().replace("\n", "")
-                        mine.close()
-
-                    message = [{"cmd": "Bounce", "tags": ["Online"],
-                                "data": {"player": ctx.slot, "room": this_room, "name": this_name, "type": this_type,
-                                         "obj_index": this_obj_index, "total": this_room_total}}]
-                    #await ctx.send_msgs(message)
-
-        await asyncio.sleep(0.1)
-
 # Look in the AP/OUT folder for files, and send checks.
 async def game_watcher(ctx: IslesOfSeaAndSkyContext):
     while not ctx.exit_event.is_set():
@@ -508,7 +468,7 @@ async def game_watcher(ctx: IslesOfSeaAndSkyContext):
                     victory = True
                     os.remove(os.path.join(root, file))
 
-                if ".playerspot" in file and "Online" not in ctx.tags:
+                if ".playerspot" in file:
                     os.remove(os.path.join(root, file))
 
                 ''''&&"check.spot" in file'''
@@ -585,9 +545,6 @@ def main():
         ctx.server_task = asyncio.create_task(server_loop(ctx), name="server loop")
         asyncio.create_task(
             game_watcher(ctx), name="IslesOfSeaAndSkyProgressionWatcher")
-
-        asyncio.create_task(
-            multi_watcher(ctx), name="IslesOfSeaAndSkyMultiplayerWatcher")
 
         if gui_enabled:
             ctx.run_gui()
