@@ -158,20 +158,20 @@ class IslesOfSeaAndSkyWorld(World):
 
     def create_items(self):
 
-        self.multiworld.get_location("Ancient Key [Ancient B3]", self.player).place_locked_item(
+        self.multiworld.get_location("Ancient B3 - Ancient Key", self.player).place_locked_item(
             self.create_item("Ancient Key"))
-        self.multiworld.get_location("Ancient Key [Ancient A1]", self.player).place_locked_item(
+        self.multiworld.get_location("Ancient A1 - Ancient Key", self.player).place_locked_item(
             self.create_item("Ancient Key"))
-        self.multiworld.get_location("Ancient Key [Ancient A2 - SE]", self.player).place_locked_item(
+        self.multiworld.get_location("Ancient A2 - SE - Ancient Key", self.player).place_locked_item(
             self.create_item("Ancient Key"))
-        self.multiworld.get_location("Ancient Key [Ancient A3 - N]", self.player).place_locked_item(
+        self.multiworld.get_location("Ancient A3 - N - Ancient Key", self.player).place_locked_item(
             self.create_item("Ancient Key"))
-        self.multiworld.get_location("Ancient Key [Ancient A3 - S]", self.player).place_locked_item(
+        self.multiworld.get_location("Ancient A3 - S - Ancient Key", self.player).place_locked_item(
             self.create_item("Ancient Key"))
-        self.multiworld.get_location("Ancient Key [Ancient C2]", self.player).place_locked_item(
+        self.multiworld.get_location("Ancient C2 - Ancient Key", self.player).place_locked_item(
             self.create_item("Ancient Key"))
 
-        self.multiworld.get_location("Star Piece [Ancient C0]", self.player).place_locked_item(
+        self.multiworld.get_location("Ancient C0 - Star Piece", self.player).place_locked_item(
             self.create_item("Star Piece"))
 
         # Create copies of pools so that data isn't changed when multiple worlds are used

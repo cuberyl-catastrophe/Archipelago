@@ -3,10 +3,10 @@
 
 ## Required Software
 
-- Isles Of Sea And Sky from the [Steam page](https://store.steampowered.com/app/1233070/Isles_of_Sea_and_Sky/)
-- Isles Of Sea And Sky [APWorld](https://github.com/Kim-Delicious/Archipelago_IslesOfSeaAndSky/releases)
-- Archipelago from the [Archipelago Releases Page](https://github.com/ArchipelagoMW/Archipelago/releases)
-- UndertaleModTool from [Its Releases Page](https://github.com/UnderminersTeam/UndertaleModTool/releases/tag/0.8.2.0)
+-Steam page -  Isles Of Sea And Sky from the(https://store.steampowered.com/app/1233070/Isles_of_Sea_and_Sky/)
+-APWorld -  Isles Of Sea And Sky(https://github.com/Kim-Delicious/Archipelago_IslesOfSeaAndSky/releases)
+-Archipelago Releases Page -  Archipelago from the(https://github.com/ArchipelagoMW/Archipelago/releases)
+-Its Releases Page -  UndertaleModTool from(https://github.com/UnderminersTeam/UndertaleModTool/releases/tag/0.8.2.0)
 - Import and Export Scripts in the APWorld
 
 ## Getting Started
