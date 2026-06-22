@@ -481,12 +481,6 @@ def set_aggro_crag(self):
         set_rule(multiworld.get_location("Ancient Rune Lock [Aggro A1]", player),
                  lambda state: state.has("Ancient Rune Stone", player))
 
-        set_rule(multiworld.get_location("Obsidian [Aggro B0]", player),
-                 lambda state: state.has("Ancient Rune Stone", player)
-                               and state.has("Star Piece", player, 35)
-                               and state.has("Awaken Fire Elementals", player)
-                               and state.has("Salamander Shirt", player))
-
     # Snakesanity
     if self.options.enable_snakesanity.value:
         set_rule(multiworld.get_location("Snakeblock [Aggro B1 - E]", player),
@@ -530,10 +524,6 @@ def set_sea_nunatak(self):
              and state.has("Star Piece", player, 49))
 
     set_rule(multiworld.get_location("Diamond [Nunatak B0]", player),
-             lambda state: state.has("Awaken Wind Elementals", player)
-                           and state.has("Star Piece", player, 49))
-
-    set_rule(multiworld.get_location("Star Piece [Nunatak B0]", player),
              lambda state: state.has("Awaken Wind Elementals", player)
                            and state.has("Star Piece", player, 49))
 
@@ -1064,7 +1054,7 @@ def set_stony_cliffs(self):
 
     set_rule(multiworld.get_location("Tablet Puzzle Clue [Stone Dungeon E1]", player),
              lambda state: (state.has("Awaken Earth Elementals", player) and state.has("Topaz Rune Stone", player))
-                           or state.has("Kite cloak", player))
+                           or state.has("Kite Cloak", player))
 
 
     # Locksanity
