@@ -138,24 +138,6 @@ class IslesOfSeaAndSkyWorld(World):
         junk_pool = junk_weights
         return self.random.choices(list(junk_pool.keys()), weights=list(junk_pool.values()))[0]
 
-    def pre_fill(self) -> None:
-
-        ### A more fine-tuned way to put important items in important places
-        ### Prone to Fill errors
-        '''priority_locs = self.options.priority_locations.value
-        prog_items = list(progression_items.keys())
-
-        for loc_name in priority_locs:
-            loc = self.get_location(loc_name)
-            item = self.create_item(choice(prog_items) )
-
-            prog_items.remove(item.name)
-
-            loc.place_locked_item(item)
-            self.multiworld.itempool.remove(item)'''
-
-        pass
-
     def create_items(self):
 
         self.multiworld.get_location("Ancient B3 - Ancient Key", self.player).place_locked_item(
@@ -253,47 +235,9 @@ class IslesOfSeaAndSkyWorld(World):
 
         self.multiworld.itempool += itempool
 
-    def pick_priorities(self):
-        """ Randomly assign locations to priority_locations to
-         encourage fill to better utilize gems, and legendary equipment"""
-        rand_ints = [1, 2, 3 ,4 ,5]
-
-
-        if self.random.choice(rand_ints) == 1:  # 20%
-            self.options.priority_locations.value.add("Topaz Quest Complete")
-        if self.random.choice(rand_ints) == 1:  # 20%
-            self.options.priority_locations.value.add("Sapphire Quest Complete")
-        if self.random.choice(rand_ints) == 1:  # 20%
-            self.options.priority_locations.value.add("Ruby Quest Complete")
-        if self.random.choice(rand_ints) == 1:  # 20%
-            self.options.priority_locations.value.add("Diamond Quest Complete")
-        if self.random.choice(rand_ints) == 1:  # 20%
-            self.options.priority_locations.value.add("Serpent Circlet")
-        if self.random.choice(rand_ints) == 1:  # 20%
-            self.options.priority_locations.value.add("Serpent Circlet")
-
-        rand_ints.pop(len(rand_ints)-1)
-        if self.random.choice(rand_ints) == 1:  # 25%
-            self.options.priority_locations.value.add("Gopher Gloves")
-        if self.random.choice(rand_ints) == 1:  # 25%
-            self.options.priority_locations.value.add("Frog Flippers")
-        if self.random.choice(rand_ints) == 1:  # 25%
-            self.options.priority_locations.value.add("Salamander Shirt")
-        if self.random.choice(rand_ints) == 1:  # 25%
-            self.options.priority_locations.value.add("Kite Cloak")
-
-        rand_ints.pop(len(rand_ints)-1)
-        if self.random.choice(rand_ints) == 1:  # 33%
-            self.options.priority_locations.value.add("Phoenix Flute")
-
-        print("Prioritizing Locations...")
-
-
     def set_rules(self):
         set_rules(self)
         set_completion_rules(self)
-
-        #self.pick_priorities()
 
         '''# for creating visuals, should be disabled for unittests
         from Utils import visualize_regions
