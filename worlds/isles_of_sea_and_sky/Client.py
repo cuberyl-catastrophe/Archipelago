@@ -298,7 +298,7 @@ class IslesOfSeaAndSkyContext(CommonContext):
     def print_to_game(self, text):
 
         filename = str(time.time()) + ".apTxt"
-        with open(os.path.join(self.save_game_folder + "/AP/IN", filename), "a") as f:
+        with open(os.path.join(self.save_game_folder + "/AP/IN", filename), "a", encoding="utf-8") as f:
             f.write(f"{text}" + "\n")
             f.close()
 
@@ -514,7 +514,7 @@ async def scout_for_custom_icons(ctx: IslesOfSeaAndSkyContext):
     # allowing for custom item sprites in-game.
     if not prescout:
         if ctx.did_scout_locations:
-            with open(os.path.join(path, "prescout.scout"), "w") as f:
+            with open(os.path.join(path, "prescout.scout"), "w", encoding="utf-8") as f:
                 for item in ctx.locations_info.items():
                     netItem = item[1]
                     gameItem = netItem.item
