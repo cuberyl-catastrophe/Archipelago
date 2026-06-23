@@ -32,10 +32,12 @@ description: Default Isles Of Sea And Sky Template
 
 game: Isles Of Sea And Sky
 requires:
-  version: 0.6.2 # Version of Archipelago required for this yaml to work as expected.
+  version: 0.6.7 # Version of Archipelago required for this yaml to work as expected.
 
 Isles Of Sea And Sky:
-  # Game Options
+  ################
+  # Game Options #
+  ################
   progression_balancing:
     # A system that can move progression earlier, to try and prevent the player from getting stuck and bored early.
     # 
@@ -45,8 +47,9 @@ Isles Of Sea And Sky:
     # Minimum value is 0
     # Maximum value is 99
     random: 0
-    random-low: 0
-    random-high: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-0-99: 0 # random value between 0 and 99
     disabled: 0 # equivalent to 0
     normal: 50 # equivalent to 50
     extreme: 0 # equivalent to 99
@@ -60,26 +63,18 @@ Isles Of Sea And Sky:
     full: 50
     minimal: 0
 
-  plando_items:
-    # Generic items plando.
-    []
-
-  alt_rooms:
-    # When enabled, the game chooses random alternate rooms from the selection in 'Alt Rooms'
-    # This folder is copied from the apworld into the modded program folder (Should be different than the steam install)
-    #
-    # EARLY DEVELOPMENT! lOTS OF BUGS
-    'false': 50
-    'true': 0
-
-  # Goal
+  ########
+  # Goal #
+  ########
   route_required:
     # Main route of the game required to win.
     normal_ending: 50
     secret_ending: 0
     all_gems: 0
 
-  # QOL
+  #######
+  # QOL #
+  #######
   phoenix_anywhere:
     # You can summon the Phoenix in any non-overworld location by pressing: 'E', if you have the Phoenix Flute.
     'false': 50
@@ -94,7 +89,14 @@ Isles Of Sea And Sky:
     extra_goodies: 0
     only_goodies: 0
 
-  # Extra Checks
+  ################
+  # Extra Checks #
+  ################
+  enable_notesanity:
+    # Turn all music notes in the game into location checks. Music puzzles will be filled progressively from stoney cliffs to frozen spire.
+    'false': 50
+    'true': 0
+
   enable_locksanity:
     # Turn all locks in the game into location checks. This includes big 3x locks, all Rune Stone locks, and other specialty locks
     'false': 50
@@ -120,7 +122,20 @@ Isles Of Sea And Sky:
     'false': 50
     'true': 0
 
-  # Death Link
+  ##############
+  # Randomizer #
+  ##############
+  alt_rooms:
+    # When enabled, the game chooses random alternate rooms from the selection in 'Alt Rooms'
+    # This folder is copied from the apworld into the modded program folder (Should be different than the steam install)
+    # though you copy the 'Alt Rooms' folder and place it there yourself.
+    # EARLY DEVELOPMENT! lOTS OF BUGS
+    'false': 50
+    'true': 0
+
+  ##############
+  # Death Link #
+  ##############
   death_link:
     # When you die, everyone who enabled death link dies. Of course, the reverse is true too.
     'false': 50
@@ -134,17 +149,29 @@ Isles Of Sea And Sky:
     # Maximum value is 10
     3: 50
     random: 0
-    random-low: 0
-    random-high: 0
+    random-low: 0 # random value weighted towards lower values
+    random-high: 0 # random value weighted towards higher values
+    random-range-1-10: 0 # random value between 1 and 10
 
-  # Traps
+  #########
+  # Traps #
+  #########
   traps:
     # When enabled, transforms filler items into traps instead.
     no_traps: 50
     some_traps: 0
     plenty_traps: 0
 
-  # Item & Location Options
+  trap_link:
+    # When enabled, your received traps are linked to other players
+    # 
+    # CURRENTLY UNIMPLEMENTED!!!
+    'false': 50
+    'true': 0
+
+  ###########################
+  # Item & Location Options #
+  ###########################
   local_items:
     # Forces these items to be in their native world.
     []
@@ -154,7 +181,7 @@ Isles Of Sea And Sky:
     []
 
   start_inventory:
-    # Start with these items.
+    # Start with the specified amount of these items. Example: "Bomb: 1"
     {}
 
   start_hints:
@@ -175,4 +202,8 @@ Isles Of Sea And Sky:
 
   item_links:
     # Share part of your item pool with other players.
+    []
+
+  plando_items:
+    # Generic items plando.
     []

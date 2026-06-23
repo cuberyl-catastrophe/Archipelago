@@ -169,6 +169,7 @@ class IslesOfSeaAndSkyContext(CommonContext):
     route = None
     includeSeashells = None
     includeJellyfish = None
+    enableNotesanity = None
     enableLocksanity = None
     enableSnakesanity = None
     reqRoute = None
@@ -334,6 +335,7 @@ async def process_isles_of_sea_and_sky_cmd(ctx: IslesOfSeaAndSkyContext, cmd: st
 
         ctx.includeSeashells =      args["slot_data"]["include_seashells"]
         ctx.includeJellyfish =      args["slot_data"]["include_jellyfish"]
+        ctx.enableNotesanity =      args["slot_data"]["enable_notesanity"]
         ctx.enableLocksanity =      args["slot_data"]["enable_locksanity"]
         ctx.enableSnakesanity =     args["slot_data"]["enable_snakesanity"]
         ctx.reqRoute =              args["slot_data"]["route_required"]
@@ -346,7 +348,8 @@ async def process_isles_of_sea_and_sky_cmd(ctx: IslesOfSeaAndSkyContext, cmd: st
 
         with open(os.path.join(ctx.save_game_folder, "apOptions.options"), "w") as f:
             f.write("includeSeashells: "    + str(ctx.includeSeashells)    + '\n')
-            f.write("includeJellyfish: "    + str(ctx.includeJellyfish)    + '\n')
+            f.write("includeJellyfish: "    + str(ctx.includeJellyfish)    + '\n') 
+            f.write("enableNotesanity: "    + str(ctx.enableNotesanity)    + '\n') 
             f.write("enableLocksanity: "    + str(ctx.enableLocksanity)    + '\n')
             f.write("enableSnakesanity: "   + str(ctx.enableSnakesanity)   + '\n')
             f.write("reqRoute: "            + str(ctx.reqRoute)            + '\n')

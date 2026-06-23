@@ -98,19 +98,21 @@ key_items = {
     "Star Piece":                           91
 }
 
+note_items = {
+    "Music Note":                           24
+}
+
 non_key_items = {
     "Obsidian":                             12,
     "Obsidian Rune Stone":                  1,
     "Serpent Circlet":                      1,
     "Blue Stone Tablet":                    1,
     "Gold Stone Tablet":                    1,
-    "Music Note":                           24,
     "Star Viewing Orb":                     1,
     "Beast Bellstone Hit - Rolling":        1,
     "Beast Bellstone Hit - Sunken":         1,
     "Beast Bellstone Hit - Aggro":          1,
     "Beast Bellstone Hit - Nunatak":        1
-
 }
 
 # 52 total
