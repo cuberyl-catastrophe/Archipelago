@@ -19,6 +19,17 @@ from CommonClient import CommonContext, server_loop, \
     gui_enabled, ClientCommandProcessor, logger, get_base_parser
 from Utils import async_start
 
+def find_steam_install(steaminstall: typing.Optional[str] = None) -> typing.Optional[str]:
+    candidates = ([steaminstall] if steaminstall else []) + [
+        "C:\\Program Files (x86)\\Steam\\steamapps\\common\\IslesOfSeaAndSky",
+        "C:\\Program Files\\Steam\\steamapps\\common\\IslesOfSeaAndSky",
+    ]
+    for path in candidates:
+        if os.path.isfile(os.path.join(path, "data.win")):
+            return path
+    return None
+
+
 class IslesOfSeaAndSkyCommandProcessor(ClientCommandProcessor):
     def __init__(self, ctx):
         super().__init__(ctx)
@@ -67,18 +78,8 @@ class IslesOfSeaAndSkyCommandProcessor(ClientCommandProcessor):
 
         if isinstance(self.ctx, IslesOfSeaAndSkyContext):
             os.makedirs(name=Utils.user_path("IslesOfSeaAndSky"), exist_ok=True)
-            tempInstall = steaminstall
-            if tempInstall is not None and not os.path.isfile(os.path.join(tempInstall, "data.win")):
-                tempInstall = None
+            tempInstall = find_steam_install(steaminstall)
             if tempInstall is None:
-                tempInstall = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\IslesOfSeaAndSky"
-                if not os.path.exists(tempInstall):
-                    tempInstall = "C:\\Program Files\\Steam\\steamapps\\common\\IslesOfSeaAndSky"
-            elif not os.path.exists(tempInstall):
-                tempInstall = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\IslesOfSeaAndSky"
-                if not os.path.exists(tempInstall):
-                    tempInstall = "C:\\Program Files\\Steam\\steamapps\\common\\IslesOfSeaAndSky"
-            if not os.path.exists(tempInstall) or not os.path.exists(tempInstall) or not os.path.isfile(os.path.join(tempInstall, "data.win")):
                 self.output("ERROR: Cannot find IslesOfSeaAndSky. Please rerun the command with the correct folder."
                             " command. \"/auto_patch (Steam directory)\".")
             else:
@@ -109,19 +110,8 @@ class IslesOfSeaAndSkyCommandProcessor(ClientCommandProcessor):
     @mark_raw
     def _cmd_create_patch(self, patch_name: str = "new_patch", steaminstall: typing.Optional[str] = None):
         """Should not EVER be used by normal players. Used by Creators to make Mods.\n Expect the Client to hang for several minutes before a patch is made."""
-        tempInstall = steaminstall
-        if tempInstall is not None and not os.path.isfile(os.path.join(tempInstall, "data.win")):
-            tempInstall = None
+        tempInstall = find_steam_install(steaminstall)
         if tempInstall is None:
-            tempInstall = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\IslesOfSeaAndSky"
-            if not os.path.exists(tempInstall):
-                tempInstall = "C:\\Program Files\\Steam\\steamapps\\common\\IslesOfSeaAndSky"
-        elif not os.path.exists(tempInstall):
-            tempInstall = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\IslesOfSeaAndSky"
-            if not os.path.exists(tempInstall):
-                tempInstall = "C:\\Program Files\\Steam\\steamapps\\common\\IslesOfSeaAndSky"
-        if not os.path.exists(tempInstall) or not os.path.exists(tempInstall) or not os.path.isfile(
-                os.path.join(tempInstall, "data.win")):
             self.output("ERROR: Cannot find IslesOfSeaAndSky. Please rerun the command with the correct folder."
                         " command. \"/auto_patch (Steam directory)\".")
         else:
