@@ -332,35 +332,6 @@ advancement_table = {
 
     "Locked A0 - Star Piece":                       AdvData(104281, "Locked"),
     # 91 stars
-    "Stone C1 - Music Note":                        AdvData(107494, "Stony Cliffs"), #
-    "Stone D4 - Music Note":                        AdvData(106797, "Stony Cliffs Post-Rune"), # topaz rune
-    "Stone B3 - Music Note":                        AdvData(108112, "Stony Cliffs Post-Rune"), # topaz rune
-    "Stone B0 - Music Note":                        AdvData(108015, "Stony Cliffs NW"), # topaz rune
-    "Stone B2 - Music Note":                        AdvData(107378, "Stony Cliffs Post-Rune"), # topaz quest
-    "Stone D1 - Music Note":                        AdvData(107170, "Stony Cliffs"), # topaz quest
-
-    "Water C1 - Music Note":                        AdvData(109459, "Tidal Reef"),
-    "Water E0 - Music Note":                        AdvData(110707, "Tidal Reef Post-Rune"), # s rune
-    "Water D1 - Music Note":                        AdvData(109898, "Tidal Reef Post-Rune"), # s rune
-    "Water E2 - Music Note":                        AdvData(113309, "Tidal Reef Post-Rune"), # s rune
-    "Water B0 - Music Note":                        AdvData(113769, "Tidal Reef Post-Rune"), # s rune
-    "Water A2 - Music Note":                        AdvData(112459, "Tidal Reef Post-Rune"), # s rune
-
-    "Fire A2 - Music Note":                         AdvData(115241, "Raging Volcano"),
-    "Fire C3 - Music Note":                         AdvData(116308, "Raging Volcano Post-Rune"), # r rune
-    "Fire B0 - Music Note":                         AdvData(119349, "Raging Volcano Post-Rune"), # r rune
-    "Fire B2 - Music Note":                         AdvData(115377, "Raging Volcano Post-Rune"), # r rune
-    "Fire E1 - Music Note":                         AdvData(118593, "Raging Volcano Post-Rune"), # r rune
-    "Fire D3 - Music Note":                         AdvData(119009, "Raging Volcano Post-Rune"), # salamander shirt
-
-    "Wind B1 - Music Note":                         AdvData(120922, "Frozen Spire"),
-    "Wind A0 - Music Note":                         AdvData(120222, "Frozen Spire"),
-    "Wind E3 - Music Note":                         AdvData(121759, "Frozen Spire Post-Rune"),  # d rune
-    "Wind C3 - Music Note":                         AdvData(120640, "Frozen Spire Post-Rune"),  # d rune,
-    "Wind A2 - Music Note":                         AdvData(120737, "Frozen Spire Post-Rune"), # d quest,
-    "Wind D3 - Music Note":                         AdvData(120557, "Frozen Spire Post-Rune"), # d quest
-
-
 
     # In the future, could include milestones as locations. e.g. each of the steam achievements, plus extras.
 }
@@ -411,6 +382,37 @@ jellyfish_table = {
     "Beast Sea - E - Jellyfish":                    AdvData(108510, "Beast Sea"),
     "Lost Sea - Jellyfish":                         AdvData(108504, "Lost Sea"),
     "Northeast Sea - Jellyfish":                    AdvData(108509, "Northeast Sea"),
+}
+
+notesanity_table = {
+    # 24 checks
+    "Stone C1 - Music Note":                        AdvData(107494, "Stony Cliffs"), #
+    "Stone D4 - Music Note":                        AdvData(106797, "Stony Cliffs Post-Rune"), # topaz rune
+    "Stone B3 - Music Note":                        AdvData(108112, "Stony Cliffs Post-Rune"), # topaz rune
+    "Stone B0 - Music Note":                        AdvData(108015, "Stony Cliffs NW"), # topaz rune
+    "Stone B2 - Music Note":                        AdvData(107378, "Stony Cliffs Post-Rune"), # topaz quest
+    "Stone D1 - Music Note":                        AdvData(107170, "Stony Cliffs"), # topaz quest
+
+    "Water C1 - Music Note":                        AdvData(109459, "Tidal Reef"),
+    "Water E0 - Music Note":                        AdvData(110707, "Tidal Reef Post-Rune"), # s rune
+    "Water D1 - Music Note":                        AdvData(109898, "Tidal Reef Post-Rune"), # s rune
+    "Water E2 - Music Note":                        AdvData(113309, "Tidal Reef Post-Rune"), # s rune
+    "Water B0 - Music Note":                        AdvData(113769, "Tidal Reef Post-Rune"), # s rune
+    "Water A2 - Music Note":                        AdvData(112459, "Tidal Reef Post-Rune"), # s rune
+
+    "Fire A2 - Music Note":                         AdvData(115241, "Raging Volcano"),
+    "Fire C3 - Music Note":                         AdvData(116308, "Raging Volcano Post-Rune"), # r rune
+    "Fire B0 - Music Note":                         AdvData(119349, "Raging Volcano Post-Rune"), # r rune
+    "Fire B2 - Music Note":                         AdvData(115377, "Raging Volcano Post-Rune"), # r rune
+    "Fire E1 - Music Note":                         AdvData(118593, "Raging Volcano Post-Rune"), # r rune
+    "Fire D3 - Music Note":                         AdvData(119009, "Raging Volcano Post-Rune"), # salamander shirt
+
+    "Wind B1 - Music Note":                         AdvData(120922, "Frozen Spire"),
+    "Wind A0 - Music Note":                         AdvData(120222, "Frozen Spire"),
+    "Wind E3 - Music Note":                         AdvData(121759, "Frozen Spire Post-Rune"),  # d rune
+    "Wind C3 - Music Note":                         AdvData(120640, "Frozen Spire Post-Rune"),  # d rune,
+    "Wind A2 - Music Note":                         AdvData(120737, "Frozen Spire Post-Rune"), # d quest,
+    "Wind D3 - Music Note":                         AdvData(120557, "Frozen Spire Post-Rune"), # d quest
 }
 
 # 24 checks

@@ -1033,12 +1033,6 @@ def set_stony_cliffs(self):
     set_rule(multiworld.get_location("Stone E1 - Star Piece", player),
              lambda state: state.has("Ancient Key", player, 10))
 
-    set_rule(multiworld.get_location("Stone B2 - Music Note", player),
-             lambda state: state.has("Awaken Earth Elementals", player))
-
-    set_rule(multiworld.get_location("Stone D1 - Music Note", player),
-             lambda state: state.has("Awaken Earth Elementals", player))
-
     set_rule(multiworld.get_location("Stone Dungeon C2 - Open Topaz Door", player),
              lambda state: state.has("Awaken Earth Elementals", player))
 
@@ -1046,6 +1040,13 @@ def set_stony_cliffs(self):
              lambda state: (state.has("Awaken Earth Elementals", player) and state.has("Topaz Rune Stone", player))
                            or state.has("Kite Cloak", player))
 
+    # Notesanity
+    if self.options.enable_notesanity.value:
+        set_rule(multiworld.get_location("Stone B2 - Music Note", player),
+                lambda state: state.has("Awaken Earth Elementals", player))
+
+        set_rule(multiworld.get_location("Stone D1 - Music Note", player),
+                lambda state: state.has("Awaken Earth Elementals", player))
 
     # Locksanity
     if self.options.enable_locksanity.value:
@@ -1380,11 +1381,13 @@ def set_raging_volcano(self):
     set_rule(multiworld.get_location("Fire E0 - Star Piece", player),
              lambda state: state.has("Salamander Shirt", player) )
 
-    set_rule(multiworld.get_location("Fire B0 - Music Note", player),
-             lambda state: state.has("Salamander Shirt", player))
+    # Notesanity
+    if self.options.enable_notesanity.value:
+        set_rule(multiworld.get_location("Fire B0 - Music Note", player),
+                lambda state: state.has("Salamander Shirt", player))
 
-    set_rule(multiworld.get_location("Fire D3 - Music Note", player),
-             lambda state: state.has("Salamander Shirt", player))
+        set_rule(multiworld.get_location("Fire D3 - Music Note", player),
+                lambda state: state.has("Salamander Shirt", player))
 
 
     # Locksanity
@@ -1533,14 +1536,16 @@ def set_frozen_spire(self):
     set_rule(multiworld.get_location("Wind C3 - NE - Star Piece", player),
              lambda state: state.has("Awaken Wind Elementals", player))
 
-    set_rule(multiworld.get_location("Wind A2 - Music Note", player),
-             lambda state: state.has("Awaken Wind Elementals", player))
+    # Notesanity
+    if self.options.enable_notesanity.value:
+        set_rule(multiworld.get_location("Wind A2 - Music Note", player),
+                lambda state: state.has("Awaken Wind Elementals", player))
 
-    set_rule(multiworld.get_location("Wind D3 - Music Note", player),
-             lambda state: state.has("Awaken Wind Elementals", player))
+        set_rule(multiworld.get_location("Wind D3 - Music Note", player),
+                lambda state: state.has("Awaken Wind Elementals", player))
 
-    set_rule(multiworld.get_location("Wind E3 - Music Note", player),
-             lambda state: state.has("Awaken Wind Elementals", player))
+        set_rule(multiworld.get_location("Wind E3 - Music Note", player),
+                lambda state: state.has("Awaken Wind Elementals", player))
 
 
     # Locksanity

@@ -1,15 +1,15 @@
 import os.path
 import warnings
 
-from .Items import IslesOfSeaAndSkyItem, item_table, non_key_items, key_items, \
+from .Items import IslesOfSeaAndSkyItem, item_table, non_key_items, key_items, note_items, \
     junk_weights, progression_items, trap_weights
 from .Locations import IslesOfSeaAndSkyAdvancement, advancement_table, exclusion_table, \
-    jellyfish_table, seashell_table, locksanity_table, snakesanity_table, secrets_table
+    jellyfish_table, seashell_table, notesanity_table, locksanity_table, snakesanity_table, secrets_table
 from .Regions import isles_of_sea_and_sky_regions, link_isles_of_sea_and_sky_areas
 from .Rules import set_rules, set_completion_rules
 #from worlds.generic.Rules import exclusion_rules
 from BaseClasses import Region, Entrance, Tutorial, Item
-from .Options import IslesOfSeaAndSkyOptions, EnableSecretsanity, EnableSnakesanity, EnableLocksanity, isles_of_sea_and_sky_option_groups
+from .Options import IslesOfSeaAndSkyOptions, EnableNotesanity, EnableSecretsanity, EnableSnakesanity, EnableLocksanity, isles_of_sea_and_sky_option_groups
 from worlds.AutoWorld import World, WebWorld
 import worlds.LauncherComponents as LauncherComponents
 
@@ -103,6 +103,7 @@ class IslesOfSeaAndSkyWorld(World):
             {name: data.id for name, data in advancement_table.items()} |
             {name: data.id for name, data in jellyfish_table.items()} |
             {name: data.id for name, data in seashell_table.items()} |
+            {name: data.id for name, data in notesanity_table.items()} |
             {name: data.id for name, data in locksanity_table.items()} |
             {name: data.id for name, data in snakesanity_table.items()}|
             {name: data.id for name, data in secrets_table.items()}
@@ -118,6 +119,7 @@ class IslesOfSeaAndSkyWorld(World):
             "client_version":       self.required_client_version,
             "race":                 self.multiworld.is_race,
             "route_required":       self.options.route_required.current_key,
+            "enable_notesanity":    bool(self.options.enable_notesanity.value),
             "enable_locksanity":    bool(self.options.enable_locksanity.value),
             "enable_snakesanity":   bool(self.options.enable_snakesanity.value),
             "include_seashells":    bool(self.options.include_seashells.value),
@@ -160,6 +162,7 @@ class IslesOfSeaAndSkyWorld(World):
         progression_pool = progression_items.copy()
         key_pool = key_items.copy()
         non_key_pool = non_key_items.copy()
+        note_pool = note_items.copy()
         junk_pool = junk_weights.copy()
         trap_pool = trap_weights.copy()
 
@@ -180,6 +183,10 @@ class IslesOfSeaAndSkyWorld(World):
             itempool += [name] * num
         for name, num in non_key_pool.items():
             itempool += [name] * num
+
+        if self.options.enable_notesanity:
+            for name, num in note_pool.items():
+                itempool += [name] * num
 
         missing_items = len(self.multiworld.get_unfilled_locations(self.player) ) - len(itempool)
         print("Creating " + str(missing_items) + " Filler Items for " + str(self.game) )
@@ -258,6 +265,12 @@ class IslesOfSeaAndSkyWorld(World):
                               for loc_name, loc_data in advancement_table.items()
                               if loc_data.region == region_name]
 
+            # Note Locations
+            if self.options.enable_notesanity:
+                ret.locations += [IslesOfSeaAndSkyAdvancement(self.player, loc_name, loc_data.id, ret)
+                                  for loc_name, loc_data in notesanity_table.items()
+                                  if loc_data.region == region_name]
+                
             # Locksanity Locations
             if self.options.enable_locksanity:
                 ret.locations += [IslesOfSeaAndSkyAdvancement(self.player, loc_name, loc_data.id, ret)
