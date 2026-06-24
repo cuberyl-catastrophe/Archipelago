@@ -501,7 +501,7 @@ async def scout_for_custom_icons(ctx: IslesOfSeaAndSkyContext):
     # Search for rescout file
     for root, dirs, files in os.walk(path):
         for file in files:
-            if "prescout.scout" in file:
+            if file == "prescout.scout":
                 prescout = True
     # Create a file that stores missing locations, and the items tied to them
     # allowing for custom item sprites in-game.
