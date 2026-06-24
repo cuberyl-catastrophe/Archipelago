@@ -1,6 +1,6 @@
 {
   "game": "Isles Of Sea And Sky",
-  "authors": ["KimDelicious"],
-  "minimum_ap_version": "0.6.4",
-  "world_version": "0.0.13"
+  "authors": ["KimDelicious", "Angrevol", "Woli", "Cuberyl"],
+  "minimum_ap_version": "0.6.7",
+  "world_version": "1.0.0"
 }
