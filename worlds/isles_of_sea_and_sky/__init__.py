@@ -217,25 +217,20 @@ class IslesOfSeaAndSkyWorld(World):
                 trap_number -= 1
                 missing_items -= 1
 
+        composition = self.options.filler_composition.current_key
         weight_list = []
         # Add filler weights to potential filler pool
         for name, num in junk_pool.items():
-            match self.options.filler_composition.current_key:
-                case "extra_goodies":
-                    pass
-                case "only_goodies":
-                    if name == "Seashell":
-                        continue
-                case _: # default
-                    weight_list += ["Seashell"] * num
-                    break
+            if composition == "default" and name != "Seashell":
+                continue
+            if composition == "only_goodies" and name == "Seashell":
+                continue
             weight_list += [name] * num
 
         # For each free filler spot, choose an item from weight_list at random, then add it to the item pool
         while missing_items > 0:
-            rand_item = self.random.choice(weight_list)
-            itempool += [rand_item]
-            missing_items = len(self.multiworld.get_unfilled_locations(self.player)) - len(itempool)
+            itempool += [self.random.choice(weight_list)]
+            missing_items -= 1
 
         # Convert itempool into real items
         itempool = [item for item in map(lambda item_name: self.create_item(item_name), itempool)]
