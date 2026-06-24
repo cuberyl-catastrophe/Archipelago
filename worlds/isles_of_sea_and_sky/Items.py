@@ -4,11 +4,11 @@ import typing
 
 class ItemData(typing.NamedTuple):
     code: typing.Optional[int]
-    classification: any
+    classification: IC
 
 
 class IslesOfSeaAndSkyItem(Item):
-    game: str = "IslesOfSeaAndSky"
+    game: str = "Isles Of Sea And Sky"
 
 # Item ID is set to in-game Object Index
 item_table = {

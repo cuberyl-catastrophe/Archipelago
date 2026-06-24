@@ -7,7 +7,7 @@ class AdvData(typing.NamedTuple):
     region: str
 
 class IslesOfSeaAndSkyAdvancement(Location):
-    game: str = "IslesOfSeaAndSky"
+    game: str = "Isles Of Sea And Sky"
 
 advancement_table = {
     "Locked A0 - Ancient Rune Stone":               AdvData(104285, "Locked"),

@@ -164,6 +164,8 @@ class IslesOfSeaAndSkyContext(CommonContext):
     enableSnakesanity = None
     reqRoute = None
     phoenixAnywhere = None
+    allowTraps = None
+    altRooms = None
     #startingArea = None
 
     #temp_currentLocation = None
@@ -448,8 +450,9 @@ async def game_watcher(ctx: IslesOfSeaAndSkyContext):
                         with open(os.path.join(root, file), "r") as f:
                             lines = f.readlines()
                         for l in lines:
-                            if ctx.server_locations.__contains__(int(l)+12000):
-                                sending = sending + [int(l.rstrip('\n'))+12000]
+                            ap_location_id = int(l) + 12000 # Scout location ID offset
+                            if ap_location_id in ctx.server_locations:
+                                sending.append(ap_location_id)
                     finally:
                         await ctx.send_msgs([{"cmd": "LocationScouts", "locations": sending,
                                                           "create_as_hint": int(2)}])
@@ -473,7 +476,7 @@ async def game_watcher(ctx: IslesOfSeaAndSkyContext):
                             lines = f.readlines()
                             f.close()
                         for l in lines:
-                            sending = sending + [(int(l.rstrip('\n')))]
+                            sending.append(int(l))
 
                     finally:
                         '''if (len(sending) > 0):
