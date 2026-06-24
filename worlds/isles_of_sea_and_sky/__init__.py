@@ -1,5 +1,6 @@
 import os.path
 import warnings
+from typing import Any
 
 from .Items import IslesOfSeaAndSkyItem, item_table, non_key_items, key_items, note_items, \
     junk_weights, progression_items, trap_weights
@@ -95,6 +96,8 @@ class IslesOfSeaAndSkyWorld(World):
     options: IslesOfSeaAndSkyOptions
     web = IslesOfSeaAndSkyWeb()
 
+    ut_can_gen_without_yaml = True
+
     #explicit_indirect_conditions = False
 
     item_name_to_id = {name: data.code for name, data in item_table.items()}
@@ -134,6 +137,25 @@ class IslesOfSeaAndSkyWorld(World):
             "alt_rooms":            bool(self.options.alt_rooms.value),
 
         }
+
+    # UT
+    def generate_early(self) -> None:
+        passthrough = getattr(self.multiworld, "re_gen_passthrough", {}).get(self.game)
+        if not passthrough:
+            return
+        options = self.options
+        options.route_required = options.route_required.from_any(passthrough["route_required"])
+        options.enable_notesanity = options.enable_notesanity.from_any(passthrough["enable_notesanity"])
+        options.enable_locksanity = options.enable_locksanity.from_any(passthrough["enable_locksanity"])
+        options.enable_snakesanity = options.enable_snakesanity.from_any(passthrough["enable_snakesanity"])
+        options.secretsanity = options.secretsanity.from_any(passthrough["secretsanity"])
+        options.include_seashells = options.include_seashells.from_any(passthrough["include_seashells"])
+        options.include_jellyfish = options.include_jellyfish.from_any(passthrough["include_jellyfish"])
+
+    # UT
+    @staticmethod
+    def interpret_slot_data(slot_data: dict[str, Any]) -> dict[str, Any]:
+        return slot_data
 
     def get_filler_item_name(self):
 

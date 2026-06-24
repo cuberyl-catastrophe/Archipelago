@@ -1723,15 +1723,11 @@ def set_completion_rules(world: "IslesOfSeaAndSkyWorld"):
 
     route = world.options.route_required.current_key
 
-    # Normal Ending
     if route == "normal_ending":
         world.set_completion_rule(CanReachRegion("Sanctum Peak"))
-
-    # Secret Ending
     elif route == "secret_ending":
         world.set_completion_rule(CanReachRegion("Sanctum Peak")
                                   & Has("Star Piece", 91))
-    # All Gems
     elif route == "all_gems":
         world.set_completion_rule(Has("Topaz", 12)
                                   & Has("Sapphire", 12)
