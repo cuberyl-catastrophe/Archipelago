@@ -1055,9 +1055,6 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
 
     # Notesanity
     if world.options.enable_notesanity.value:
-        world.set_rule(world.get_location("Stone B2 - Music Note"),
-                       Has("Awaken Earth Elementals"))
-
         world.set_rule(world.get_location("Stone D1 - Music Note"),
                        Has("Awaken Earth Elementals"))
 
