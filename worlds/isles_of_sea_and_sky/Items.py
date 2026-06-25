@@ -34,7 +34,7 @@ item_table = {
     "Gold Stone Tablet":                    ItemData(597,       IC.progression_skip_balancing),
     "Seashell":                             ItemData(636,       IC.filler),
     "Fire Key":                             ItemData(332,       IC.progression_skip_balancing),
-    "Music Note":                           ItemData(457,       IC.useful),
+    "Music Note":                           ItemData(457,       IC.progression_skip_balancing),
     "Phoenix Flute":                        ItemData(511,       IC.progression | IC.useful),
     "Star Viewing Orb":                     ItemData(733,       IC.useful),
     # Cutscenes

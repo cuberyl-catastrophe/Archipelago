@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 from rule_builder.options import OptionFilter
 from rule_builder.rules import CanReachRegion, Has
 
-from .Options import PhoenixAnywhere
+from .Options import PhoenixAnywhere, EnableNotesanity
 
 if TYPE_CHECKING:
     from . import IslesOfSeaAndSkyWorld
@@ -1028,16 +1028,19 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Stone E1 - Star Piece"),
                    Has("Ancient Key", 10))
-    
+
     world.set_rule(world.get_location("Stone D1 - Music Puzzle Star Piece 1"),
-                    Has("Ancient Key", 11)
-                    & Has("Awaken Earth Elementals"))
+                    Has("Awaken Earth Elementals")
+                    & ( ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)] & Has("Topaz Rune Stone") & Has("Ancient Key", 11))
+                        | ([OptionFilter(EnableNotesanity, EnableNotesanity.option_true)] & Has("Music Note", 6))))
     world.set_rule(world.get_location("Stone D1 - Music Puzzle Star Piece 2"),
-                    Has("Ancient Key", 11)
-                    & Has("Awaken Earth Elementals"))
+                    Has("Awaken Earth Elementals")
+                    & ( ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)] & Has("Topaz Rune Stone") & Has("Ancient Key", 11))
+                        | ([OptionFilter(EnableNotesanity, EnableNotesanity.option_true)] & Has("Music Note", 6))))
     world.set_rule(world.get_location("Stone D1 - Music Puzzle Star Piece 3"),
-                    Has("Ancient Key", 11)
-                    & Has("Awaken Earth Elementals"))
+                    Has("Awaken Earth Elementals")
+                    & ( ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)] & Has("Topaz Rune Stone") & Has("Ancient Key", 11))
+                        | ([OptionFilter(EnableNotesanity, EnableNotesanity.option_true)] & Has("Music Note", 6))))
     
     world.set_rule(world.get_location("Stone A2 - Tablet Puzzle Star Piece"),
                     Has("Blue Stone Tablet")
@@ -1235,11 +1238,14 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
                    Has("Ancient Key", 32))
     
     world.set_rule(world.get_location("Water B0 - Music Puzzle Star Piece 1"),
-                   Has("Awaken Water Elementals"))
+                   Has("Awaken Water Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 12)))
     world.set_rule(world.get_location("Water B0 - Music Puzzle Star Piece 2"),
-                   Has("Awaken Water Elementals"))
+                   Has("Awaken Water Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 12)))
     world.set_rule(world.get_location("Water B0 - Music Puzzle Star Piece 3"),
-                   Has("Awaken Water Elementals"))
+                   Has("Awaken Water Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 12)))
 
     # IncludeShells
     if world.options.include_seashells.value:
@@ -1394,11 +1400,14 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
                    Has("Salamander Shirt"))
     
     world.set_rule(world.get_location("Fire B3 - Music Puzzle Star Piece 1"),
-                   Has("Awaken Fire Elementals"))
+                   Has("Awaken Fire Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 18)))
     world.set_rule(world.get_location("Fire B3 - Music Puzzle Star Piece 2"),
-                   Has("Awaken Fire Elementals"))
+                   Has("Awaken Fire Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 18)))
     world.set_rule(world.get_location("Fire B3 - Music Puzzle Star Piece 3"),
-                   Has("Awaken Fire Elementals"))
+                   Has("Awaken Fire Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 18)))
 
     # Locksanity
     if world.options.enable_locksanity.value:
@@ -1528,11 +1537,14 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
                    Has("Awaken Wind Elementals"))
     
     world.set_rule(world.get_location("Wind B4 - Music Puzzle Star Piece 1"),
-                   Has("Awaken Wind Elementals"))
+                   Has("Awaken Wind Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 24)))
     world.set_rule(world.get_location("Wind B4 - Music Puzzle Star Piece 2"),
-                   Has("Awaken Wind Elementals"))
+                   Has("Awaken Wind Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 24)))
     world.set_rule(world.get_location("Wind B4 - Music Puzzle Star Piece 3"),
-                   Has("Awaken Wind Elementals"))
+                   Has("Awaken Wind Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 24)))
 
     # Notesanity
     if world.options.enable_notesanity.value:

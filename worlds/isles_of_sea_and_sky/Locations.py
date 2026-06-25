@@ -241,9 +241,9 @@ advancement_table = {
     "Stone Dungeon B1 - Star Piece":                AdvData(124770, "Stony Cliffs NW"), # g gloves
     "Stone A1 - Star Piece":                        AdvData(107547, "Stony Cliffs NW"), # 5 stars
 
-    "Stone D1 - Music Puzzle Star Piece 1":         AdvData(99901311, "Stony Cliffs Post-Rune"), # t quest, ancient key
-    "Stone D1 - Music Puzzle Star Piece 2":         AdvData(99901312, "Stony Cliffs Post-Rune"), # t quest, ancient key
-    "Stone D1 - Music Puzzle Star Piece 3":         AdvData(99901313, "Stony Cliffs Post-Rune"), # t quest, ancient key
+    "Stone D1 - Music Puzzle Star Piece 1":         AdvData(99901311, "Stony Cliffs"), # t rune, t quest, ancient key
+    "Stone D1 - Music Puzzle Star Piece 2":         AdvData(99901312, "Stony Cliffs"), # t rune, t quest, ancient key
+    "Stone D1 - Music Puzzle Star Piece 3":         AdvData(99901313, "Stony Cliffs"), # t rune, t quest, ancient key
     "Stone A2 - Tablet Puzzle Star Piece":          AdvData(99901021, "Stony Cliffs Post-Rune"), # blue & gold tablet
 
     "Water C1 - E - Star Piece":                    AdvData(109452, "Tidal Reef"),
