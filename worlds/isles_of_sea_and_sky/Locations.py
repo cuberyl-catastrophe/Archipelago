@@ -314,7 +314,7 @@ advancement_table = {
 
     "Sunken B0 - Star Piece":                       AdvData(123146, "Sunken Island"), # 21 stars, s quest
     "Sunken A1 - Star Piece":                       AdvData(123082, "Sunken Island"), # ancient rune
-    "Sunken B1 - Beast Bell Star Piece":            AdvData(99909112, "Ancient Isle"), # sunken beast be;;
+    "Sunken B1 - Beast Bell Star Piece":            AdvData(99909112, "Ancient Isle"), # sunken beast bell
 
     "Aggro B1 - Star Piece":                        AdvData(122849, "Aggro Crag"), # 35 star, r quest
     "Aggro A1 - Star Piece":                        AdvData(122918, "Aggro Crag"), # ancient rune

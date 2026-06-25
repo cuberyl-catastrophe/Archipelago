@@ -11,12 +11,19 @@ class RouteRequired(Choice):
     option_all_gems = 2
     default = 0
 
+class EnableGemsanity(Toggle):
+    """
+    Turn all gems in the game into location checks.
+    """
+    display_name = "Enable Gemsanity"
+    default = 1
+
 class EnableNotesanity(Toggle):
     """
     Turn all music notes in the game into location checks. Music puzzles will be filled progressively from stoney cliffs to frozen spire.
     """
     display_name = "Enable Notesanity"
-    default = 0
+    default = 1
 
 class EnableLocksanity(Toggle):
     """
@@ -119,6 +126,7 @@ class AltRoomRandomizer(Toggle):
 @dataclass
 class IslesOfSeaAndSkyOptions(PerGameCommonOptions):
     route_required:                             RouteRequired
+    enable_gemsanity:                           EnableGemsanity
     enable_notesanity:                          EnableNotesanity
     enable_locksanity:                          EnableLocksanity
     enable_snakesanity:                         EnableSnakesanity
@@ -138,13 +146,17 @@ isles_of_sea_and_sky_option_groups = [
         RouteRequired
     ]),
 
+    OptionGroup("Checks", [
+        EnableNotesanity,
+        EnableGemsanity
+    ]),
+
     OptionGroup("QOL", [
         PhoenixAnywhere,
         FillerComposition
     ]),
 
     OptionGroup("Extra Checks", [
-        EnableNotesanity,
         EnableLocksanity,
         EnableSnakesanity,
         EnableSecretsanity,

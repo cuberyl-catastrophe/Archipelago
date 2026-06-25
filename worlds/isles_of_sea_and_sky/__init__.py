@@ -122,6 +122,7 @@ class IslesOfSeaAndSkyWorld(World):
             "client_version":       self.required_client_version,
             "race":                 self.multiworld.is_race,
             "route_required":       self.options.route_required.current_key,
+            "enable_gemsanity":     bool(self.options.enable_gemsanity.value),
             "enable_notesanity":    bool(self.options.enable_notesanity.value),
             "enable_locksanity":    bool(self.options.enable_locksanity.value),
             "enable_snakesanity":   bool(self.options.enable_snakesanity.value),
@@ -145,6 +146,7 @@ class IslesOfSeaAndSkyWorld(World):
             return
         options = self.options
         options.route_required = options.route_required.from_any(passthrough["route_required"])
+        options.enable_gemsanity = options.enable_gemsanity.from_any(passthrough["enable_gemsanity"])
         options.enable_notesanity = options.enable_notesanity.from_any(passthrough["enable_notesanity"])
         options.enable_locksanity = options.enable_locksanity.from_any(passthrough["enable_locksanity"])
         options.enable_snakesanity = options.enable_snakesanity.from_any(passthrough["enable_snakesanity"])
@@ -192,6 +194,21 @@ class IslesOfSeaAndSkyWorld(World):
         # Remove the pre-placed items from generation
         key_pool['Ancient Key'] -= 6
         key_pool['Star Piece'] -= 1
+
+        if not self.options.enable_gemsanity:
+            gem_names = {"Topaz", "Sapphire", "Ruby", "Diamond", "Obsidian"}
+            gem_locations = {loc_name: loc_name.rsplit(" - ", 1)[-1]
+                             for loc_name in advancement_table
+                             if loc_name.rsplit(" - ", 1)[-1] in gem_names}
+            assert len(gem_locations) == 60, \
+                f"Expected 60 gem locations, found {len(gem_locations)}"
+            for loc_name, gem in gem_locations.items():
+                self.multiworld.get_location(loc_name, self.player).place_locked_item(
+                    self.create_item(gem))
+                if gem in key_pool: # Topaz / Sapphire / Ruby / Diamond
+                    key_pool[gem] -= 1
+                else: # Obsidian
+                    non_key_pool[gem] -= 1
 
         # Bias generation to reduce fill errors
         self.multiworld.early_items[self.player]["Topaz Rune Stone"] = 1
