@@ -95,7 +95,7 @@ key_items = {
     "Sapphire":                             12,
     "Ruby":                                 12,
     "Diamond":                              12,
-    "Star Piece":                           91
+    "Star Piece":                           109
 }
 
 note_items = {
