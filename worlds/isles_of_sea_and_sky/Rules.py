@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 from rule_builder.options import OptionFilter
 from rule_builder.rules import CanReachRegion, Has
 
-from .Options import PhoenixAnywhere
+from .Options import PhoenixAnywhere, EnableNotesanity
 
 if TYPE_CHECKING:
     from . import IslesOfSeaAndSkyWorld
@@ -357,6 +357,9 @@ def set_rolling_rocks(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Rolling B0 - Star Piece"),
                    Has("Gopher Gloves"))
+    
+    world.set_rule(world.get_location("Rolling B0 - Beast Bell Star Piece"),
+                   Has("Beast Bellstone Hit - Rolling"))
 
 
 
@@ -399,6 +402,9 @@ def set_sunken_island(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Sunken A0 - Obsidian"),
                    Has("Frog Flippers"))
+    
+    world.set_rule(world.get_location("Sunken B1 - Beast Bell Star Piece"),
+                   Has("Beast Bellstone Hit - Sunken"))
 
     # Locksanity
     if world.options.enable_locksanity.value:
@@ -439,6 +445,9 @@ def set_aggro_crag(world: "IslesOfSeaAndSkyWorld"):
                    Has("Star Piece", 35)
                    & Has("Awaken Fire Elementals")
                    & Has("Ancient Rune Stone"))
+    
+    world.set_rule(world.get_location("Aggro A1 - Beast Bell Star Piece"),
+                   Has("Beast Bellstone Hit - Aggro"))
 
     # Locksanity
     if world.options.enable_locksanity.value:
@@ -517,6 +526,9 @@ def set_sea_nunatak(world: "IslesOfSeaAndSkyWorld"):
                    Has("Awaken Wind Elementals")
                    & Has("Star Piece", 49)
                    & Has("Kite Cloak"))
+    
+    world.set_rule(world.get_location("Nunatak A1 - Beast Bell Star Piece"),
+                   Has("Beast Bellstone Hit - Nunatak"))
 
     # Locksanity
     if world.options.enable_locksanity.value:
@@ -1017,6 +1029,23 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Stone E1 - Star Piece"),
                    Has("Ancient Key", 10))
 
+    world.set_rule(world.get_location("Stone D1 - Music Puzzle Star Piece 1"),
+                    Has("Awaken Earth Elementals")
+                    & ( ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)] & Has("Topaz Rune Stone") & Has("Ancient Key", 11))
+                        | ([OptionFilter(EnableNotesanity, EnableNotesanity.option_true)] & Has("Music Note", 6))))
+    world.set_rule(world.get_location("Stone D1 - Music Puzzle Star Piece 2"),
+                    Has("Awaken Earth Elementals")
+                    & ( ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)] & Has("Topaz Rune Stone") & Has("Ancient Key", 11))
+                        | ([OptionFilter(EnableNotesanity, EnableNotesanity.option_true)] & Has("Music Note", 6))))
+    world.set_rule(world.get_location("Stone D1 - Music Puzzle Star Piece 3"),
+                    Has("Awaken Earth Elementals")
+                    & ( ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)] & Has("Topaz Rune Stone") & Has("Ancient Key", 11))
+                        | ([OptionFilter(EnableNotesanity, EnableNotesanity.option_true)] & Has("Music Note", 6))))
+    
+    world.set_rule(world.get_location("Stone A2 - Tablet Puzzle Star Piece"),
+                    Has("Blue Stone Tablet")
+                    & Has("Gold Stone Tablet"))
+
     world.set_rule(world.get_location("Stone Dungeon C2 - Open Topaz Door"),
                    Has("Awaken Earth Elementals"))
 
@@ -1207,6 +1236,16 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Water C1 - W - Star Piece"),
                    Has("Ancient Key", 32))
+    
+    world.set_rule(world.get_location("Water B0 - Music Puzzle Star Piece 1"),
+                   Has("Awaken Water Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 12)))
+    world.set_rule(world.get_location("Water B0 - Music Puzzle Star Piece 2"),
+                   Has("Awaken Water Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 12)))
+    world.set_rule(world.get_location("Water B0 - Music Puzzle Star Piece 3"),
+                   Has("Awaken Water Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 12)))
 
     # IncludeShells
     if world.options.include_seashells.value:
@@ -1300,19 +1339,15 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Fire B4 - Ancient Key"),
                    Has("Awaken Fire Elementals"))
 
-    world.set_rule(world.get_location("Fire A1 - NE - Ancient Key"),
-                   Has("Salamander Shirt"))
     world.set_rule(world.get_location("Fire A1 - E - Ancient Key"),
-                   Has("Salamander Shirt"))
-    world.set_rule(world.get_location("Fire A1 - S - Ancient Key"),
                    Has("Salamander Shirt"))
 
     world.set_rule(world.get_location("Fire B1 - N1 - Ancient Key"),
-                   Has("Awaken Fire Elementals") & Has("Salamander Shirt"))
+                   Has("Awaken Fire Elementals"))
     world.set_rule(world.get_location("Fire B1 - N2 - Ancient Key"),
-                   Has("Awaken Fire Elementals") & Has("Salamander Shirt"))
+                   Has("Awaken Fire Elementals"))
     world.set_rule(world.get_location("Fire B1 - N3 - Ancient Key"),
-                   Has("Awaken Fire Elementals") & Has("Salamander Shirt"))
+                   Has("Awaken Fire Elementals"))
 
     world.set_rule(world.get_location("Fire C1 - NE - Ancient Key"),
                    Has("Salamander Shirt")
@@ -1329,12 +1364,6 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Fire C3 - Ancient Key"),
                    Has("Awaken Fire Elementals"))
-
-    world.set_rule(world.get_location("Fire D4 - Ancient Key"),
-                   Has("Salamander Shirt"))
-
-    world.set_rule(world.get_location("Fire D0 - Ruby"),
-                   Has("Salamander Shirt"))
 
     world.set_rule(world.get_location("Fire E0 - Obsidian"),
                    Has("Salamander Shirt"))
@@ -1354,10 +1383,7 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
                    Has("Awaken Fire Elementals") & Has("Salamander Shirt"))
 
     world.set_rule(world.get_location("Fire D3 - W - Star Piece"),
-                   Has("Awaken Fire Elementals") & Has("Salamander Shirt"))
-
-    world.set_rule(world.get_location("Fire E3 - Star Piece"),
-                   Has("Salamander Shirt"))
+                   Has("Awaken Fire Elementals"))
 
     world.set_rule(world.get_location("Fire D4 - Star Piece"),
                    Has("Frog Flippers")
@@ -1372,15 +1398,16 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Fire E0 - Star Piece"),
                    Has("Salamander Shirt"))
-
-    # Notesanity
-    if world.options.enable_notesanity.value:
-        world.set_rule(world.get_location("Fire B0 - Music Note"),
-                       Has("Salamander Shirt"))
-
-        world.set_rule(world.get_location("Fire D3 - Music Note"),
-                       Has("Salamander Shirt"))
-
+    
+    world.set_rule(world.get_location("Fire B3 - Music Puzzle Star Piece 1"),
+                   Has("Awaken Fire Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 18)))
+    world.set_rule(world.get_location("Fire B3 - Music Puzzle Star Piece 2"),
+                   Has("Awaken Fire Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 18)))
+    world.set_rule(world.get_location("Fire B3 - Music Puzzle Star Piece 3"),
+                   Has("Awaken Fire Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 18)))
 
     # Locksanity
     if world.options.enable_locksanity.value:
@@ -1395,12 +1422,6 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
 
         world.set_rule(world.get_location("Fire E0 - 3x Lock (Fire)"),
                        Has("Fire Key", 3))
-
-        world.set_rule(world.get_location("Fire A1 - E - Ruby Rune Lock"),
-                       Has("Salamander Shirt"))
-
-        world.set_rule(world.get_location("Fire B2 - N - Ruby Rune Lock"),
-                       Has("Salamander Shirt"))
 
     # Snakesanity
     if world.options.enable_snakesanity.value:
@@ -1424,25 +1445,13 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
                        Has("Ancient Key", 38))
         world.set_rule(world.get_location("Fire B1 - Snakeblock"),
                        Has("Salamander Shirt"))
-        world.set_rule(world.get_location("Fire D4 - E - Snakeblock"),
-                       Has("Salamander Shirt"))
-        world.set_rule(world.get_location("Fire E4 - CE - Snakeblock"),
-                       Has("Salamander Shirt"))
-        world.set_rule(world.get_location("Fire E4 - W - Snakeblock"),
-                       Has("Salamander Shirt"))
         world.set_rule(world.get_location("Fire D3 - W - Snakeblock"),
-                       Has("Salamander Shirt"))
-        world.set_rule(world.get_location("Fire D2 - SE - Snakeblock"),
-                       Has("Salamander Shirt"))
-        world.set_rule(world.get_location("Fire A1 - E - Snakeblock"),
                        Has("Salamander Shirt"))
 
         world.set_rule(world.get_location("Fire D3 - E - Snakeblock"),
-                       Has("Salamander Shirt")
-                       & Has("Awaken Fire Elementals"))
+                       Has("Awaken Fire Elementals"))
         world.set_rule(world.get_location("Fire D3 - SW - Snakeblock"),
-                       Has("Salamander Shirt")
-                       & Has("Awaken Fire Elementals"))
+                       Has("Awaken Fire Elementals"))
 
     # Secretsanity
     if world.options.secretsanity.value:
@@ -1526,6 +1535,16 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Wind C3 - NE - Star Piece"),
                    Has("Awaken Wind Elementals"))
+    
+    world.set_rule(world.get_location("Wind B4 - Music Puzzle Star Piece 1"),
+                   Has("Awaken Wind Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 24)))
+    world.set_rule(world.get_location("Wind B4 - Music Puzzle Star Piece 2"),
+                   Has("Awaken Wind Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 24)))
+    world.set_rule(world.get_location("Wind B4 - Music Puzzle Star Piece 3"),
+                   Has("Awaken Wind Elementals")
+                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 24)))
 
     # Notesanity
     if world.options.enable_notesanity.value:
@@ -1727,7 +1746,7 @@ def set_completion_rules(world: "IslesOfSeaAndSkyWorld"):
         world.set_completion_rule(CanReachRegion("Sanctum Peak"))
     elif route == "secret_ending":
         world.set_completion_rule(CanReachRegion("Sanctum Peak")
-                                  & Has("Star Piece", 91))
+                                  & Has("Star Piece", 109))
     elif route == "all_gems":
         world.set_completion_rule(Has("Topaz", 12)
                                   & Has("Sapphire", 12)

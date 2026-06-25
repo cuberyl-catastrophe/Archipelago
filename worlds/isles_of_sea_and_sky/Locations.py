@@ -116,8 +116,8 @@ advancement_table = {
     "Fire A2 - N - Ancient Key":                    AdvData(115234, "Raging Volcano"),
     "Fire A2 - S - Ancient Key":                    AdvData(115239, "Raging Volcano"), # salamander shirt
     "Fire B4 - Ancient Key":                        AdvData(118466, "Raging Volcano Post-Rune"), # r quest
-    "Fire A1 - NE - Ancient Key":                   AdvData(116437, "Raging Volcano Post-Rune"), # s shirt
-    "Fire A1 - E - Ancient Key":                    AdvData(116431, "Raging Volcano Post-Rune"), # r rune
+    "Fire A1 - NE - Ancient Key":                   AdvData(116437, "Raging Volcano Post-Rune"),
+    "Fire A1 - E - Ancient Key":                    AdvData(116431, "Raging Volcano Post-Rune"), # s shirt
     "Fire B1 - N1 - Ancient Key":                   AdvData(116903, "Raging Volcano Post-Rune"), # r quest
     "Fire B1 - N2 - Ancient Key":                   AdvData(116902, "Raging Volcano Post-Rune"), # r quest
     "Fire B1 - N3 - Ancient Key":                   AdvData(116890, "Raging Volcano Post-Rune"), # r quest
@@ -126,7 +126,7 @@ advancement_table = {
     "Fire C1 - SW - Ancient Key":                   AdvData(115696, "Raging Volcano"), # s shirt
     "Fire C3 - Ancient Key":                        AdvData(116298, "Raging Volcano Post-Rune"), # r quest
     "Fire A1 - S - Ancient Key":                    AdvData(116433, "Raging Volcano Post-Rune"), # r rune
-    "Fire D4 - Ancient Key":                        AdvData(118027, "Raging Volcano Post-Rune"), # s shirt
+    "Fire D4 - Ancient Key":                        AdvData(118027, "Raging Volcano Post-Rune"),
 
     # Keys on the Frozen Spire may be broken due to in-game randomness
     "Wind C4 - Ancient Key":                        AdvData(120170, "Frozen Spire"),
@@ -191,7 +191,7 @@ advancement_table = {
     "Fire A3 - S - Ruby":                           AdvData(116763, "Raging Volcano Post-Rune"), #r rune stone
     "Fire A3 - N - Ruby":                           AdvData(116762, "Raging Volcano Post-Rune"),
     "Fire A3 - NW - Ruby":                          AdvData(116772, "Raging Volcano Post-Rune"), # r rune stone
-    "Fire D0 - Ruby":                               AdvData(117604, "Raging Volcano NE"), # salamander shirt
+    "Fire D0 - Ruby":                               AdvData(117604, "Raging Volcano NE"),
     "Aggro B1 - Ruby":                              AdvData(122848, "Aggro Crag"), # ruby quest, 35 stars
     "Tropic A1 - Ruby":                             AdvData(104452, "Star Tropic"), # ancient rune stone, all legendaries - serpent circlet
 
@@ -221,11 +221,7 @@ advancement_table = {
     "Serpent A1 - Obsidian":                        AdvData(125702, "Serpent Stacks Post-Rune"),  # rune stones: t,s,r,d,o, serpent circlet(?)
     "Lost A1 - Obsidian":                           AdvData(127285, "Lost Landing"),  # phoenix flute (or secret find?)
 
-    # 4 of these are trapped in bells, and should be removed from total.
-    # 3x4=12 trapped in music puzzle
-    # 1 trapped in volcano idol puzzle
-    # 1 trapped in stone tablet puzzle
-    # Total of 17 stars that aren't locations.
+    # All 109 Star Pieces are now locations!
     "Ancient C0 - Star Piece":                      AdvData(100145, "Ancient Isle"),
     "Ancient A1 - Star Piece":                      AdvData(101048, "Ancient Isle"),
     "Ancient B1 - Star Piece":                      AdvData(100250, "Ancient Isle"),
@@ -245,6 +241,11 @@ advancement_table = {
     "Stone Dungeon B1 - Star Piece":                AdvData(124770, "Stony Cliffs NW"), # g gloves
     "Stone A1 - Star Piece":                        AdvData(107547, "Stony Cliffs NW"), # 5 stars
 
+    "Stone D1 - Music Puzzle Star Piece 1":         AdvData(99901311, "Stony Cliffs"), # t rune, t quest, ancient key
+    "Stone D1 - Music Puzzle Star Piece 2":         AdvData(99901312, "Stony Cliffs"), # t rune, t quest, ancient key
+    "Stone D1 - Music Puzzle Star Piece 3":         AdvData(99901313, "Stony Cliffs"), # t rune, t quest, ancient key
+    "Stone A2 - Tablet Puzzle Star Piece":          AdvData(99901021, "Stony Cliffs Post-Rune"), # blue & gold tablet
+
     "Water C1 - E - Star Piece":                    AdvData(109452, "Tidal Reef"),
     "Water C0 - Star Piece":                        AdvData(110017, "Tidal Reef"), # s quest
     "Water C1 - W - Star Piece":                    AdvData(109440, "Tidal Reef"),
@@ -261,6 +262,10 @@ advancement_table = {
     "Water A4 - Star Piece":                        AdvData(126061, "Tidal Reef S"), # f flippers
     "Water B4 - Star Piece":                        AdvData(126136, "Tidal Reef S"),
 
+    "Water B0 - Music Puzzle Star Piece 1":         AdvData(99903101, "Tidal Reef Post-Rune"), # s quest
+    "Water B0 - Music Puzzle Star Piece 2":         AdvData(99903102, "Tidal Reef Post-Rune"), # s quest
+    "Water B0 - Music Puzzle Star Piece 3":         AdvData(99903103, "Tidal Reef Post-Rune"), # s quest
+
     "Fire B4 - Star Piece":                         AdvData(118454, "Raging Volcano Post-Rune"), # r quest
     "Fire B3 - Star Piece":                         AdvData(118779, "Raging Volcano Post-Rune"),
     "Fire C3 - Star Piece":                         AdvData(116299, "Raging Volcano Post-Rune"),
@@ -275,6 +280,11 @@ advancement_table = {
     "Fire E1 - E - Star Piece":                     AdvData(118578, "Raging Volcano Post-Rune"), # r quest shirt
     "Fire E1 - W - Star Piece":                     AdvData(118588, "Raging Volcano Post-Rune"), # s shirt
     "Fire E0 - Star Piece":                         AdvData(118314, "Raging Volcano NE"), # s shirt
+
+    "Fire B3 - Music Puzzle Star Piece 1":         AdvData(99904131, "Raging Volcano Post-Rune"), # r quest
+    "Fire B3 - Music Puzzle Star Piece 2":         AdvData(99904132, "Raging Volcano Post-Rune"), # r quest
+    "Fire B3 - Music Puzzle Star Piece 3":         AdvData(99904133, "Raging Volcano Post-Rune"), # r quest
+    "Fire D4 - Statue Puzzle Star Piece":          AdvData(99904341, "Raging Volcano Post-Rune"),
 
     #locations might be broken due to in-game randomness
     "Wind D4 - Star Piece":                         AdvData(122399, "Frozen Spire"),
@@ -293,18 +303,26 @@ advancement_table = {
     "Wind A0 - Star Piece":                         AdvData(120219, "Frozen Spire Post-Rune"), # k cloak
     "Wind B2 - S - Star Piece":                     AdvData(120995, "Frozen Spire Post-Rune"),
 
+    "Wind B4 - Music Puzzle Star Piece 1":         AdvData(99905141, "Frozen Spire Post-Rune"), # d quest
+    "Wind B4 - Music Puzzle Star Piece 2":         AdvData(99905142, "Frozen Spire Post-Rune"), # d quest
+    "Wind B4 - Music Puzzle Star Piece 3":         AdvData(99905143, "Frozen Spire Post-Rune"), # d quest
+
     "Rolling A0 - Star Piece":                      AdvData(103803, "Rolling Rocks"), # 7 stars, t quest
     "Rolling B1 - Star Piece":                      AdvData(104766, "Rolling Rocks Post-Rune"), #
     "Rolling B0 - Star Piece":                      AdvData(104884, "Rolling Rocks Post-Rune"), # g gloves
+    "Rolling B0 - Beast Bell Star Piece":           AdvData(99908102, "Ancient Isle"), # rolling beast bell
 
     "Sunken B0 - Star Piece":                       AdvData(123146, "Sunken Island"), # 21 stars, s quest
     "Sunken A1 - Star Piece":                       AdvData(123082, "Sunken Island"), # ancient rune
+    "Sunken B1 - Beast Bell Star Piece":            AdvData(99909112, "Ancient Isle"), # sunken beast be;;
 
     "Aggro B1 - Star Piece":                        AdvData(122849, "Aggro Crag"), # 35 star, r quest
     "Aggro A1 - Star Piece":                        AdvData(122918, "Aggro Crag"), # ancient rune
+    "Aggro A1 - Beast Bell Star Piece":             AdvData(99910012, "Ancient Isle"), # aggro beast bell
 
     "Nunatak B0 - Star Piece":                      AdvData(123470, "Sea Nunatak"), # 49 stars, d quest
     "Nunatak A0 - Star Piece":                      AdvData(123384, "Sea Nunatak"), # ancient rune
+    "Nunatak A1 - Beast Bell Star Piece":           AdvData(99911012, "Ancient Isle"), # nunatak beast bell
 
     "Lost B1 - Star Piece":                         AdvData(128962, "Lost Landing"),
 
@@ -331,7 +349,6 @@ advancement_table = {
     "Serpent A8 - S - Star Piece":                  AdvData(127070, "Serpent Stacks Post-Rune"), # s circlet, d quest
 
     "Locked A0 - Star Piece":                       AdvData(104281, "Locked"),
-    # 91 stars
 
     # In the future, could include milestones as locations. e.g. each of the steam achievements, plus extras.
 }
@@ -405,7 +422,7 @@ notesanity_table = {
     "Fire B0 - Music Note":                         AdvData(119349, "Raging Volcano Post-Rune"), # r rune
     "Fire B2 - Music Note":                         AdvData(115377, "Raging Volcano Post-Rune"), # r rune
     "Fire E1 - Music Note":                         AdvData(118593, "Raging Volcano Post-Rune"), # r rune
-    "Fire D3 - Music Note":                         AdvData(119009, "Raging Volcano Post-Rune"), # salamander shirt
+    "Fire D3 - Music Note":                         AdvData(119009, "Raging Volcano Post-Rune"), # r rune
 
     "Wind B1 - Music Note":                         AdvData(120922, "Frozen Spire"),
     "Wind A0 - Music Note":                         AdvData(120222, "Frozen Spire"),
