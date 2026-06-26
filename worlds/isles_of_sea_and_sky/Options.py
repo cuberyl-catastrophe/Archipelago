@@ -23,7 +23,24 @@ class EnableNotesanity(Toggle):
     Turn all music notes in the game into location checks. Music puzzles will be filled progressively from stoney cliffs to frozen spire.
     """
     display_name = "Enable Notesanity"
-    default = 1
+
+class ShuffleElementalQuests(DefaultOnToggle):
+    """
+    Shuffle awakening the elementals into the item pool.
+    """
+    display_name = "Shuffle Elemental Quests"
+
+class ShuffleBeastBells(DefaultOnToggle):
+    """
+    Shuffle the bell hits in the item pool. You need all 4 to access the flute location.
+    """
+    display_name = "Shuffle Beast Bell Hits"
+
+class ShuffleSanctumHits(DefaultOnToggle):
+    """
+    Shuffle the four elemental sanctum hits into the item pool. You need all 4 to access the end of sanctum.
+    """
+    display_name = "Shuffle Sanctum Hits"
 
 class EnableLocksanity(Toggle):
     """
@@ -132,6 +149,9 @@ class IslesOfSeaAndSkyOptions(PerGameCommonOptions):
     enable_snakesanity:                         EnableSnakesanity
     include_seashells:                          IncludeSeashells
     include_jellyfish:                          IncludeJellyfish
+    shuffle_elemental_quests:                   ShuffleElementalQuests
+    shuffle_beast_bells:                        ShuffleBeastBells
+    shuffle_sanctum_hits:                       ShuffleSanctumHits
     phoenix_anywhere:                           PhoenixAnywhere
     filler_composition:                         FillerComposition
     secretsanity:                               EnableSecretsanity
@@ -147,8 +167,11 @@ isles_of_sea_and_sky_option_groups = [
     ]),
 
     OptionGroup("Checks", [
+        EnableGemsanity,
         EnableNotesanity,
-        EnableGemsanity
+        ShuffleElementalQuests,
+        ShuffleBeastBells,
+        ShuffleSanctumHits
     ]),
 
     OptionGroup("QOL", [

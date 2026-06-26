@@ -10,7 +10,7 @@ from .Regions import isles_of_sea_and_sky_regions, link_isles_of_sea_and_sky_are
 from .Rules import set_rules, set_completion_rules
 #from worlds.generic.Rules import exclusion_rules
 from BaseClasses import Region, Entrance, Tutorial, Item
-from .Options import IslesOfSeaAndSkyOptions, EnableNotesanity, EnableSecretsanity, EnableSnakesanity, EnableLocksanity, isles_of_sea_and_sky_option_groups
+from .Options import IslesOfSeaAndSkyOptions, isles_of_sea_and_sky_option_groups
 from worlds.AutoWorld import World, WebWorld
 import worlds.LauncherComponents as LauncherComponents
 
@@ -115,27 +115,30 @@ class IslesOfSeaAndSkyWorld(World):
 
     def _get_isles_of_sea_and_sky_data(self):
         return {
-            "world_seed":           self.random.getrandbits(32),
-            "seed_name":            self.multiworld.seed_name,
-            "player_name":          self.multiworld.get_player_name(self.player),
-            "player_id":            self.player,
-            "client_version":       self.required_client_version,
-            "race":                 self.multiworld.is_race,
-            "route_required":       self.options.route_required.current_key,
-            "enable_gemsanity":     self.options.enable_gemsanity.value,
-            "enable_notesanity":    self.options.enable_notesanity.value,
-            "enable_locksanity":    self.options.enable_locksanity.value,
-            "enable_snakesanity":   self.options.enable_snakesanity.value,
-            "include_seashells":    self.options.include_seashells.value,
-            "include_jellyfish":    self.options.include_jellyfish.value,
-            "phoenix_anywhere":     self.options.phoenix_anywhere.value,
-            "traps":                self.options.traps.current_key,
-            "trap_link":            self.options.trap_link.value,
-            "filler_composition":   self.options.filler_composition.current_key,
-            "secretsanity":         self.options.secretsanity.value,
-            "death_link":           self.options.death_link.value,
-            "death_amnesty_total":  int(self.options.death_amnesty_total.value),
-            "alt_rooms":            self.options.alt_rooms.value,
+            "world_seed":                   self.random.getrandbits(32),
+            "seed_name":                    self.multiworld.seed_name,
+            "player_name":                  self.multiworld.get_player_name(self.player),
+            "player_id":                    self.player,
+            "client_version":               self.required_client_version,
+            "race":                         self.multiworld.is_race,
+            "route_required":               self.options.route_required.current_key,
+            "enable_gemsanity":             self.options.enable_gemsanity.value,
+            "enable_notesanity":            self.options.enable_notesanity.value,
+            "enable_locksanity":            self.options.enable_locksanity.value,
+            "enable_snakesanity":           self.options.enable_snakesanity.value,
+            "include_seashells":            self.options.include_seashells.value,
+            "include_jellyfish":            self.options.include_jellyfish.value,
+            "shuffle_elemental_quests":     self.options.shuffle_elemental_quests.value,
+            "shuffle_beast_bells":          self.options.shuffle_beast_bells.value,
+            "shuffle_sanctum_hits":         self.options.shuffle_sanctum_hits.value,
+            "phoenix_anywhere":             self.options.phoenix_anywhere.value,
+            "traps":                        self.options.traps.current_key,
+            "trap_link":                    self.options.trap_link.value,
+            "filler_composition":           self.options.filler_composition.current_key,
+            "secretsanity":                 self.options.secretsanity.value,
+            "death_link":                   self.options.death_link.value,
+            "death_amnesty_total":          int(self.options.death_amnesty_total.value),
+            "alt_rooms":                    self.options.alt_rooms.value,
 
         }
 
@@ -212,6 +215,42 @@ class IslesOfSeaAndSkyWorld(World):
                     key_pool[gem] -= 1
                 else: # Obsidian
                     non_key_pool[gem] -= 1
+                    
+        if not self.options.shuffle_elemental_quests:
+            elemental_quests_vanilla_placements = {
+                "Stone C0 - Topaz Quest Complete": "Awaken Earth Elementals",
+                "Water C0 - Sapphire Quest Complete": "Awaken Water Elementals",
+                "Fire C0 - Ruby Quest Complete": "Awaken Fire Elementals",
+                "Wind C2 - Diamond Quest Complete": "Awaken Wind Elementals",
+            }
+            for loc_name, item_name in elemental_quests_vanilla_placements.items():
+                self.multiworld.get_location(loc_name, self.player).place_locked_item(
+                    self.create_item(item_name))
+                progression_pool[item_name] -= 1
+                
+        if not self.options.shuffle_beast_bells:
+            beast_bell_vanilla_placements = {
+                "Rolling B0 - Big Bell Rung": "Beast Bellstone Hit - Rolling",
+                "Sunken B1 - Big Bell Rung": "Beast Bellstone Hit - Sunken",
+                "Aggro A1 - Big Bell Rung": "Beast Bellstone Hit - Aggro",
+                "Nunatak A1 - Big Bell Rung": "Beast Bellstone Hit - Nunatak",
+            }
+            for loc_name, item_name in beast_bell_vanilla_placements.items():
+                self.multiworld.get_location(loc_name, self.player).place_locked_item(
+                    self.create_item(item_name))
+                non_key_pool[item_name] -= 1
+
+        if not self.options.shuffle_sanctum_hits:
+            sanctum_hits_vanilla_placements = {
+                "Sanctum A2 - Topaz Shard Hit": "Sanctuary Bellstone Hit - Earth",
+                "Sanctum C2 - Sapphire Shard Hit": "Sanctuary Bellstone Hit - Water",
+                "Sanctum C0 - Ruby Shard Hit": "Sanctuary Bellstone Hit - Fire",
+                "Sanctum A0 - Diamond Shard Hit": "Sanctuary Bellstone Hit - Wind",
+            }
+            for loc_name, item_name in sanctum_hits_vanilla_placements.items():
+                self.multiworld.get_location(loc_name, self.player).place_locked_item(
+                    self.create_item(item_name))
+                progression_pool[item_name] -= 1
 
         # Bias generation to reduce fill errors
         self.multiworld.early_items[self.player]["Topaz Rune Stone"] = 1
