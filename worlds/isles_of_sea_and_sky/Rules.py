@@ -34,10 +34,10 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
 
     ## Required for completion detection
     world.set_rule(world.get_entrance("Elemental Rock Path"),
-                   Has("Sanctuary Bellstone Hit - Earth")
-                   & Has("Sanctuary Bellstone Hit - Water")
-                   & Has("Sanctuary Bellstone Hit - Fire")
-                   & Has("Sanctuary Bellstone Hit - Wind"))  # Sanctum Peak
+                   Has("Sanctum Shard Hit - Earth")
+                   & Has("Sanctum Shard Hit - Water")
+                   & Has("Sanctum Shard Hit - Fire")
+                   & Has("Sanctum Shard Hit - Wind"))  # Sanctum Peak
 
 
     world.set_rule(world.get_entrance("Diamond Sea West Entrance"),
@@ -122,10 +122,10 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                    CanReachRegion("Ruby Sea"))
 
     world.set_rule(world.get_entrance("Beast Entrance"),
-                   Has("Beast Bellstone Hit - Rolling")
-                   & Has("Beast Bellstone Hit - Sunken")
-                   & Has("Beast Bellstone Hit - Aggro")
-                   & Has("Beast Bellstone Hit - Nunatak"))
+                   Has("Big Bell Hit - Rolling")
+                   & Has("Big Bell Hit - Sunken")
+                   & Has("Big Bell Hit - Aggro")
+                   & Has("Big Bell Hit - Nunatak"))
 
     world.set_rule(world.get_entrance("Abstract Phoenix Exit"),
                    Has("Phoenix Flute",
@@ -145,10 +145,10 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_entrance("Beast Bridge Phoenix Entrance"),
                    Has("Phoenix Flute")
-                   & Has("Beast Bellstone Hit - Rolling")
-                   & Has("Beast Bellstone Hit - Sunken")
-                   & Has("Beast Bellstone Hit - Aggro")
-                   & Has("Beast Bellstone Hit - Nunatak"))  # Beast Bridge
+                   & Has("Big Bell Hit - Rolling")
+                   & Has("Big Bell Hit - Sunken")
+                   & Has("Big Bell Hit - Aggro")
+                   & Has("Big Bell Hit - Nunatak"))  # Beast Bridge
     world.set_rule(world.get_entrance("Stony Phoenix Entrance"),
                    Has("Phoenix Flute"))  # Stony Cliffs
     world.set_rule(world.get_entrance("Tidal Phoenix Entrance"),
@@ -358,8 +358,8 @@ def set_rolling_rocks(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Rolling B0 - Star Piece"),
                    Has("Gopher Gloves"))
     
-    world.set_rule(world.get_location("Rolling B0 - Beast Bell Star Piece"),
-                   Has("Beast Bellstone Hit - Rolling"))
+    world.set_rule(world.get_location("Rolling B0 - Big Bell Star Piece"),
+                   Has("Big Bell Hit - Rolling"))
 
 
 
@@ -403,8 +403,8 @@ def set_sunken_island(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Sunken A0 - Obsidian"),
                    Has("Frog Flippers"))
     
-    world.set_rule(world.get_location("Sunken B1 - Beast Bell Star Piece"),
-                   Has("Beast Bellstone Hit - Sunken"))
+    world.set_rule(world.get_location("Sunken B1 - Big Bell Star Piece"),
+                   Has("Big Bell Hit - Sunken"))
 
     # Locksanity
     if world.options.enable_locksanity:
@@ -446,8 +446,8 @@ def set_aggro_crag(world: "IslesOfSeaAndSkyWorld"):
                    & Has("Awaken Fire Elementals")
                    & Has("Ancient Rune Stone"))
     
-    world.set_rule(world.get_location("Aggro A1 - Beast Bell Star Piece"),
-                   Has("Beast Bellstone Hit - Aggro"))
+    world.set_rule(world.get_location("Aggro A1 - Big Bell Star Piece"),
+                   Has("Big Bell Hit - Aggro"))
 
     # Locksanity
     if world.options.enable_locksanity:
@@ -527,8 +527,8 @@ def set_sea_nunatak(world: "IslesOfSeaAndSkyWorld"):
                    & Has("Star Piece", 49)
                    & Has("Kite Cloak"))
     
-    world.set_rule(world.get_location("Nunatak A1 - Beast Bell Star Piece"),
-                   Has("Beast Bellstone Hit - Nunatak"))
+    world.set_rule(world.get_location("Nunatak A1 - Big Bell Star Piece"),
+                   Has("Big Bell Hit - Nunatak"))
 
     # Locksanity
     if world.options.enable_locksanity:
@@ -1608,16 +1608,16 @@ def set_beast_bridge(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Beast A0 - Phoenix Flute"),
                    CanReachRegion("Beast Bridge")
-                   & Has("Beast Bellstone Hit - Rolling")
-                   & Has("Beast Bellstone Hit - Sunken")
-                   & Has("Beast Bellstone Hit - Aggro")
-                   & Has("Beast Bellstone Hit - Nunatak"))
+                   & Has("Big Bell Hit - Rolling")
+                   & Has("Big Bell Hit - Sunken")
+                   & Has("Big Bell Hit - Aggro")
+                   & Has("Big Bell Hit - Nunatak"))
 
-    world.set_rule(world.get_location("Beast A1 - Bellstone"),
-                   Has("Beast Bellstone Hit - Rolling")
-                   & Has("Beast Bellstone Hit - Sunken")
-                   & Has("Beast Bellstone Hit - Aggro")
-                   & Has("Beast Bellstone Hit - Nunatak"))
+    world.set_rule(world.get_location("Beast A1 - Big Bell Stone"),
+                   Has("Big Bell Hit - Rolling")
+                   & Has("Big Bell Hit - Sunken")
+                   & Has("Big Bell Hit - Aggro")
+                   & Has("Big Bell Hit - Nunatak"))
 
 
 def set_sanctum(world: "IslesOfSeaAndSkyWorld"):

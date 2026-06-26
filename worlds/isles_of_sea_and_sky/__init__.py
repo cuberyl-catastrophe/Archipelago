@@ -129,8 +129,8 @@ class IslesOfSeaAndSkyWorld(World):
             "include_seashells":            self.options.include_seashells.value,
             "include_jellyfish":            self.options.include_jellyfish.value,
             "shuffle_elemental_quests":     self.options.shuffle_elemental_quests.value,
-            "shuffle_beast_bells":          self.options.shuffle_beast_bells.value,
-            "shuffle_sanctum_hits":         self.options.shuffle_sanctum_hits.value,
+            "shuffle_big_bell_hits":        self.options.shuffle_big_bell_hits.value,
+            "shuffle_sanctum_shard_hits":   self.options.shuffle_sanctum_shard_hits.value,
             "phoenix_anywhere":             self.options.phoenix_anywhere.value,
             "traps":                        self.options.traps.current_key,
             "filler_composition":           self.options.filler_composition.current_key,
@@ -156,8 +156,8 @@ class IslesOfSeaAndSkyWorld(World):
         options.include_seashells = passthrough["include_seashells"]
         options.include_jellyfish = passthrough["include_jellyfish"]
         options.shuffle_elemental_quests = passthrough["shuffle_elemental_quests"]
-        options.shuffle_beast_bells = passthrough["shuffle_beast_bells"]
-        options.shuffle_sanctum_hits = passthrough["shuffle_sanctum_hits"]
+        options.shuffle_big_bell_hits = passthrough["shuffle_big_bell_hits"]
+        options.shuffle_sanctum_shard_hits = passthrough["shuffle_sanctum_shard_hits"]
 
     # UT
     @staticmethod
@@ -227,24 +227,24 @@ class IslesOfSeaAndSkyWorld(World):
                     self.create_item(item_name))
                 progression_pool[item_name] -= 1
                 
-        if not self.options.shuffle_beast_bells:
+        if not self.options.shuffle_big_bell_hits:
             beast_bell_vanilla_placements = {
-                "Rolling B0 - Big Bell Rung": "Beast Bellstone Hit - Rolling",
-                "Sunken B1 - Big Bell Rung": "Beast Bellstone Hit - Sunken",
-                "Aggro A1 - Big Bell Rung": "Beast Bellstone Hit - Aggro",
-                "Nunatak A1 - Big Bell Rung": "Beast Bellstone Hit - Nunatak",
+                "Rolling B0 - Big Bell Rung": "Big Bell Hit - Rolling",
+                "Sunken B1 - Big Bell Rung": "Big Bell Hit - Sunken",
+                "Aggro A1 - Big Bell Rung": "Big Bell Hit - Aggro",
+                "Nunatak A1 - Big Bell Rung": "Big Bell Hit - Nunatak",
             }
             for loc_name, item_name in beast_bell_vanilla_placements.items():
                 self.multiworld.get_location(loc_name, self.player).place_locked_item(
                     self.create_item(item_name))
                 non_key_pool[item_name] -= 1
 
-        if not self.options.shuffle_sanctum_hits:
+        if not self.options.shuffle_sanctum_shard_hits:
             sanctum_hits_vanilla_placements = {
-                "Sanctum A2 - Topaz Shard Hit": "Sanctuary Bellstone Hit - Earth",
-                "Sanctum C2 - Sapphire Shard Hit": "Sanctuary Bellstone Hit - Water",
-                "Sanctum C0 - Ruby Shard Hit": "Sanctuary Bellstone Hit - Fire",
-                "Sanctum A0 - Diamond Shard Hit": "Sanctuary Bellstone Hit - Wind",
+                "Sanctum A2 - Topaz Shard Hit": "Sanctum Shard Hit - Earth",
+                "Sanctum C2 - Sapphire Shard Hit": "Sanctum Shard Hit - Water",
+                "Sanctum C0 - Ruby Shard Hit": "Sanctum Shard Hit - Fire",
+                "Sanctum A0 - Diamond Shard Hit": "Sanctum Shard Hit - Wind",
             }
             for loc_name, item_name in sanctum_hits_vanilla_placements.items():
                 self.multiworld.get_location(loc_name, self.player).place_locked_item(

@@ -5,9 +5,10 @@
 Location Checks in Isles Of Sea And Sky are all the spots in the game where you can get an item. 
 
 *(Exceptions are the three Eggs and the Wind key on Frozen Spire, 
-Music Puzzles, Tablet puzzle on the Stony Cliffs, and the Totem Puzzle on Raging Volcano.)* 
+and the Totem Puzzle on Raging Volcano.)* 
 
-Notably, the Four Bells, each Gem Quest completion, and each Sanctum Shard hit are all considered Checks.
+Notably, the four Big Bells, each gem quest completion, and each Sanctum Shard hit are all considered checks,
+if the corresponding option is enabled (on by default)
 
 In addition to these Checks there are a number of checks sent through object interaction. 
 Such as opening the Big Door on the Ancient Isle.

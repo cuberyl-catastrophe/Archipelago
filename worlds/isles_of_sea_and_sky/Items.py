@@ -42,14 +42,14 @@ item_table = {
     "Awaken Water Elementals":              ItemData(906,       IC.progression | IC.useful),
     "Awaken Fire Elementals":               ItemData(907,       IC.progression | IC.useful),
     "Awaken Wind Elementals":               ItemData(908,       IC.progression | IC.useful),
-    "Beast Bellstone Hit - Rolling":        ItemData(901,       IC.progression),
-    "Beast Bellstone Hit - Sunken":         ItemData(902,       IC.progression),
-    "Beast Bellstone Hit - Aggro":          ItemData(903,       IC.progression),
-    "Beast Bellstone Hit - Nunatak":        ItemData(904,       IC.progression),
-    "Sanctuary Bellstone Hit - Earth":      ItemData(909,       IC.progression),
-    "Sanctuary Bellstone Hit - Water":      ItemData(910,       IC.progression),
-    "Sanctuary Bellstone Hit - Fire":       ItemData(911,       IC.progression),
-    "Sanctuary Bellstone Hit - Wind":       ItemData(912,       IC.progression),
+    "Big Bell Hit - Rolling":               ItemData(901,       IC.progression),
+    "Big Bell Hit - Sunken":                ItemData(902,       IC.progression),
+    "Big Bell Hit - Aggro":                 ItemData(903,       IC.progression),
+    "Big Bell Hit - Nunatak":               ItemData(904,       IC.progression),
+    "Sanctum Shard Hit - Earth":            ItemData(909,       IC.progression),
+    "Sanctum Shard Hit - Water":            ItemData(910,       IC.progression),
+    "Sanctum Shard Hit - Fire":             ItemData(911,       IC.progression),
+    "Sanctum Shard Hit - Wind":             ItemData(912,       IC.progression),
     # Traps
     "Slow Trap":                            ItemData(7000,      IC.trap),
     "Fast Trap":                            ItemData(7001,      IC.trap),
@@ -82,10 +82,10 @@ progression_items = {
     "Awaken Water Elementals":              1,
     "Awaken Fire Elementals":               1,
     "Awaken Wind Elementals":               1,
-    "Sanctuary Bellstone Hit - Earth":      1,
-    "Sanctuary Bellstone Hit - Water":      1,
-    "Sanctuary Bellstone Hit - Fire":       1,
-    "Sanctuary Bellstone Hit - Wind":       1,
+    "Sanctum Shard Hit - Earth":            1,
+    "Sanctum Shard Hit - Water":            1,
+    "Sanctum Shard Hit - Fire":             1,
+    "Sanctum Shard Hit - Wind":             1,
     "Phoenix Flute":                        1
 }
 
@@ -109,10 +109,10 @@ non_key_items = {
     "Blue Stone Tablet":                    1,
     "Gold Stone Tablet":                    1,
     "Star Viewing Orb":                     1,
-    "Beast Bellstone Hit - Rolling":        1,
-    "Beast Bellstone Hit - Sunken":         1,
-    "Beast Bellstone Hit - Aggro":          1,
-    "Beast Bellstone Hit - Nunatak":        1
+    "Big Bell Hit - Rolling":               1,
+    "Big Bell Hit - Sunken":                1,
+    "Big Bell Hit - Aggro":                 1,
+    "Big Bell Hit - Nunatak":               1
 }
 
 # 52 total

@@ -65,8 +65,8 @@ advancement_table = {
     "Stone Dungeon A3 - Tablet Puzzle Clue":        AdvData(102677, "Stony Cliffs Post-Rune"),
     "Stone Dungeon E1 - Tablet Puzzle Clue":        AdvData(125406, "Stony Cliffs"),
 
-    "Beast A1 - Bellstone":                         AdvData(123559, "Beast Bridge"),
-    "Sanctum B1 - Bellstone":                       AdvData(123976, "Sanctum Peak"),
+    "Beast A1 - Big Bell Stone":                    AdvData(123559, "Beast Bridge"),
+    "Sanctum B1 - Elemental Stone":                 AdvData(123976, "Sanctum Peak"),
 
     #
 
@@ -310,19 +310,19 @@ advancement_table = {
     "Rolling A0 - Star Piece":                      AdvData(103803, "Rolling Rocks"), # 7 stars, t quest
     "Rolling B1 - Star Piece":                      AdvData(104766, "Rolling Rocks Post-Rune"), #
     "Rolling B0 - Star Piece":                      AdvData(104884, "Rolling Rocks Post-Rune"), # g gloves
-    "Rolling B0 - Beast Bell Star Piece":           AdvData(99908102, "Ancient Isle"), # rolling beast bell
+    "Rolling B0 - Big Bell Star Piece":             AdvData(99908102, "Ancient Isle"), # rolling big bell
 
     "Sunken B0 - Star Piece":                       AdvData(123146, "Sunken Island"), # 21 stars, s quest
     "Sunken A1 - Star Piece":                       AdvData(123082, "Sunken Island"), # ancient rune
-    "Sunken B1 - Beast Bell Star Piece":            AdvData(99909112, "Ancient Isle"), # sunken beast bell
+    "Sunken B1 - Big Bell Star Piece":              AdvData(99909112, "Ancient Isle"), # sunken big bell
 
     "Aggro B1 - Star Piece":                        AdvData(122849, "Aggro Crag"), # 35 star, r quest
     "Aggro A1 - Star Piece":                        AdvData(122918, "Aggro Crag"), # ancient rune
-    "Aggro A1 - Beast Bell Star Piece":             AdvData(99910012, "Ancient Isle"), # aggro beast bell
+    "Aggro A1 - Big Bell Star Piece":               AdvData(99910012, "Ancient Isle"), # aggro big bell
 
     "Nunatak B0 - Star Piece":                      AdvData(123470, "Sea Nunatak"), # 49 stars, d quest
     "Nunatak A0 - Star Piece":                      AdvData(123384, "Sea Nunatak"), # ancient rune
-    "Nunatak A1 - Beast Bell Star Piece":           AdvData(99911012, "Ancient Isle"), # nunatak beast bell
+    "Nunatak A1 - Big Bell Star Piece":             AdvData(99911012, "Ancient Isle"), # nunatak big bell
 
     "Lost B1 - Star Piece":                         AdvData(128962, "Lost Landing"),
 

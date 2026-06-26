@@ -4,6 +4,9 @@ from dataclasses import dataclass
 class RouteRequired(Choice):
     """
     Main route of the game required to win.
+    normal_ending: Awaken all 4 elementals to open the Sanctum, then get all 4 Sanctum Hits to reach the end of Sanctum
+    secret_ending: Reach the end of Sanctum with all 109 Star Pieces in your possession
+    all_gems: Gather 12 of each gem type
     """
     display_name = "Required Route"
     option_normal_ending = 0
@@ -13,7 +16,7 @@ class RouteRequired(Choice):
 
 class EnableGemsanity(DefaultOnToggle):
     """
-    Turn all gems in the game into location checks.
+    If enabled, gems can be found anywhere instead of their vanilla locations.
     """
     display_name = "Enable Gemsanity"
 
@@ -25,21 +28,23 @@ class EnableNotesanity(DefaultOnToggle):
 
 class ShuffleElementalQuests(DefaultOnToggle):
     """
-    Shuffle awakening the elementals into the item pool.
+    If enabled, completing a god's quests will grant a random item, and awakening the elementals will be shuffled into the item pool.
     """
     display_name = "Shuffle Elemental Quests"
 
-class ShuffleBeastBells(DefaultOnToggle):
+class ShuffleBigBellHits(DefaultOnToggle):
     """
-    Shuffle the bell hits in the item pool. You need all 4 to access the flute location.
+    If enabled, hitting a Big Bell will grant a random item, and the bell hits will be shuffled into the item pool.
+    You still need all 4 bell hits to break the Beast Bell Stone.
     """
-    display_name = "Shuffle Beast Bell Hits"
+    display_name = "Shuffle Big Bell Hits"
 
-class ShuffleSanctumHits(DefaultOnToggle):
+class ShuffleSanctumShardHits(DefaultOnToggle):
     """
-    Shuffle the four elemental sanctum hits into the item pool. You need all 4 to access the end of sanctum.
+    If enabled, hitting the shards in Sanctum will grant a random item, and the shard hits will be shuffled into the item pool.
+    You need all 4 shard hits to reach the end of Sanctum.
     """
-    display_name = "Shuffle Sanctum Hits"
+    display_name = "Shuffle Sanctum Shards Hit"
 
 class EnableLocksanity(Toggle):
     """
@@ -129,8 +134,8 @@ class IslesOfSeaAndSkyOptions(PerGameCommonOptions):
     include_seashells:                          IncludeSeashells
     include_jellyfish:                          IncludeJellyfish
     shuffle_elemental_quests:                   ShuffleElementalQuests
-    shuffle_beast_bells:                        ShuffleBeastBells
-    shuffle_sanctum_hits:                       ShuffleSanctumHits
+    shuffle_big_bell_hits:                      ShuffleBigBellHits
+    shuffle_sanctum_shard_hits:                 ShuffleSanctumShardHits
     phoenix_anywhere:                           PhoenixAnywhere
     filler_composition:                         FillerComposition
     secretsanity:                               EnableSecretsanity
@@ -148,8 +153,8 @@ isles_of_sea_and_sky_option_groups = [
         EnableGemsanity,
         EnableNotesanity,
         ShuffleElementalQuests,
-        ShuffleBeastBells,
-        ShuffleSanctumHits
+        ShuffleBigBellHits,
+        ShuffleSanctumShardHits
     ]),
 
     OptionGroup("QOL", [
