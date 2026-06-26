@@ -122,20 +122,20 @@ class IslesOfSeaAndSkyWorld(World):
             "client_version":       self.required_client_version,
             "race":                 self.multiworld.is_race,
             "route_required":       self.options.route_required.current_key,
-            "enable_gemsanity":     bool(self.options.enable_gemsanity.value),
-            "enable_notesanity":    bool(self.options.enable_notesanity.value),
-            "enable_locksanity":    bool(self.options.enable_locksanity.value),
-            "enable_snakesanity":   bool(self.options.enable_snakesanity.value),
-            "include_seashells":    bool(self.options.include_seashells.value),
-            "include_jellyfish":    bool(self.options.include_jellyfish.value),
-            "phoenix_anywhere":     bool(self.options.phoenix_anywhere.value),
+            "enable_gemsanity":     self.options.enable_gemsanity.value,
+            "enable_notesanity":    self.options.enable_notesanity.value,
+            "enable_locksanity":    self.options.enable_locksanity.value,
+            "enable_snakesanity":   self.options.enable_snakesanity.value,
+            "include_seashells":    self.options.include_seashells.value,
+            "include_jellyfish":    self.options.include_jellyfish.value,
+            "phoenix_anywhere":     self.options.phoenix_anywhere.value,
             "traps":                self.options.traps.current_key,
-            "trap_link":            bool(self.options.trap_link.value),
+            "trap_link":            self.options.trap_link.value,
             "filler_composition":   self.options.filler_composition.current_key,
-            "secretsanity":         bool(self.options.secretsanity.value),
-            "death_link":           bool(self.options.death_link.value),
+            "secretsanity":         self.options.secretsanity.value,
+            "death_link":           self.options.death_link.value,
             "death_amnesty_total":  int(self.options.death_amnesty_total.value),
-            "alt_rooms":            bool(self.options.alt_rooms.value),
+            "alt_rooms":            self.options.alt_rooms.value,
 
         }
 
@@ -146,13 +146,16 @@ class IslesOfSeaAndSkyWorld(World):
             return
         options = self.options
         options.route_required = options.route_required.from_any(passthrough["route_required"])
-        options.enable_gemsanity = options.enable_gemsanity.from_any(passthrough["enable_gemsanity"])
-        options.enable_notesanity = options.enable_notesanity.from_any(passthrough["enable_notesanity"])
-        options.enable_locksanity = options.enable_locksanity.from_any(passthrough["enable_locksanity"])
-        options.enable_snakesanity = options.enable_snakesanity.from_any(passthrough["enable_snakesanity"])
-        options.secretsanity = options.secretsanity.from_any(passthrough["secretsanity"])
-        options.include_seashells = options.include_seashells.from_any(passthrough["include_seashells"])
-        options.include_jellyfish = options.include_jellyfish.from_any(passthrough["include_jellyfish"])
+        options.enable_gemsanity = passthrough["enable_gemsanity"]
+        options.enable_notesanity = passthrough["enable_notesanity"]
+        options.enable_locksanity = passthrough["enable_locksanity"]
+        options.enable_snakesanity = passthrough["enable_snakesanity"]
+        options.secretsanity = passthrough["secretsanity"]
+        options.include_seashells = passthrough["include_seashells"]
+        options.include_jellyfish = passthrough["include_jellyfish"]
+        options.shuffle_elemental_quests = passthrough["shuffle_elemental_quests"]
+        options.shuffle_beast_bells = passthrough["shuffle_beast_bells"]
+        options.shuffle_sanctum_hits = passthrough["shuffle_sanctum_hits"]
 
     # UT
     @staticmethod

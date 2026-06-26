@@ -164,7 +164,7 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                    & Has("Star Piece", 30))  # Lost Landing
 
 
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
         world.set_rule(world.get_location("Overworld - Star Lock 3"),
                        Has("Star Piece", 3))
         world.set_rule(world.get_location("Overworld - Star Lock 15"),
@@ -278,7 +278,7 @@ def set_ancient_isle(world: "IslesOfSeaAndSkyWorld"):
                    Has("Ancient Key", 6))'''
 
     # Locksanity
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Ancient A1 - 3x Lock"),
                        (CanReachRegion("Ruby Sea")
@@ -304,7 +304,7 @@ def set_ancient_isle(world: "IslesOfSeaAndSkyWorld"):
         world.set_rule(world.get_location("Ancient B1 - Ancient Rune Lock"),
                        Has("Ancient Rune Stone"))
 
-    if world.options.enable_snakesanity.value:
+    if world.options.enable_snakesanity:
         world.set_rule(world.get_location("Ancient B3 - Snakeblock"),
                        Has("Ancient Key"))
 
@@ -329,7 +329,7 @@ def set_ancient_isle(world: "IslesOfSeaAndSkyWorld"):
                        CanReachRegion("Obsidian Sea"))
 
     # Secretsanity
-    if world.options.secretsanity.value:
+    if world.options.secretsanity:
         world.set_rule(world.get_location("Ancient A1 - Discover Secret"),
                        (CanReachRegion("Ruby Sea")
                         | CanReachRegion("Sapphire Sea"))
@@ -364,7 +364,7 @@ def set_rolling_rocks(world: "IslesOfSeaAndSkyWorld"):
 
 
     # Locksanity
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Rolling B1 - 3x Lock"),
                        Has("Ancient Key", 14))
@@ -373,11 +373,11 @@ def set_rolling_rocks(world: "IslesOfSeaAndSkyWorld"):
                        Has("Star Piece", 7))
 
 
-    if world.options.enable_snakesanity.value:
+    if world.options.enable_snakesanity:
         pass
 
     # Secretsanity
-    if world.options.secretsanity.value:
+    if world.options.secretsanity:
         world.set_rule(world.get_location("Rolling A0 - Discover Secret"),
                        Has("Star Piece", 7)
                        & Has("Gopher Gloves"))
@@ -407,7 +407,7 @@ def set_sunken_island(world: "IslesOfSeaAndSkyWorld"):
                    Has("Beast Bellstone Hit - Sunken"))
 
     # Locksanity
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
         world.set_rule(world.get_location("Sunken A1 - 3x Lock"),
                        Has("Ancient Key", 34)
                        & Has("Ancient Rune Stone"))
@@ -450,7 +450,7 @@ def set_aggro_crag(world: "IslesOfSeaAndSkyWorld"):
                    Has("Beast Bellstone Hit - Aggro"))
 
     # Locksanity
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Aggro A1 - 3x Lock"),
                        Has("Star Piece", 35)
@@ -470,7 +470,7 @@ def set_aggro_crag(world: "IslesOfSeaAndSkyWorld"):
                        Has("Ancient Rune Stone"))
 
     # Snakesanity
-    if world.options.enable_snakesanity.value:
+    if world.options.enable_snakesanity:
         world.set_rule(world.get_location("Aggro B1 - E - Snakeblock"),
                        Has("Star Piece", 35))
 
@@ -486,7 +486,7 @@ def set_aggro_crag(world: "IslesOfSeaAndSkyWorld"):
                        & Has("Salamander Shirt"))
 
     # Secretsanity
-    if world.options.secretsanity.value:
+    if world.options.secretsanity:
         world.set_rule(world.get_location("Aggro A0 - W - Discover Secret"),
                        Has("Ancient Rune Stone")
                        & Has("Star Piece", 35)
@@ -531,7 +531,7 @@ def set_sea_nunatak(world: "IslesOfSeaAndSkyWorld"):
                    Has("Beast Bellstone Hit - Nunatak"))
 
     # Locksanity
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Nunatak A0 - 3x Lock"),
                        Has("Ancient Rune Stone")
@@ -544,14 +544,14 @@ def set_sea_nunatak(world: "IslesOfSeaAndSkyWorld"):
                        Has("Star Piece", 49))
 
     # Snakesanity
-    if world.options.enable_snakesanity.value:
+    if world.options.enable_snakesanity:
         world.set_rule(world.get_location("Nunatak A1 - Snakeblock"),
                        Has("Ancient Rune Stone")
                        & Has("Awaken Wind Elementals")
                        & Has("Star Piece", 49))
 
     # Secretsanity
-    if world.options.secretsanity.value:
+    if world.options.secretsanity:
         world.set_rule(world.get_location("Nunatak B0 - E - Discover Secret"),
                        Has("Awaken Wind Elementals")
                        & Has("Star Piece", 49)
@@ -582,7 +582,7 @@ def set_locked(world: "IslesOfSeaAndSkyWorld"):
                    Has("Ancient Rune Stone"))
 
     # Locksanity
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Locked A0 - 6x Lock"),
                        (CanReachRegion("Ruby Sea")
@@ -593,7 +593,7 @@ def set_locked(world: "IslesOfSeaAndSkyWorld"):
                        Has("Ancient Rune Stone"))
 
     # Snakesanity
-    if world.options.enable_snakesanity.value:
+    if world.options.enable_snakesanity:
         world.set_rule(world.get_location("Locked A0 - E - Snakeblock"),
                        (CanReachRegion("Ruby Sea")
                         | CanReachRegion("Sapphire Sea"))
@@ -674,7 +674,7 @@ def set_star_tropic(world: "IslesOfSeaAndSkyWorld"):
 
 
     # Locksanity
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Tropic A1 - Ancient Rune Lock"),
                        Has("Ancient Rune Stone"))
@@ -687,7 +687,7 @@ def set_star_tropic(world: "IslesOfSeaAndSkyWorld"):
                        & Has("Kite Cloak"))
 
     # Snakesanity
-    if world.options.enable_snakesanity.value:
+    if world.options.enable_snakesanity:
         world.set_rule(world.get_location("Tropic A0 - W - Snakeblock"),
                        Has("Kite Cloak"))
         world.set_rule(world.get_location("Tropic A0 - C - Snakeblock"),
@@ -700,7 +700,7 @@ def set_star_tropic(world: "IslesOfSeaAndSkyWorld"):
                        Has("Kite Cloak"))
 
     # Secretsanity
-    if world.options.secretsanity.value:
+    if world.options.secretsanity:
         world.set_rule(world.get_location("Tropic A0 - Discover Secret"),
                        Has("Kite Cloak"))
 
@@ -716,19 +716,19 @@ def set_shoal(world: "IslesOfSeaAndSkyWorld"):
                    & Has("Kite Cloak"))
 
     # Locksanity
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Shoal A0 - Ancient Rune Lock"),
                        Has("Ancient Rune Stone"))
 
     # Snakesanity
-    if world.options.enable_snakesanity.value:
+    if world.options.enable_snakesanity:
 
         world.set_rule(world.get_location("Shoal A0 - Snakeblock"),
                        Has("Ancient Rune Stone")
                        & Has("Kite Cloak"))
 
-    if world.options.secretsanity.value:
+    if world.options.secretsanity:
         world.set_rule(world.get_location("Shoal A0 - E - Discover Secret"),
                        Has("Ancient Rune Stone"))
 
@@ -748,7 +748,7 @@ def set_lost_landing(world: "IslesOfSeaAndSkyWorld"):
                    Has("Star Piece", 30))
 
     # Locksanity
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Lost A1 - Lock"),
                        CanReachRegion("Lost Sea")
@@ -759,12 +759,12 @@ def set_lost_landing(world: "IslesOfSeaAndSkyWorld"):
                        Has("Star Piece", 30))
 
     # Snakesanity
-    if world.options.enable_snakesanity.value:
+    if world.options.enable_snakesanity:
         world.set_rule(world.get_location("Lost B1 - Snakeblock"),
                        Has("Star Piece", 30))
 
     # Secretsanity
-    if world.options.secretsanity.value:
+    if world.options.secretsanity:
         world.set_rule(world.get_location("Lost B1 - CS - Discover Secret"),
                        CanReachRegion("Lost Sea")
                        & Has("Frog Flippers"))
@@ -849,7 +849,7 @@ def set_serpent_stacks(world: "IslesOfSeaAndSkyWorld"):
                    & Has("Awaken Wind Elementals"))
 
     # Locksanity
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Serpent A2 - Elemental Rune Lock"),
                        Has("Topaz Rune Stone")
@@ -877,7 +877,7 @@ def set_serpent_stacks(world: "IslesOfSeaAndSkyWorld"):
                        & Has("Serpent Circlet"))
 
     # Snakesanity
-    if world.options.enable_snakesanity.value:
+    if world.options.enable_snakesanity:
         world.set_rule(world.get_location("Serpent A1 - C - Snakeblock"),
                        Has("Serpent Circlet")
                        & Has("Topaz Rune Stone")
@@ -1054,12 +1054,12 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
                    | Has("Kite Cloak"))
 
     # Notesanity
-    if world.options.enable_notesanity.value:
+    if world.options.enable_notesanity:
         world.set_rule(world.get_location("Stone D1 - Music Note"),
                        Has("Awaken Earth Elementals"))
 
     # Locksanity
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Stone C2 - Lock"),
                        Has("Ancient Key", 7))
@@ -1085,7 +1085,7 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
                        & Has("Gopher Gloves"))
 
     # Snakesanity
-    if world.options.enable_snakesanity.value:
+    if world.options.enable_snakesanity:
         world.set_rule(world.get_location("Stone C1 - Snakeblock"),
                        Has("Awaken Earth Elementals"))
         world.set_rule(world.get_location("Stone D1 - Snakeblock"),
@@ -1145,7 +1145,7 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
                        & Has("Awaken Earth Elementals"))
 
     # Secretsanity
-    if world.options.secretsanity.value:
+    if world.options.secretsanity:
         pass
 
 
@@ -1245,7 +1245,7 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
                    & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 12)))
 
     # IncludeShells
-    if world.options.include_seashells.value:
+    if world.options.include_seashells:
 
         world.set_rule(world.get_location("Water B2 - Shell"),
                        Has("Frog Flippers"))
@@ -1276,7 +1276,7 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
                        | Has("Sapphire Rune Stone"))
 
     # Locksanity
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
         world.set_rule(world.get_location("Water B2 - Lock"),
                        Has("Ancient Key", 29))
 
@@ -1291,7 +1291,7 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
                        & Has("Awaken Water Elementals"))
 
     # Snakesanity
-    if world.options.enable_snakesanity.value:
+    if world.options.enable_snakesanity:
         world.set_rule(world.get_location("Water B0 - E - Snakeblock"),
                        Has("Awaken Water Elementals"))
         world.set_rule(world.get_location("Water B0 - C - Snakeblock"),
@@ -1407,7 +1407,7 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
                    & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 18)))
 
     # Locksanity
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
         world.set_rule(world.get_location("Fire D2 - Lock"),
                        Has("Ancient Key", 35))
 
@@ -1421,7 +1421,7 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
                        Has("Fire Key", 3))
 
     # Snakesanity
-    if world.options.enable_snakesanity.value:
+    if world.options.enable_snakesanity:
         world.set_rule(world.get_location("Fire B4 - W - Snakeblock"),
                        Has("Awaken Fire Elementals"))
         world.set_rule(world.get_location("Fire B4 - E - Snakeblock"),
@@ -1451,7 +1451,7 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
                        Has("Awaken Fire Elementals"))
 
     # Secretsanity
-    if world.options.secretsanity.value:
+    if world.options.secretsanity:
         world.set_rule(world.get_location("Fire C2 - Discover Secret"),
                        Has("Salamander Shirt"))
         world.set_rule(world.get_location("Fire E1 - Discover Secret"),
@@ -1544,7 +1544,7 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
                    & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 24)))
 
     # Notesanity
-    if world.options.enable_notesanity.value:
+    if world.options.enable_notesanity:
         world.set_rule(world.get_location("Wind A2 - Music Note"),
                        Has("Awaken Wind Elementals"))
 
@@ -1556,7 +1556,7 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
 
 
     # Locksanity
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
         world.set_rule(world.get_location("Wind D3 - 3x Lock"),
                        Has("Ancient Key", 45))
 
@@ -1571,7 +1571,7 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
                        Has("Diamond Rune Stone"))  # Remove later when wind key item is fixed
 
     # Snakesanity
-    if world.options.enable_snakesanity.value:
+    if world.options.enable_snakesanity:
         world.set_rule(world.get_location("Wind A2 - SE - Snakeblock"),
                        Has("Awaken Wind Elementals"))
         world.set_rule(world.get_location("Wind E4 - Snakeblock"),
@@ -1598,7 +1598,7 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
                        Has("Ancient Key", 45))
 
     # Secretsanity
-    if world.options.secretsanity.value:
+    if world.options.secretsanity:
         world.set_rule(world.get_location("Wind D1 - Discover Secret"),
                        Has("Kite Cloak")
                        & Has("Ancient Key", 47))
@@ -1636,7 +1636,7 @@ def set_sanctum(world: "IslesOfSeaAndSkyWorld"):
 
 
     # Locksanity
-    if world.options.enable_locksanity.value:
+    if world.options.enable_locksanity:
         world.set_rule(world.get_location("Sanctum B2 - W - 3x Lock"),
                        Has("Ancient Key", 51))
 
@@ -1650,7 +1650,7 @@ def set_sanctum(world: "IslesOfSeaAndSkyWorld"):
                        Has("Ancient Key", 60))
 
     # Snakesanity
-    if world.options.enable_snakesanity.value:
+    if world.options.enable_snakesanity:
         world.set_rule(world.get_location("Sanctum A2 - S - Snakeblock"),
                        Has("Ancient Key", 51))
         world.set_rule(world.get_location("Sanctum A2 - C - Snakeblock"),
