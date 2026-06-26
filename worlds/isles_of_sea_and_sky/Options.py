@@ -1,4 +1,4 @@
-from Options import Choice, Toggle, Range, PerGameCommonOptions, DeathLink, OptionGroup
+from Options import Choice, Toggle, DefaultOnToggle, Range, PerGameCommonOptions, DeathLink, OptionGroup
 from dataclasses import dataclass
 
 class RouteRequired(Choice):
@@ -11,14 +11,13 @@ class RouteRequired(Choice):
     option_all_gems = 2
     default = 0
 
-class EnableGemsanity(Toggle):
+class EnableGemsanity(DefaultOnToggle):
     """
     Turn all gems in the game into location checks.
     """
     display_name = "Enable Gemsanity"
-    default = 1
 
-class EnableNotesanity(Toggle):
+class EnableNotesanity(DefaultOnToggle):
     """
     Turn all music notes in the game into location checks. Music puzzles will be filled progressively from stoney cliffs to frozen spire.
     """
@@ -47,45 +46,36 @@ class EnableLocksanity(Toggle):
     Turn all locks in the game into location checks. This includes big 3x locks, all Rune Stone locks, and other specialty locks
     """
     display_name = "Enable Locksanity"
-    default = 0
-
 
 class EnableSnakesanity(Toggle):
     """
     Turn all snake blocks in the game into location checks. (Snake block = Green directional block with an arrowhead on top)
     """
     display_name = "Enable Snakesanity"
-    default = 0
 
 class EnableSecretsanity(Toggle):
     """
     Turns a number of in-game secrets in to location checks. These include secret paths, and disguised blocks.
     """
     display_name = "Enable Secretsanity"
-    default = 0
-
 
 class IncludeSeashells(Toggle):
     """
     Enable seashells on Tidal Reef for extra checks
     """
     display_name = "Include Seashells"
-    default = 0
-
 
 class IncludeJellyfish(Toggle):
     """
     Enable jellyfish in the Overworld for extra checks
     """
     display_name = "Include Jellyfish"
-    default = 0
 
 class PhoenixAnywhere(Toggle):
     """
     You can summon the Phoenix in any non-overworld location by pressing: 'E', if you have the Phoenix Flute.
     """
     display_name = "Summon Phoenix Anywhere"
-    default = 0
 
 class FillerComposition(Choice):
     """
@@ -119,16 +109,6 @@ class Traps(Choice):
     option_plenty_traps = 2
     default = 0
 
-class TrapLink(Toggle):
-    """
-    When enabled, your received traps are linked to other players
-
-    CURRENTLY UNIMPLEMENTED!!!
-    """
-    display_name = "Trap Link"
-    default = 0
-
-
 class AltRoomRandomizer(Toggle):
     """
     When enabled, the game chooses random alternate rooms from the selection in 'Alt Rooms'
@@ -137,7 +117,6 @@ class AltRoomRandomizer(Toggle):
     EARLY DEVELOPMENT! lOTS OF BUGS
     """
     display_name = "Alt Room Randomizer"
-    default = 0
 
 
 @dataclass
@@ -158,7 +137,6 @@ class IslesOfSeaAndSkyOptions(PerGameCommonOptions):
     death_link:                                 DeathLink
     death_amnesty_total:                        DeathLinkAmnesty
     traps:                                      Traps
-    trap_link:                                  TrapLink
     alt_rooms:                                  AltRoomRandomizer
 
 isles_of_sea_and_sky_option_groups = [
@@ -187,7 +165,7 @@ isles_of_sea_and_sky_option_groups = [
         IncludeJellyfish
     ]),
 
-OptionGroup("Randomizer", [
+    OptionGroup("Randomizer", [
         AltRoomRandomizer
     ]),
 
@@ -198,7 +176,6 @@ OptionGroup("Randomizer", [
 
     OptionGroup("Traps", [
         Traps,
-        TrapLink
     ]),
 ]
 

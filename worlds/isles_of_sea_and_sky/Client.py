@@ -335,7 +335,7 @@ async def process_isles_of_sea_and_sky_cmd(ctx: IslesOfSeaAndSkyContext, cmd: st
         ctx.death_allowed =         args["slot_data"]["death_link"]
         ctx.death_amnesty_total =   args["slot_data"]["death_amnesty_total"]
         ctx.game_seed =             args["slot_data"]["world_seed"]
-        ctx.allowTraps =            args["slot_data"]["traps"] != "no_traps" or args["slot_data"]["trap_link"]
+        ctx.allowTraps =            args["slot_data"]["traps"] != "no_traps"
         ctx.altRooms =              args["slot_data"]["alt_rooms"]
 
         with open(os.path.join(ctx.save_game_folder, "apOptions.options"), "w") as f:

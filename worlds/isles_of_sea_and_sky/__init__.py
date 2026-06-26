@@ -133,7 +133,6 @@ class IslesOfSeaAndSkyWorld(World):
             "shuffle_sanctum_hits":         self.options.shuffle_sanctum_hits.value,
             "phoenix_anywhere":             self.options.phoenix_anywhere.value,
             "traps":                        self.options.traps.current_key,
-            "trap_link":                    self.options.trap_link.value,
             "filler_composition":           self.options.filler_composition.current_key,
             "secretsanity":                 self.options.secretsanity.value,
             "death_link":                   self.options.death_link.value,
