@@ -60,7 +60,7 @@ class IslesOfSeaAndSkySettings(Group):
         """Path to IslesOfSeaAndSky Vanilla data file"""
         description = "Isles Of Sea And Sky Vanilla File"
         md5s = [
-            "F24EFE2F28A3DB2B5E4EAA5294DCE25D" # steam, old 1.2b
+            "9B8A1EFD76095F0796CD5AA472DF1BD7" # steam, v2.6
             #"",  # epic
             # "",  # itch.io, does not work
             ]
@@ -122,22 +122,22 @@ class IslesOfSeaAndSkyWorld(World):
             "client_version":               self.required_client_version,
             "race":                         self.multiworld.is_race,
             "route_required":               self.options.route_required.current_key,
-            "enable_gemsanity":             self.options.enable_gemsanity.value,
-            "enable_notesanity":            self.options.enable_notesanity.value,
-            "enable_locksanity":            self.options.enable_locksanity.value,
-            "enable_snakesanity":           self.options.enable_snakesanity.value,
-            "include_seashells":            self.options.include_seashells.value,
-            "include_jellyfish":            self.options.include_jellyfish.value,
-            "shuffle_elemental_quests":     self.options.shuffle_elemental_quests.value,
-            "shuffle_big_bell_hits":        self.options.shuffle_big_bell_hits.value,
-            "shuffle_sanctum_shard_hits":   self.options.shuffle_sanctum_shard_hits.value,
-            "phoenix_anywhere":             self.options.phoenix_anywhere.value,
+            "enable_gemsanity":             bool(self.options.enable_gemsanity.value),
+            "enable_notesanity":            bool(self.options.enable_notesanity.value),
+            "enable_locksanity":            bool(self.options.enable_locksanity.value),
+            "enable_snakesanity":           bool(self.options.enable_snakesanity.value),
+            "include_seashells":            bool(self.options.include_seashells.value),
+            "include_jellyfish":            bool(self.options.include_jellyfish.value),
+            "shuffle_elemental_quests":     bool(self.options.shuffle_elemental_quests.value),
+            "shuffle_big_bell_hits":        bool(self.options.shuffle_big_bell_hits.value),
+            "shuffle_sanctum_shard_hits":   bool(self.options.shuffle_sanctum_shard_hits.value),
+            "phoenix_anywhere":             bool(self.options.phoenix_anywhere.value),
             "traps":                        self.options.traps.current_key,
             "filler_composition":           self.options.filler_composition.current_key,
-            "secretsanity":                 self.options.secretsanity.value,
-            "death_link":                   self.options.death_link.value,
+            "secretsanity":                 bool(self.options.secretsanity.value),
+            "death_link":                   bool(self.options.death_link.value),
             "death_amnesty_total":          int(self.options.death_amnesty_total.value),
-            "alt_rooms":                    self.options.alt_rooms.value,
+            "alt_rooms":                    bool(self.options.alt_rooms.value),
 
         }
 
@@ -205,8 +205,8 @@ class IslesOfSeaAndSkyWorld(World):
             gem_locations = {loc_name: loc_name.rsplit(" - ", 1)[-1]
                              for loc_name in advancement_table
                              if loc_name.rsplit(" - ", 1)[-1] in gem_names}
-            assert len(gem_locations) == 60, \
-                f"Expected 60 gem locations, found {len(gem_locations)}"
+            assert len(gem_locations) == 62, \
+                f"Expected 62 gem locations, found {len(gem_locations)}"
             for loc_name, gem in gem_locations.items():
                 self.multiworld.get_location(loc_name, self.player).place_locked_item(
                     self.create_item(gem))
