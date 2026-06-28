@@ -371,7 +371,16 @@ advancement_table = {
     # In the future, could include milestones as locations. e.g. each of the steam achievements, plus extras.
 }
 
-circlet_table = { # TODO
+circlet_table = { # TODO implement and add logic for these
+    "Serpent A4 - Serpent Lock Shard":              AdvData(113044, "Serpent Stacks Post-Rune"),
+    "Serpent A5 - NE - Serpent Lock Shard":         AdvData(113263, "Serpent Stacks Post-Rune"),
+    "Serpent A5 - SE - Serpent Lock Shard":         AdvData(113264, "Serpent Stacks Post-Rune"),
+    "Serpent A5 - NW - Serpent Lock Shard":         AdvData(113265, "Serpent Stacks Post-Rune"),
+    "Serpent A5 - SW - Serpent Lock Shard":         AdvData(113266, "Serpent Stacks Post-Rune"),
+    "Serpent A6 - Serpent Lock Shard":              AdvData(113382, "Serpent Stacks Post-Rune"),
+    "Serpent A7 - Serpent Lock Shard":              AdvData(113471, "Serpent Stacks Post-Rune"),
+    "Serpent A8 - Serpent Lock Shard":              AdvData(113597, "Serpent Stacks Post-Rune"),
+    "Serpent A5 - Serpent Lock Shard":              AdvData(113597, "Serpent Stacks Post-Rune"),
     "Serpent A5 - Serpent Circlet":                 AdvData(999999, "Serpent Stacks Post-Rune"),
     "Fire D3 - Obsidian":                           AdvData(107304, "Raging Volcano Post-Rune"),  # Serpent Circlet
 }

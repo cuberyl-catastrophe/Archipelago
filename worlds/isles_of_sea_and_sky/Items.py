@@ -29,7 +29,6 @@ item_table = {
     "Frog Flippers":                        ItemData(386,       IC.progression | IC.useful),
     "Salamander Shirt":                     ItemData(671,       IC.progression | IC.useful),
     "Kite Cloak":                           ItemData(440,       IC.progression | IC.useful),
-    "Serpent Circlet":                      ItemData(707,       IC.progression | IC.useful),
     "Blue Stone Tablet":                    ItemData(644,       IC.progression_skip_balancing),
     "Gold Stone Tablet":                    ItemData(645,       IC.progression_skip_balancing),
     "Seashell":                             ItemData(688,       IC.filler),
@@ -37,6 +36,10 @@ item_table = {
     "Music Note":                           ItemData(498,       IC.progression_skip_balancing),
     "Phoenix Flute":                        ItemData(555,       IC.progression | IC.useful),
     "Star Viewing Orb":                     ItemData(806,       IC.useful),
+    # Mysterious Update
+    "Serpent Lock Shard":                   ItemData(710,       IC.progression_skip_balancing),
+    "Serpent Circlet":                      ItemData(707,       IC.progression | IC.useful),
+    "Pyramidion":                           ItemData(625,       IC.progression_skip_balancing),
     # Cutscenes
     "Awaken Earth Elementals":              ItemData(901,       IC.progression | IC.useful),
     "Awaken Water Elementals":              ItemData(902,       IC.progression | IC.useful),
@@ -47,10 +50,10 @@ item_table = {
     "Big Bell Hit - Sunken":                ItemData(912,       IC.progression_skip_balancing),
     "Big Bell Hit - Aggro":                 ItemData(913,       IC.progression_skip_balancing),
     "Big Bell Hit - Nunatak":               ItemData(914,       IC.progression_skip_balancing),
-    "Sanctum Shard Hit - Earth":            ItemData(921,       IC.progression),
-    "Sanctum Shard Hit - Water":            ItemData(922,       IC.progression),
-    "Sanctum Shard Hit - Fire":             ItemData(923,       IC.progression),
-    "Sanctum Shard Hit - Wind":             ItemData(924,       IC.progression),
+    "Sanctum Shard Hit - Earth":            ItemData(921,       IC.progression_skip_balancing),
+    "Sanctum Shard Hit - Water":            ItemData(922,       IC.progression_skip_balancing),
+    "Sanctum Shard Hit - Fire":             ItemData(923,       IC.progression_skip_balancing),
+    "Sanctum Shard Hit - Wind":             ItemData(924,       IC.progression_skip_balancing),
     # Traps
     "Slow Trap":                            ItemData(7000,      IC.trap),
     "Fast Trap":                            ItemData(7001,      IC.trap),
