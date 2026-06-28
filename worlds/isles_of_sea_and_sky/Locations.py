@@ -58,8 +58,8 @@ advancement_table = {
     "Stone Dungeon C2 - Open Topaz Door":           AdvData(117030, "Stony Cliffs Post-Rune"),
 
     "Stone A1 - Tablet Puzzle Clue":                AdvData(114317, "Stony Cliffs NW"),
-    "Stone A3 - Tablet Puzzle Clue":                AdvData(107386, "Stony Cliffs Post-Rune"),
-    "Stone E1 - Tablet Puzzle Clue":                AdvData(114400, "Stony Cliffs NW"),
+    "Stone A3 - Tablet Puzzle Clue":                AdvData(114400, "Stony Cliffs Post-Rune"),
+    "Stone E1 - Tablet Puzzle Clue":                AdvData(118265, "Stony Cliffs NW"),
 
     "Stone Dungeon A3 - Tablet Puzzle Clue":        AdvData(116312, "Stony Cliffs Post-Rune"),
     "Stone Dungeon E1 - Tablet Puzzle Clue":        AdvData(117920, "Stony Cliffs"),
