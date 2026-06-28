@@ -194,7 +194,7 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                    & (Has("Awaken Wind Elementals")
                       | Has("Kite Cloak")))  # since Eggs and Wind key are broken, don't include
 
-    # world.set_rule(world.get_location("Serpent A5 - Serpent Circlet"), # TODO: fix logic
+    # world.set_rule(world.get_location("Serpent A5 - Serpent Circlet"), # TODO
     #                Has("Topaz Rune Stone")
     #                & Has("Sapphire Rune Stone")
     #                & Has("Ruby Rune Stone")
@@ -939,8 +939,7 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
                    & Has("Awaken Earth Elementals"))
 
     world.set_rule(world.get_location("Stone E3 - Blue Stone Tablet"),
-                   Has("Topaz Rune Stone")
-                   & Has("Star Piece", 20))
+                   Has("Star Piece", 20))
 
     world.set_rule(world.get_location("Stone C0 - Ancient Key"),
                    Has("Awaken Earth Elementals"))
@@ -975,10 +974,6 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Stone B0 - NW3 - Ancient Key"),
                    Has("Awaken Earth Elementals"))
 
-    world.set_rule(world.get_location("Stone A2 - Ancient Key"),
-                   Has("Blue Stone Tablet")
-                   & Has("Gold Stone Tablet"))
-
     world.set_rule(world.get_location("Stone Dungeon D2 - Ancient Key"),
                    Has("Awaken Earth Elementals"))
 
@@ -991,10 +986,6 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Stone C2 - E - Topaz"),
                    Has("Ancient Key", 7))
-
-    world.set_rule(world.get_location("Stone A2 - Obsidian"),
-                   Has("Blue Stone Tablet")
-                   & Has("Gold Stone Tablet"))
 
     world.set_rule(world.get_location("Stone C1 - Star Piece"),
                    Has("Awaken Earth Elementals"))
@@ -1045,6 +1036,17 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Stone E1 - Star Piece"),
                    Has("Ancient Key", 10))
+    
+    world.set_rule(world.get_location("Stone D3 - N - Star Piece"),
+                   Has("Star Piece", 20)
+                   & Has("Awaken Earth Elementals")
+                   & Has("Awaken Wind Elementals")
+                   & Has("Gopher Gloves"))
+    
+    world.set_rule(world.get_location("Stone D3 - S - Star Piece"),
+                   Has("Star Piece", 20)
+                   & Has("Awaken Earth Elementals")
+                   & Has("Awaken Wind Elementals"))
 
     world.set_rule(world.get_location("Stone D1 - Music Puzzle Star Piece 1"),
                     Has("Awaken Earth Elementals")
@@ -1062,6 +1064,12 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Stone A2 - Tablet Puzzle Star Piece"),
                     Has("Blue Stone Tablet")
                     & Has("Gold Stone Tablet"))
+    world.set_rule(world.get_location("Stone A2 - Ancient Key"),
+                   Has("Blue Stone Tablet")
+                   & Has("Gold Stone Tablet"))
+    world.set_rule(world.get_location("Stone A2 - Obsidian"),
+                   Has("Blue Stone Tablet")
+                   & Has("Gold Stone Tablet"))
 
     world.set_rule(world.get_location("Stone Dungeon C2 - Open Topaz Door"),
                    Has("Awaken Earth Elementals"))
@@ -1218,7 +1226,7 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Water D2 - Star Piece"),
                    Has("Frog Flippers")
-                   & Has("Kite Cloak"))
+                   & Has("Salamander Shirt"))
 
     world.set_rule(world.get_location("Water D3 - Star Piece"),
                    Has("Frog Flippers")
@@ -1254,6 +1262,13 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Water C1 - W - Star Piece"),
                    Has("Ancient Key", 32))
     
+    world.set_rule(world.get_location("Water E3 - NE - Star Piece"),
+                   Has("Awaken Water Elementals")
+                   & Has("Awaken Earth Elementals"))
+    world.set_rule(world.get_location("Water E3 - SW - Star Piece"),
+                   Has("Awaken Water Elementals")
+                   & Has("Awaken Earth Elementals"))
+    
     world.set_rule(world.get_location("Water B0 - Music Puzzle Star Piece 1"),
                    Has("Awaken Water Elementals")
                    & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 12)))
@@ -1263,6 +1278,9 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Water B0 - Music Puzzle Star Piece 3"),
                    Has("Awaken Water Elementals")
                    & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 12)))
+    
+    world.set_rule(world.get_location("Water C4 - Shell Puzzle Star Piece"),
+                   Has("Frog Flippers"))
 
     # IncludeShells
     if world.options.include_seashells:
@@ -1407,9 +1425,9 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
                    Has("Awaken Fire Elementals"))
 
     world.set_rule(world.get_location("Fire D4 - Star Piece"),
-                   Has("Frog Flippers")
+                   Has("Awaken Fire Elementals")
                    & Has("Salamander Shirt")
-                   & Has("Awaken Fire Elementals"))
+                   & Has("Kite Cloak"));
 
     world.set_rule(world.get_location("Fire E1 - E - Star Piece"),
                    Has("Awaken Fire Elementals") & Has("Salamander Shirt"))
@@ -1419,6 +1437,13 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Fire E0 - Star Piece"),
                    Has("Salamander Shirt"))
+    
+    world.set_rule(world.get_location("Fire E3 - S - Star Piece"),
+                   Has("Awaken Fire Elementals")
+                   & Has("Awaken Water Elementals"))
+    world.set_rule(world.get_location("Fire E3 - SE - Star Piece"),
+                   Has("Awaken Fire Elementals")
+                   & Has("Awaken Water Elementals"))
     
     world.set_rule(world.get_location("Fire B3 - Music Puzzle Star Piece 1"),
                    Has("Awaken Fire Elementals")
@@ -1553,6 +1578,13 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Wind E1 - W - Star Piece"),
                    Has("Kite Cloak")
                    & Has("Gopher Gloves"))
+    
+    world.set_rule(world.get_location("Wind E1 - SE - Star Piece"),
+                   Has("Awaken Wind Elementals")
+                   & Has("Awaken Fire Elementals"))
+    world.set_rule(world.get_location("Wind E1 - SW - Star Piece"),
+                   Has("Awaken Wind Elementals")
+                   & Has("Awaken Fire Elementals"))
 
     world.set_rule(world.get_location("Wind A0 - Star Piece"),
                    Has("Kite Cloak"))

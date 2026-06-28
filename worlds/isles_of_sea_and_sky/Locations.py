@@ -115,7 +115,7 @@ advancement_table = {
     "Water D0 - Ancient Key":                       AdvData(123880, "Tidal Reef Post-Rune"), # frog flippers
     "Water D1 - Ancient Key":                       AdvData(124055, "Tidal Reef"), # frog flippers
     "Water D2 - Ancient Key":                       AdvData(124539, "Tidal Reef Post-Rune"), # frog flippers
-    "Water C4 - Ancient Key":                       AdvData(123545, "Tidal Reef Post-Rune"), # shell puzzle TODO: Logic
+    "Water C4 - Ancient Key":                       AdvData(123545, "Tidal Reef Post-Rune"), # shell puzzle, f flippers
 
     "Sunken A0 - Ancient Key":                      AdvData(118749, "Sunken Island"),
     "Sunken B0 - Ancient Key":                      AdvData(118911, "Sunken Island"),
@@ -139,7 +139,7 @@ advancement_table = {
     "Aggro B0 - E - Ancient Key":                   AdvData(101156, "Aggro Crag"),
     
     # Keys on the Frozen Spire may be broken due to in-game randomness
-    "Wind A1 - Ancient Key":                        AdvData(128595, "Frozen Spire Post-Rune"), # glyph puzzle TODO: logic
+    "Wind A1 - Ancient Key":                        AdvData(128595, "Frozen Spire Post-Rune"), # glyph puzzle
     "Wind A3 - Ancient Key":                        AdvData(128755, "Frozen Spire Post-Rune"), # k cloak
     "Wind B1 - Ancient Key":                        AdvData(128899, "Frozen Spire Post-Rune"), # double check req
     "Wind C2 - Ancient Key":                        AdvData(129493, "Frozen Spire"), # d quest
@@ -213,14 +213,14 @@ advancement_table = {
     "Nunatak B0 - Diamond":                         AdvData(111354, "Sea Nunatak"), # diamond quest complete
     "Tropic A1 - Diamond":                          AdvData(119798, "Star Tropic"), # ancient rune stone, all legendaries
 
-    "Stone A2 - Obsidian":                          AdvData(114394, "Stony Cliffs Post-Rune"),  # DOUBLE CHECK ID # stone tablet blue, tablet golda
+    "Stone A2 - Obsidian":                          AdvData(114394, "Stony Cliffs Post-Rune"),  # stone tablet blue, tablet golda
     "Stone D1 - Obsidian":                          AdvData(115696, "Stony Cliffs"),
-    "Water C4 - Obsidian":                          AdvData(123544, "Tidal Reef Post-Rune"),  # Shell Puzzle TODO: logic
+    "Water C4 - Obsidian":                          AdvData(123544, "Tidal Reef Post-Rune"),  # shell puzzle, f flippers
     "Water D0 - Obsidian":                          AdvData(123883, "Tidal Reef Post-Rune"),  # frog flippers
-    "Fire D4 - Obsidian":                           AdvData(107417, "Raging Volcano Post-Rune"),  # DOUBLE CHECK ID #
+    "Fire D4 - Obsidian":                           AdvData(107417, "Raging Volcano Post-Rune"),  # idol puzzle
     "Fire E0 - Obsidian":                           AdvData(107591, "Raging Volcano Post-Rune"),  # salamander shirt
     "Wind B0 - Obsidian":                           AdvData(128820, "Frozen Spire"),
-    "Wind A1 - Obsidian":                           AdvData(128596, "Frozen Spire"), # Glyph Puzzle TODO: logic
+    "Wind A1 - Obsidian":                           AdvData(128596, "Frozen Spire Post-Rune"), # Glyph Puzzle
     "Rolling A1 - Obsidian":                        AdvData(111841, "Rolling Rocks"),  # gopher gloves, 7 stars
     "Sunken A0 - Obsidian":                         AdvData(118750, "Sunken Island"),  # frog flippers
     "Aggro B0 - Obsidian":                          AdvData(101152, "Aggro Crag"),  # salamander shirt
@@ -240,8 +240,8 @@ advancement_table = {
     "Stone C0 - Star Piece":                        AdvData(115144, "Stony Cliffs"), # t quest
     "Stone C1 - Star Piece":                        AdvData(115196, "Stony Cliffs"), # t quest
     "Stone C4 - Star Piece":                        AdvData(115360, "Stony Cliffs Post-Rune"), # g gloves t quest
-    "Stone D3 - N - Star Piece":                    AdvData(115940, "Stony Cliffs Post-Rune"), # TODO: logic
-    "Stone D3 - S - Star Piece":                    AdvData(115941, "Stony Cliffs Post-Rune"), # TODO: logic
+    "Stone D3 - N - Star Piece":                    AdvData(115940, "Stony Cliffs Post-Rune"), # 20 star pieces, t quest, d quest. g gloves
+    "Stone D3 - S - Star Piece":                    AdvData(115941, "Stony Cliffs Post-Rune"), # 20 star pieces, t quest, d quest
     "Stone E1 - Star Piece":                        AdvData(118305, "Stony Cliffs"),
     "Stone E4 - Star Piece":                        AdvData(118468, "Stony Cliffs Post-Rune"),
     "Stone Dungeon B1 - Star Piece":                AdvData(116451, "Stony Cliffs NW"), # g gloves
@@ -265,18 +265,18 @@ advancement_table = {
     "Water C1 - W - Star Piece":                    AdvData(123036, "Tidal Reef"),
     "Water C1 - E - Star Piece":                    AdvData(123048, "Tidal Reef"),
     "Water C2 - Star Piece":                        AdvData(123263, "Tidal Reef"), # s quest
-    "Water D2 - Star Piece":                        AdvData(124543, "Tidal Reef Post-Rune"), # f flippers, k cloak
+    "Water D2 - Star Piece":                        AdvData(124543, "Tidal Reef Post-Rune"), # f flippers, s shirt
     "Water D3 - Star Piece":                        AdvData(124901, "Tidal Reef Post-Rune"), # f flippers | Double check
     "Water E0 - W - Star Piece":                    AdvData(126462, "Tidal Reef Post-Rune"), # f flippers
     "Water E0 - E - Star Piece":                    AdvData(126466, "Tidal Reef Post-Rune"), # s quest | double check
     "Water E2 - Star Piece":                        AdvData(126800, "Tidal Reef Post-Rune"), # f flippers
-    "Water E3 - NE - Star Piece":                   AdvData(128308, "Tidal Reef Post-Rune"), # TODO: logic
-    "Water E3 - SW - Star Piece":                   AdvData(128317, "Tidal Reef Post-Rune"), # TODO: logic
+    "Water E3 - NE - Star Piece":                   AdvData(128308, "Tidal Reef Post-Rune"), # s quest, t quest
+    "Water E3 - SW - Star Piece":                   AdvData(128317, "Tidal Reef Post-Rune"), # s quest, t quest
 
     "Water B0 - Music Puzzle Star Piece 1":         AdvData(99903101, "Tidal Reef Post-Rune"), # s quest
     "Water B0 - Music Puzzle Star Piece 2":         AdvData(99903102, "Tidal Reef Post-Rune"), # s quest
     "Water B0 - Music Puzzle Star Piece 3":         AdvData(99903103, "Tidal Reef Post-Rune"), # s quest
-    "Water C4 - Shell Puzzle Star Piece":           AdvData(99903241, "Tidal Reef Post-Rune"), # TODO:logic
+    "Water C4 - Shell Puzzle Star Piece":           AdvData(99903241, "Tidal Reef Post-Rune"), # shell puzzle, f flippers
 
     "Fire B3 - Star Piece":                         AdvData(105356, "Raging Volcano Post-Rune"),
     "Fire B4 - Star Piece":                         AdvData(105501, "Raging Volcano Post-Rune"), # r quest
@@ -287,20 +287,20 @@ advancement_table = {
     "Fire D1 - N - Star Piece":                     AdvData(106846, "Raging Volcano Post-Rune"), # r rune
     "Fire D3 - S - Star Piece":                     AdvData(107301, "Raging Volcano Post-Rune"), # r quest | double check
     "Fire D3 - W - Star Piece":                     AdvData(107303, "Raging Volcano Post-Rune"), # r quest | double
-    "Fire D4 - Star Piece":                         AdvData(107405, "Raging Volcano Post-Rune"), # f flippers # s shirt?
+    "Fire D4 - Star Piece":                         AdvData(107405, "Raging Volcano Post-Rune"), # r quest, s shirt, k cloak
     "Fire E0 - Star Piece":                         AdvData(107594, "Raging Volcano NE"), # s shirt
     "Fire E1 - E - Star Piece":                     AdvData(107693, "Raging Volcano Post-Rune"), # r quest shirt
     "Fire E1 - W - Star Piece":                     AdvData(107703, "Raging Volcano Post-Rune"), # s shirt
-    "Fire E3 - S - Star Piece":                     AdvData(108147, "Raging Volcano Post-Rune"), # TODO: logic
-    "Fire E3 - SE - Star Piece":                    AdvData(108148, "Raging Volcano Post-Rune"), # TODO: logic
+    "Fire E3 - S - Star Piece":                     AdvData(108147, "Raging Volcano Post-Rune"), # r quest, s quest
+    "Fire E3 - SE - Star Piece":                    AdvData(108148, "Raging Volcano Post-Rune"), # r quest, s quest
     "Fire E3 - W - Star Piece":                     AdvData(108150, "Raging Volcano Post-Rune"),
 
     "Fire B3 - Music Puzzle Star Piece 1":         AdvData(99904131, "Raging Volcano Post-Rune"), # r quest
     "Fire B3 - Music Puzzle Star Piece 2":         AdvData(99904132, "Raging Volcano Post-Rune"), # r quest
     "Fire B3 - Music Puzzle Star Piece 3":         AdvData(99904133, "Raging Volcano Post-Rune"), # r quest
-    "Fire D4 - Idol Puzzle Star Piece":            AdvData(99904341, "Raging Volcano Post-Rune"),
+    "Fire D4 - Idol Puzzle Star Piece":            AdvData(99904341, "Raging Volcano Post-Rune"), # idol puzzle
 
-    #locations might be broken due to in-game randomness
+    # locations might be broken due to in-game randomness
     "Wind A0 - Star Piece":                         AdvData(128530, "Frozen Spire Post-Rune"), # k cloak
     "Wind A3 - Star Piece":                         AdvData(128754, "Frozen Spire"), # k cloak
     "Wind B0 - Star Piece":                         AdvData(128818, "Frozen Spire Post-Rune"),
@@ -314,15 +314,15 @@ advancement_table = {
     "Wind D2 - Star Piece":                         AdvData(130102, "Frozen Spire Post-Rune"), # k cloak
     "Wind D4 - Star Piece":                         AdvData(130295, "Frozen Spire"),
     "Wind E1 - W - Star Piece":                     AdvData(130419, "Frozen Spire Post-Rune"), # k cloak, g gloves
-    "Wind E1 - SE - Star Piece":                    AdvData(130436, "Frozen Spire Post-Rune"), # TODO: logic
-    "Wind E1 - SW - Star Piece":                    AdvData(130437, "Frozen Spire Post-Rune"), # TODO: logic
+    "Wind E1 - SE - Star Piece":                    AdvData(130436, "Frozen Spire Post-Rune"), # d quest, r quest
+    "Wind E1 - SW - Star Piece":                    AdvData(130437, "Frozen Spire Post-Rune"), # d quest, r quest
     "Wind E2 - Star Piece":                         AdvData(130545, "Frozen Spire"), # d quest
     "Wind E4 - Star Piece":                         AdvData(130882, "Frozen Spire Post-Rune"), # k cloak
 
     "Wind B4 - Music Puzzle Star Piece 1":         AdvData(99905141, "Frozen Spire Post-Rune"), # d quest
     "Wind B4 - Music Puzzle Star Piece 2":         AdvData(99905142, "Frozen Spire Post-Rune"), # d quest
     "Wind B4 - Music Puzzle Star Piece 3":         AdvData(99905143, "Frozen Spire Post-Rune"), # d quest
-    "Wind A1 - Glyph Puzzle Star Piece":           AdvData(99905011, "Frozen Spire Post-Rune"), # TODO: logic
+    "Wind A1 - Glyph Puzzle Star Piece":           AdvData(99905011, "Frozen Spire Post-Rune"), # glyph puzzle
 
     "Rolling A0 - Star Piece":                      AdvData(111793, "Rolling Rocks"), # 7 stars, t quest
     "Rolling B0 - Star Piece":                      AdvData(111892, "Rolling Rocks Post-Rune"), # g gloves
@@ -372,8 +372,8 @@ advancement_table = {
 }
 
 circlet_table = { # TODO
-    "Serpent A5 - Serpent Circlet":                 AdvData(999999, "Serpent Stacks Post-Rune"), # TODO: fix implementation
-    "Fire D3 - Obsidian":                           AdvData(107304, "Raging Volcano Post-Rune"),  # Serpent Circlet TODO
+    "Serpent A5 - Serpent Circlet":                 AdvData(999999, "Serpent Stacks Post-Rune"),
+    "Fire D3 - Obsidian":                           AdvData(107304, "Raging Volcano Post-Rune"),  # Serpent Circlet
 }
 
 seashell_table = {
