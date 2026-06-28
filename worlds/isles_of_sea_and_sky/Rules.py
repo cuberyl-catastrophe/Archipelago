@@ -1371,6 +1371,9 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Fire C0 - Star Piece"),
                    Has("Awaken Fire Elementals"))
 
+    world.set_rule(world.get_location("Fire D0 - Ruby"),
+                   Has("Salamander Shirt"))
+                   
     world.set_rule(world.get_location("Fire D1 - N - Star Piece"),
                    Has("Awaken Fire Elementals"))
     world.set_rule(world.get_location("Fire D1 - S - Star Piece"),
