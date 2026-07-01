@@ -306,8 +306,8 @@ advancement_table = {
     "Wind B0 - Star Piece":                         AdvData(128818, "Frozen Spire Post-Rune"),
     "Wind B1 - Star Piece":                         AdvData(128898, "Frozen Spire"),
     "Wind B2 - S - Star Piece":                     AdvData(128978, "Frozen Spire Post-Rune"),
-    "Wind B2 - N - Star Piece":                     AdvData(128981, "Frozen Spire Post-Rune"), # k cloak?
-    "Wind B3 - Star Piece":                         AdvData(129182, "Frozen Spire Post-Rune"), # k cloak
+    "Wind B2 - N - Star Piece":                     AdvData(128981, "Frozen Spire Post-Rune"), # d quest
+    "Wind B3 - Star Piece":                         AdvData(129182, "Frozen Spire Post-Rune"), # d quest
     "Wind C2 - Star Piece":                         AdvData(129492, "Frozen Spire"), # d quest
     "Wind C3 - NE - Star Piece":                    AdvData(129586, "Frozen Spire"), # d rune
     "Wind C3 - SW - Star Piece":                    AdvData(129593, "Frozen Spire"), # d rune

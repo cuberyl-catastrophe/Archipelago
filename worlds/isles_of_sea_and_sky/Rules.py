@@ -813,9 +813,6 @@ def set_serpent_stacks(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Serpent A2 - Star Piece"),
                    Has("Activate Shadow Blocks"))
 
-    world.set_rule(world.get_location("Serpent A3 - Star Piece"),
-                   Has("Kite Cloak"))
-
     world.set_rule(world.get_location("Serpent A4 - N - Star Piece"),
                    Has("Activate Shadow Blocks")
                    & Has("Awaken Earth Elementals"))
@@ -1563,8 +1560,10 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
                    Has("Awaken Wind Elementals"))
 
     world.set_rule(world.get_location("Wind B2 - N - Star Piece"),
-                   Has("Awaken Wind Elementals")
-                   | Has("Kite Cloak"))
+                   Has("Awaken Wind Elementals"))
+    
+    world.set_rule(world.get_location("Wind B2 - S - Star Piece"),
+                   Has("Awaken Wind Elementals"))
 
     world.set_rule(world.get_location("Wind C2 - Star Piece"),
                    Has("Awaken Wind Elementals"))
