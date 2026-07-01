@@ -292,7 +292,7 @@ advancement_table = {
     "Wind C3 - NE - Star Piece":                    AdvData(120631, "Frozen Spire"), # d rune
     "Wind B3 - Star Piece":                         AdvData(121097, "Frozen Spire Post-Rune"), # k cloak
     "Wind A3 - Star Piece":                         AdvData(120833, "Frozen Spire"), # k cloak
-    "Wind B2 - N - Star Piece":                     AdvData(120998, "Frozen Spire Post-Rune"), # k cloak?
+    "Wind B2 - N - Star Piece":                     AdvData(120998, "Frozen Spire Post-Rune"), # d quest
     "Wind C2 - Star Piece":                         AdvData(121360, "Frozen Spire"), # d quest
     "Wind D2 - Star Piece":                         AdvData(121525, "Frozen Spire Post-Rune"), # k cloak
     "Wind E2 - Star Piece":                         AdvData(121656, "Frozen Spire"), # d quest
@@ -301,7 +301,7 @@ advancement_table = {
     "Wind B1 - Star Piece":                         AdvData(120916, "Frozen Spire"),
     "Wind B0 - Star Piece":                         AdvData(120361, "Frozen Spire Post-Rune"),
     "Wind A0 - Star Piece":                         AdvData(120219, "Frozen Spire Post-Rune"), # k cloak
-    "Wind B2 - S - Star Piece":                     AdvData(120995, "Frozen Spire Post-Rune"),
+    "Wind B2 - S - Star Piece":                     AdvData(120995, "Frozen Spire Post-Rune"), # d quest
 
     "Wind B4 - Music Puzzle Star Piece 1":         AdvData(99905141, "Frozen Spire Post-Rune"), # d quest
     "Wind B4 - Music Puzzle Star Piece 2":         AdvData(99905142, "Frozen Spire Post-Rune"), # d quest
