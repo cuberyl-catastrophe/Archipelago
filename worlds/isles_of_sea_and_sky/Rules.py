@@ -1206,7 +1206,8 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
                    | Has("Kite Cloak"))
 
     world.set_rule(world.get_location("Water E0 - E - Star Piece"),
-                   Has("Frog Flippers"))
+                   Has("Frog Flippers")
+                   & Has("Awaken Water Elementals"))
 
     world.set_rule(world.get_location("Water E2 - Star Piece"),
                    Has("Frog Flippers"))
