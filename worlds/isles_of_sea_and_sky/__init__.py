@@ -124,13 +124,16 @@ class IslesOfSeaAndSkyWorld(World):
             "route_required":               self.options.route_required.current_key,
             "enable_gemsanity":             bool(self.options.enable_gemsanity.value),
             "enable_notesanity":            bool(self.options.enable_notesanity.value),
+            "shuffle_pyramidions":          bool(self.options.shuffle_pyramidions.value),
+            "shuffle_meteorites":           bool(self.options.shuffle_meteorites.value),
+            "shuffle_elemental_quests":     bool(self.options.shuffle_elemental_quests.value),
+            "shuffle_big_bell_hits":        bool(self.options.shuffle_big_bell_hits.value),
+            "shuffle_sanctum_shard_hits":   bool(self.options.shuffle_sanctum_shard_hits.value),
             "enable_locksanity":            bool(self.options.enable_locksanity.value),
             "enable_snakesanity":           bool(self.options.enable_snakesanity.value),
             "include_seashells":            bool(self.options.include_seashells.value),
             "include_jellyfish":            bool(self.options.include_jellyfish.value),
-            "shuffle_elemental_quests":     bool(self.options.shuffle_elemental_quests.value),
-            "shuffle_big_bell_hits":        bool(self.options.shuffle_big_bell_hits.value),
-            "shuffle_sanctum_shard_hits":   bool(self.options.shuffle_sanctum_shard_hits.value),
+            "require_serpent_clues":        bool(self.options.require_serpent_clues.value),
             "phoenix_anywhere":             bool(self.options.phoenix_anywhere.value),
             "traps":                        self.options.traps.current_key,
             "filler_composition":           self.options.filler_composition.current_key,
@@ -150,14 +153,16 @@ class IslesOfSeaAndSkyWorld(World):
         options.route_required = options.route_required.from_any(passthrough["route_required"])
         options.enable_gemsanity = passthrough["enable_gemsanity"]
         options.enable_notesanity = passthrough["enable_notesanity"]
+        options.shuffle_pyramidions = passthrough["shuffle_pyramidions"]
+        options.shuffle_meteorites = passthrough["shuffle_meteorites"]
+        options.shuffle_elemental_quests = passthrough["shuffle_elemental_quests"]
+        options.shuffle_big_bell_hits = passthrough["shuffle_big_bell_hits"]
+        options.shuffle_sanctum_shard_hits = passthrough["shuffle_sanctum_shard_hits"]
         options.enable_locksanity = passthrough["enable_locksanity"]
         options.enable_snakesanity = passthrough["enable_snakesanity"]
         options.secretsanity = passthrough["secretsanity"]
         options.include_seashells = passthrough["include_seashells"]
         options.include_jellyfish = passthrough["include_jellyfish"]
-        options.shuffle_elemental_quests = passthrough["shuffle_elemental_quests"]
-        options.shuffle_big_bell_hits = passthrough["shuffle_big_bell_hits"]
-        options.shuffle_sanctum_shard_hits = passthrough["shuffle_sanctum_shard_hits"]
 
     # UT
     @staticmethod
@@ -210,10 +215,7 @@ class IslesOfSeaAndSkyWorld(World):
             for loc_name, gem in gem_locations.items():
                 self.multiworld.get_location(loc_name, self.player).place_locked_item(
                     self.create_item(gem))
-                if gem in key_pool: # Topaz / Sapphire / Ruby / Diamond
-                    key_pool[gem] -= 1
-                else: # Obsidian
-                    non_key_pool[gem] -= 1
+                key_pool[gem] -= 1
                     
         if not self.options.shuffle_elemental_quests:
             elemental_quests_vanilla_placements = {
@@ -225,7 +227,7 @@ class IslesOfSeaAndSkyWorld(World):
             for loc_name, item_name in elemental_quests_vanilla_placements.items():
                 self.multiworld.get_location(loc_name, self.player).place_locked_item(
                     self.create_item(item_name))
-                progression_pool[item_name] -= 1
+                key_pool[item_name] -= 1
                 
         if not self.options.shuffle_big_bell_hits:
             beast_bell_vanilla_placements = {
@@ -237,7 +239,7 @@ class IslesOfSeaAndSkyWorld(World):
             for loc_name, item_name in beast_bell_vanilla_placements.items():
                 self.multiworld.get_location(loc_name, self.player).place_locked_item(
                     self.create_item(item_name))
-                non_key_pool[item_name] -= 1
+                key_pool[item_name] -= 1
 
         if not self.options.shuffle_sanctum_shard_hits:
             sanctum_hits_vanilla_placements = {
@@ -249,7 +251,7 @@ class IslesOfSeaAndSkyWorld(World):
             for loc_name, item_name in sanctum_hits_vanilla_placements.items():
                 self.multiworld.get_location(loc_name, self.player).place_locked_item(
                     self.create_item(item_name))
-                progression_pool[item_name] -= 1
+                key_pool[item_name] -= 1
 
         # Bias generation to reduce fill errors
         self.multiworld.early_items[self.player]["Topaz Rune Stone"] = 1

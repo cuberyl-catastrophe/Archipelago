@@ -40,6 +40,7 @@ item_table = {
     "Serpent Lock Shard":                   ItemData(710,       IC.progression_skip_balancing),
     "Serpent Circlet":                      ItemData(707,       IC.progression | IC.useful),
     "Pyramidion":                           ItemData(625,       IC.progression_skip_balancing),
+    "Meteorite":                            ItemData(489,       IC.progression_skip_balancing),
     # Cutscenes
     "Awaken Earth Elementals":              ItemData(901,       IC.progression | IC.useful),
     "Awaken Water Elementals":              ItemData(902,       IC.progression | IC.useful),
@@ -70,53 +71,57 @@ item_table = {
 
 
 
-progression_items = {
+progression_items = { # Grants a new ability that opens up the world a ton
 
     "Ancient Rune Stone":                   1,
     "Topaz Rune Stone":                     1,
     "Sapphire Rune Stone":                  1,
     "Ruby Rune Stone":                      1,
     "Diamond Rune Stone":                   1,
+    "Obsidian Rune Stone":                  1,
     "Gopher Gloves":                        1,
     "Frog Flippers":                        1,
     "Salamander Shirt":                     1,
     "Kite Cloak":                           1,
-    "Fire Key":                             3,
+    "Serpent Circlet":                      1,
     "Awaken Earth Elementals":              1,
     "Awaken Water Elementals":              1,
     "Awaken Fire Elementals":               1,
     "Awaken Wind Elementals":               1,
     "Activate Shadow Blocks":               1,
-    "Sanctum Shard Hit - Earth":            1,
-    "Sanctum Shard Hit - Water":            1,
-    "Sanctum Shard Hit - Fire":             1,
-    "Sanctum Shard Hit - Wind":             1,
     "Phoenix Flute":                        1
 }
 
-key_items = {
+key_items = { # Used to open specific locks, unlocks a few checks
     "Ancient Key":                          77,
+    "Star Piece":                           120,
     "Topaz":                                12,
     "Sapphire":                             12,
     "Ruby":                                 12,
     "Diamond":                              12,
-    "Star Piece":                           120
-}
-
-note_items = {
-    "Music Note":                           24
-}
-
-non_key_items = {
-    "Obsidian":                             14,
-    "Obsidian Rune Stone":                  1,
-    "Blue Stone Tablet":                    1,
+    "Obsidian":                             18,
     "Gold Stone Tablet":                    1,
-    "Star Viewing Orb":                     1,
+    "Blue Stone Tablet":                    1,
+    "Fire Key":                             3,
+    "Serpent Lock Shard":                   8,
     "Big Bell Hit - Rolling":               1,
     "Big Bell Hit - Sunken":                1,
     "Big Bell Hit - Aggro":                 1,
-    "Big Bell Hit - Nunatak":               1
+    "Big Bell Hit - Nunatak":               1,
+    "Sanctum Shard Hit - Earth":            1,
+    "Sanctum Shard Hit - Water":            1,
+    "Sanctum Shard Hit - Fire":             1,
+    "Sanctum Shard Hit - Wind":             1
+}
+
+non_key_items = { # Does not unlock new checks
+    "Pyramidion":                           30,
+    "Meteorite":                            5,
+    "Star Viewing Orb":                     1
+}
+
+note_items = { # Music notes are in their own pool until notesanity gets reworked
+    "Music Note":                           24
 }
 
 # 52 total
