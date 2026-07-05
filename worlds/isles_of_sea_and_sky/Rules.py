@@ -20,6 +20,16 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
     ### Entrances
     world.set_rule(world.get_entrance("Ancient West Exit"),
                    CanReachRegion("Ruby Sea"))  # Obsidian Sea
+    
+    world.set_rule(world.get_entrance("Ancient Cavern Entrance"),
+                   CanReachRegion("Stony Cliffs")
+                   & Has("Awaken Earth Elementals")
+                   & CanReachRegion("Tidal Reef")
+                   & Has("Awaken Water Elementals")
+                   & CanReachRegion("Raging Volcano")
+                   & Has("Awaken Fire Elementals")
+                   & CanReachRegion("Frozen Spire")
+                   & Has("Awaken Wind Elementals"))
 
     '''world.set_rule(world.get_entrance("Ancient East Exit"),
                    Has("Ancient Key", 6) & Has("Star Piece"))  # Topaz Sea'''
@@ -143,6 +153,9 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_entrance("Star East Entrance"),
                    Has("Ancient Rune Stone")
                    & CanReachRegion("Lost Sea"))  # Star Tropic
+    
+    world.set_rule(world.get_entrance("Star Meteorite Exit to Tropic"),
+                   Has("Ancient Rune Stone"))
 
     world.set_rule(world.get_entrance("Rolling Exit To Post-Rune"),
                    Has("Ancient Rune Stone"))  # Rolling Rocks Post-Rune
@@ -159,6 +172,9 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_entrance("Locked Entrance"),
                    CanReachRegion("Ruby Sea"))
+    
+    world.set_rule(world.get_entrance("Lost Compass Exit to Landing"),
+                    Has("Frog Flippers"))
 
     world.set_rule(world.get_entrance("Beast Entrance"),
                    Has("Big Bell Hit - Rolling")
@@ -170,10 +186,27 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                     Has("Serpent Circlet")
                     & Has("Ancient Rune Stone")
                     & Has("Ancient Key", 66))
+    
+    world.set_rule(world.get_entrance("Glow Rocks Destroyed"),
+                    Has("Serpent Circlet")
+                    & CanReachRegion("Ancient Isle")
+                    & CanReachRegion("Sunken Island")
+                    & Has("Frog Flippers")
+                    & CanReachRegion("Aggro Crag")
+                    & Has("Awaken Fire Elementals")
+                    & Has("Star Piece", 35)
+                    & CanReachRegion("Sanctum")
+                    & Has("Ancient Key", 51)
+                    & CanReachRegion("Lost Sea")
+                    & CanReachRegion("Ruby Sea")
+                    )
                    
     world.set_rule(world.get_entrance("Lagoon Exit to South Lagoon"),
                    Has("Frog Flippers")
                    & Has("Ancient Key", 67))
+    
+    world.set_rule(world.get_entrance("Lagoon Meteorite Exit to Lagoon"),
+                   Has("Frog Flippers"))
 
     world.set_rule(world.get_entrance("Abstract Phoenix Exit"),
                    Has("Phoenix Flute",
@@ -210,6 +243,27 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_entrance("Lost Phoenix Entrance"),
                    Has("Phoenix Flute")
                    & Has("Star Piece", 30))  # Lost Landing
+    
+    
+    world.set_rule(world.get_entrance("Stony Warp"),
+                   Has("Ancient Key", 7))
+    
+    world.set_rule(world.get_entrance("Stony Warp Entrance"),
+        Has("Warp Pattern - Earth"))
+    world.set_rule(world.get_entrance("Tidal Warp Entrance"),
+        Has("Warp Pattern - Water"))
+    world.set_rule(world.get_entrance("Raging Warp Entrance"),
+        Has("Warp Pattern - Fire"))
+    world.set_rule(world.get_entrance("Frozen Warp Entrance"),
+        Has("Warp Pattern - Wind"))
+    world.set_rule(world.get_entrance("Star Warp Entrance"),
+        Has("Warp Pattern - Tropic"))
+    world.set_rule(world.get_entrance("Lost Warp Entrance"),
+        Has("Warp Pattern - Ancient"))
+    world.set_rule(world.get_entrance("Ancient Cavern Warp Entrance"),
+        Has("Warp Pattern - Lost"))
+    world.set_rule(world.get_entrance("Totem Warp Entrance"),
+        Has("Warp Pattern - Compass"))
 
 
     if world.options.enable_locksanity:
@@ -258,6 +312,20 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Serpent A1 - Obsidian Quest Complete"),
                    Has("Obsidian Rune Stone")
                    & Has("Obsidian", 9))
+    
+    # Warp
+    world.set_rule(world.get_location("Stone C2 - Earth Warp Pattern"),
+                   Has("Ancient Key", 7))
+    
+    world.set_rule(world.get_location("Lost B1 - Lost Warp Pattern"),
+                   CanReachEntrance("Lost Phoenix Entrance"))
+
+    world.set_rule(world.get_location("Warp ?? - Tropic Warp Pattern"),
+                   Has("Warp Pattern - Earth")
+                   & Has("Warp Pattern - Water")
+                   & Has("Warp Pattern - Fire")
+                   & Has("Warp Pattern - Wind"))
+
 
     # Islands and their Locations
     set_ancient_isle(world)

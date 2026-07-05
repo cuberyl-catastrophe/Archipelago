@@ -55,6 +55,14 @@ item_table = {
     "Sanctum Shard Hit - Water":            ItemData(922,       IC.progression_skip_balancing),
     "Sanctum Shard Hit - Fire":             ItemData(923,       IC.progression_skip_balancing),
     "Sanctum Shard Hit - Wind":             ItemData(924,       IC.progression_skip_balancing),
+    "Warp Pattern - Earth":                 ItemData(931,       IC.progression),
+    "Warp Pattern - Water":                 ItemData(932,       IC.progression),
+    "Warp Pattern - Fire":                  ItemData(933,       IC.progression),
+    "Warp Pattern - Wind":                  ItemData(934,       IC.progression),
+    "Warp Pattern - Tropic":                ItemData(935,       IC.progression),
+    "Warp Pattern - Lost":                  ItemData(936,       IC.progression),
+    "Warp Pattern - Ancient":               ItemData(937,       IC.progression),
+    "Warp Pattern - Compass":               ItemData(938,       IC.progression),
     # Traps
     "Slow Trap":                            ItemData(7000,      IC.trap),
     "Fast Trap":                            ItemData(7001,      IC.trap),
@@ -111,7 +119,15 @@ key_items = { # Used to open specific locks, unlocks a few checks
     "Sanctum Shard Hit - Earth":            1,
     "Sanctum Shard Hit - Water":            1,
     "Sanctum Shard Hit - Fire":             1,
-    "Sanctum Shard Hit - Wind":             1
+    "Sanctum Shard Hit - Wind":             1,
+    "Warp Pattern - Earth":                 1,
+    "Warp Pattern - Water":                 1,
+    "Warp Pattern - Fire":                  1,
+    "Warp Pattern - Wind":                  1,
+    "Warp Pattern - Tropic":                1,
+    "Warp Pattern - Lost":                  1,
+    "Warp Pattern - Ancient":               1,
+    "Warp Pattern - Compass":               1
 }
 
 non_key_items = { # Does not unlock new checks

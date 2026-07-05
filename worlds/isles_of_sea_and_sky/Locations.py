@@ -422,12 +422,21 @@ advancement_table = {
     "Lagoon B1 Serpent Secret - E - Pyramidion":    AdvData(117111907, "Forgotten Lagoon South"),
 
 
-    "Ancient A0 - Meteorite":                       AdvData(100000805, "Ancient Isle"),
-    "Lost A0 - Meteorite":                          AdvData(115001704, "Ancient Isle"),
-    "Tropic B1 - Meteorite":                        AdvData(113110805, "Ancient Isle"),
-    "Totem B0 - Meteorite":                         AdvData(119101606, "Ancient Isle"),
+    "Stone C2 - Earth Warp Pattern":                AdvData(99901221, "Stony Cliffs"),
+    "Water B4 - Water Warp Pattern":                AdvData(99903141, "Tidal Reef S"),
+    "Fire C3 - Fire Warp Pattern":                  AdvData(99904231, "Raging Volcano"),
+    "Wind B3 - Wind Warp Pattern":                  AdvData(99905131, "Frozen Spire"),
+    "Warp ?? - Tropic Warp Pattern":                AdvData(99920001, "Warp Hub"),
+    "Lost B1 - Lost Warp Pattern":                  AdvData(99915111, "Lost Landing"),
+    "Ancient Cavern B1 - Ancient Warp Pattern":     AdvData(99918111, "Ancient Cavern"),
+    "Lost A0 - Compass Warp Pattern":               AdvData(99915001, "Lost Landing Compass"),
+
+    "Tropic B1 - Meteorite":                        AdvData(113110805, "Star Tropic Meteorite"),
+    "Lost A0 - Meteorite":                          AdvData(115001704, "Lost Landing Compass"),
+    "Ancient A0 - Meteorite":                       AdvData(100000805, "Ancient Cavern N"),
+    "Totem B0 - Meteorite":                         AdvData(119101606, "Totem"),
     # This one is only enabled if pyramidions are also enabled since it requires serpent circlet 
-    "Lagoon A0 - Meteorite":                        AdvData(117000905, "Ancient Isle")
+    "Lagoon A0 - Meteorite":                        AdvData(117000905, "Forgotten Lagoon Meteorite")
 
     # In the future, could include milestones as locations. e.g. each of the steam achievements, plus extras.
 }
