@@ -441,7 +441,7 @@ advancement_table = {
     # In the future, could include milestones as locations. e.g. each of the steam achievements, plus extras.
 }
 
-notesanity_table = {
+note_table = {
     # 24 checks
     "Stone B0 - Music Note":                        AdvData(101102012, "Stony Cliffs NW"), # topaz rune
     "Stone B2 - Music Note":                        AdvData(101121209, "Stony Cliffs Post-Rune"), # topaz quest

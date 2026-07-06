@@ -157,9 +157,11 @@ class IslesOfSeaAndSkyContext(CommonContext):
     slot_data: dict[str, any]
 
     route = None
+    shuffleNotes = True
+    circletEnabled = False
+    WarpsEnabled = False
     includeSeashells = None
     includeJellyfish = None
-    enableNotesanity = None
     enableLocksanity = None
     enableSnakesanity = None
     reqRoute = None
@@ -325,28 +327,32 @@ async def process_isles_of_sea_and_sky_cmd(ctx: IslesOfSeaAndSkyContext, cmd: st
     if cmd == 'Connected':
         ctx.slot_data = args["slot_data"]
 
-        ctx.includeSeashells =      args["slot_data"]["include_seashells"]
-        ctx.includeJellyfish =      args["slot_data"]["include_jellyfish"]
-        ctx.enableNotesanity =      args["slot_data"]["enable_notesanity"]
-        ctx.enableLocksanity =      args["slot_data"]["enable_locksanity"]
-        ctx.enableSnakesanity =     args["slot_data"]["enable_snakesanity"]
+        ctx.shuffleNotes =          args["slot_data"]["shuffle_notes"]
+        ctx.circletEnabled =        args["slot_data"]["shuffle_pyramidions"] | (args["slot_data"]["route_required"] == "mysterious_ending")
+        ctx.warpsEnabled =          args["slot_data"]["shuffle_meteorites"]
+        ctx.includeSeashells =      False # args["slot_data"]["include_seashells"]
+        ctx.includeJellyfish =      False # args["slot_data"]["include_jellyfish"]
+        ctx.enableLocksanity =      False # args["slot_data"]["enable_locksanity"]
+        ctx.enableSnakesanity =     False # args["slot_data"]["enable_snakesanity"]
         ctx.reqRoute =              args["slot_data"]["route_required"]
         ctx.phoenixAnywhere =       args["slot_data"]["phoenix_anywhere"]
         ctx.death_allowed =         args["slot_data"]["death_link"]
         ctx.death_amnesty_total =   args["slot_data"]["death_amnesty_total"]
         ctx.game_seed =             args["slot_data"]["world_seed"]
         ctx.allowTraps =            args["slot_data"]["traps"] != "no_traps"
-        ctx.altRooms =              args["slot_data"]["alt_rooms"]
+        ctx.altRooms =              False # args["slot_data"]["alt_rooms"]
 
         with open(os.path.join(ctx.save_game_folder, "apOptions.options"), "w") as f:
+            f.write("seed: "                + str(ctx.game_seed)           + '\n')
+            f.write("reqRoute: "            + str(ctx.reqRoute)            + '\n')
+            f.write("shuffleNotes: "        + str(ctx.shuffleNotes)        + '\n')
+            f.write("CircletEnabled: "      + str(ctx.circletEnabled)      + '\n')
+            f.write("WarpsEnabled: "        + str(ctx.warpsEnabled)        + '\n')
             f.write("includeSeashells: "    + str(ctx.includeSeashells)    + '\n')
             f.write("includeJellyfish: "    + str(ctx.includeJellyfish)    + '\n') 
-            f.write("enableNotesanity: "    + str(ctx.enableNotesanity)    + '\n') 
             f.write("enableLocksanity: "    + str(ctx.enableLocksanity)    + '\n')
             f.write("enableSnakesanity: "   + str(ctx.enableSnakesanity)   + '\n')
-            f.write("reqRoute: "            + str(ctx.reqRoute)            + '\n')
             f.write("phoenixAnywhere: "     + str(ctx.phoenixAnywhere)     + '\n')
-            f.write("seed: "                + str(ctx.game_seed)           + '\n')
             f.write("allowTraps: "          + str(ctx.allowTraps)          + '\n')
             f.write("altRooms: "            + str(ctx.altRooms)            + '\n')
             f.close()

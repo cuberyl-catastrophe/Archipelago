@@ -46,7 +46,7 @@ item_table = {
     "Awaken Water Elementals":              ItemData(902,       IC.progression | IC.useful),
     "Awaken Fire Elementals":               ItemData(903,       IC.progression | IC.useful),
     "Awaken Wind Elementals":               ItemData(904,       IC.progression | IC.useful),
-    "Activate Shadow Blocks":               ItemData(905,       IC.progression | IC.useful),
+    "Awaken Shadow Elementals":             ItemData(905,       IC.progression | IC.useful),
     "Big Bell Hit - Rolling":               ItemData(911,       IC.progression_skip_balancing),
     "Big Bell Hit - Sunken":                ItemData(912,       IC.progression_skip_balancing),
     "Big Bell Hit - Aggro":                 ItemData(913,       IC.progression_skip_balancing),
@@ -96,7 +96,7 @@ progression_items = { # Grants a new ability that opens up the world a ton
     "Awaken Water Elementals":              1,
     "Awaken Fire Elementals":               1,
     "Awaken Wind Elementals":               1,
-    "Activate Shadow Blocks":               1,
+    "Awaken Shadow Elementals":               1,
     "Phoenix Flute":                        1
 }
 
@@ -136,7 +136,7 @@ non_key_items = { # Does not unlock new checks
     "Star Viewing Orb":                     1
 }
 
-note_items = { # Music notes are in their own pool until notesanity gets reworked
+note_items = { # Music notes are in their own pool until Shuffle Notes gets reworked
     "Music Note":                           24
 }
 

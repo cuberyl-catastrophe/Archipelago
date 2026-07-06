@@ -1,9 +1,9 @@
 from typing import TYPE_CHECKING
 
 from rule_builder.options import OptionFilter
-from rule_builder.rules import CanReachRegion, CanReachEntrance, Has
+from rule_builder.rules import CanReachRegion, CanReachEntrance, Has, True_
 
-from .Options import PhoenixAnywhere, EnableNotesanity, RequireSerpentClues
+from .Options import PhoenixAnywhere, ShuffleNotes, ShufflePyramidions, RequireSerpentClues, WarpsInLogic
 
 if TYPE_CHECKING:
     from . import IslesOfSeaAndSkyWorld
@@ -124,7 +124,7 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                    Has("Obsidian Rune Stone"))  # Serpent Stacks Post-Rune
     world.set_rule(world.get_entrance("Serpent Post-Rune To Core"),
                    Has("Awaken Earth Elementals")
-                   & Has("Activate Shadow Blocks"))
+                   & Has("Awaken Shadow Elementals"))
     world.set_rule(world.get_entrance("Serpent Core To Lock"),
                    Has("Serpent Lock Shard", 4))
     world.set_rule(world.get_entrance("Serpent Core To Tail"),
@@ -138,7 +138,7 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                     & Has("Awaken Water Elementals")
                     & Has("Awaken Fire Elementals")
                     & Has("Awaken Wind Elementals")
-                    & Has("Activate Shadow Blocks")
+                    & Has("Awaken Shadow Elementals")
                     & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
                       | CanReachRegion("Tidal Reef")
                     ))
@@ -153,9 +153,6 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_entrance("Star East Entrance"),
                    Has("Ancient Rune Stone")
                    & CanReachRegion("Lost Sea"))  # Star Tropic
-    
-    world.set_rule(world.get_entrance("Star Meteorite Exit to Tropic"),
-                   Has("Ancient Rune Stone"))
 
     world.set_rule(world.get_entrance("Rolling Exit To Post-Rune"),
                    Has("Ancient Rune Stone"))  # Rolling Rocks Post-Rune
@@ -172,9 +169,6 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_entrance("Locked Entrance"),
                    CanReachRegion("Ruby Sea"))
-    
-    world.set_rule(world.get_entrance("Lost Compass Exit to Landing"),
-                    Has("Frog Flippers"))
 
     world.set_rule(world.get_entrance("Beast Entrance"),
                    Has("Big Bell Hit - Rolling")
@@ -205,9 +199,6 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                    Has("Frog Flippers")
                    & Has("Ancient Key", 67))
     
-    world.set_rule(world.get_entrance("Lagoon Meteorite Exit to Lagoon"),
-                   Has("Frog Flippers"))
-
     world.set_rule(world.get_entrance("Abstract Phoenix Exit"),
                    Has("Phoenix Flute",
                        options=[OptionFilter(PhoenixAnywhere, PhoenixAnywhere.option_true)]))  # Phoenix Hub
@@ -249,24 +240,39 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                    Has("Ancient Key", 7))
     
     world.set_rule(world.get_entrance("Stony Warp Entrance"),
-        Has("Warp Pattern - Earth"))
+                    Has("Warp Pattern - Earth"))
     world.set_rule(world.get_entrance("Tidal Warp Entrance"),
-        Has("Warp Pattern - Water"))
+                    Has("Warp Pattern - Water"))
     world.set_rule(world.get_entrance("Raging Warp Entrance"),
-        Has("Warp Pattern - Fire"))
+                    Has("Warp Pattern - Fire"))
     world.set_rule(world.get_entrance("Frozen Warp Entrance"),
-        Has("Warp Pattern - Wind"))
+                    Has("Warp Pattern - Wind"))
     world.set_rule(world.get_entrance("Star Warp Entrance"),
-        Has("Warp Pattern - Tropic"))
+                    Has("Warp Pattern - Tropic"))
     world.set_rule(world.get_entrance("Lost Warp Entrance"),
-        Has("Warp Pattern - Ancient"))
+                    Has("Warp Pattern - Ancient"))
     world.set_rule(world.get_entrance("Ancient Cavern Warp Entrance"),
-        Has("Warp Pattern - Lost"))
+                    Has("Warp Pattern - Lost"))
     world.set_rule(world.get_entrance("Totem Warp Entrance"),
-        Has("Warp Pattern - Compass"))
+                    Has("Warp Pattern - Compass"))
 
+    world.set_rule(world.get_entrance("Star Meteorite Exit to Tropic"),
+                    Has("Ancient Rune Stone",
+                    options = [OptionFilter(WarpsInLogic, WarpsInLogic.option_true)]))
+    
+    world.set_rule(world.get_entrance("Lost Compass Exit to Landing"),
+                    True_(
+                    options = [OptionFilter(WarpsInLogic, WarpsInLogic.option_true)]))
+    
+    world.set_rule(world.get_entrance("Ancient Cavern N Exit to Cavern"),
+                    True_(
+                    options = [OptionFilter(WarpsInLogic, WarpsInLogic.option_true)]))
+    
+    world.set_rule(world.get_entrance("Lagoon Meteorite Exit to Lagoon"),
+                    Has("Frog Flippers",
+                    options = [OptionFilter(WarpsInLogic, WarpsInLogic.option_true)]))
 
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
         world.set_rule(world.get_location("Overworld - Star Lock 3"),
                        Has("Star Piece", 3))
         world.set_rule(world.get_location("Overworld - Star Lock 15"),
@@ -391,7 +397,7 @@ def set_ancient_isle(world: "IslesOfSeaAndSkyWorld"):
                    Has("Ancient Key", 6))'''
 
     # Locksanity
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Ancient A1 - 3x Lock"),
                        (CanReachRegion("Ruby Sea")
@@ -417,7 +423,7 @@ def set_ancient_isle(world: "IslesOfSeaAndSkyWorld"):
         world.set_rule(world.get_location("Ancient B1 - Ancient Rune Lock"),
                        Has("Ancient Rune Stone"))
 
-    if world.options.enable_snakesanity:
+    if False: # world.options.enable_snakesanity:
         world.set_rule(world.get_location("Ancient B3 - Snakeblock"),
                        Has("Ancient Key"))
 
@@ -442,7 +448,7 @@ def set_ancient_isle(world: "IslesOfSeaAndSkyWorld"):
                        CanReachRegion("Obsidian Sea"))
 
     # Secretsanity
-    if world.options.secretsanity:
+    if False: # world.options.secretsanity:
         world.set_rule(world.get_location("Ancient A1 - Discover Secret"),
                        (CanReachRegion("Ruby Sea")
                         | CanReachRegion("Sapphire Sea"))
@@ -490,7 +496,7 @@ def set_rolling_rocks(world: "IslesOfSeaAndSkyWorld"):
 
 
     # Locksanity
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Rolling B1 - 3x Lock"),
                        Has("Ancient Key", 14))
@@ -499,11 +505,11 @@ def set_rolling_rocks(world: "IslesOfSeaAndSkyWorld"):
                        Has("Star Piece", 7))
 
 
-    if world.options.enable_snakesanity:
+    if False: # world.options.enable_snakesanity:
         pass
 
     # Secretsanity
-    if world.options.secretsanity:
+    if False: # world.options.secretsanity:
         world.set_rule(world.get_location("Rolling A0 - Discover Secret"),
                        Has("Star Piece", 7)
                        & Has("Gopher Gloves"))
@@ -553,7 +559,7 @@ def set_sunken_island(world: "IslesOfSeaAndSkyWorld"):
 
 
     # Locksanity
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
         world.set_rule(world.get_location("Sunken A1 - 3x Lock"),
                        Has("Ancient Key", 34)
                        & Has("Ancient Rune Stone"))
@@ -618,7 +624,7 @@ def set_aggro_crag(world: "IslesOfSeaAndSkyWorld"):
 
 
     # Locksanity
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Aggro A1 - 3x Lock"),
                        Has("Star Piece", 35)
@@ -638,7 +644,7 @@ def set_aggro_crag(world: "IslesOfSeaAndSkyWorld"):
                        Has("Ancient Rune Stone"))
 
     # Snakesanity
-    if world.options.enable_snakesanity:
+    if False: # world.options.enable_snakesanity:
         world.set_rule(world.get_location("Aggro B1 - E - Snakeblock"),
                        Has("Star Piece", 35))
 
@@ -654,7 +660,7 @@ def set_aggro_crag(world: "IslesOfSeaAndSkyWorld"):
                        & Has("Salamander Shirt"))
 
     # Secretsanity
-    if world.options.secretsanity:
+    if False: # world.options.secretsanity:
         world.set_rule(world.get_location("Aggro A0 - W - Discover Secret"),
                        Has("Ancient Rune Stone")
                        & Has("Star Piece", 35)
@@ -719,7 +725,7 @@ def set_sea_nunatak(world: "IslesOfSeaAndSkyWorld"):
                     )
     
     # Locksanity
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Nunatak A0 - 3x Lock"),
                        Has("Ancient Rune Stone")
@@ -732,14 +738,14 @@ def set_sea_nunatak(world: "IslesOfSeaAndSkyWorld"):
                        Has("Star Piece", 49))
 
     # Snakesanity
-    if world.options.enable_snakesanity:
+    if False: # world.options.enable_snakesanity:
         world.set_rule(world.get_location("Nunatak A1 - Snakeblock"),
                        Has("Ancient Rune Stone")
                        & Has("Awaken Wind Elementals")
                        & Has("Star Piece", 49))
 
     # Secretsanity
-    if world.options.secretsanity:
+    if False: # world.options.secretsanity:
         world.set_rule(world.get_location("Nunatak B0 - E - Discover Secret"),
                        Has("Awaken Wind Elementals")
                        & Has("Star Piece", 49)
@@ -770,7 +776,7 @@ def set_locked(world: "IslesOfSeaAndSkyWorld"):
                    Has("Ancient Rune Stone"))
 
     # Locksanity
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Locked A0 - 6x Lock"),
                        (CanReachRegion("Ruby Sea")
@@ -781,7 +787,7 @@ def set_locked(world: "IslesOfSeaAndSkyWorld"):
                        Has("Ancient Rune Stone"))
 
     # Snakesanity
-    if world.options.enable_snakesanity:
+    if False: # world.options.enable_snakesanity:
         world.set_rule(world.get_location("Locked A0 - E - Snakeblock"),
                        (CanReachRegion("Ruby Sea")
                         | CanReachRegion("Sapphire Sea"))
@@ -870,7 +876,7 @@ def set_star_tropic(world: "IslesOfSeaAndSkyWorld"):
 
 
     # Locksanity
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Tropic A1 - Ancient Rune Lock"),
                        Has("Ancient Rune Stone"))
@@ -883,7 +889,7 @@ def set_star_tropic(world: "IslesOfSeaAndSkyWorld"):
                        & Has("Kite Cloak"))
 
     # Snakesanity
-    if world.options.enable_snakesanity:
+    if False: # world.options.enable_snakesanity:
         world.set_rule(world.get_location("Tropic A0 - W - Snakeblock"),
                        Has("Kite Cloak"))
         world.set_rule(world.get_location("Tropic A0 - C - Snakeblock"),
@@ -896,7 +902,7 @@ def set_star_tropic(world: "IslesOfSeaAndSkyWorld"):
                        Has("Kite Cloak"))
 
     # Secretsanity
-    if world.options.secretsanity:
+    if False: # world.options.secretsanity:
         world.set_rule(world.get_location("Tropic A0 - Discover Secret"),
                        Has("Kite Cloak"))
 
@@ -937,19 +943,19 @@ def set_shoal(world: "IslesOfSeaAndSkyWorld"):
     
 
     # Locksanity
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Shoal A0 - Ancient Rune Lock"),
                        Has("Ancient Rune Stone"))
 
     # Snakesanity
-    if world.options.enable_snakesanity:
+    if False: # world.options.enable_snakesanity:
 
         world.set_rule(world.get_location("Shoal A0 - Snakeblock"),
                        Has("Ancient Rune Stone")
                        & Has("Kite Cloak"))
 
-    if world.options.secretsanity:
+    if False: # world.options.secretsanity:
         world.set_rule(world.get_location("Shoal A0 - E - Discover Secret"),
                        Has("Ancient Rune Stone"))
 
@@ -969,7 +975,7 @@ def set_lost_landing(world: "IslesOfSeaAndSkyWorld"):
                    Has("Star Piece", 30))
 
     # Locksanity
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Lost A1 - Lock"),
                        CanReachRegion("Lost Sea")
@@ -980,12 +986,12 @@ def set_lost_landing(world: "IslesOfSeaAndSkyWorld"):
                        Has("Star Piece", 30))
 
     # Snakesanity
-    if world.options.enable_snakesanity:
+    if False: # world.options.enable_snakesanity:
         world.set_rule(world.get_location("Lost B1 - Snakeblock"),
                        Has("Star Piece", 30))
 
     # Secretsanity
-    if world.options.secretsanity:
+    if False: # world.options.secretsanity:
         world.set_rule(world.get_location("Lost B1 - CS - Discover Secret"),
                        CanReachRegion("Lost Sea")
                        & Has("Frog Flippers"))
@@ -1002,15 +1008,15 @@ def set_serpent_stacks(world: "IslesOfSeaAndSkyWorld"):
                    Has("Obsidian Rune Stone"))
 
     world.set_rule(world.get_location("Serpent A1 - W - Star Piece"),
-                   Has("Activate Shadow Blocks"))
+                   Has("Awaken Shadow Elementals"))
 
     world.set_rule(world.get_location("Serpent A1 - N - Star Piece"),
                    Has("Obsidian Rune Stone")
-                   & Has("Activate Shadow Blocks"))
+                   & Has("Awaken Shadow Elementals"))
 
     # Entrance
     world.set_rule(world.get_location("Serpent A2 - Star Piece"),
-                   Has("Activate Shadow Blocks"))
+                   Has("Awaken Shadow Elementals"))
 
     # Post-Rune: Requires Obsidian Rune
     world.set_rule(world.get_location("Serpent A4 - Serpent Lock Shard"),
@@ -1061,7 +1067,7 @@ def set_serpent_stacks(world: "IslesOfSeaAndSkyWorld"):
     
 
     # Locksanity
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Serpent A2 - Elemental Rune Lock"),
                        Has("Topaz Rune Stone")
@@ -1086,46 +1092,46 @@ def set_serpent_stacks(world: "IslesOfSeaAndSkyWorld"):
                        & Has("Sapphire Rune Stone")
                        & Has("Ruby Rune Stone")
                        & Has("Diamond Rune Stone")
-                       & Has("Activate Shadow Blocks"))
+                       & Has("Awaken Shadow Elementals"))
 
     # Snakesanity
-    if world.options.enable_snakesanity:
+    if False: # world.options.enable_snakesanity:
         world.set_rule(world.get_location("Serpent A1 - C - Snakeblock"),
-                       Has("Activate Shadow Blocks")
+                       Has("Awaken Shadow Elementals")
                        & Has("Topaz Rune Stone")
                        & Has("Sapphire Rune Stone")
                        & Has("Ruby Rune Stone")
                        & Has("Diamond Rune Stone"))
         world.set_rule(world.get_location("Serpent A1 - CE - Snakeblock"),
-                       Has("Activate Shadow Blocks")
+                       Has("Awaken Shadow Elementals")
                        & Has("Topaz Rune Stone")
                        & Has("Sapphire Rune Stone")
                        & Has("Ruby Rune Stone")
                        & Has("Diamond Rune Stone"))
         world.set_rule(world.get_location("Serpent A1 - E - Snakeblock"),
-                       Has("Activate Shadow Blocks")
+                       Has("Awaken Shadow Elementals")
                        & Has("Topaz Rune Stone")
                        & Has("Sapphire Rune Stone")
                        & Has("Ruby Rune Stone")
                        & Has("Diamond Rune Stone"))
         world.set_rule(world.get_location("Serpent A6 - SW - Snakeblock"),
-                       Has("Activate Shadow Blocks")
+                       Has("Awaken Shadow Elementals")
                        & Has("Awaken Earth Elementals")
                        & Has("Awaken Water Elementals"))
         world.set_rule(world.get_location("Serpent A6 - NW - Snakeblock"),
-                       Has("Activate Shadow Blocks")
+                       Has("Awaken Shadow Elementals")
                        & Has("Awaken Earth Elementals")
                        & Has("Awaken Water Elementals"))
         world.set_rule(world.get_location("Serpent A6 - C - Snakeblock"),
-                       Has("Activate Shadow Blocks")
+                       Has("Awaken Shadow Elementals")
                        & Has("Awaken Earth Elementals")
                        & Has("Awaken Water Elementals"))
         world.set_rule(world.get_location("Serpent A6 - E - Snakeblock"),
-                       Has("Activate Shadow Blocks")
+                       Has("Awaken Shadow Elementals")
                        & Has("Awaken Earth Elementals")
                        & Has("Awaken Water Elementals"))
         world.set_rule(world.get_location("Serpent A8 - Snakeblock"),
-                       Has("Activate Shadow Blocks")
+                       Has("Awaken Shadow Elementals")
                        & Has("Awaken Earth Elementals")
                        & Has("Awaken Water Elementals")
                        & Has("Awaken Fire Elementals")
@@ -1251,16 +1257,16 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Stone D1 - Music Puzzle Star Piece 1"),
                     Has("Awaken Earth Elementals")
-                    & ( ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)] & Has("Topaz Rune Stone") & Has("Ancient Key", 11))
-                        | ([OptionFilter(EnableNotesanity, EnableNotesanity.option_true)] & Has("Music Note", 6))))
+                    & ( ([OptionFilter(ShuffleNotes, ShuffleNotes.option_false)] & Has("Topaz Rune Stone") & Has("Ancient Key", 11))
+                        | ([OptionFilter(ShuffleNotes, ShuffleNotes.option_true)] & Has("Music Note", 6))))
     world.set_rule(world.get_location("Stone D1 - Music Puzzle Star Piece 2"),
                     Has("Awaken Earth Elementals")
-                    & ( ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)] & Has("Topaz Rune Stone") & Has("Ancient Key", 11))
-                        | ([OptionFilter(EnableNotesanity, EnableNotesanity.option_true)] & Has("Music Note", 6))))
+                    & ( ([OptionFilter(ShuffleNotes, ShuffleNotes.option_false)] & Has("Topaz Rune Stone") & Has("Ancient Key", 11))
+                        | ([OptionFilter(ShuffleNotes, ShuffleNotes.option_true)] & Has("Music Note", 6))))
     world.set_rule(world.get_location("Stone D1 - Music Puzzle Star Piece 3"),
                     Has("Awaken Earth Elementals")
-                    & ( ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)] & Has("Topaz Rune Stone") & Has("Ancient Key", 11))
-                        | ([OptionFilter(EnableNotesanity, EnableNotesanity.option_true)] & Has("Music Note", 6))))
+                    & ( ([OptionFilter(ShuffleNotes, ShuffleNotes.option_false)] & Has("Topaz Rune Stone") & Has("Ancient Key", 11))
+                        | ([OptionFilter(ShuffleNotes, ShuffleNotes.option_true)] & Has("Music Note", 6))))
     
     world.set_rule(world.get_location("Stone A2 - Tablet Puzzle Star Piece"),
                     Has("Blue Stone Tablet")
@@ -1286,12 +1292,12 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
 
 
     # Notesanity
-    if world.options.enable_notesanity:
+    if world.options.shuffle_notes:
         world.set_rule(world.get_location("Stone D1 - Music Note"),
                        Has("Awaken Earth Elementals"))
 
     # Locksanity
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
 
         world.set_rule(world.get_location("Stone C2 - Lock"),
                        Has("Ancient Key", 7))
@@ -1317,7 +1323,7 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
                        & Has("Gopher Gloves"))
 
     # Snakesanity
-    if world.options.enable_snakesanity:
+    if False: # world.options.enable_snakesanity:
         world.set_rule(world.get_location("Stone C1 - Snakeblock"),
                        Has("Awaken Earth Elementals"))
         world.set_rule(world.get_location("Stone D1 - Snakeblock"),
@@ -1377,7 +1383,7 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
                        & Has("Awaken Earth Elementals"))
 
     # Secretsanity
-    if world.options.secretsanity:
+    if False: # world.options.secretsanity:
         pass
 
 
@@ -1479,13 +1485,13 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
     
     world.set_rule(world.get_location("Water B0 - Music Puzzle Star Piece 1"),
                    Has("Awaken Water Elementals")
-                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 12)))
+                   & ([OptionFilter(ShuffleNotes, ShuffleNotes.option_false)]| Has("Music Note", 12)))
     world.set_rule(world.get_location("Water B0 - Music Puzzle Star Piece 2"),
                    Has("Awaken Water Elementals")
-                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 12)))
+                   & ([OptionFilter(ShuffleNotes, ShuffleNotes.option_false)]| Has("Music Note", 12)))
     world.set_rule(world.get_location("Water B0 - Music Puzzle Star Piece 3"),
                    Has("Awaken Water Elementals")
-                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 12)))
+                   & ([OptionFilter(ShuffleNotes, ShuffleNotes.option_false)]| Has("Music Note", 12)))
     
     world.set_rule(world.get_location("Water C4 - Shell Puzzle Star Piece"),
                    Has("Frog Flippers"))
@@ -1499,7 +1505,7 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
                    
 
     # IncludeShells
-    if world.options.include_seashells:
+    if False: # world.options.include_seashells:
 
         world.set_rule(world.get_location("Water B2 - Shell"),
                        Has("Frog Flippers"))
@@ -1530,7 +1536,7 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
                        | Has("Sapphire Rune Stone"))
 
     # Locksanity
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
         world.set_rule(world.get_location("Water B2 - Lock"),
                        Has("Ancient Key", 29))
 
@@ -1545,7 +1551,7 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
                        & Has("Awaken Water Elementals"))
 
     # Snakesanity
-    if world.options.enable_snakesanity:
+    if False: # world.options.enable_snakesanity:
         world.set_rule(world.get_location("Water B0 - E - Snakeblock"),
                        Has("Awaken Water Elementals"))
         world.set_rule(world.get_location("Water B0 - C - Snakeblock"),
@@ -1666,13 +1672,13 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
     
     world.set_rule(world.get_location("Fire B3 - Music Puzzle Star Piece 1"),
                    Has("Awaken Fire Elementals")
-                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 18)))
+                   & ([OptionFilter(ShuffleNotes, ShuffleNotes.option_false)]| Has("Music Note", 18)))
     world.set_rule(world.get_location("Fire B3 - Music Puzzle Star Piece 2"),
                    Has("Awaken Fire Elementals")
-                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 18)))
+                   & ([OptionFilter(ShuffleNotes, ShuffleNotes.option_false)]| Has("Music Note", 18)))
     world.set_rule(world.get_location("Fire B3 - Music Puzzle Star Piece 3"),
                    Has("Awaken Fire Elementals")
-                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 18)))
+                   & ([OptionFilter(ShuffleNotes, ShuffleNotes.option_false)]| Has("Music Note", 18)))
 
     # Mysterious
     world.set_rule(world.get_location("Fire D3 Serpent Secret - Obsidian"),
@@ -1688,7 +1694,7 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
                    ))
                    
     # Locksanity
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
         world.set_rule(world.get_location("Fire D2 - Lock"),
                        Has("Ancient Key", 35))
 
@@ -1702,7 +1708,7 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
                        Has("Fire Key", 3))
 
     # Snakesanity
-    if world.options.enable_snakesanity:
+    if False: # world.options.enable_snakesanity:
         world.set_rule(world.get_location("Fire B4 - W - Snakeblock"),
                        Has("Awaken Fire Elementals"))
         world.set_rule(world.get_location("Fire B4 - E - Snakeblock"),
@@ -1732,7 +1738,7 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
                        Has("Awaken Fire Elementals"))
 
     # Secretsanity
-    if world.options.secretsanity:
+    if False: # world.options.secretsanity:
         world.set_rule(world.get_location("Fire C2 - Discover Secret"),
                        Has("Salamander Shirt"))
         world.set_rule(world.get_location("Fire E1 - Discover Secret"),
@@ -1828,13 +1834,13 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
     
     world.set_rule(world.get_location("Wind B4 - Music Puzzle Star Piece 1"),
                    Has("Awaken Wind Elementals")
-                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 24)))
+                   & ([OptionFilter(ShuffleNotes, ShuffleNotes.option_false)]| Has("Music Note", 24)))
     world.set_rule(world.get_location("Wind B4 - Music Puzzle Star Piece 2"),
                    Has("Awaken Wind Elementals")
-                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 24)))
+                   & ([OptionFilter(ShuffleNotes, ShuffleNotes.option_false)]| Has("Music Note", 24)))
     world.set_rule(world.get_location("Wind B4 - Music Puzzle Star Piece 3"),
                    Has("Awaken Wind Elementals")
-                   & ([OptionFilter(EnableNotesanity, EnableNotesanity.option_false)]| Has("Music Note", 24)))
+                   & ([OptionFilter(ShuffleNotes, ShuffleNotes.option_false)]| Has("Music Note", 24)))
     
     # Mysterious
     world.set_rule(world.get_location("Wind A1 Serpent Secret - Pyramidion"),
@@ -1847,7 +1853,7 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
                    ))
 
     # Notesanity
-    if world.options.enable_notesanity:
+    if world.options.shuffle_notes:
         world.set_rule(world.get_location("Wind A2 - Music Note"),
                        Has("Awaken Wind Elementals"))
 
@@ -1859,7 +1865,7 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
 
 
     # Locksanity
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
         world.set_rule(world.get_location("Wind D3 - 3x Lock"),
                        Has("Ancient Key", 45))
 
@@ -1874,7 +1880,7 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
                        Has("Diamond Rune Stone"))  # Remove later when wind key item is fixed
 
     # Snakesanity
-    if world.options.enable_snakesanity:
+    if False: # world.options.enable_snakesanity:
         world.set_rule(world.get_location("Wind A2 - SE - Snakeblock"),
                        Has("Awaken Wind Elementals"))
         world.set_rule(world.get_location("Wind E4 - Snakeblock"),
@@ -1901,7 +1907,7 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
                        Has("Ancient Key", 45))
 
     # Secretsanity
-    if world.options.secretsanity:
+    if False: # world.options.secretsanity:
         world.set_rule(world.get_location("Wind D1 - Discover Secret"),
                        Has("Kite Cloak")
                        & Has("Ancient Key", 47))
@@ -1947,7 +1953,7 @@ def set_sanctum(world: "IslesOfSeaAndSkyWorld"):
 
 
     # Locksanity
-    if world.options.enable_locksanity:
+    if False: # world.options.enable_locksanity:
         world.set_rule(world.get_location("Sanctum B2 - W - 3x Lock"),
                        Has("Ancient Key", 51))
 
@@ -1961,7 +1967,7 @@ def set_sanctum(world: "IslesOfSeaAndSkyWorld"):
                        Has("Ancient Key", 60))
 
     # Snakesanity
-    if world.options.enable_snakesanity:
+    if False: # world.options.enable_snakesanity:
         world.set_rule(world.get_location("Sanctum A2 - S - Snakeblock"),
                        Has("Ancient Key", 51))
         world.set_rule(world.get_location("Sanctum A2 - C - Snakeblock"),
@@ -2084,10 +2090,14 @@ def set_completion_rules(world: "IslesOfSeaAndSkyWorld"):
         world.set_completion_rule(CanReachRegion("Sanctum Peak"))
     elif route == "secret_ending":
         world.set_completion_rule(CanReachRegion("Sanctum Peak")
-                                  & Has("Star Piece", 109))
+                                  & Has("Star Piece", 120))
+    elif route == "secret_ending":
+        world.set_completion_rule(CanReachRegion("Sanctum Peak")
+                                  & Has("Star Piece", 120)
+                                  & Has("Pyramidion", 30))
     elif route == "all_gems":
         world.set_completion_rule(Has("Topaz", 12)
                                   & Has("Sapphire", 12)
                                   & Has("Ruby", 12)
                                   & Has("Diamond", 12)
-                                  & Has("Obsidian", 12))
+                                  & Has("Obsidian", 14 if not world.options.shuffle_pyramidions else 18))

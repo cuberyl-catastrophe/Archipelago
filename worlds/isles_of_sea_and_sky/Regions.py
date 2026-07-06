@@ -145,7 +145,7 @@ mandatory_connections = [
 
     ("Ancient East Entrance",           "Ancient Isle"),
     ("Ancient West Entrance",           "Ancient Isle"),
-    ("Ancient Cavern Entrance",         "Ancient Isle"),
+    ("Ancient Cavern Entrance",         "Ancient Cavern"),
     ("Stony East Entrance",             "Stony Cliffs"),
     ("Stony West Entrance",             "Stony Cliffs NW"),
     ("Tidal Entrance",                  "Tidal Reef"),

@@ -16,13 +16,13 @@ class RouteRequired(Choice):
     option_all_gems = 3
     default = 0
 
-class EnableGemsanity(DefaultOnToggle):
+class ShuffleGems(DefaultOnToggle):
     """
     If enabled, gems can be found anywhere instead of their vanilla locations.
     """
     display_name = "Shuffle Gems"
 
-class EnableNotesanity(DefaultOnToggle):
+class ShuffleNotes(DefaultOnToggle):
     """
     Turn all music notes in the game into location checks. Music puzzles will be filled progressively from stoney cliffs to frozen spire.
     """
@@ -64,41 +64,46 @@ class ShuffleMeteorites(Toggle):
     """
     display_name = "Shuffle Meteorites"
 
-class EnableLocksanity(Toggle):
-    """
-    Turn all locks in the game into location checks. This includes big 3x locks, all Rune Stone locks, and other specialty locks
-    """
-    display_name = "Enable Locksanity"
+# class EnableLocksanity(Toggle):
+#     """
+#     Turn all locks in the game into location checks. This includes big 3x locks, all Rune Stone locks, and other specialty locks
+#     """
+#     display_name = "Enable Locksanity"
 
-class EnableSnakesanity(Toggle):
-    """
-    Turn all snake blocks in the game into location checks. (Snake block = Green directional block with an arrowhead on top)
-    """
-    display_name = "Enable Snakesanity"
+# class EnableSnakesanity(Toggle):
+#     """
+#     Turn all snake blocks in the game into location checks. (Snake block = Green directional block with an arrowhead on top)
+#     """
+#     display_name = "Enable Snakesanity"
 
-class EnableSecretsanity(Toggle):
-    """
-    Turns a number of in-game secrets in to location checks. These include secret paths, and disguised blocks.
-    """
-    display_name = "Enable Secretsanity"
+# class EnableSecretsanity(Toggle):
+#     """
+#     Turns a number of in-game secrets in to location checks. These include secret paths, and disguised blocks.
+#     """
+#     display_name = "Enable Secretsanity"
 
-class IncludeSeashells(Toggle):
-    """
-    Enable seashells on Tidal Reef for extra checks
-    """
-    display_name = "Include Seashells"
+# class IncludeSeashells(Toggle):
+#     """
+#     Enable seashells on Tidal Reef for extra checks
+#     """
+#     display_name = "Include Seashells"
 
-class IncludeJellyfish(Toggle):
-    """
-    Enable jellyfish in the Overworld for extra checks
-    """
-    display_name = "Include Jellyfish"
+# class IncludeJellyfish(Toggle):
+#     """
+#     Enable jellyfish in the Overworld for extra checks
+#     """
+#     display_name = "Include Jellyfish"
 
 class RequireSerpentClues(DefaultOnToggle):
     """
     If enabled, you will not be expected to complete serpent puzzles before gaining access their clues.
     If disabled, you are expected to be able to solve serpent puzzles without their clue.
     This option does nothing is Shuffle Pyramidions is set to false.
+    """
+class WarpsInLogic(Toggle):
+    """
+    If enabled, you may be expected to use warps and other meteor quest mechanics to reach Star Tropic and Forgotten Lagoon.
+    If Shuffle Meteorites is enabled then this is forced on.
     """
 
 class PhoenixAnywhere(Toggle):
@@ -139,38 +144,39 @@ class Traps(Choice):
     option_plenty_traps = 2
     default = 0
 
-class AltRoomRandomizer(Toggle):
-    """
-    When enabled, the game chooses random alternate rooms from the selection in 'Alt Rooms'
-    This folder is copied from the apworld into the modded program folder (Should be different than the steam install)
-    though you copy the 'Alt Rooms' folder and place it there yourself.
-    EARLY DEVELOPMENT! lOTS OF BUGS
-    """
-    display_name = "Alt Room Randomizer"
+# class AltRoomRandomizer(Toggle):
+#     """
+#     When enabled, the game chooses random alternate rooms from the selection in 'Alt Rooms'
+#     This folder is copied from the apworld into the modded program folder (Should be different than the steam install)
+#     though you copy the 'Alt Rooms' folder and place it there yourself.
+#     EARLY DEVELOPMENT! lOTS OF BUGS
+#     """
+#     display_name = "Alt Room Randomizer"
 
 
 @dataclass
 class IslesOfSeaAndSkyOptions(PerGameCommonOptions):
     route_required:                             RouteRequired
-    enable_gemsanity:                           EnableGemsanity
-    enable_notesanity:                          EnableNotesanity
+    shuffle_gems:                               ShuffleGems
+    shuffle_notes:                              ShuffleNotes
     shuffle_elemental_quests:                   ShuffleElementalQuests
     shuffle_big_bell_hits:                      ShuffleBigBellHits
     shuffle_sanctum_shard_hits:                 ShuffleSanctumShardHits
     shuffle_pyramidions:                        ShufflePyramidions
     shuffle_meteorites:                         ShuffleMeteorites
-    enable_locksanity:                          EnableLocksanity
-    enable_snakesanity:                         EnableSnakesanity
-    include_seashells:                          IncludeSeashells
-    include_jellyfish:                          IncludeJellyfish
+    # enable_locksanity:                          EnableLocksanity
+    # enable_snakesanity:                         EnableSnakesanity
+    # include_seashells:                          IncludeSeashells
+    # include_jellyfish:                          IncludeJellyfish
     require_serpent_clues:                      RequireSerpentClues
+    warps_in_logic:                             WarpsInLogic
     phoenix_anywhere:                           PhoenixAnywhere
     filler_composition:                         FillerComposition
-    secretsanity:                               EnableSecretsanity
+    # secretsanity:                               EnableSecretsanity
     death_link:                                 DeathLink
     death_amnesty_total:                        DeathLinkAmnesty
     traps:                                      Traps
-    alt_rooms:                                  AltRoomRandomizer
+    # alt_rooms:                                  AltRoomRandomizer
 
 isles_of_sea_and_sky_option_groups = [
     OptionGroup("Goal", [
@@ -178,8 +184,8 @@ isles_of_sea_and_sky_option_groups = [
     ]),
 
     OptionGroup("Checks", [
-        EnableGemsanity,
-        EnableNotesanity,
+        ShuffleGems,
+        ShuffleNotes,
         ShuffleElementalQuests,
         ShuffleBigBellHits,
         ShuffleSanctumShardHits,
@@ -187,16 +193,17 @@ isles_of_sea_and_sky_option_groups = [
         ShuffleMeteorites
     ]),
 
-    OptionGroup("Extra Checks", [
-        EnableLocksanity,
-        EnableSnakesanity,
-        EnableSecretsanity,
-        IncludeSeashells,
-        IncludeJellyfish
-    ]),
+    # OptionGroup("Extra Checks", [
+    #     # EnableLocksanity,
+    #     # EnableSnakesanity,
+    #     # EnableSecretsanity,
+    #     # IncludeSeashells,
+    #     # IncludeJellyfish
+    # ]),
 
     OptionGroup("Logic", [
-        RequireSerpentClues
+        RequireSerpentClues,
+        WarpsInLogic
     ]),
 
     OptionGroup("QOL", [
@@ -205,9 +212,9 @@ isles_of_sea_and_sky_option_groups = [
     ]),
 
 
-    OptionGroup("Randomizer", [
-        AltRoomRandomizer
-    ]),
+    # OptionGroup("Randomizer", [
+    #     # AltRoomRandomizer
+    # ]),
 
     OptionGroup("Death Link", [
         DeathLink,
