@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 from rule_builder.options import OptionFilter
 from rule_builder.rules import CanReachRegion, CanReachEntrance, Has, True_
 
-from .Options import PhoenixAnywhere, ShuffleNotes, ShufflePyramidions, RequireSerpentClues, WarpsInLogic
+from .Options import PhoenixAnywhere, ShuffleNotes, ShufflePyramidions, ShuffleMeteorites, RequireSerpentClues, WarpsInLogic
 
 if TYPE_CHECKING:
     from . import IslesOfSeaAndSkyWorld
@@ -248,29 +248,41 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_entrance("Frozen Warp Entrance"),
                     Has("Warp Pattern - Wind"))
     world.set_rule(world.get_entrance("Star Warp Entrance"),
-                    Has("Warp Pattern - Tropic"))
+                    Has("Warp Pattern - Tropic")
+                    | ([OptionFilter(WarpsInLogic, WarpsInLogic.option_true), OptionFilter(ShuffleMeteorites, ShuffleMeteorites.option_false)]
+                       & CanReachRegion("Stony Cliffs")
+                       & Has("Ancient Key",7)
+                       & CanReachRegion("Raging Volcano")
+                       & CanReachRegion("Tidal Reef S")
+                       & CanReachRegion("Frozen Spire")
+                    ))
     world.set_rule(world.get_entrance("Lost Warp Entrance"),
-                    Has("Warp Pattern - Ancient"))
+                    Has("Warp Pattern - Ancient")
+                    | ([OptionFilter(WarpsInLogic, WarpsInLogic.option_true), OptionFilter(ShuffleMeteorites, ShuffleMeteorites.option_false)]
+                       & CanReachEntrance("Lost Phoenix Entrance")
+                    ))
     world.set_rule(world.get_entrance("Ancient Cavern Warp Entrance"),
-                    Has("Warp Pattern - Lost"))
+                    Has("Warp Pattern - Lost")
+                    | ([OptionFilter(WarpsInLogic, WarpsInLogic.option_true), OptionFilter(ShuffleMeteorites, ShuffleMeteorites.option_false)]
+                       & CanReachRegion("Ancient Cavern")
+                    ))
     world.set_rule(world.get_entrance("Totem Warp Entrance"),
-                    Has("Warp Pattern - Compass"))
+                    Has("Warp Pattern - Compass")
+                    | ([OptionFilter(WarpsInLogic, WarpsInLogic.option_true), OptionFilter(ShuffleMeteorites, ShuffleMeteorites.option_false)]
+                       & CanReachRegion("Lost Landing Compass")
+                    ))
 
     world.set_rule(world.get_entrance("Star Meteorite Exit to Tropic"),
-                    Has("Ancient Rune Stone",
-                    options = [OptionFilter(WarpsInLogic, WarpsInLogic.option_true)]))
+                    Has("Ancient Rune Stone"))
     
     world.set_rule(world.get_entrance("Lost Compass Exit to Landing"),
-                    True_(
-                    options = [OptionFilter(WarpsInLogic, WarpsInLogic.option_true)]))
+                    True_())
     
     world.set_rule(world.get_entrance("Ancient Cavern N Exit to Cavern"),
-                    True_(
-                    options = [OptionFilter(WarpsInLogic, WarpsInLogic.option_true)]))
+                    True_())
     
     world.set_rule(world.get_entrance("Lagoon Meteorite Exit to Lagoon"),
-                    Has("Frog Flippers",
-                    options = [OptionFilter(WarpsInLogic, WarpsInLogic.option_true)]))
+                    Has("Frog Flippers"))
 
     if False: # world.options.enable_locksanity:
         world.set_rule(world.get_location("Overworld - Star Lock 3"),
@@ -319,20 +331,6 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                    Has("Obsidian Rune Stone")
                    & Has("Obsidian", 9))
     
-    # Warp
-    world.set_rule(world.get_location("Stone C2 - Earth Warp Pattern"),
-                   Has("Ancient Key", 7))
-    
-    world.set_rule(world.get_location("Lost B1 - Lost Warp Pattern"),
-                   CanReachEntrance("Lost Phoenix Entrance"))
-
-    world.set_rule(world.get_location("Warp ?? - Tropic Warp Pattern"),
-                   Has("Warp Pattern - Earth")
-                   & Has("Warp Pattern - Water")
-                   & Has("Warp Pattern - Fire")
-                   & Has("Warp Pattern - Wind"))
-
-
     # Islands and their Locations
     set_ancient_isle(world)
     set_rolling_rocks(world)
@@ -352,7 +350,9 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
     set_serpent_stacks(world)
     set_beast_bridge(world)
     set_sanctum(world)
-    set_lagoon(world)
+
+    set_mysterious(world)
+    set_meteorites(world)
 
 
 def set_ancient_isle(world: "IslesOfSeaAndSkyWorld"):
@@ -480,19 +480,6 @@ def set_rolling_rocks(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Rolling B0 - Big Bell Star Piece"),
                    Has("Big Bell Hit - Rolling"))
                    
-    # Mysterious
-    world.set_rule(world.get_location("Rolling A0 Serpent Secret - Pyramidion"),
-                    Has("Serpent Circlet")
-                    & Has("Star Piece", 7)
-                    & Has("Awaken Earth Elementals")
-                    & Has("Gopher Gloves"))
-    
-    world.set_rule(world.get_location("Rolling B1 Serpent Secret - Pyramidion"),
-                    Has("Serpent Circlet")
-                    & Has("Ancient Key", 14)
-                    & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
-                        | CanReachRegion("Raging Volcano")
-                    ))
 
 
     # Locksanity
@@ -538,24 +525,6 @@ def set_sunken_island(world: "IslesOfSeaAndSkyWorld"):
     
     world.set_rule(world.get_location("Sunken B1 - Big Bell Star Piece"),
                    Has("Big Bell Hit - Sunken"))
-    
-    # Mysterious
-    world.set_rule(world.get_location("Sunken A1 Serpent Secret - Ancient Key"),
-                    Has ("Serpent Circlet")
-                    & Has("Ancient Key", 34)
-                    & Has("Ancient Rune Stone")
-                    & (
-                        [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
-                        | CanReachRegion("Sea Nunatak")
-                    ))
-
-    world.set_rule(world.get_location("Sunken B0 Serpent Secret - Pyramidion"),
-                    Has("Serpent Circlet")
-                    & Has("Star Piece", 21)
-                    & Has("Awaken Water Elementals")
-                    & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
-                       | CanReachRegion("Frozen Spire Post-Rune")
-                    ))
 
 
     # Locksanity
@@ -600,27 +569,6 @@ def set_aggro_crag(world: "IslesOfSeaAndSkyWorld"):
     
     world.set_rule(world.get_location("Aggro A1 - Big Bell Star Piece"),
                        Has("Big Bell Hit - Aggro"))
-    
-    # Mysterious
-    world.set_rule(world.get_location("Aggro A0 Serpent Secret - Obsidian"),
-                    Has("Serpent Circlet")
-                    & Has("Ancient Rune Stone")
-                    & Has("Star Piece", 35)
-                    & Has("Awaken Fire Elementals")
-                    & Has("Salamander Shirt")
-                    & (
-                        [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
-                        | CanReachRegion("Star Tropic")
-                    ))
-    
-    world.set_rule(world.get_location("Aggro B1 Serpent Secret - Pyramidion"),
-                    Has("Serpent Circlet")
-                    & Has("Star Piece", 35)
-                    & Has("Awaken Fire Elementals")
-                    & (
-                        [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
-                        | CanReachRegion("Stony Cliffs Wheel Room")
-                    ))
 
 
     # Locksanity
@@ -703,26 +651,6 @@ def set_sea_nunatak(world: "IslesOfSeaAndSkyWorld"):
     
     world.set_rule(world.get_location("Nunatak A1 - Big Bell Star Piece"),
                    Has("Big Bell Hit - Nunatak"))
-
-    # Mysterious
-    world.set_rule(world.get_location("Nunatak A1 Serpent Secret - Obsidian"),
-                    Has("Serpent Circlet")
-                    & Has("Ancient Rune Stone")
-                    & Has("Awaken Wind Elementals")
-                    & Has("Star Piece", 49)
-                    & (
-                        [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
-                        | CanReachRegion("Aggro Crag"))
-                    )
-    
-    world.set_rule(world.get_location("Nunatak B0 Serpent Secret - Pyramidion"),
-                    Has("Serpent Circlet")
-                    & Has("Awaken Wind Elementals")
-                    & Has("Star Piece", 49)
-                    & (
-                        [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
-                        | CanReachRegion("Serpent Stacks Tail")) # and wind elementals
-                    )
     
     # Locksanity
     if False: # world.options.enable_locksanity:
@@ -807,13 +735,6 @@ def set_star_tropic(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Tropic A1 - Ancient Key"),
                    Has("Ancient Rune Stone"))
     
-    world.set_rule(world.get_location("Tropic A1 Serpent Secret - Obsidian"),
-                   Has("Ancient Rune Stone")
-                   & Has ("Serpent Circlet")
-                    & (
-                        [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
-                        | CanReachRegion("Sunken Island"))
-                    )
 
     world.set_rule(world.get_location("Tropic A1 - Topaz"),
                    Has("Ancient Rune Stone")
@@ -917,30 +838,6 @@ def set_shoal(world: "IslesOfSeaAndSkyWorld"):
                    & Has("Frog Flippers")
                    & Has("Kite Cloak"))
     
-    # Mysterious
-    # This puzzle is random per save, RequireSerpentClues is ignored
-    world.set_rule(world.get_location("Shoal A0 - Pattern Puzzle Pyramidion"),
-                   CanReachRegion("Stony Cliffs Post-Rune"))
-    # This puzzle is random per save, RequireSerpentClues is ignored
-    world.set_rule(world.get_location("Shoal A1 - Pattern Puzzle Pyramidion"),
-                   CanReachRegion("Tidal Reef Post-Rune"))
-    
-    world.set_rule(world.get_location("Shoal B1 - Pyramidion"),
-                   Has("Awaken Earth Elementals")
-                   & Has("Awaken Water Elementals")
-                   & Has("Awaken Fire Elementals")
-                   & Has("Awaken Wind Elementals")
-                   & Has("Frog Flippers"))
-    world.set_rule(world.get_location("Shoal B1 - Pattern Puzzle Pyramidion"),
-                   Has("Awaken Earth Elementals")
-                   & Has("Awaken Water Elementals")
-                   & Has("Awaken Fire Elementals")
-                   & Has("Awaken Wind Elementals")
-                   & Has("Frog Flippers")
-                   & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
-                      | CanReachRegion("Raging Volcano Post-Rune")
-                    ))
-    
 
     # Locksanity
     if False: # world.options.enable_locksanity:
@@ -1019,9 +916,6 @@ def set_serpent_stacks(world: "IslesOfSeaAndSkyWorld"):
                    Has("Awaken Shadow Elementals"))
 
     # Post-Rune: Requires Obsidian Rune
-    world.set_rule(world.get_location("Serpent A4 - Serpent Lock Shard"),
-                   Has("Awaken Earth Elementals")
-                   & Has("Gopher Gloves"))
     # Core: Requires Shadow Elementals and Earth Elementals
     world.set_rule(world.get_location("Serpent A6 - W - Star Piece"),
                    Has("Awaken Water Elementals"))
@@ -1029,9 +923,6 @@ def set_serpent_stacks(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Serpent A6 - E - Star Piece"),
                    Has("Awaken Water Elementals"))
     
-    world.set_rule(world.get_location("Serpent A6 - Serpent Lock Shard"),
-                   Has("Awaken Water Elementals")
-                   | Has("Kite Cloak"))
 
     # Tail: Requires Water Elementals or Fire Elementals with Kite Cloak
     world.set_rule(world.get_location("Serpent A7 - W - Star Piece"),
@@ -1040,8 +931,6 @@ def set_serpent_stacks(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Serpent A7 - E - Star Piece"),
                    Has("Awaken Fire Elementals"))
     
-    world.set_rule(world.get_location("Serpent A7 - Serpent Lock Shard"),
-                   Has("Awaken Fire Elementals"))
 
     world.set_rule(world.get_location("Serpent A8 - N - Star Piece"),
                    Has("Awaken Wind Elementals"))
@@ -1049,21 +938,21 @@ def set_serpent_stacks(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Serpent A8 - S - Star Piece"),
                    Has("Awaken Wind Elementals"))
     
-    world.set_rule(world.get_location("Serpent A8 - Serpent Lock Shard"),
-                   Has("Awaken Wind Elementals"))
     
-    # Serpent Lock: Requires 4 serpent lock shards at the Serpent Core
-    world.set_rule(world.get_location("Serpent A5 - Serpent Circlet"),
-                   Has("Serpent Lock Shard", 8));
-    
-    # Mysterious
-    world.set_rule(world.get_location("Serpent A5 Serpent Secret - Pyramidion"),
-                   Has("Serpent Circlet"))
-    
-    world.set_rule(world.get_location("Serpent A9 - Pyramidion"),
-                   Has("Serpent Circlet")
-                   & Has("Awaken Wind Elementals"))
-    
+    if world.options.shuffle_pyramidions or (world.options.route_required.current_key == "mysterious_ending"):
+        world.set_rule(world.get_location("Serpent A4 - Serpent Lock Shard"),
+                    Has("Awaken Earth Elementals")
+                    & Has("Gopher Gloves"))
+        world.set_rule(world.get_location("Serpent A6 - Serpent Lock Shard"),
+                    Has("Awaken Water Elementals")
+                    | Has("Kite Cloak"))
+        world.set_rule(world.get_location("Serpent A7 - Serpent Lock Shard"),
+                    Has("Awaken Fire Elementals"))
+        world.set_rule(world.get_location("Serpent A8 - Serpent Lock Shard"),
+                    Has("Awaken Wind Elementals"))
+        # Serpent Lock: Requires 4 serpent lock shards at the Serpent Core
+        world.set_rule(world.get_location("Serpent A5 - Serpent Circlet"),
+                    Has("Serpent Lock Shard", 8));
     
 
     # Locksanity
@@ -1284,11 +1173,6 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Stone Dungeon E1 - Tablet Puzzle Clue"),
                    (Has("Awaken Earth Elementals") & Has("Topaz Rune Stone"))
                    | Has("Kite Cloak"))
-    
-    # Mysterious
-    world.set_rule(world.get_location("Stone D1 Serpent Secret - Pyramidion"),
-                   Has("Serpent Circlet")
-                   & Has("Awaken Earth Elementals"))
 
 
     # Notesanity
@@ -1495,13 +1379,6 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
     
     world.set_rule(world.get_location("Water C4 - Shell Puzzle Star Piece"),
                    Has("Frog Flippers"))
-
-    # Mysterious
-    world.set_rule(world.get_location("Water A3 Serpent Secret - Pyramidion"),
-                   Has("Serpent Circlet")
-                   & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
-                    | CanReachRegion("Aggro Crag")
-                   ))
                    
 
     # IncludeShells
@@ -1679,19 +1556,6 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Fire B3 - Music Puzzle Star Piece 3"),
                    Has("Awaken Fire Elementals")
                    & ([OptionFilter(ShuffleNotes, ShuffleNotes.option_false)]| Has("Music Note", 18)))
-
-    # Mysterious
-    world.set_rule(world.get_location("Fire D3 Serpent Secret - Obsidian"),
-                   Has("Awaken Fire Elementals")
-                   & Has("Serpent Circlet"))
-    
-    world.set_rule(world.get_location("Fire E3 Serpent Secret - Pyramidion"),
-                   Has("Serpent Circlet")
-                   & Has("Awaken Fire Elementals")
-                   & Has("Awaken Water Elementals")
-                   & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
-                    | CanReachRegion("Sunken Island")
-                   ))
                    
     # Locksanity
     if False: # world.options.enable_locksanity:
@@ -1841,16 +1705,6 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Wind B4 - Music Puzzle Star Piece 3"),
                    Has("Awaken Wind Elementals")
                    & ([OptionFilter(ShuffleNotes, ShuffleNotes.option_false)]| Has("Music Note", 24)))
-    
-    # Mysterious
-    world.set_rule(world.get_location("Wind A1 Serpent Secret - Pyramidion"),
-                   Has("Serpent Circlet"))
-    
-    world.set_rule(world.get_location("Wind E3 Serpent Secret - Pyramidion"),
-                   Has("Serpent Circlet")
-                   & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
-                    | CanReachRegion("Sea Nunatak")
-                   ))
 
     # Notesanity
     if world.options.shuffle_notes:
@@ -1942,14 +1796,6 @@ def set_sanctum(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Sanctum C0 - Ruby Shard Hit"),
                    Has("Ancient Key", 60))
-    
-    # Mysterious
-    world.set_rule(world.get_location("Sanctum A1 Serpent Secret - Pyramidion"),
-                    Has("Serpent Circlet")
-                    & Has("Ancient Key", 60))
-    world.set_rule(world.get_location("Sanctum C1 Serpent Secret - Pyramidion"),
-                    Has("Serpent Circlet")
-                    & Has("Ancient Key", 60))
 
 
     # Locksanity
@@ -2000,26 +1846,163 @@ def set_sanctum(world: "IslesOfSeaAndSkyWorld"):
         world.set_rule(world.get_location("Sanctum C0 - E - Snakeblock"),
                        Has("Ancient Key", 60))
 
-def set_lagoon(world: "IslesOfSeaAndSkyWorld"):
-    # Mysterious
-    world.set_rule(world.get_location("Lagoon B0 Serpent Secret - Pyramidion"),
+def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
+    if world.options.shuffle_pyramidions or (world.options.route_required.current_key == "mysterious_ending"):
+        world.set_rule(world.get_location("Stone D1 Serpent Secret - Pyramidion"),
+                        Has("Serpent Circlet")
+                        & Has("Awaken Earth Elementals"))
+        world.set_rule(world.get_location("Water A3 Serpent Secret - Pyramidion"),
+                        Has("Serpent Circlet")
+                        & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                            | CanReachRegion("Aggro Crag")
+                        ))
+        world.set_rule(world.get_location("Fire D3 Serpent Secret - Obsidian"),
+                        Has("Awaken Fire Elementals")
+                        & Has("Serpent Circlet"))
+            
+        world.set_rule(world.get_location("Fire E3 Serpent Secret - Pyramidion"),
+                        Has("Serpent Circlet")
+                        & Has("Awaken Fire Elementals")
+                        & Has("Awaken Water Elementals")
+                        & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                            | CanReachRegion("Sunken Island")
+                        ))
+        world.set_rule(world.get_location("Wind A1 Serpent Secret - Pyramidion"),
+                        Has("Serpent Circlet"))
+            
+        world.set_rule(world.get_location("Wind E3 Serpent Secret - Pyramidion"),
+                        Has("Serpent Circlet")
+                        & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                            | CanReachRegion("Sea Nunatak")
+                        ))
+        world.set_rule(world.get_location("Rolling A0 Serpent Secret - Pyramidion"),
+                        Has("Serpent Circlet")
+                        & Has("Star Piece", 7)
+                        & Has("Awaken Earth Elementals")
+                        & Has("Gopher Gloves"))
+        
+        world.set_rule(world.get_location("Rolling B1 Serpent Secret - Pyramidion"),
+                        Has("Serpent Circlet")
+                        & Has("Ancient Key", 14)
+                        & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                            | CanReachRegion("Raging Volcano")
+                        ))
+        world.set_rule(world.get_location("Sunken A1 Serpent Secret - Ancient Key"),
+                        Has ("Serpent Circlet")
+                        & Has("Ancient Key", 34)
+                        & Has("Ancient Rune Stone")
+                        & (
+                            [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                            | CanReachRegion("Sea Nunatak")
+                        ))
+
+        world.set_rule(world.get_location("Sunken B0 Serpent Secret - Pyramidion"),
+                        Has("Serpent Circlet")
+                        & Has("Star Piece", 21)
+                        & Has("Awaken Water Elementals")
+                        & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                        | CanReachRegion("Frozen Spire Post-Rune")
+                        ))
+        world.set_rule(world.get_location("Aggro A0 Serpent Secret - Obsidian"),
+                        Has("Serpent Circlet")
+                        & Has("Ancient Rune Stone")
+                        & Has("Star Piece", 35)
+                        & Has("Awaken Fire Elementals")
+                        & Has("Salamander Shirt")
+                        & (
+                            [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                            | CanReachRegion("Star Tropic")
+                        ))
+        
+        world.set_rule(world.get_location("Aggro B1 Serpent Secret - Pyramidion"),
+                        Has("Serpent Circlet")
+                        & Has("Star Piece", 35)
+                        & Has("Awaken Fire Elementals")
+                        & (
+                            [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                            | CanReachRegion("Stony Cliffs Wheel Room")
+                        ))
+        world.set_rule(world.get_location("Nunatak A1 Serpent Secret - Obsidian"),
+                        Has("Serpent Circlet")
+                        & Has("Ancient Rune Stone")
+                        & Has("Awaken Wind Elementals")
+                        & Has("Star Piece", 49)
+                        & (
+                            [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                            | CanReachRegion("Aggro Crag"))
+                        )
+        
+        world.set_rule(world.get_location("Nunatak B0 Serpent Secret - Pyramidion"),
+                        Has("Serpent Circlet")
+                        & Has("Awaken Wind Elementals")
+                        & Has("Star Piece", 49)
+                        & (
+                            [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                            | CanReachRegion("Serpent Stacks Tail")) # and wind elementals
+                        )
+
+        world.set_rule(world.get_location("Tropic A1 Serpent Secret - Obsidian"),
+                Has("Ancient Rune Stone")
+                & Has ("Serpent Circlet")
+                & (
+                    [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                    | CanReachRegion("Sunken Island"))
+                )
+        world.set_rule(world.get_location("Serpent A5 Serpent Secret - Pyramidion"),
+                    Has("Serpent Circlet"))
+        
+        world.set_rule(world.get_location("Serpent A9 - Pyramidion"),
+                    Has("Serpent Circlet")
+                    & Has("Awaken Wind Elementals"))
+        
+        world.set_rule(world.get_location("Sanctum A1 Serpent Secret - Pyramidion"),
+                        Has("Serpent Circlet")
+                        & Has("Ancient Key", 60))
+        world.set_rule(world.get_location("Sanctum C1 Serpent Secret - Pyramidion"),
+                        Has("Serpent Circlet")
+                        & Has("Ancient Key", 60))
+        
+        # This puzzle is random per save, RequireSerpentClues is ignored
+        world.set_rule(world.get_location("Shoal A0 - Pattern Puzzle Pyramidion"),
+                   CanReachRegion("Stony Cliffs Post-Rune"))
+        # This puzzle is random per save, RequireSerpentClues is ignored
+        world.set_rule(world.get_location("Shoal A1 - Pattern Puzzle Pyramidion"),
+                   CanReachRegion("Tidal Reef Post-Rune"))
+    
+        world.set_rule(world.get_location("Shoal B1 - Pyramidion"),
+                   Has("Awaken Earth Elementals")
+                   & Has("Awaken Water Elementals")
+                   & Has("Awaken Fire Elementals")
+                   & Has("Awaken Wind Elementals")
+                   & Has("Frog Flippers"))
+        world.set_rule(world.get_location("Shoal B1 - Pattern Puzzle Pyramidion"),
+                   Has("Awaken Earth Elementals")
+                   & Has("Awaken Water Elementals")
+                   & Has("Awaken Fire Elementals")
+                   & Has("Awaken Wind Elementals")
+                   & Has("Frog Flippers")
+                   & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                      | CanReachRegion("Raging Volcano Post-Rune")
+                    ))
+    
+        world.set_rule(world.get_location("Lagoon B0 Serpent Secret - Pyramidion"),
                    Has("Kite Cloak"))
     
-    world.set_rule(world.get_location("Lagoon B1 Serpent Secret - W - Pyramidion"),
-                   CanReachRegion("Phoenix Hub")
-                   & CanReachEntrance("Beast Entrance")
-                   & CanReachEntrance("Raging Exit To Post-Rune")
-                   & CanReachEntrance("Stony NW East Exit")
-                   & CanReachEntrance("Tidal Entrance")
-                   & CanReachEntrance("Tidal Exit To S")
-                   & CanReachEntrance("Lost Phoenix Entrance")
-                   )
-    
-    world.set_rule(world.get_location("Lagoon B1 Serpent Secret - C - Pyramidion"),
-                   CanReachRegion("Raging Volcano Post-Rune")
-                   )
+        world.set_rule(world.get_location("Lagoon B1 Serpent Secret - W - Pyramidion"),
+                    CanReachRegion("Phoenix Hub")
+                    & CanReachEntrance("Beast Entrance")
+                    & CanReachEntrance("Raging Exit To Post-Rune")
+                    & CanReachEntrance("Stony NW East Exit")
+                    & CanReachEntrance("Tidal Entrance")
+                    & CanReachEntrance("Tidal Exit To S")
+                    & CanReachEntrance("Lost Phoenix Entrance")
+                    )
+        
+        world.set_rule(world.get_location("Lagoon B1 Serpent Secret - C - Pyramidion"),
+                    CanReachRegion("Raging Volcano Post-Rune")
+                    )
 
-    world.set_rule(world.get_location("Lagoon B1 Serpent Secret - E - Pyramidion"),
+        world.set_rule(world.get_location("Lagoon B1 Serpent Secret - E - Pyramidion"),
                     (Has("Awaken Earth Elementals")
                         & CanReachRegion("Stony Cliffs"))
                     | (Has("Awaken Water Elementals")
@@ -2028,7 +2011,22 @@ def set_lagoon(world: "IslesOfSeaAndSkyWorld"):
                         & CanReachRegion("Raging Volcano Post-Rune"))
                     | (Has("Awaken Wind Elementals")
                         & CanReachRegion("Frozen Spire Post-Rune"))
-                   )
+                )
+
+def set_meteorites(world: "IslesOfSeaAndSkyWorld"):
+    # Warp
+    if world.options.shuffle_meteorites:
+        world.set_rule(world.get_location("Stone C2 - Earth Warp Pattern"),
+                    Has("Ancient Key", 7))
+        
+        world.set_rule(world.get_location("Lost B1 - Lost Warp Pattern"),
+                    CanReachEntrance("Lost Phoenix Entrance"))
+
+        world.set_rule(world.get_location("Warp ?? - Tropic Warp Pattern"),
+                    Has("Warp Pattern - Earth")
+                    & Has("Warp Pattern - Water")
+                    & Has("Warp Pattern - Fire")
+                    & Has("Warp Pattern - Wind"))
     
 
 def set_rechecks(world: "IslesOfSeaAndSkyWorld"):
@@ -2090,14 +2088,14 @@ def set_completion_rules(world: "IslesOfSeaAndSkyWorld"):
         world.set_completion_rule(CanReachRegion("Sanctum Peak"))
     elif route == "secret_ending":
         world.set_completion_rule(CanReachRegion("Sanctum Peak")
-                                  & Has("Star Piece", 120))
-    elif route == "secret_ending":
+                                  & Has("Star Piece", world.options.star_pieces_required.value))
+    elif route == "mysterious_ending":
         world.set_completion_rule(CanReachRegion("Sanctum Peak")
-                                  & Has("Star Piece", 120)
-                                  & Has("Pyramidion", 30))
+                                  & Has("Star Piece", world.options.star_pieces_required.value)
+                                  & Has("Pyramidion", world.options.pyramidions_required.value))
     elif route == "all_gems":
         world.set_completion_rule(Has("Topaz", 12)
                                   & Has("Sapphire", 12)
                                   & Has("Ruby", 12)
                                   & Has("Diamond", 12)
-                                  & Has("Obsidian", 14 if not world.options.shuffle_pyramidions else 18))
+                                  & Has("Obsidian", 18 if world.options.shuffle_pyramidions else 14))

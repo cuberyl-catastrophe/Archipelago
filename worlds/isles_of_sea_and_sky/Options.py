@@ -7,7 +7,7 @@ class RouteRequired(Choice):
     normal_ending: Awaken all 4 elementals to open the Sanctum, then get all 4 Sanctum Hits to reach the end of Sanctum
     secret_ending: Reach the end of Sanctum with all 120 Star Pieces in your possession
     mysterious_ending: Reach the end of Sanctum with all 120 Star Pieces and 30 Pyramidions in your possession.
-    all_gems: Gather 12 of each gem type and 14 obsidian
+    all_gems: Gather 12 of each gem type and all 14-18 obsidian.
     """
     display_name = "Required Route"
     option_normal_ending = 0
@@ -15,6 +15,24 @@ class RouteRequired(Choice):
     option_mysterious_ending = 2
     option_all_gems = 3
     default = 0
+
+class StarPiecesRequired(Range):
+    """
+    How many Star Pieces are needed to get the secret and mysterious ending
+    """
+    display_name = "Star Pieces Required"
+    range_start = 1
+    range_end = 120
+    default = 120
+
+class PyramidionsRequired(Range):
+    """
+    How many Pytramidions are required to get the mysterious ending
+    """
+    display_name = "Required Pyramidions Pieces"
+    range_start = 1
+    range_end = 30
+    default = 30
 
 class ShuffleGems(DefaultOnToggle):
     """
@@ -52,15 +70,15 @@ class ShuffleSanctumShardHits(DefaultOnToggle):
 class ShufflePyramidions(Toggle):
     """
     If enabled, Pyramidions and other Serpent Circlet puzzle rewards will be shuffled into the item pool.
-    If Required Route is set to all_gems, then the 4 obsidian added by this option will be required to goal.
-    The 4 Obsidian will not be randomized if shuffle gems is disabled.
+    Adds 8 serpent lock shards, 1 serpent circlet, 30 pyramidions, 4 obsidian and 1 ancient key.
+    The 4 Obsidian locations will not be randomized if shuffle gems is disabled.
     """
     display_name = "Shuffle Pyramidions"
 
 class ShuffleMeteorites(Toggle):
     """
-    If enabled, 4 meteorites and 8 warp portal patterns will be shuffled into the item pool
-    The 5th meteorite at Lost Lagoon will also be included if Shuffle Pyramidions is enabled.
+    If enabled, 5 meteorites and 8 warp portal patterns will be shuffled into the item pool
+    The meteorite location at Lost Lagoon will not be included if the serpent circlet it not in the pool.
     """
     display_name = "Shuffle Meteorites"
 
@@ -157,6 +175,8 @@ class Traps(Choice):
 @dataclass
 class IslesOfSeaAndSkyOptions(PerGameCommonOptions):
     route_required:                             RouteRequired
+    star_pieces_required:                       StarPiecesRequired
+    pyramidions_required:                       PyramidionsRequired
     shuffle_gems:                               ShuffleGems
     shuffle_notes:                              ShuffleNotes
     shuffle_elemental_quests:                   ShuffleElementalQuests
@@ -180,7 +200,9 @@ class IslesOfSeaAndSkyOptions(PerGameCommonOptions):
 
 isles_of_sea_and_sky_option_groups = [
     OptionGroup("Goal", [
-        RouteRequired
+        RouteRequired,
+        StarPiecesRequired,
+        PyramidionsRequired
     ]),
 
     OptionGroup("Checks", [

@@ -158,13 +158,15 @@ class IslesOfSeaAndSkyContext(CommonContext):
 
     route = None
     shuffleNotes = True
-    circletEnabled = False
-    WarpsEnabled = False
+    shufflePyramidions = False
+    shuffleMeteorites = False
     includeSeashells = None
     includeJellyfish = None
     enableLocksanity = None
     enableSnakesanity = None
     reqRoute = None
+    reqStarPieces = None
+    reqPyramidions = None
     phoenixAnywhere = None
     allowTraps = None
     altRooms = None
@@ -327,14 +329,16 @@ async def process_isles_of_sea_and_sky_cmd(ctx: IslesOfSeaAndSkyContext, cmd: st
     if cmd == 'Connected':
         ctx.slot_data = args["slot_data"]
 
+        ctx.reqRoute =              args["slot_data"]["route_required"]
+        ctx.reqStarPieces =    args["slot_data"]["star_pieces_required"]
+        ctx.reqPyramidions =   args["slot_data"]["pyramidions_required"]
         ctx.shuffleNotes =          args["slot_data"]["shuffle_notes"]
-        ctx.circletEnabled =        args["slot_data"]["shuffle_pyramidions"] | (args["slot_data"]["route_required"] == "mysterious_ending")
-        ctx.warpsEnabled =          args["slot_data"]["shuffle_meteorites"]
+        ctx.shufflePyramidions =    args["slot_data"]["shuffle_pyramidions"] | (args["slot_data"]["route_required"] == "mysterious_ending")
+        ctx.shuffleMeteorites =     args["slot_data"]["shuffle_meteorites"]
         ctx.includeSeashells =      False # args["slot_data"]["include_seashells"]
         ctx.includeJellyfish =      False # args["slot_data"]["include_jellyfish"]
         ctx.enableLocksanity =      False # args["slot_data"]["enable_locksanity"]
         ctx.enableSnakesanity =     False # args["slot_data"]["enable_snakesanity"]
-        ctx.reqRoute =              args["slot_data"]["route_required"]
         ctx.phoenixAnywhere =       args["slot_data"]["phoenix_anywhere"]
         ctx.death_allowed =         args["slot_data"]["death_link"]
         ctx.death_amnesty_total =   args["slot_data"]["death_amnesty_total"]
@@ -345,9 +349,11 @@ async def process_isles_of_sea_and_sky_cmd(ctx: IslesOfSeaAndSkyContext, cmd: st
         with open(os.path.join(ctx.save_game_folder, "apOptions.options"), "w") as f:
             f.write("seed: "                + str(ctx.game_seed)           + '\n')
             f.write("reqRoute: "            + str(ctx.reqRoute)            + '\n')
+            f.write("reqStarPieces: "       + str(ctx.reqStarPieces)       + '\n')
+            f.write("reqPyramidions: "      + str(ctx.reqPyramidions)      + '\n')
             f.write("shuffleNotes: "        + str(ctx.shuffleNotes)        + '\n')
-            f.write("CircletEnabled: "      + str(ctx.circletEnabled)      + '\n')
-            f.write("WarpsEnabled: "        + str(ctx.warpsEnabled)        + '\n')
+            f.write("shufflePyramidions: "  + str(ctx.shufflePyramidions)  + '\n')
+            f.write("ShuffleMeteorites: "   + str(ctx.shuffleMeteorites)   + '\n')
             f.write("includeSeashells: "    + str(ctx.includeSeashells)    + '\n')
             f.write("includeJellyfish: "    + str(ctx.includeJellyfish)    + '\n') 
             f.write("enableLocksanity: "    + str(ctx.enableLocksanity)    + '\n')

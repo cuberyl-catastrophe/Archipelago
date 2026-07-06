@@ -91,27 +91,27 @@ progression_items = { # Grants a new ability that opens up the world a ton
     "Frog Flippers":                        1,
     "Salamander Shirt":                     1,
     "Kite Cloak":                           1,
-    "Serpent Circlet":                      1,
+    "Serpent Circlet":                      0,
     "Awaken Earth Elementals":              1,
     "Awaken Water Elementals":              1,
     "Awaken Fire Elementals":               1,
     "Awaken Wind Elementals":               1,
-    "Awaken Shadow Elementals":               1,
+    "Awaken Shadow Elementals":             1,
     "Phoenix Flute":                        1
 }
 
 key_items = { # Used to open specific locks, unlocks a few checks
-    "Ancient Key":                          77,
+    "Ancient Key":                          76,
     "Star Piece":                           120,
     "Topaz":                                12,
     "Sapphire":                             12,
     "Ruby":                                 12,
     "Diamond":                              12,
-    "Obsidian":                             18,
+    "Obsidian":                             14,
     "Gold Stone Tablet":                    1,
     "Blue Stone Tablet":                    1,
     "Fire Key":                             3,
-    "Serpent Lock Shard":                   8,
+    "Serpent Lock Shard":                   0,
     "Big Bell Hit - Rolling":               1,
     "Big Bell Hit - Sunken":                1,
     "Big Bell Hit - Aggro":                 1,
@@ -120,6 +120,39 @@ key_items = { # Used to open specific locks, unlocks a few checks
     "Sanctum Shard Hit - Water":            1,
     "Sanctum Shard Hit - Fire":             1,
     "Sanctum Shard Hit - Wind":             1,
+    "Warp Pattern - Earth":                 0,
+    "Warp Pattern - Water":                 0,
+    "Warp Pattern - Fire":                  0,
+    "Warp Pattern - Wind":                  0,
+    "Warp Pattern - Tropic":                0,
+    "Warp Pattern - Lost":                  0,
+    "Warp Pattern - Ancient":               0,
+    "Warp Pattern - Compass":               0
+}
+
+non_key_items = { # Does not unlock new checks
+    "Pyramidion":                           0,
+    "Meteorite":                            0,
+    "Star Viewing Orb":                     1
+}
+
+note_items = { # Music notes are in their own pool until Shuffle Notes gets reworked
+    "Music Note":                           24
+}
+
+circlet_items = {
+    "Serpent Lock Shard":                   8,
+    "Serpent Circlet":                      1
+}
+
+mysterious_items = {
+    "Ancient Key":                          1,
+    "Obsidian":                             4,
+    "Pyramidion":                           30
+}
+
+meteorite_items = {
+    "Meteorite":                            4,
     "Warp Pattern - Earth":                 1,
     "Warp Pattern - Water":                 1,
     "Warp Pattern - Fire":                  1,
@@ -130,15 +163,10 @@ key_items = { # Used to open specific locks, unlocks a few checks
     "Warp Pattern - Compass":               1
 }
 
-non_key_items = { # Does not unlock new checks
-    "Pyramidion":                           30,
-    "Meteorite":                            5,
-    "Star Viewing Orb":                     1
+mysterious_meteorite_items = {
+    "Meteorite":                            1
 }
 
-note_items = { # Music notes are in their own pool until Shuffle Notes gets reworked
-    "Music Note":                           24
-}
 
 # 52 total
 junk_weights = {

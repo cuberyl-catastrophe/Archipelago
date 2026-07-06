@@ -367,7 +367,10 @@ advancement_table = {
 
     "Locked A0 - Star Piece":                       AdvData(112012012, "Locked"),
 
-    # Mysterious Update Items
+}
+
+# Mysterious Update Items
+circlet_table = {
     "Serpent A4 - Serpent Lock Shard":              AdvData(106041904, "Serpent Stacks Post-Rune"),
     "Serpent A5 - NE - Serpent Lock Shard":         AdvData(106052104, "Serpent Stacks Lock"),
     "Serpent A5 - SE - Serpent Lock Shard":         AdvData(106052112, "Serpent Stacks Lock"),
@@ -377,7 +380,9 @@ advancement_table = {
     "Serpent A7 - Serpent Lock Shard":              AdvData(106072006, "Serpent Stacks Tail"),
     "Serpent A8 - Serpent Lock Shard":              AdvData(106080508, "Serpent Stacks Tail"),
     "Serpent A5 - Serpent Circlet":                 AdvData(106051108, "Serpent Stacks Lock"), # 8 lock shards
+}
 
+mysterious_table = {
     "Sunken A1 Serpent Secret - Ancient Key":       AdvData(109011005, "Sunken Island"),
 
     "Fire D3 Serpent Secret - Obsidian":            AdvData(104331811, "Raging Volcano Post-Rune"),
@@ -420,7 +425,9 @@ advancement_table = {
     "Lagoon B1 Serpent Secret - W - Pyramidion":    AdvData(117110907, "Forgotten Lagoon South"),
     "Lagoon B1 Serpent Secret - C - Pyramidion":    AdvData(117111407, "Forgotten Lagoon South"),
     "Lagoon B1 Serpent Secret - E - Pyramidion":    AdvData(117111907, "Forgotten Lagoon South"),
+}
 
+meteorite_table = {
 
     "Stone C2 - Earth Warp Pattern":                AdvData(99901221, "Stony Cliffs"),
     "Water B4 - Water Warp Pattern":                AdvData(99903141, "Tidal Reef S"),
@@ -435,10 +442,13 @@ advancement_table = {
     "Lost A0 - Meteorite":                          AdvData(115001704, "Lost Landing Compass"),
     "Ancient A0 - Meteorite":                       AdvData(100000805, "Ancient Cavern N"),
     "Totem B0 - Meteorite":                         AdvData(119101606, "Totem"),
-    # This one is only enabled if pyramidions are also enabled since it requires serpent circlet 
-    "Lagoon A0 - Meteorite":                        AdvData(117000905, "Forgotten Lagoon Meteorite")
 
     # In the future, could include milestones as locations. e.g. each of the steam achievements, plus extras.
+}
+
+circlet_meteorite_table = {
+    # This one is only enabled if pyramidions are also enabled since it requires serpent circlet 
+    "Lagoon A0 - Meteorite":                        AdvData(117000905, "Forgotten Lagoon Meteorite")
 }
 
 note_table = {
