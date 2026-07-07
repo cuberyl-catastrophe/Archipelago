@@ -9,53 +9,82 @@ def link_isles_of_sea_and_sky_areas(world: MultiWorld, player: int):
 # (Region name, list of exits)
 ## NOTE: Does not take into account for Phoenix Flute
 isles_of_sea_and_sky_regions = [
-    ("Menu",                        ["New Game"]),
+    ("Menu",                            ["New Game"]),
+    
+    ("Ancient Isle",                    ["Ancient East Exit", "Ancient West Exit", "Ancient North Exit", "Abstract Phoenix Exit", "Ancient Cavern Entrance"]),
+    ("Ancient Cavern",                  ["Ancient Cavern Exit to Isle"]),
+    ("Ancient Cavern N",                ["Ancient Cavern N Exit to Cavern"]),
 
-    ("Ancient Isle",                ["Ancient East Exit", "Ancient West Exit", "Ancient North Exit", "Abstract Phoenix Exit"]),
+    ("Stony Cliffs",                    ["Stony Exit To Post-Rune", "Stony West Exit", "Stony East Exit", "Stony Exit to Wheel Room", "Stony Warp"]),
+    ("Stony Cliffs Post-Rune",          ["Stony Post-Rune Exit"]),
+    ("Stony Cliffs NW",                 ["Stony NW East Exit", "Stony NW West Exit", "Stony Phoenix"]),
+    ("Stony Cliffs Wheel Room",         []), # Dead end room with 1 entrance, no backwards logic needed.
+    
+    ("Tidal Reef",                      ["Tidal Exit", "Tidal Exit To Post-Rune", "Tidal Exit To S",]),
+    ("Tidal Reef S",                    ["Tidal S Exit", "Tidal S Exit To Post-Rune", "Tidal Phoenix", "Tidal Warp"]),
+    ("Tidal Reef Post-Rune",            ["Tidal Exit From Post-Rune", "Tidal S Entrance From Post-Rune"]),
+    
+    ("Raging Volcano",                  ["Raging Exit", "Raging Exit To Post-Rune", "Raging Exit To NE", "Raging Warp"]),
+    ("Raging Volcano NE",               ["Raging NE Exit", "Raging Phoenix"]),
+    ("Raging Volcano Post-Rune",        ["Raging Exit From Post-Rune"]),
+    
+    ("Frozen Spire",                    ["Frozen Exit", "Frozen Exit To Post-Rune", "Frozen Warp"]),
+    ("Frozen Spire Post-Rune",          ["Frozen Exit From Post-Rune", "Frozen Phoenix"]),
+        
+    # Serpent Stacks is linear with no additional entrances, no need for backwards logic
+    ("Serpent Stacks Head",             []), # Past Big Rune Stone - A1
+    ("Serpent Stacks Entrance",         ["Serpent Exit", "Serpent Entrance To Post-Rune",
+                                         "Serpent Entrance To Head", "Serpent Solve A2 Puzzles"]), # A2-A3
+    ("Serpent Stacks Post-Rune",        ["Serpent Post-Rune To Core"]), # Below Obsidian Rune Stone A4
+    ("Serpent Stacks Core",             ["Serpent Core To Lock", "Serpent Core To Tail"]), # Lock Room A5
+    ("Serpent Stacks Lock",             []), # Lock Room A5 with 4 lock shards
+    ("Serpent Stacks Tail",             []), # Able to reach A8 and below
+    ("Serpent Stacks A2 Pyramidions",   []), # Able to see the code at Water A3
 
-    ("Stony Cliffs",                ["Stony Exit To Post-Rune", "Stony West Exit", "Stony East Exit"]),
-    ("Stony Cliffs Post-Rune",      ["Stony Post-Rune Exit"]),
-    ("Stony Cliffs NW",             ["Stony NW East Exit", "Stony NW West Exit", "Stony Phoenix"]),
+        
+    ("Sanctum",                         ["Sanctum Exit", "Elemental Rock Path"]),
+    ("Sanctum Peak",                    []),
+    
+    ("Rolling Rocks",                   ["Rolling Exit", "Rolling Exit To Post-Rune"]),
+    ("Rolling Rocks Post-Rune",         ["Rolling Post-Rune Exit"]),
+    
+    ("Aggro Crag",                      ["Aggro Exit"]),
+    ("Locked",                          ["Locked Exit"]),
+    ("Lost Landing",                    ["Lost Exit", "Lost Phoenix"]),
+    ("Lost Landing Compass",            ["Lost Compass Exit to Landing"]),
+    ("Star Tropic",                     ["Star East Exit", "Star West Exit"]),
+    ("Star Tropic Meteorite",           ["Star Meteorite Exit to Tropic"]),
+    ("Sunken Island",                   ["Sunken Exit"]),
+    ("Sea Nunatak",                     ["Nunatak Exit"]),
+    ("Shoal",                           ["Shoal Exit", "Shoal to Post-Circlet"]),
+    ("Shoal Post-Circlet",              ["Shoal Post-Circlet to North-East"]),
+    ("Shoal North-East",                []),
+    ("Beast Bridge",                    ["Beast Exit", "Beast Bridge Phoenix", "Glow Rocks Destroyed"]),
+    
+    ("Forgotten Lagoon",                ["Lagoon Exit to Forgotten Sea", "Lagoon Exit to South Lagoon"]),
+    ("Forgotten Lagoon South",          []),
+    ("Forgotten Lagoon Meteorite",      ["Lagoon Meteorite Exit to Lagoon"]), #TODO
 
-    ("Tidal Reef",                  ["Tidal Exit", "Tidal Exit To Post-Rune", "Tidal Exit To S",]),
-    ("Tidal Reef S",                ["Tidal S Exit", "Tidal S Exit To Post-Rune", "Tidal Phoenix"]),
-    ("Tidal Reef Post-Rune",        ["Tidal Exit From Post-Rune", "Tidal S Entrance From Post-Rune"]),
+    ("Totem",                           []),
 
-    ("Raging Volcano",              ["Raging Exit", "Raging Exit To Post-Rune", "Raging Exit To NE"]),
-    ("Raging Volcano NE",           ["Raging NE Exit", "Raging Phoenix"]),
-    ("Raging Volcano Post-Rune",    ["Raging Exit From Post-Rune"]),
+    ("Phoenix Hub",                     ["Lost Phoenix Entrance", "Stony Phoenix Entrance", "Tidal Phoenix Entrance",
+                                         "Raging Phoenix Entrance", "Frozen Phoenix Entrance", "Beast Bridge Phoenix Entrance"]),
+    
+    ("Warp Hub",                        ["Stony Warp Entrance", "Tidal Warp Entrance", "Raging Warp Entrance", "Frozen Warp Entrance",
+                                         "Star Warp Entrance", "Ancient Cavern Warp Entrance", "Lost Warp Entrance", "Totem Warp Entrance"
 
-    ("Frozen Spire",                ["Frozen Exit", "Frozen Exit To Post-Rune"]),
-    ("Frozen Spire Post-Rune",      ["Frozen Exit From Post-Rune", "Frozen Phoenix"]),
-    ("Serpent Stacks",              ["Serpent Exit", "Serpent Exit To Post-Rune"]),
-    ("Serpent Stacks Post-Rune",    ["Serpent Exit From Post-Rune"]),
-    ("Sanctum",                     ["Sanctum Exit", "Elemental Rock Path"]),
-    ("Sanctum Peak",                []),
-
-    ("Rolling Rocks",               ["Rolling Exit", "Rolling Exit To Post-Rune"]),
-    ("Rolling Rocks Post-Rune",     ["Rolling Post-Rune Exit"]),
-
-    ("Aggro Crag",                  ["Aggro Exit"]),
-    ("Locked",                      ["Locked Exit"]),
-    ("Lost Landing",                ["Lost Exit", "Lost Phoenix"]),
-    ("Star Tropic",                 ["Star East Exit", "Star West Exit"]),
-    ("Sunken Island",               ["Sunken Exit"]),
-    ("Sea Nunatak",                 ["Nunatak Exit"]),
-    ("Shoal",                       ["Shoal Exit"]),
-    ("Beast Bridge",                ["Beast Exit", "Beast Bridge Phoenix"]),
-    ("Phoenix Hub",                 ["Lost Phoenix Entrance", "Stony Phoenix Entrance", "Tidal Phoenix Entrance",
-                                     "Raging Phoenix Entrance", "Frozen Phoenix Entrance", "Beast Bridge Phoenix Entrance"]),
-
-    ("Topaz Sea",                   ["Ancient East Entrance", "Stony East Entrance", "Diamond Sea West Entrance",
-                                     "Ruby Sea West Entrance", "Rolling West Entrance", "Rolling East Entrance"]),
-    ("Sapphire Sea",                ["Stony West Entrance", "Tidal Entrance", "Sapphire Sea Exit", "Aggro Entrance"]),
-    ("Obsidian Sea",                ["Ancient West Entrance", "Serpent Entrance", "Locked Entrance", "Serpent Whirlpool"]),
-    ("Ruby Sea",                    ["Ruby Whirlpool", "Star East Entrance", "Sunken Entrance", "Raging Entrance"]),
-    ("Diamond Sea",                 ["Nunatak Entrance", "Shoal Entrance", "Diamond Whirlpool", "Diamond Sea Exit"]),
-    ("North Diamond Sea",           ["Frozen Entrance", "North Diamond Sea South Exit", "North Diamond Sea East Exit"]),
-    ("Northeast Sea",               ["Northeast Sea Exit"]),
-    ("Beast Sea",                   ["Beast Entrance", "Beast Sea Exit"]),
-    ("Lost Sea",                    ["Lost Sea Exit", "Lost Entrance", "Star West Entrance", "Lost Whirlpool"]),
+    ]),
+    
+    ("Topaz Sea",                       ["Ancient East Entrance", "Stony East Entrance", "Diamond Sea West Entrance",
+                                         "Ruby Sea West Entrance", "Rolling West Entrance", "Rolling East Entrance"]),
+    ("Sapphire Sea",                    ["Stony West Entrance", "Tidal Entrance", "Sapphire Sea Exit", "Aggro Entrance"]),
+    ("Obsidian Sea",                    ["Ancient West Entrance", "Serpent Entrance", "Locked Entrance", "Serpent Whirlpool"]),
+    ("Ruby Sea",                        ["Ruby Whirlpool", "Star East Entrance", "Sunken Entrance", "Raging Entrance"]),
+    ("Diamond Sea",                     ["Nunatak Entrance", "Shoal Entrance", "Diamond Whirlpool", "Diamond Sea Exit"]),
+    ("North Diamond Sea",               ["Frozen Entrance", "North Diamond Sea South Exit", "North Diamond Sea East Exit"]),
+    ("Forgotten Sea",                   ["Forgotten Sea Exit to Diamond Sea", "Forgotten Whirlpool", "Forgotten Lagoon Entrance"]),
+    ("Beast Sea",                       ["Beast Entrance", "Beast Sea Exit"]),
+    ("Lost Sea",                        ["Lost Sea Exit", "Lost Entrance", "Star West Entrance", "Lost Whirlpool"]),
 ]
 
 # (Entrance, region pointed to)
@@ -66,15 +95,19 @@ mandatory_connections = [
     ("Ancient East Exit",               "Topaz Sea"),
     ("Ancient West Exit",               "Obsidian Sea"),
     ("Ancient North Exit",              "Sanctum"),
+    ("Ancient Cavern Exit to Isle",     "Ancient Isle"),
+    ("Ancient Cavern N Exit to Cavern", "Ancient Cavern"),
     ("Abstract Phoenix Exit",           "Phoenix Hub"), # Logic linchpin for accessing things early
 
     ("Stony East Exit",                 "Topaz Sea"),
     ("Stony West Exit",                 "Stony Cliffs NW"),
     ("Stony Exit To Post-Rune",         "Stony Cliffs Post-Rune"),
+    ("Stony Exit to Wheel Room",        "Stony Cliffs Wheel Room"),
     ("Stony Post-Rune Exit",            "Stony Cliffs"),
     ("Stony NW West Exit",              "Sapphire Sea"),
     ("Stony NW East Exit",              "Stony Cliffs"),
     ("Stony Phoenix",                   "Phoenix Hub"),
+    ("Stony Warp",                      "Warp Hub"),
 
     ("Tidal Exit",                      "Sapphire Sea"),
     ("Tidal Exit To Post-Rune",         "Tidal Reef Post-Rune"),
@@ -84,6 +117,7 @@ mandatory_connections = [
     ("Tidal S Entrance From Post-Rune", "Tidal Reef S"),
     ("Tidal Exit To S",                 "Tidal Reef S"),
     ("Tidal Phoenix",                   "Phoenix Hub"),
+    ("Tidal Warp",                      "Warp Hub"),
 
     ("Raging Exit",                     "Ruby Sea"),
     ("Raging Exit To Post-Rune",        "Raging Volcano Post-Rune"),
@@ -91,26 +125,35 @@ mandatory_connections = [
     ("Raging NE Exit",                  "Raging Volcano"),
     ("Raging Exit To NE",               "Raging Volcano NE"),
     ("Raging Phoenix",                  "Phoenix Hub"),
+    ("Raging Warp",                     "Warp Hub"),
 
     ("Frozen Exit",                     "North Diamond Sea"),
     ("Frozen Exit To Post-Rune",        "Frozen Spire Post-Rune"),
     ("Frozen Exit From Post-Rune",      "Frozen Spire"),
     ("Frozen Phoenix",                  "Phoenix Hub"),
+    ("Frozen Warp",                     "Warp Hub"),
+    
     ("Serpent Exit",                    "Obsidian Sea"),
-    ("Serpent Exit To Post-Rune",       "Serpent Stacks Post-Rune"),
-    ("Serpent Exit From Post-Rune",     "Serpent Stacks"),
+    ("Serpent Entrance To Head",        "Serpent Stacks Head"),
+    ("Serpent Entrance To Post-Rune",   "Serpent Stacks Post-Rune"),
+    ("Serpent Post-Rune To Core",       "Serpent Stacks Core"),
+    ("Serpent Core To Lock",            "Serpent Stacks Lock"),
+    ("Serpent Core To Tail",            "Serpent Stacks Tail"),
+    ("Serpent Solve A2 Puzzles",        "Serpent Stacks A2 Pyramidions"),
+
     ("Sanctum Exit",                    "Ancient Isle"),
 
     ("Ancient East Entrance",           "Ancient Isle"),
     ("Ancient West Entrance",           "Ancient Isle"),
+    ("Ancient Cavern Entrance",         "Ancient Cavern"),
     ("Stony East Entrance",             "Stony Cliffs"),
     ("Stony West Entrance",             "Stony Cliffs NW"),
     ("Tidal Entrance",                  "Tidal Reef"),
     ("Raging Entrance",                 "Raging Volcano"),
     ("Frozen Entrance",                 "Frozen Spire"),
     ("North Diamond Sea South Exit",    "Diamond Sea"),
-    ("North Diamond Sea East Exit",     "Northeast Sea"),
-    ("Serpent Entrance",                "Serpent Stacks"),
+    ("North Diamond Sea East Exit",     "Forgotten Sea"),
+    ("Serpent Entrance",                "Serpent Stacks Entrance"),
 
     ("Rolling East Entrance",           "Rolling Rocks"),
     ("Rolling West Entrance",           "Rolling Rocks"),
@@ -118,11 +161,15 @@ mandatory_connections = [
     ("Aggro Entrance",                  "Aggro Crag"),
     ("Locked Entrance",                 "Locked"),
     ("Lost Entrance",                   "Lost Landing"),
+    ("Lost Compass Exit to Landing",    "Lost Landing"),
     ("Star East Entrance",              "Star Tropic"),
     ("Star West Entrance",              "Star Tropic"),
+    ("Star Meteorite Exit to Tropic",   "Star Tropic"),
     ("Sunken Entrance",                 "Sunken Island"),
     ("Nunatak Entrance",                "Sea Nunatak"),
     ("Shoal Entrance",                  "Shoal"),
+    ("Shoal to Post-Circlet",           "Shoal Post-Circlet"),
+    ("Shoal Post-Circlet to North-East","Shoal North-East"),
     ("Beast Entrance",                  "Beast Bridge"),
     ("Beast Bridge Phoenix",            "Phoenix Hub"),
 
@@ -133,6 +180,22 @@ mandatory_connections = [
     ("Frozen Phoenix Entrance",         "Frozen Spire Post-Rune"),
     ("Beast Bridge Phoenix Entrance",   "Beast Bridge"),
 
+    ("Stony Warp Entrance",             "Stony Cliffs"),
+    ("Tidal Warp Entrance",             "Tidal Reef S"),
+    ("Raging Warp Entrance",            "Raging Volcano"),
+    ("Frozen Warp Entrance",            "Frozen Spire"),
+    ("Star Warp Entrance",              "Star Tropic Meteorite"),
+    ("Ancient Cavern Warp Entrance",    "Ancient Cavern N"),
+    ("Lost Warp Entrance",              "Lost Landing Compass"),
+    ("Totem Warp Entrance",             "Totem"),
+
+    ("Glow Rocks Destroyed",            "Forgotten Lagoon Meteorite"),
+
+    ("Forgotten Lagoon Entrance",       "Forgotten Lagoon"),
+    ("Lagoon Exit to Forgotten Sea",    "Forgotten Sea"),
+    ("Lagoon Exit to South Lagoon",     "Forgotten Lagoon South"),
+    ("Lagoon Meteorite Exit to Lagoon", "Forgotten Lagoon"),
+
     ("Diamond Sea West Entrance",       "Diamond Sea"),
     ("Diamond Whirlpool",               "Obsidian Sea"),
     ("Ruby Sea West Entrance",          "Ruby Sea"),
@@ -140,11 +203,12 @@ mandatory_connections = [
     ("Serpent Whirlpool",               "Diamond Sea"),
     ("Ruby Whirlpool",                  "Beast Sea"),
     ("Diamond Sea Exit",                "North Diamond Sea"),
-    ("Northeast Sea Exit",              "North Diamond Sea"),
+    ("Forgotten Sea Exit to Diamond Sea","North Diamond Sea"),
     ("Beast Sea Exit",                  "Diamond Sea"),
     ("Lost Sea Exit",                   "Obsidian Sea"),
     ("Lost Phoenix",                    "Phoenix Hub"),
-    ("Lost Whirlpool",                  "Northeast Sea"),
+    ("Lost Whirlpool",                  "Forgotten Sea"),
+    ("Forgotten Whirlpool",             "Lost Sea"),
 
     ("Rolling Exit",                    "Topaz Sea"),
     ("Rolling Exit To Post-Rune",       "Rolling Rocks Post-Rune"),

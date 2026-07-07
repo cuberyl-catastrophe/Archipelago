@@ -5,26 +5,46 @@ class RouteRequired(Choice):
     """
     Main route of the game required to win.
     normal_ending: Awaken all 4 elementals to open the Sanctum, then get all 4 Sanctum Hits to reach the end of Sanctum
-    secret_ending: Reach the end of Sanctum with all 109 Star Pieces in your possession
-    all_gems: Gather 12 of each gem type
+    secret_ending: Reach the end of Sanctum with all 120 Star Pieces in your possession
+    mysterious_ending: Reach the end of Sanctum with all 120 Star Pieces and 30 Pyramidions in your possession.
+    all_gems: Gather 12 of each gem type and all 14-18 obsidian.
     """
     display_name = "Required Route"
     option_normal_ending = 0
     option_secret_ending = 1
-    option_all_gems = 2
+    option_mysterious_ending = 2
+    option_all_gems = 3
     default = 0
 
-class EnableGemsanity(DefaultOnToggle):
+class StarPiecesRequired(Range):
+    """
+    How many Star Pieces are needed to get the secret and mysterious ending
+    """
+    display_name = "Star Pieces Required"
+    range_start = 1
+    range_end = 120
+    default = 120
+
+class PyramidionsRequired(Range):
+    """
+    How many Pytramidions are required to get the mysterious ending
+    """
+    display_name = "Required Pyramidions Pieces"
+    range_start = 1
+    range_end = 30
+    default = 30
+
+class ShuffleGems(DefaultOnToggle):
     """
     If enabled, gems can be found anywhere instead of their vanilla locations.
     """
-    display_name = "Enable Gemsanity"
+    display_name = "Shuffle Gems"
 
-class EnableNotesanity(DefaultOnToggle):
+class ShuffleNotes(DefaultOnToggle):
     """
     Turn all music notes in the game into location checks. Music puzzles will be filled progressively from stoney cliffs to frozen spire.
     """
-    display_name = "Enable Notesanity"
+    display_name = "Shuffle Music Notes"
 
 class ShuffleElementalQuests(DefaultOnToggle):
     """
@@ -46,35 +66,63 @@ class ShuffleSanctumShardHits(DefaultOnToggle):
     """
     display_name = "Shuffle Sanctum Shards Hit"
 
-class EnableLocksanity(Toggle):
-    """
-    Turn all locks in the game into location checks. This includes big 3x locks, all Rune Stone locks, and other specialty locks
-    """
-    display_name = "Enable Locksanity"
 
-class EnableSnakesanity(Toggle):
+class ShufflePyramidions(Toggle):
     """
-    Turn all snake blocks in the game into location checks. (Snake block = Green directional block with an arrowhead on top)
+    If enabled, Pyramidions and other Serpent Circlet puzzle rewards will be shuffled into the item pool.
+    Adds 8 serpent lock shards, 1 serpent circlet, 30 pyramidions, 4 obsidian and 1 ancient key.
+    The 4 Obsidian locations will not be randomized if shuffle gems is disabled.
     """
-    display_name = "Enable Snakesanity"
+    display_name = "Shuffle Pyramidions"
 
-class EnableSecretsanity(Toggle):
+class ShuffleMeteorites(Toggle):
     """
-    Turns a number of in-game secrets in to location checks. These include secret paths, and disguised blocks.
+    If enabled, 5 meteorites and 8 warp portal patterns will be shuffled into the item pool
+    The meteorite location at Lost Lagoon will not be included if the serpent circlet it not in the pool.
     """
-    display_name = "Enable Secretsanity"
+    display_name = "Shuffle Meteorites"
 
-class IncludeSeashells(Toggle):
-    """
-    Enable seashells on Tidal Reef for extra checks
-    """
-    display_name = "Include Seashells"
+# class EnableLocksanity(Toggle):
+#     """
+#     Turn all locks in the game into location checks. This includes big 3x locks, all Rune Stone locks, and other specialty locks
+#     """
+#     display_name = "Enable Locksanity"
 
-class IncludeJellyfish(Toggle):
+# class EnableSnakesanity(Toggle):
+#     """
+#     Turn all snake blocks in the game into location checks. (Snake block = Green directional block with an arrowhead on top)
+#     """
+#     display_name = "Enable Snakesanity"
+
+# class EnableSecretsanity(Toggle):
+#     """
+#     Turns a number of in-game secrets in to location checks. These include secret paths, and disguised blocks.
+#     """
+#     display_name = "Enable Secretsanity"
+
+# class IncludeSeashells(Toggle):
+#     """
+#     Enable seashells on Tidal Reef for extra checks
+#     """
+#     display_name = "Include Seashells"
+
+# class IncludeJellyfish(Toggle):
+#     """
+#     Enable jellyfish in the Overworld for extra checks
+#     """
+#     display_name = "Include Jellyfish"
+
+class RequireSerpentClues(DefaultOnToggle):
     """
-    Enable jellyfish in the Overworld for extra checks
+    If enabled, you will not be expected to complete serpent puzzles before gaining access their clues.
+    If disabled, you are expected to be able to solve serpent puzzles without their clue.
+    This option does nothing is Shuffle Pyramidions is set to false.
     """
-    display_name = "Include Jellyfish"
+class WarpsInLogic(Toggle):
+    """
+    If enabled, you may be expected to use warps and other meteor quest mechanics to reach Star Tropic and Forgotten Lagoon.
+    If Shuffle Meteorites is enabled then this is forced on.
+    """
 
 class PhoenixAnywhere(Toggle):
     """
@@ -114,47 +162,70 @@ class Traps(Choice):
     option_plenty_traps = 2
     default = 0
 
-class AltRoomRandomizer(Toggle):
-    """
-    When enabled, the game chooses random alternate rooms from the selection in 'Alt Rooms'
-    This folder is copied from the apworld into the modded program folder (Should be different than the steam install)
-    though you copy the 'Alt Rooms' folder and place it there yourself.
-    EARLY DEVELOPMENT! lOTS OF BUGS
-    """
-    display_name = "Alt Room Randomizer"
+# class AltRoomRandomizer(Toggle):
+#     """
+#     When enabled, the game chooses random alternate rooms from the selection in 'Alt Rooms'
+#     This folder is copied from the apworld into the modded program folder (Should be different than the steam install)
+#     though you copy the 'Alt Rooms' folder and place it there yourself.
+#     EARLY DEVELOPMENT! lOTS OF BUGS
+#     """
+#     display_name = "Alt Room Randomizer"
 
 
 @dataclass
 class IslesOfSeaAndSkyOptions(PerGameCommonOptions):
     route_required:                             RouteRequired
-    enable_gemsanity:                           EnableGemsanity
-    enable_notesanity:                          EnableNotesanity
-    enable_locksanity:                          EnableLocksanity
-    enable_snakesanity:                         EnableSnakesanity
-    include_seashells:                          IncludeSeashells
-    include_jellyfish:                          IncludeJellyfish
+    star_pieces_required:                       StarPiecesRequired
+    pyramidions_required:                       PyramidionsRequired
+    shuffle_gems:                               ShuffleGems
+    shuffle_notes:                              ShuffleNotes
     shuffle_elemental_quests:                   ShuffleElementalQuests
     shuffle_big_bell_hits:                      ShuffleBigBellHits
     shuffle_sanctum_shard_hits:                 ShuffleSanctumShardHits
+    shuffle_pyramidions:                        ShufflePyramidions
+    shuffle_meteorites:                         ShuffleMeteorites
+    # enable_locksanity:                          EnableLocksanity
+    # enable_snakesanity:                         EnableSnakesanity
+    # include_seashells:                          IncludeSeashells
+    # include_jellyfish:                          IncludeJellyfish
+    require_serpent_clues:                      RequireSerpentClues
+    warps_in_logic:                             WarpsInLogic
     phoenix_anywhere:                           PhoenixAnywhere
     filler_composition:                         FillerComposition
-    secretsanity:                               EnableSecretsanity
+    # secretsanity:                               EnableSecretsanity
     death_link:                                 DeathLink
     death_amnesty_total:                        DeathLinkAmnesty
     traps:                                      Traps
-    alt_rooms:                                  AltRoomRandomizer
+    # alt_rooms:                                  AltRoomRandomizer
 
 isles_of_sea_and_sky_option_groups = [
     OptionGroup("Goal", [
-        RouteRequired
+        RouteRequired,
+        StarPiecesRequired,
+        PyramidionsRequired
     ]),
 
     OptionGroup("Checks", [
-        EnableGemsanity,
-        EnableNotesanity,
+        ShuffleGems,
+        ShuffleNotes,
         ShuffleElementalQuests,
         ShuffleBigBellHits,
-        ShuffleSanctumShardHits
+        ShuffleSanctumShardHits,
+        ShufflePyramidions,
+        ShuffleMeteorites
+    ]),
+
+    # OptionGroup("Extra Checks", [
+    #     # EnableLocksanity,
+    #     # EnableSnakesanity,
+    #     # EnableSecretsanity,
+    #     # IncludeSeashells,
+    #     # IncludeJellyfish
+    # ]),
+
+    OptionGroup("Logic", [
+        RequireSerpentClues,
+        WarpsInLogic
     ]),
 
     OptionGroup("QOL", [
@@ -162,17 +233,10 @@ isles_of_sea_and_sky_option_groups = [
         FillerComposition
     ]),
 
-    OptionGroup("Extra Checks", [
-        EnableLocksanity,
-        EnableSnakesanity,
-        EnableSecretsanity,
-        IncludeSeashells,
-        IncludeJellyfish
-    ]),
 
-    OptionGroup("Randomizer", [
-        AltRoomRandomizer
-    ]),
+    # OptionGroup("Randomizer", [
+    #     # AltRoomRandomizer
+    # ]),
 
     OptionGroup("Death Link", [
         DeathLink,

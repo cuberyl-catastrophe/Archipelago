@@ -13,12 +13,12 @@ class IslesOfSeaAndSkyItem(Item):
 # Item ID is set to in-game Object Index
 item_table = {
     "Ancient Key":                          ItemData(125,       IC.progression_skip_balancing),
-    "Topaz":                                ItemData(861,       IC.progression_skip_balancing),
+    "Topaz":                                ItemData(863,       IC.progression_skip_balancing),
     "Sapphire":                             ItemData(683,       IC.progression_skip_balancing),
     "Ruby":                                 ItemData(654,       IC.progression_skip_balancing),
     "Diamond":                              ItemData(316,       IC.progression_skip_balancing),
     "Obsidian":                             ItemData(509,       IC.progression_skip_balancing),
-    "Star Piece":                           ItemData(801,       IC.progression_skip_balancing),
+    "Star Piece":                           ItemData(802,       IC.progression_skip_balancing),
     "Ancient Rune Stone":                   ItemData(664,       IC.progression | IC.useful),
     "Topaz Rune Stone":                     ItemData(670,       IC.progression | IC.useful),
     "Sapphire Rune Stone":                  ItemData(669,       IC.progression | IC.useful),
@@ -35,17 +35,18 @@ item_table = {
     "Fire Key":                             ItemData(372,       IC.progression_skip_balancing),
     "Music Note":                           ItemData(498,       IC.progression_skip_balancing),
     "Phoenix Flute":                        ItemData(555,       IC.progression | IC.useful),
-    "Star Viewing Orb":                     ItemData(806,       IC.useful),
+    "Star Viewing Orb":                     ItemData(808,       IC.useful),
     # Mysterious Update
     "Serpent Lock Shard":                   ItemData(710,       IC.progression_skip_balancing),
     "Serpent Circlet":                      ItemData(707,       IC.progression | IC.useful),
     "Pyramidion":                           ItemData(625,       IC.progression_skip_balancing),
+    "Meteorite":                            ItemData(489,       IC.progression_skip_balancing),
     # Cutscenes
     "Awaken Earth Elementals":              ItemData(901,       IC.progression | IC.useful),
     "Awaken Water Elementals":              ItemData(902,       IC.progression | IC.useful),
     "Awaken Fire Elementals":               ItemData(903,       IC.progression | IC.useful),
     "Awaken Wind Elementals":               ItemData(904,       IC.progression | IC.useful),
-    "Activate Shadow Blocks":               ItemData(905,       IC.progression | IC.useful),
+    "Awaken Shadow Elementals":             ItemData(905,       IC.progression | IC.useful),
     "Big Bell Hit - Rolling":               ItemData(911,       IC.progression_skip_balancing),
     "Big Bell Hit - Sunken":                ItemData(912,       IC.progression_skip_balancing),
     "Big Bell Hit - Aggro":                 ItemData(913,       IC.progression_skip_balancing),
@@ -54,6 +55,14 @@ item_table = {
     "Sanctum Shard Hit - Water":            ItemData(922,       IC.progression_skip_balancing),
     "Sanctum Shard Hit - Fire":             ItemData(923,       IC.progression_skip_balancing),
     "Sanctum Shard Hit - Wind":             ItemData(924,       IC.progression_skip_balancing),
+    "Warp Pattern - Earth":                 ItemData(931,       IC.progression),
+    "Warp Pattern - Water":                 ItemData(932,       IC.progression),
+    "Warp Pattern - Fire":                  ItemData(933,       IC.progression),
+    "Warp Pattern - Wind":                  ItemData(934,       IC.progression),
+    "Warp Pattern - Tropic":                ItemData(935,       IC.progression),
+    "Warp Pattern - Lost":                  ItemData(936,       IC.progression),
+    "Warp Pattern - Ancient":               ItemData(937,       IC.progression),
+    "Warp Pattern - Compass":               ItemData(938,       IC.progression),
     # Traps
     "Slow Trap":                            ItemData(7000,      IC.trap),
     "Fast Trap":                            ItemData(7001,      IC.trap),
@@ -70,54 +79,94 @@ item_table = {
 
 
 
-progression_items = {
+progression_items = { # Grants a new ability that opens up the world a ton
 
     "Ancient Rune Stone":                   1,
     "Topaz Rune Stone":                     1,
     "Sapphire Rune Stone":                  1,
     "Ruby Rune Stone":                      1,
     "Diamond Rune Stone":                   1,
+    "Obsidian Rune Stone":                  1,
     "Gopher Gloves":                        1,
     "Frog Flippers":                        1,
     "Salamander Shirt":                     1,
     "Kite Cloak":                           1,
-    "Fire Key":                             3,
+    "Serpent Circlet":                      0,
     "Awaken Earth Elementals":              1,
     "Awaken Water Elementals":              1,
     "Awaken Fire Elementals":               1,
     "Awaken Wind Elementals":               1,
-    "Activate Shadow Blocks":               1,
-    "Sanctum Shard Hit - Earth":            1,
-    "Sanctum Shard Hit - Water":            1,
-    "Sanctum Shard Hit - Fire":             1,
-    "Sanctum Shard Hit - Wind":             1,
+    "Awaken Shadow Elementals":             1,
     "Phoenix Flute":                        1
 }
 
-key_items = {
-    "Ancient Key":                          77,
+key_items = { # Used to open specific locks, unlocks a few checks
+    "Ancient Key":                          76,
+    "Star Piece":                           120,
     "Topaz":                                12,
     "Sapphire":                             12,
     "Ruby":                                 12,
     "Diamond":                              12,
-    "Star Piece":                           120
-}
-
-note_items = {
-    "Music Note":                           24
-}
-
-non_key_items = {
     "Obsidian":                             14,
-    "Obsidian Rune Stone":                  1,
-    "Blue Stone Tablet":                    1,
     "Gold Stone Tablet":                    1,
-    "Star Viewing Orb":                     1,
+    "Blue Stone Tablet":                    1,
+    "Fire Key":                             3,
+    "Serpent Lock Shard":                   0,
     "Big Bell Hit - Rolling":               1,
     "Big Bell Hit - Sunken":                1,
     "Big Bell Hit - Aggro":                 1,
-    "Big Bell Hit - Nunatak":               1
+    "Big Bell Hit - Nunatak":               1,
+    "Sanctum Shard Hit - Earth":            1,
+    "Sanctum Shard Hit - Water":            1,
+    "Sanctum Shard Hit - Fire":             1,
+    "Sanctum Shard Hit - Wind":             1,
+    "Warp Pattern - Earth":                 0,
+    "Warp Pattern - Water":                 0,
+    "Warp Pattern - Fire":                  0,
+    "Warp Pattern - Wind":                  0,
+    "Warp Pattern - Tropic":                0,
+    "Warp Pattern - Lost":                  0,
+    "Warp Pattern - Ancient":               0,
+    "Warp Pattern - Compass":               0
 }
+
+non_key_items = { # Does not unlock new checks
+    "Pyramidion":                           0,
+    "Meteorite":                            0,
+    "Star Viewing Orb":                     1
+}
+
+note_items = { # Music notes are in their own pool until Shuffle Notes gets reworked
+    "Music Note":                           24
+}
+
+circlet_items = {
+    "Serpent Lock Shard":                   8,
+    "Serpent Circlet":                      1
+}
+
+mysterious_items = {
+    "Ancient Key":                          1,
+    "Obsidian":                             4,
+    "Pyramidion":                           30
+}
+
+meteorite_items = {
+    "Meteorite":                            4,
+    "Warp Pattern - Earth":                 1,
+    "Warp Pattern - Water":                 1,
+    "Warp Pattern - Fire":                  1,
+    "Warp Pattern - Wind":                  1,
+    "Warp Pattern - Tropic":                1,
+    "Warp Pattern - Lost":                  1,
+    "Warp Pattern - Ancient":               1,
+    "Warp Pattern - Compass":               1
+}
+
+mysterious_meteorite_items = {
+    "Meteorite":                            1
+}
+
 
 # 52 total
 junk_weights = {
