@@ -61,7 +61,7 @@ class IslesOfSeaAndSkySettings(Group):
         """Path to IslesOfSeaAndSky Vanilla data file"""
         description = "Isles Of Sea And Sky Vanilla File"
         md5s = [
-            "9B8A1EFD76095F0796CD5AA472DF1BD7" # steam, v2.6
+            "FD3AE5AE6D9DC29F7A7BF3FCF63CE96D" # steam, v2.6a first release
             #"",  # epic
             # "",  # itch.io, does not work
             ]

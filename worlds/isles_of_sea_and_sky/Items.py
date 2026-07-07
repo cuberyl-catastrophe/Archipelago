@@ -13,12 +13,12 @@ class IslesOfSeaAndSkyItem(Item):
 # Item ID is set to in-game Object Index
 item_table = {
     "Ancient Key":                          ItemData(125,       IC.progression_skip_balancing),
-    "Topaz":                                ItemData(861,       IC.progression_skip_balancing),
+    "Topaz":                                ItemData(863,       IC.progression_skip_balancing),
     "Sapphire":                             ItemData(683,       IC.progression_skip_balancing),
     "Ruby":                                 ItemData(654,       IC.progression_skip_balancing),
     "Diamond":                              ItemData(316,       IC.progression_skip_balancing),
     "Obsidian":                             ItemData(509,       IC.progression_skip_balancing),
-    "Star Piece":                           ItemData(801,       IC.progression_skip_balancing),
+    "Star Piece":                           ItemData(802,       IC.progression_skip_balancing),
     "Ancient Rune Stone":                   ItemData(664,       IC.progression | IC.useful),
     "Topaz Rune Stone":                     ItemData(670,       IC.progression | IC.useful),
     "Sapphire Rune Stone":                  ItemData(669,       IC.progression | IC.useful),
@@ -35,7 +35,7 @@ item_table = {
     "Fire Key":                             ItemData(372,       IC.progression_skip_balancing),
     "Music Note":                           ItemData(498,       IC.progression_skip_balancing),
     "Phoenix Flute":                        ItemData(555,       IC.progression | IC.useful),
-    "Star Viewing Orb":                     ItemData(806,       IC.useful),
+    "Star Viewing Orb":                     ItemData(808,       IC.useful),
     # Mysterious Update
     "Serpent Lock Shard":                   ItemData(710,       IC.progression_skip_balancing),
     "Serpent Circlet":                      ItemData(707,       IC.progression | IC.useful),
