@@ -139,17 +139,17 @@ advancement_table = {
     
     # Keys on the Frozen Spire may be broken due to in-game randomness
     "Wind A1 - Ancient Key":                        AdvData(105011404, "Frozen Spire Post-Rune"), # glyph puzzle
-    "Wind A3 - Ancient Key":                        AdvData(105031307, "Frozen Spire Post-Rune"), # k cloak
+    "Wind A3 - Ancient Key":                        AdvData(105031307, "Frozen Spire"), # k cloak
     "Wind B1 - Ancient Key":                        AdvData(105111603, "Frozen Spire Post-Rune"), # double check req
     "Wind C2 - Ancient Key":                        AdvData(105220705, "Frozen Spire"), # d quest
     "Wind C4 - Ancient Key":                        AdvData(105242109, "Frozen Spire"),
-    "Wind D3 - Ancient Key":                        AdvData(105331507, "Frozen Spire Post-Rune"), # k cloak
+    "Wind D3 - Ancient Key":                        AdvData(105331507, "Frozen Spire"), # k cloak
     "Wind D4 - E - Ancient Key":                    AdvData(105341405, "Frozen Spire Post-Rune"), # s rune
     "Wind D4 - NW1 - Ancient Key":                  AdvData(105340304, "Frozen Spire"), # d quest
     "Wind D4 - NW2 - Ancient Key":                  AdvData(105340404, "Frozen Spire"), # d quest
     "Wind D4 - NW3 - Ancient Key":                  AdvData(105340504, "Frozen Spire"), # d quest
     "Wind E2 - S - Ancient Key":                    AdvData(105421609, "Frozen Spire"), # d quest
-    "Wind E2 - NE - Ancient Key":                   AdvData(105422203, "Frozen Spire Post-Rune"), # d quest
+    "Wind E2 - NE - Ancient Key":                   AdvData(105422203, "Frozen Spire"), # d quest
     "Wind E4 - E - Ancient Key":                    AdvData(105440806, "Frozen Spire Post-Rune"), # d rune
     "Wind E4 - SW - Ancient Key":                   AdvData(105440310, "Frozen Spire Post-Rune"), # k cloak, d quest
 
@@ -208,17 +208,17 @@ advancement_table = {
     "Wind D1 - E - Diamond":                        AdvData(105311612, "Frozen Spire Post-Rune"), # d rune stone
     "Wind D1 - W - Diamond":                        AdvData(105310210, "Frozen Spire Post-Rune"), # d rune stone
     "Wind D2 - Diamond":                            AdvData(105321303, "Frozen Spire"),
-    "Wind D4 - Diamond":                            AdvData(105340803, "Frozen Spire Post-Rune"),
+    "Wind D4 - Diamond":                            AdvData(105340803, "Frozen Spire"),
     "Nunatak B0 - Diamond":                         AdvData(111101003, "Sea Nunatak"), # diamond quest complete
     "Tropic A1 - Diamond":                          AdvData(113011204, "Star Tropic"), # ancient rune stone, all legendaries
 
     "Stone A2 - Obsidian":                          AdvData(101021409, "Stony Cliffs Post-Rune"),  # stone tablet blue, tablet golda
     "Stone D1 - Obsidian":                          AdvData(101312204, "Stony Cliffs"),
     "Water C4 - Obsidian":                          AdvData(103241803, "Tidal Reef Post-Rune"),  # shell puzzle, f flippers
-    "Water D0 - Obsidian":                          AdvData(103301004, "Tidal Reef Post-Rune"),  # frog flippers
+    "Water D0 - Obsidian":                          AdvData(103301004, "Tidal Reef"), 
     "Fire D4 - Obsidian":                           AdvData(104341606, "Raging Volcano Post-Rune"),  # idol puzzle
     "Fire E0 - Obsidian":                           AdvData(104401511, "Raging Volcano Post-Rune"),  # salamander shirt
-    "Wind B0 - Obsidian":                           AdvData(105100205, "Frozen Spire"),
+    "Wind B0 - Obsidian":                           AdvData(105100205, "Frozen Spire Post-Rune"),
     "Wind A1 - Obsidian":                           AdvData(105010904, "Frozen Spire Post-Rune"), # Glyph Puzzle
     "Rolling A1 - Obsidian":                        AdvData(108011803, "Rolling Rocks"),  # gopher gloves, 7 stars
     "Sunken A0 - Obsidian":                         AdvData(109002010, "Sunken Island"),  # frog flippers
@@ -258,7 +258,7 @@ advancement_table = {
     "Water A2 - S - Star Piece":                    AdvData(103021312, "Tidal Reef Post-Rune"), # f flippers
     "Water A2 - N - Star Piece":                    AdvData(103020803, "Tidal Reef Post-Rune"), # f flippers s quest || k cloak
     "Water A4 - Star Piece":                        AdvData(103042108, "Tidal Reef S"), # f flippers
-    "Water B1 - Star Piece":                        AdvData(103110412, "Tidal Reef"), # f flippers
+    "Water B1 - Star Piece":                        AdvData(103110412, "Tidal Reef"), # s quest
     "Water B4 - Star Piece":                        AdvData(103142208, "Tidal Reef S"),
     "Water C0 - Star Piece":                        AdvData(103201807, "Tidal Reef"), # s quest
     "Water C1 - W - Star Piece":                    AdvData(103210204, "Tidal Reef"),
@@ -304,13 +304,13 @@ advancement_table = {
     "Wind A3 - Star Piece":                         AdvData(105031012, "Frozen Spire"), # k cloak
     "Wind B0 - Star Piece":                         AdvData(105101606, "Frozen Spire Post-Rune"),
     "Wind B1 - Star Piece":                         AdvData(105111309, "Frozen Spire"),
-    "Wind B2 - S - Star Piece":                     AdvData(105120212, "Frozen Spire Post-Rune"),
-    "Wind B2 - N - Star Piece":                     AdvData(105121703, "Frozen Spire Post-Rune"), # d quest
-    "Wind B3 - Star Piece":                         AdvData(105131907, "Frozen Spire Post-Rune"), # d quest
+    "Wind B2 - S - Star Piece":                     AdvData(105120212, "Frozen Spire"),
+    "Wind B2 - N - Star Piece":                     AdvData(105121703, "Frozen Spire"), # d quest
+    "Wind B3 - Star Piece":                         AdvData(105131907, "Frozen Spire"), # d quest
     "Wind C2 - Star Piece":                         AdvData(105220204, "Frozen Spire"), # d quest
     "Wind C3 - NE - Star Piece":                    AdvData(105231703, "Frozen Spire"), # d rune
     "Wind C3 - SW - Star Piece":                    AdvData(105230211, "Frozen Spire"), # d rune
-    "Wind D2 - Star Piece":                         AdvData(105320208, "Frozen Spire Post-Rune"), # k cloak
+    "Wind D2 - Star Piece":                         AdvData(105320208, "Frozen Spire"), # k cloak
     "Wind D4 - Star Piece":                         AdvData(105341904, "Frozen Spire"),
     "Wind E1 - W - Star Piece":                     AdvData(105410209, "Frozen Spire Post-Rune"), # k cloak, g gloves
     "Wind E1 - SE - Star Piece":                    AdvData(105410911, "Frozen Spire Post-Rune"), # d quest, r quest
