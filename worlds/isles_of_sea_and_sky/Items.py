@@ -40,7 +40,7 @@ item_table = {
     "Serpent Lock Shard":                   ItemData(710,       IC.progression_skip_balancing),
     "Serpent Circlet":                      ItemData(707,       IC.progression | IC.useful),
     "Pyramidion":                           ItemData(625,       IC.progression_skip_balancing),
-    "Meteorite":                            ItemData(489,       IC.progression_skip_balancing),
+    "Meteorite":                            ItemData(489,       IC.filler),
     # Cutscenes
     "Awaken Earth Elementals":              ItemData(901,       IC.progression | IC.useful),
     "Awaken Water Elementals":              ItemData(902,       IC.progression | IC.useful),

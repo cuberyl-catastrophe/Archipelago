@@ -27,7 +27,7 @@ class StarPiecesRequired(Range):
 
 class PyramidionsRequired(Range):
     """
-    How many Pytramidions are required to get the mysterious ending
+    How many Pyramidions are required to get the mysterious ending
     """
     display_name = "Required Pyramidions Pieces"
     range_start = 1

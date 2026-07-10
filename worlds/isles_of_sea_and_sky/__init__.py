@@ -10,7 +10,7 @@ from .Locations import IslesOfSeaAndSkyAdvancement, advancement_table, exclusion
 from .Regions import isles_of_sea_and_sky_regions, link_isles_of_sea_and_sky_areas
 from .Rules import set_rules, set_completion_rules
 #from worlds.generic.Rules import exclusion_rules
-from BaseClasses import Region, Entrance, Tutorial, Item
+from BaseClasses import Region, Entrance, Tutorial, Item, ItemClassification as IC
 from .Options import IslesOfSeaAndSkyOptions, isles_of_sea_and_sky_option_groups
 from worlds.AutoWorld import World, WebWorld
 import worlds.LauncherComponents as LauncherComponents
@@ -512,5 +512,8 @@ class IslesOfSeaAndSkyWorld(World):
             name = "Seashell"
 
         item_data = item_table[name]
-        item = IslesOfSeaAndSkyItem(name, item_data.classification, item_data.code, self.player)
+        classification = item_data.classification
+        if name  == "Pyramidion" and self.options.route_required != "mysterious_ending":
+            classification = IC.filler
+        item = IslesOfSeaAndSkyItem(name, classification, item_data.code, self.player)
         return item
