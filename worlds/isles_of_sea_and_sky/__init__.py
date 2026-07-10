@@ -7,7 +7,7 @@ from .Items import IslesOfSeaAndSkyItem, item_table, non_key_items, key_items, n
 from .Locations import IslesOfSeaAndSkyAdvancement, advancement_table, exclusion_table, \
     jellyfish_table, seashell_table, note_table, circlet_table, mysterious_table, meteorite_table,\
     circlet_meteorite_table, locksanity_table, snakesanity_table, secrets_table
-from .Regions import isles_of_sea_and_sky_regions, link_isles_of_sea_and_sky_areas
+from .Regions import isles_of_sea_and_sky_regions, circlet_regions, meteorite_regions, link_isles_of_sea_and_sky_areas
 from .Rules import set_rules, set_completion_rules
 #from worlds.generic.Rules import exclusion_rules
 from BaseClasses import Region, Entrance, Tutorial, Item, ItemClassification as IC
@@ -500,7 +500,12 @@ class IslesOfSeaAndSkyWorld(World):
 
             return ret
 
-        self.multiworld.regions += [IslesOfSeaAndSkyRegion(*r) for r in isles_of_sea_and_sky_regions]
+        regions = list(isles_of_sea_and_sky_regions)
+        if self.options.shuffle_pyramidions or self.options.route_required == "mysterious_ending":
+            regions += circlet_regions
+        if self.options.warps_in_logic:
+            regions += meteorite_regions
+        self.multiworld.regions += [IslesOfSeaAndSkyRegion(*r) for r in regions]
         link_isles_of_sea_and_sky_areas(self.multiworld, self.player)
 
     def fill_slot_data(self):

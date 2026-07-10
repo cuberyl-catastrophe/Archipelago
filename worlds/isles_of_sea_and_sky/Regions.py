@@ -2,8 +2,15 @@ from BaseClasses import MultiWorld
 
 
 def link_isles_of_sea_and_sky_areas(world: MultiWorld, player: int):
+    # Optional region groups may be skipped depending on options, so only connect entrances/regions
+    # that were actually created
+    created_regions = {region.name for region in world.get_regions(player)}
+    created_exits = {region_exit.name
+                     for region in world.get_regions(player)
+                     for region_exit in region.exits}
     for (region_exit, region) in mandatory_connections:
-        world.get_entrance(region_exit, player).connect(world.get_region(region, player))
+        if region in created_regions and region_exit in created_exits:
+            world.get_entrance(region_exit, player).connect(world.get_region(region, player))
 
 
 # (Region name, list of exits)
@@ -13,13 +20,11 @@ isles_of_sea_and_sky_regions = [
     
     ("Ancient Isle",                    ["Ancient East Exit", "Ancient West Exit", "Ancient North Exit", "Abstract Phoenix Exit", "Ancient Cavern Entrance"]),
     ("Ancient Cavern",                  ["Ancient Cavern Exit to Isle"]),
-    ("Ancient Cavern N",                ["Ancient Cavern N Exit to Cavern"]),
 
     ("Stony Cliffs",                    ["Stony Exit To Post-Rune", "Stony West Exit", "Stony East Exit", "Stony Exit to Wheel Room", "Stony Warp"]),
     ("Stony Cliffs Post-Rune",          ["Stony Post-Rune Exit"]),
     ("Stony Cliffs NW",                 ["Stony NW East Exit", "Stony NW West Exit", "Stony Phoenix"]),
-    ("Stony Cliffs Wheel Room",         []), # Dead end room with 1 entrance, no backwards logic needed.
-    
+
     ("Tidal Reef",                      ["Tidal Exit", "Tidal Exit To Post-Rune", "Tidal Exit To S",]),
     ("Tidal Reef S",                    ["Tidal S Exit", "Tidal S Exit To Post-Rune", "Tidal Phoenix", "Tidal Warp"]),
     ("Tidal Reef Post-Rune",            ["Tidal Exit From Post-Rune", "Tidal S Entrance From Post-Rune"]),
@@ -37,9 +42,7 @@ isles_of_sea_and_sky_regions = [
                                          "Serpent Entrance To Head", "Serpent Solve A2 Puzzles"]), # A2-A3
     ("Serpent Stacks Post-Rune",        ["Serpent Post-Rune To Core"]), # Below Obsidian Rune Stone A4
     ("Serpent Stacks Core",             ["Serpent Core To Lock", "Serpent Core To Tail"]), # Lock Room A5
-    ("Serpent Stacks Lock",             []), # Lock Room A5 with 4 lock shards
     ("Serpent Stacks Tail",             []), # Able to reach A8 and below
-    ("Serpent Stacks A2 Pyramidions",   []), # Able to see the code at Water A3
 
         
     ("Sanctum",                         ["Sanctum Exit", "Elemental Rock Path"]),
@@ -51,21 +54,11 @@ isles_of_sea_and_sky_regions = [
     ("Aggro Crag",                      ["Aggro Exit"]),
     ("Locked",                          ["Locked Exit"]),
     ("Lost Landing",                    ["Lost Exit", "Lost Phoenix"]),
-    ("Lost Landing Compass",            ["Lost Compass Exit to Landing"]),
     ("Star Tropic",                     ["Star East Exit", "Star West Exit"]),
-    ("Star Tropic Meteorite",           ["Star Meteorite Exit to Tropic"]),
     ("Sunken Island",                   ["Sunken Exit"]),
     ("Sea Nunatak",                     ["Nunatak Exit"]),
     ("Shoal",                           ["Shoal Exit", "Shoal to Post-Circlet"]),
-    ("Shoal Post-Circlet",              ["Shoal Post-Circlet to North-East"]),
-    ("Shoal North-East",                []),
     ("Beast Bridge",                    ["Beast Exit", "Beast Bridge Phoenix", "Glow Rocks Destroyed"]),
-    
-    ("Forgotten Lagoon",                ["Lagoon Exit to Forgotten Sea", "Lagoon Exit to South Lagoon"]),
-    ("Forgotten Lagoon South",          []),
-    ("Forgotten Lagoon Meteorite",      ["Lagoon Meteorite Exit to Lagoon"]), #TODO
-
-    ("Totem",                           []),
 
     ("Phoenix Hub",                     ["Lost Phoenix Entrance", "Stony Phoenix Entrance", "Tidal Phoenix Entrance",
                                          "Raging Phoenix Entrance", "Frozen Phoenix Entrance", "Beast Bridge Phoenix Entrance"]),
@@ -85,6 +78,24 @@ isles_of_sea_and_sky_regions = [
     ("Forgotten Sea",                   ["Forgotten Sea Exit to Diamond Sea", "Forgotten Whirlpool", "Forgotten Lagoon Entrance"]),
     ("Beast Sea",                       ["Beast Entrance", "Beast Sea Exit"]),
     ("Lost Sea",                        ["Lost Sea Exit", "Lost Entrance", "Star West Entrance", "Lost Whirlpool"]),
+]
+
+circlet_regions = [
+    ("Stony Cliffs Wheel Room",         []), # Dead end room with 1 entrance, no backwards logic needed.
+    ("Serpent Stacks Lock",             []), # Lock Room A5 with 4 lock shards
+    ("Serpent Stacks A2 Pyramidions",   []), # Able to see the code at Water A3
+    ("Shoal Post-Circlet",              ["Shoal Post-Circlet to North-East"]),
+    ("Shoal North-East",                []),
+    ("Forgotten Lagoon",                ["Lagoon Exit to Forgotten Sea", "Lagoon Exit to South Lagoon"]),
+    ("Forgotten Lagoon South",          []),
+    ("Forgotten Lagoon Meteorite",      ["Lagoon Meteorite Exit to Lagoon"]), #TODO
+]
+
+meteorite_regions = [
+    ("Ancient Cavern N",                ["Ancient Cavern N Exit to Cavern"]),
+    ("Lost Landing Compass",            ["Lost Compass Exit to Landing"]),
+    ("Star Tropic Meteorite",           ["Star Meteorite Exit to Tropic"]),
+    ("Totem",                           []),
 ]
 
 # (Entrance, region pointed to)

@@ -17,6 +17,9 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
 
     set_rechecks(world)
 
+    circlet_in_logic = world.options.shuffle_pyramidions or world.options.route_required.current_key == "mysterious_ending"
+    warps_in_logic = bool(world.options.warps_in_logic)
+
     ### Entrances
     world.set_rule(world.get_entrance("Ancient West Exit"),
                    CanReachRegion("Ruby Sea"))  # Obsidian Sea
@@ -162,9 +165,10 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_entrance("Shoal to Post-Circlet"),
                    Has("Serpent Circlet")
                    & Has("Kite Cloak"))
-    world.set_rule(world.get_entrance("Shoal Post-Circlet to North-East"),
-                   [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
-                   | CanReachRegion("Frozen Spire"))
+    if circlet_in_logic:
+        world.set_rule(world.get_entrance("Shoal Post-Circlet to North-East"),
+                       [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                       | CanReachRegion("Frozen Spire"))
                    
 
     world.set_rule(world.get_entrance("Locked Entrance"),
@@ -195,9 +199,10 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                     & CanReachRegion("Ruby Sea")
                     )
                    
-    world.set_rule(world.get_entrance("Lagoon Exit to South Lagoon"),
-                   Has("Frog Flippers")
-                   & Has("Ancient Key", 67))
+    if circlet_in_logic:
+        world.set_rule(world.get_entrance("Lagoon Exit to South Lagoon"),
+                       Has("Frog Flippers")
+                       & Has("Ancient Key", 67))
     
     world.set_rule(world.get_entrance("Abstract Phoenix Exit"),
                    Has("Phoenix Flute",
@@ -272,17 +277,19 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                        & CanReachRegion("Lost Landing Compass")
                     ))
 
-    world.set_rule(world.get_entrance("Star Meteorite Exit to Tropic"),
-                    Has("Ancient Rune Stone"))
-    
-    world.set_rule(world.get_entrance("Lost Compass Exit to Landing"),
-                    True_())
-    
-    world.set_rule(world.get_entrance("Ancient Cavern N Exit to Cavern"),
-                    True_())
-    
-    world.set_rule(world.get_entrance("Lagoon Meteorite Exit to Lagoon"),
-                    Has("Frog Flippers"))
+    if warps_in_logic:
+        world.set_rule(world.get_entrance("Star Meteorite Exit to Tropic"),
+                        Has("Ancient Rune Stone"))
+
+        world.set_rule(world.get_entrance("Lost Compass Exit to Landing"),
+                        True_())
+
+        world.set_rule(world.get_entrance("Ancient Cavern N Exit to Cavern"),
+                        True_())
+
+    if circlet_in_logic:
+        world.set_rule(world.get_entrance("Lagoon Meteorite Exit to Lagoon"),
+                        Has("Frog Flippers"))
 
     if False: # world.options.enable_locksanity:
         world.set_rule(world.get_location("Overworld - Star Lock 3"),
