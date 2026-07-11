@@ -1285,6 +1285,9 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Water A0 - S - Ancient Key"),
                    Has("Frog Flippers"))
 
+    world.set_rule(world.get_location("Water A2 - Music Note"),
+                   Has("Sapphire Rune Stone") | Has("Frog Flippers"))
+
     world.set_rule(world.get_location("Water A2 - Ancient Key"),
                    Has("Awaken Water Elementals")
                    & (Has("Kite Cloak")
@@ -1886,6 +1889,7 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
                         & Has("Awaken Earth Elementals"))
         world.set_rule(world.get_location("Water A3 Serpent Secret - Pyramidion"),
                         Has("Serpent Circlet")
+                        & (Has("Sapphire Rune Stone") | Has("Frog Flippers"))
                         & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
                             | CanReachRegion("Aggro Crag")
                         ))

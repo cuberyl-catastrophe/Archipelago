@@ -102,7 +102,7 @@ advancement_table = {
     "Stone Dungeon E2 - Ancient Key":               AdvData(102420803, "Stony Cliffs Post-Rune"),
 
     "Water A0 - E - Ancient Key":                   AdvData(103002110, "Tidal Reef"), # s rune
-    "Water A0 - S - Ancient Key":                   AdvData(103001712, "Tidal Reef Post-Rune"), # frog flippers
+    "Water A0 - S - Ancient Key":                   AdvData(103001712, "Tidal Reef"), # frog flippers
     "Water A2 - Ancient Key":                       AdvData(103021007, "Tidal Reef Post-Rune"), # frog flippers, s quest
     "Water B3 - Ancient Key":                       AdvData(103132208, "Tidal Reef"), # frog flippers
     "Water C0 - Ancient Key":                       AdvData(103200408, "Tidal Reef"), # s quest
@@ -392,7 +392,7 @@ mysterious_table = {
 
     "Stone D0 Serpent Secret - Pyramidion":         AdvData(101301908, "Stony Cliffs Wheel Room"),
     "Stone D1 Serpent Secret - Pyramidion":         AdvData(101310206, "Stony Cliffs"),
-    "Water A3 Serpent Secret - Pyramidion":         AdvData(103031008, "Tidal Reef Post-Rune"),
+    "Water A3 Serpent Secret - Pyramidion":         AdvData(103031008, "Tidal Reef"),
     "Fire E3 Serpent Secret - Pyramidion":          AdvData(104431712, "Raging Volcano Post-Rune"),
     "Wind A1 Serpent Secret - Pyramidion":          AdvData(105011708, "Frozen Spire Post-Rune"),
     "Wind E3 Serpent Secret - Pyramidion":          AdvData(105432204, "Frozen Spire Post-Rune"),
@@ -460,7 +460,7 @@ note_table = {
     "Stone D1 - Music Note":                        AdvData(101310510, "Stony Cliffs"), # topaz quest
     "Stone D4 - Music Note":                        AdvData(101341907, "Stony Cliffs Post-Rune"), # topaz rune
 
-    "Water A2 - Music Note":                        AdvData(103021807, "Tidal Reef Post-Rune"), # s rune
+    "Water A2 - Music Note":                        AdvData(103021807, "Tidal Reef"), # s rune
     "Water B0 - Music Note":                        AdvData(103100208, "Tidal Reef"), # s rune
     "Water C1 - Music Note":                        AdvData(103210611, "Tidal Reef"),
     "Water D1 - Music Note":                        AdvData(103312203, "Tidal Reef Post-Rune"), # s rune
