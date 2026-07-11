@@ -1056,7 +1056,8 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
                    & Has("Star Piece", 15))
     
     world.set_rule(world.get_location("Stone D3 - Ancient Key"),
-                   Has("Awaken Earth Elementals"))
+                   Has("Awaken Earth Elementals")
+                   & Has("Gopher Gloves"))
 
     world.set_rule(world.get_location("Stone Dungeon C1 - Ancient Key"),
                    Has("Gopher Gloves")
