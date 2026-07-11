@@ -157,7 +157,7 @@ class IslesOfSeaAndSkyWorld(World):
         options = self.options
 
         # Warps are mandatory when meteorites are in logic
-        options.warps_in_logic.value = options.warps_in_logic.value | options.shuffle_meteorites.value;
+        options.warps_in_logic.value = options.warps_in_logic.value | options.shuffle_meteorites.value
 
         passthrough = getattr(self.multiworld, "re_gen_passthrough", {}).get(self.game)
         if not passthrough:
@@ -216,29 +216,28 @@ class IslesOfSeaAndSkyWorld(World):
         junk_pool = junk_weights.copy()
         trap_pool = trap_weights.copy()
 
-        if (self.options.shuffle_pyramidions or (self.options.route_required == "mysterious_ending")):
+        if self.options.circlet_content_enabled:
             for name, num in circlet_items.items():
-                if name in progression_pool: progression_pool[name] += num;
-                if name in key_pool: key_pool[name] += num;
-                if name in non_key_pool: non_key_pool[name] += num;
+                if name in progression_pool: progression_pool[name] += num
+                if name in key_pool: key_pool[name] += num
+                if name in non_key_pool: non_key_pool[name] += num
 
-        if (self.options.shuffle_pyramidions or (self.options.route_required == "mysterious_ending")):
             for name, num in mysterious_items.items():
-                if name in progression_pool: progression_pool[name] += num;
-                if name in key_pool: key_pool[name] += num;
-                if name in non_key_pool: non_key_pool[name] += num;
-            
-            if self.options.shuffle_meteorites:
-                for name, num in mysterious_meteorite_items.items():
-                    if name in progression_pool: progression_pool[name] += num;
-                    if name in key_pool: key_pool[name] += num;
-                    if name in non_key_pool: non_key_pool[name] += num;
+                if name in progression_pool: progression_pool[name] += num
+                if name in key_pool: key_pool[name] += num
+                if name in non_key_pool: non_key_pool[name] += num
+
 
         if self.options.shuffle_meteorites:
             for name, num in meteorite_items.items():
-                if name in progression_pool: progression_pool[name] += num;
-                if name in key_pool: key_pool[name] += num;
-                if name in non_key_pool: non_key_pool[name] += num;
+                if name in progression_pool: progression_pool[name] += num
+                if name in key_pool: key_pool[name] += num
+                if name in non_key_pool: non_key_pool[name] += num
+            if self.options.circlet_content_enabled:
+                for name, num in mysterious_meteorite_items.items():
+                    if name in progression_pool: progression_pool[name] += num
+                    if name in key_pool: key_pool[name] += num
+                    if name in non_key_pool: non_key_pool[name] += num
         
         # Remove the pre-placed items from generation
         key_pool['Ancient Key'] -= 6
@@ -447,7 +446,7 @@ class IslesOfSeaAndSkyWorld(World):
                                   for loc_name, loc_data in note_table.items()
                                   if loc_data.region == region_name]
                 
-            if (self.options.shuffle_pyramidions or (self.options.route_required.current_key == "mysterious_ending")):
+            if self.options.circlet_content_enabled:
                 ret.locations += [IslesOfSeaAndSkyAdvancement(self.player, loc_name, loc_data.id, ret)
                                 for loc_name, loc_data in circlet_table.items()
                                 if loc_data.region == region_name]
@@ -456,7 +455,7 @@ class IslesOfSeaAndSkyWorld(World):
                                 for loc_name, loc_data in circlet_meteorite_table.items()
                                 if loc_data.region == region_name]
 
-            if (self.options.shuffle_pyramidions or (self.options.route_required.current_key == "mysterious_ending")):
+            if self.options.circlet_content_enabled:
                 ret.locations += [IslesOfSeaAndSkyAdvancement(self.player, loc_name, loc_data.id, ret)
                                 for loc_name, loc_data in mysterious_table.items()
                                 if loc_data.region == region_name]
@@ -501,7 +500,7 @@ class IslesOfSeaAndSkyWorld(World):
             return ret
 
         regions = list(isles_of_sea_and_sky_regions)
-        if self.options.shuffle_pyramidions or self.options.route_required == "mysterious_ending":
+        if self.options.circlet_content_enabled:
             regions += circlet_regions
         if self.options.warps_in_logic:
             regions += meteorite_regions

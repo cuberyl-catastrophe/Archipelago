@@ -118,11 +118,14 @@ class RequireSerpentClues(DefaultOnToggle):
     If disabled, you are expected to be able to solve serpent puzzles without their clue.
     This option does nothing is Shuffle Pyramidions is set to false.
     """
+    display_name = "Require Serpent Clues"
+
 class WarpsInLogic(Toggle):
     """
     If enabled, you may be expected to use warps and other meteor quest mechanics to reach Star Tropic and Forgotten Lagoon.
     If Shuffle Meteorites is enabled then this is forced on.
     """
+    display_name = "Warps In Logic"
 
 class PhoenixAnywhere(Toggle):
     """
@@ -197,6 +200,10 @@ class IslesOfSeaAndSkyOptions(PerGameCommonOptions):
     death_amnesty_total:                        DeathLinkAmnesty
     traps:                                      Traps
     # alt_rooms:                                  AltRoomRandomizer
+
+    @property
+    def circlet_content_enabled(self) -> bool:
+        return bool(self.shuffle_pyramidions) or self.route_required == "mysterious_ending"
 
 isles_of_sea_and_sky_option_groups = [
     OptionGroup("Goal", [

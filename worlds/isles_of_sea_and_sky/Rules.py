@@ -17,9 +17,6 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
 
     set_rechecks(world)
 
-    circlet_in_logic = world.options.shuffle_pyramidions or world.options.route_required.current_key == "mysterious_ending"
-    warps_in_logic = bool(world.options.warps_in_logic)
-
     ### Entrances
     world.set_rule(world.get_entrance("Ancient West Exit"),
                    CanReachRegion("Ruby Sea"))  # Obsidian Sea
@@ -165,7 +162,7 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_entrance("Shoal to Post-Circlet"),
                    Has("Serpent Circlet")
                    & Has("Kite Cloak"))
-    if circlet_in_logic:
+    if world.options.circlet_content_enabled:
         world.set_rule(world.get_entrance("Shoal Post-Circlet to North-East"),
                        [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
                        | CanReachRegion("Frozen Spire"))
@@ -199,7 +196,7 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                     & CanReachRegion("Ruby Sea")
                     )
                    
-    if circlet_in_logic:
+    if world.options.circlet_content_enabled:
         world.set_rule(world.get_entrance("Lagoon Exit to South Lagoon"),
                        Has("Frog Flippers")
                        & Has("Ancient Key", 67))
@@ -277,7 +274,7 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                        & CanReachRegion("Lost Landing Compass")
                     ))
 
-    if warps_in_logic:
+    if world.options.warps_in_logic:
         world.set_rule(world.get_entrance("Star Meteorite Exit to Tropic"),
                         Has("Ancient Rune Stone"))
 
@@ -287,7 +284,7 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
         world.set_rule(world.get_entrance("Ancient Cavern N Exit to Cavern"),
                         True_())
 
-    if circlet_in_logic:
+    if world.options.circlet_content_enabled:
         world.set_rule(world.get_entrance("Lagoon Meteorite Exit to Lagoon"),
                         Has("Frog Flippers"))
 
@@ -946,7 +943,7 @@ def set_serpent_stacks(world: "IslesOfSeaAndSkyWorld"):
                    Has("Awaken Wind Elementals"))
     
     
-    if world.options.shuffle_pyramidions or (world.options.route_required.current_key == "mysterious_ending"):
+    if world.options.circlet_content_enabled:
         world.set_rule(world.get_location("Serpent A4 - Serpent Lock Shard"),
                     Has("Awaken Earth Elementals")
                     & Has("Gopher Gloves"))
@@ -1883,7 +1880,7 @@ def set_sanctum(world: "IslesOfSeaAndSkyWorld"):
                        Has("Ancient Key", 60))
 
 def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
-    if world.options.shuffle_pyramidions or (world.options.route_required.current_key == "mysterious_ending"):
+    if world.options.circlet_content_enabled:
         world.set_rule(world.get_location("Stone D1 Serpent Secret - Pyramidion"),
                         Has("Serpent Circlet")
                         & Has("Awaken Earth Elementals"))
