@@ -1909,6 +1909,8 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
             
         world.set_rule(world.get_location("Wind E3 Serpent Secret - Pyramidion"),
                         Has("Serpent Circlet")
+                        & Has("Awaken Wind Elementals")
+                        & Has("Awaken Earth Elementals")
                         & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
                             | CanReachRegion("Sea Nunatak")
                         ))
