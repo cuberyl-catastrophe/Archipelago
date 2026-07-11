@@ -101,8 +101,8 @@ advancement_table = {
     "Stone Dungeon D2 - Ancient Key":               AdvData(102320211, "Stony Cliffs Post-Rune"), # t quest
     "Stone Dungeon E2 - Ancient Key":               AdvData(102420803, "Stony Cliffs Post-Rune"),
 
-    "Water A0 - E - Ancient Key":                   AdvData(103002110, "Tidal Reef Post-Rune"), # s rune
-    "Water A0 - S - Ancient Key":                   AdvData(103001712, "Tidal Reef Post-Rune"), # frog flippers
+    "Water A0 - E - Ancient Key":                   AdvData(103002110, "Tidal Reef"), # s rune
+    "Water A0 - S - Ancient Key":                   AdvData(103001712, "Tidal Reef"), # frog flippers
     "Water A2 - Ancient Key":                       AdvData(103021007, "Tidal Reef Post-Rune"), # frog flippers, s quest
     "Water B3 - Ancient Key":                       AdvData(103132208, "Tidal Reef"), # frog flippers
     "Water C0 - Ancient Key":                       AdvData(103200408, "Tidal Reef"), # s quest
@@ -254,7 +254,7 @@ advancement_table = {
     "Stone D1 - Music Puzzle Star Piece 3":         AdvData(99901313, "Stony Cliffs"), # t rune, t quest, ancient key
     "Stone A2 - Tablet Puzzle Star Piece":          AdvData(99901021, "Stony Cliffs Post-Rune"), # blue & gold tablet
 
-    "Water A0 - Star Piece":                        AdvData(103002003, "Tidal Reef Post-Rune"), # s rune
+    "Water A0 - Star Piece":                        AdvData(103002003, "Tidal Reef"), # s rune
     "Water A2 - S - Star Piece":                    AdvData(103021312, "Tidal Reef Post-Rune"), # f flippers
     "Water A2 - N - Star Piece":                    AdvData(103020803, "Tidal Reef Post-Rune"), # f flippers s quest || k cloak
     "Water A4 - Star Piece":                        AdvData(103042108, "Tidal Reef S"), # f flippers
@@ -392,7 +392,7 @@ mysterious_table = {
 
     "Stone D0 Serpent Secret - Pyramidion":         AdvData(101301908, "Stony Cliffs Wheel Room"),
     "Stone D1 Serpent Secret - Pyramidion":         AdvData(101310206, "Stony Cliffs"),
-    "Water A3 Serpent Secret - Pyramidion":         AdvData(103031008, "Tidal Reef Post-Rune"),
+    "Water A3 Serpent Secret - Pyramidion":         AdvData(103031008, "Tidal Reef"),
     "Fire E3 Serpent Secret - Pyramidion":          AdvData(104431712, "Raging Volcano Post-Rune"),
     "Wind A1 Serpent Secret - Pyramidion":          AdvData(105011708, "Frozen Spire Post-Rune"),
     "Wind E3 Serpent Secret - Pyramidion":          AdvData(105432204, "Frozen Spire Post-Rune"),
@@ -460,8 +460,8 @@ note_table = {
     "Stone D1 - Music Note":                        AdvData(101310510, "Stony Cliffs"), # topaz quest
     "Stone D4 - Music Note":                        AdvData(101341907, "Stony Cliffs Post-Rune"), # topaz rune
 
-    "Water A2 - Music Note":                        AdvData(103021807, "Tidal Reef Post-Rune"), # s rune
-    "Water B0 - Music Note":                        AdvData(103100208, "Tidal Reef Post-Rune"), # s rune
+    "Water A2 - Music Note":                        AdvData(103021807, "Tidal Reef"), # s rune
+    "Water B0 - Music Note":                        AdvData(103100208, "Tidal Reef"), # s rune
     "Water C1 - Music Note":                        AdvData(103210611, "Tidal Reef"),
     "Water D1 - Music Note":                        AdvData(103312203, "Tidal Reef Post-Rune"), # s rune
     "Water E0 - Music Note":                        AdvData(103401810, "Tidal Reef Post-Rune"), # s rune
