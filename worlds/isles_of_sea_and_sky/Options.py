@@ -29,7 +29,7 @@ class PyramidionsRequired(Range):
     """
     How many Pyramidions are required to get the mysterious ending
     """
-    display_name = "Required Pyramidions Pieces"
+    display_name = "Required Pyramidions"
     range_start = 1
     range_end = 30
     default = 30
@@ -80,7 +80,7 @@ class ShuffleMeteorites(Toggle):
     If enabled, 5 meteorites and 8 warp portal patterns will be shuffled into the item pool
     The meteorite location at Lost Lagoon will not be included if the serpent circlet it not in the pool.
     """
-    display_name = "Shuffle Meteorites"
+    display_name = "Shuffle Meteorites (Experimental)"
 
 # class EnableLocksanity(Toggle):
 #     """
@@ -125,7 +125,7 @@ class WarpsInLogic(Toggle):
     If enabled, you may be expected to use warps and other meteor quest mechanics to reach Star Tropic and Forgotten Lagoon.
     If Shuffle Meteorites is enabled then this is forced on.
     """
-    display_name = "Warps In Logic"
+    display_name = "Warps In Logic (Experimental)"
 
 class PhoenixAnywhere(Toggle):
     """
@@ -159,7 +159,7 @@ class Traps(Choice):
     """
     When enabled, transforms filler items into traps instead.
     """
-    display_name = "Traps"
+    display_name = "Traps (Experimental)"
     option_no_traps = 0
     option_some_traps = 1
     option_plenty_traps = 2
