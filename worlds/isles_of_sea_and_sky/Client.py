@@ -6,6 +6,7 @@ import time
 import asyncio
 import typing
 import copy
+import json
 
 import bsdiff4
 import shutil
@@ -346,21 +347,24 @@ async def process_isles_of_sea_and_sky_cmd(ctx: IslesOfSeaAndSkyContext, cmd: st
         ctx.allowTraps =            args["slot_data"]["traps"] != "no_traps"
         ctx.altRooms =              False # args["slot_data"]["alt_rooms"]
 
-        with open(os.path.join(ctx.save_game_folder, "apOptions.options"), "w") as f:
-            f.write("seed: "                + str(ctx.game_seed)           + '\n')
-            f.write("reqRoute: "            + str(ctx.reqRoute)            + '\n')
-            f.write("reqStarPieces: "       + str(ctx.reqStarPieces)       + '\n')
-            f.write("reqPyramidions: "      + str(ctx.reqPyramidions)      + '\n')
-            f.write("shuffleNotes: "        + str(ctx.shuffleNotes)        + '\n')
-            f.write("shufflePyramidions: "  + str(ctx.shufflePyramidions)  + '\n')
-            f.write("ShuffleMeteorites: "   + str(ctx.shuffleMeteorites)   + '\n')
-            f.write("includeSeashells: "    + str(ctx.includeSeashells)    + '\n')
-            f.write("includeJellyfish: "    + str(ctx.includeJellyfish)    + '\n') 
-            f.write("enableLocksanity: "    + str(ctx.enableLocksanity)    + '\n')
-            f.write("enableSnakesanity: "   + str(ctx.enableSnakesanity)   + '\n')
-            f.write("phoenixAnywhere: "     + str(ctx.phoenixAnywhere)     + '\n')
-            f.write("allowTraps: "          + str(ctx.allowTraps)          + '\n')
-            f.write("altRooms: "            + str(ctx.altRooms)            + '\n')
+        with open(os.path.join(ctx.save_game_folder, "apOptions.json"), "w", encoding="utf-8") as f:
+            data = {
+                "seed": ctx.game_seed,
+                "reqRoute": str(ctx.reqRoute),
+                "reqStarPieces": ctx.reqStarPieces,
+                "reqPyramidions": ctx.reqPyramidions,
+                "shuffleNotes": ctx.shuffleNotes,
+                "shufflePyramidions": ctx.shufflePyramidions,
+                "ShuffleMeteorites": ctx.shuffleMeteorites,
+                "includeSeashells": ctx.includeSeashells,
+                "includeJellyfish": ctx.includeJellyfish,
+                "enableLocksanity": ctx.enableLocksanity,
+                "enableSnakesanity": ctx.enableSnakesanity,
+                "phoenixAnywhere": ctx.phoenixAnywhere,
+                "allowTraps": ctx.allowTraps,
+                "altRooms": ctx.altRooms
+            }
+            json.dump(data, f, indent=4);
             f.close()
 
         # Make sure organized directories exists so file paths are valid from the get-go.
