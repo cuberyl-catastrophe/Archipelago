@@ -67,6 +67,7 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_entrance("Stony Exit to Wheel Room"),
                    Has("Serpent Circlet")
+                   & Has("Star Piece", 35)
                    & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
                       | CanReachRegion("Rolling Rocks")
                     ))
@@ -199,7 +200,8 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
     if world.options.circlet_content_enabled:
         world.set_rule(world.get_entrance("Lagoon Exit to South Lagoon"),
                        Has("Frog Flippers")
-                       & Has("Ancient Key", 67))
+                       & Has("Ancient Key", 67)
+                       & Has("Star Piece", 70))
     
     world.set_rule(world.get_entrance("Abstract Phoenix Exit"),
                    Has("Phoenix Flute",
