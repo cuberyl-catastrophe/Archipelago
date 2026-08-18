@@ -514,16 +514,16 @@ seashell_table = {
 
 # 10 checks
 jellyfish_table = {
-    # "Topaz Sea - Jellyfish":                        AdvData(108506, "Topaz Sea"),
-    # "Diamond Sea - Jellyfish":                      AdvData(108505, "Diamond Sea"),
-    # "Obsidian Sea - Jellyfish":                     AdvData(108512, "Obsidian Sea"),
-    # "Sapphire Sea - Jellyfish":                     AdvData(108503, "Sapphire Sea"),
-    # "Ruby Sea - W - Jellyfish":                     AdvData(108511, "Ruby Sea"),
-    # "Ruby Sea - E - Jellyfish":                     AdvData(108507, "Ruby Sea"),
-    # "Beast Sea - W - Jellyfish":                    AdvData(108508, "Beast Sea"),
-    # "Beast Sea - E - Jellyfish":                    AdvData(108510, "Beast Sea"),
-    # "Lost Sea - Jellyfish":                         AdvData(108504, "Lost Sea"),
-    # "Northeast Sea - Jellyfish":                    AdvData(108509, "Forgotten Sea"),
+    # "Topaz Sea - Jellyfish":                        AdvData(199005022, "Topaz Sea"),
+    # "Diamond Sea - Jellyfish":                      AdvData(199004821, "Diamond Sea"),
+    # "Obsidian Sea - Jellyfish":                     AdvData(199001727, "Obsidian Sea"),
+    # "Sapphire Sea - Jellyfish":                     AdvData(199003403, "Sapphire Sea"),
+    # "Ruby Sea - W - Jellyfish":                     AdvData(199004232, "Ruby Sea"),
+    # "Ruby Sea - E - Jellyfish":                     AdvData(199006132, "Ruby Sea"),
+    # "Beast Sea - W - Jellyfish":                    AdvData(199005311, "Beast Sea"),
+    # "Beast Sea - E - Jellyfish":                    AdvData(199006512, "Beast Sea"),
+    # "Lost Sea - Jellyfish":                         AdvData(199003331, "Lost Sea"),
+    # "Northeast Sea - Jellyfish":                    AdvData(199006107, "Forgotten Sea"),
 }
 
 # 24 checks
