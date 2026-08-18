@@ -1287,8 +1287,9 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
     world.set_rule(world.get_location("Water A0 - S - Ancient Key"),
                    Has("Frog Flippers"))
 
-    world.set_rule(world.get_location("Water A2 - Music Note"),
-                   Has("Sapphire Rune Stone") | Has("Frog Flippers"))
+    if world.options.shuffle_notes:
+        world.set_rule(world.get_location("Water A2 - Music Note"),
+                    Has("Sapphire Rune Stone") | Has("Frog Flippers"))
 
     world.set_rule(world.get_location("Water A2 - Ancient Key"),
                    Has("Awaken Water Elementals")
