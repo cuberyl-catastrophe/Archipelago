@@ -1,5 +1,7 @@
 from __future__ import annotations
+import glob
 import os
+import struct
 import subprocess
 import sys
 import time
@@ -189,6 +191,9 @@ class IslesOfSeaAndSkyContext(CommonContext):
         self.save_game_folder = os.path.expandvars(r"%localappdata%/IslesOfSeaAndSky")
         self.iosas_json_text_parser = IslesOfSeaAndSkyJSONtoTextParser(self)
         self.did_scout_locations = False
+        # Current-room reporting, see report_current_room().
+        self.current_room = None
+        self.save_file_mtime = 0.0
 
     def launch_game(self):
         pass
@@ -509,7 +514,92 @@ async def game_watcher(ctx: IslesOfSeaAndSkyContext):
             await ctx.send_msgs([{"cmd": "StatusUpdate", "status": ClientStatus.CLIENT_GOAL}])
             ctx.finished_game = True
 
+        await report_current_room(ctx)
+
         await asyncio.sleep(0.1)
+
+
+# The save file is an ASCII-hex dump of a GameMaker ds_map. Every entry is a
+# tagged value: uint32 tag, then either (uint32 length + bytes) for tag 1, or a
+# float64 for tag 0. Keys and values alternate, both tagged the same way.
+#
+# The game keeps "current_map_name" / "current_map_x" / "current_map_y" up to
+# date as the player moves, so the room can be read without the game having to
+# report it. On the overworld the name is "overworld" and the cell is -1,-1.
+SAVE_ROOM_KEYS = ("current_map_name", "current_map_x", "current_map_y")
+
+TAG_REAL = 0
+TAG_STRING = 1
+
+
+def _read_save_value(blob: bytes, key: str):
+    """Pull one ds_map value out of the hex dump, or None if absent."""
+    needle = key.encode().hex().upper().encode()
+    at = blob.find(needle)
+    if at < 0:
+        return None
+    try:
+        tail = bytes.fromhex(blob[at + len(needle): at + len(needle) + 64].decode("ascii"))
+    except ValueError:
+        return None
+    if len(tail) < 12:
+        return None
+    tag = struct.unpack_from("<I", tail, 0)[0]
+    if tag == TAG_STRING:
+        length = struct.unpack_from("<I", tail, 4)[0]
+        if 8 + length > len(tail):
+            return None
+        return tail[8:8 + length].decode("latin-1")
+    if tag == TAG_REAL:
+        return struct.unpack_from("<d", tail, 4)[0]
+    return None
+
+
+def read_current_room(save_path: str):
+    """Compose the GameMaker room name the player is currently in."""
+    with open(save_path, "rb") as f:
+        blob = f.read()
+    name, col, row = (_read_save_value(blob, k) for k in SAVE_ROOM_KEYS)
+    if not isinstance(name, str) or not name:
+        return None
+    if not isinstance(col, float) or not isinstance(row, float):
+        return None
+    # The overworld is a single room with no grid cell, reported as -1,-1.
+    if col < 0 or row < 0:
+        return f"rm_{name}"
+    return f"rm_{name}_{chr(ord('a') + int(col))}{int(row)}"
+
+
+async def report_current_room(ctx: IslesOfSeaAndSkyContext):
+    """Publish the player's room to DataStorage so trackers can follow along.
+
+    Only re-parses when the save has actually been rewritten, and only sends
+    when the room changed. Set rather than Bounce so a tracker connecting
+    mid-session can read the current value instead of waiting for a transition.
+    """
+    saves = glob.glob(os.path.join(ctx.save_game_folder, "archipelago_save_*.dat"))
+    if not saves:
+        return
+    save_path = max(saves, key=os.path.getmtime)
+    try:
+        mtime = os.path.getmtime(save_path)
+        if mtime == ctx.save_file_mtime:
+            return
+        ctx.save_file_mtime = mtime
+        room = read_current_room(save_path)
+    except OSError:
+        return
+
+    if not room or room == ctx.current_room:
+        return
+    ctx.current_room = room
+    await ctx.send_msgs([{
+        "cmd": "Set",
+        "key": f"IsleOfSeaAndSky_room_{ctx.team}_{ctx.slot}",
+        "default": "", "want_reply": False,
+        "operations": [{"operation": "replace", "value": room}],
+    }])
+
 
 async def scout_for_custom_icons(ctx: IslesOfSeaAndSkyContext):
     prescout = False
