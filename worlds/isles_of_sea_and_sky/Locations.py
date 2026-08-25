@@ -21,7 +21,7 @@ advancement_table = {
     "Water C0 - Sapphire Quest Complete":           AdvData(99903201, "Tidal Reef"),
     "Fire C0 - Ruby Quest Complete":                AdvData(99904201, "Raging Volcano"),
     "Wind C2 - Diamond Quest Complete":             AdvData(99905221, "Frozen Spire"),
-    "Serpent A1 - Obsidian Quest Complete":         AdvData(99908011, "Serpent Stacks Head"),
+    "Serpent A1 - Obsidian Quest Complete":         AdvData(106011103, "Serpent Stacks Head"),
 
     "Stone Dungeon C1 - Gopher Gloves":             AdvData(102210609, "Stony Cliffs NW"),
     "Water A4 - Frog Flippers":                     AdvData(103041606, "Tidal Reef Post-Rune"),
