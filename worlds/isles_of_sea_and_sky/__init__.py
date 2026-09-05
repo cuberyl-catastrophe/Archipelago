@@ -4,10 +4,12 @@ from typing import Any
 
 from .Items import IslesOfSeaAndSkyItem, item_table, non_key_items, key_items, note_items, \
     circlet_items, mysterious_items, meteorite_items, mysterious_meteorite_items, junk_weights, progression_items, trap_weights
-from .Locations import IslesOfSeaAndSkyAdvancement, advancement_table, exclusion_table, \
+from .Locations import IslesOfSeaAndSkyAdvancement, AdvData, advancement_table, exclusion_table, \
     jellyfish_table, seashell_table, note_table, circlet_table, mysterious_table, meteorite_table,\
     circlet_meteorite_table, locksanity_table, snakesanity_table, secrets_table
-from .Regions import isles_of_sea_and_sky_regions, circlet_regions, meteorite_regions, link_isles_of_sea_and_sky_areas
+from .Regions import isles_of_sea_and_sky_regions, circlet_regions, meteorite_regions, \
+    mandatory_connections, meteorite_connections, circlet_connections, warp_logic_connections, \
+    circlet_meteorite_connections, warp_logic_regions, circlet_meteorite_regions
 from .Rules import set_rules, set_completion_rules
 #from worlds.generic.Rules import exclusion_rules
 from BaseClasses import Region, Entrance, Tutorial, Item, ItemClassification as IC
@@ -430,82 +432,88 @@ class IslesOfSeaAndSkyWorld(World):
                           regions_to_highlight=state.reachable_regions[self.player])'''
 
     def create_regions(self):
-        def IslesOfSeaAndSkyRegion(region_name: str, exits=None):
+        def IslesOfSeaAndSkyRegion(region_name: str, exits: list[str] | None=None, locations: list[tuple[str, AdvData]] | None=None):
             if exits is None:
                 exits = []
+            if locations is None:
+                locations = []
+
             ret = Region(region_name, self.player, self.multiworld)
 
-            # Normal locations
+            # Locations
             ret.locations += [IslesOfSeaAndSkyAdvancement(self.player, loc_name, loc_data.id, ret)
-                              for loc_name, loc_data in advancement_table.items()
-                              if loc_data.region == region_name]
-
-            # Note Locations
-            if self.options.shuffle_notes:
-                ret.locations += [IslesOfSeaAndSkyAdvancement(self.player, loc_name, loc_data.id, ret)
-                                  for loc_name, loc_data in note_table.items()
-                                  if loc_data.region == region_name]
-                
-            if self.options.circlet_content_enabled:
-                ret.locations += [IslesOfSeaAndSkyAdvancement(self.player, loc_name, loc_data.id, ret)
-                                for loc_name, loc_data in circlet_table.items()
-                                if loc_data.region == region_name]
-                if self.options.shuffle_meteorites:
-                    ret.locations += [IslesOfSeaAndSkyAdvancement(self.player, loc_name, loc_data.id, ret)
-                                for loc_name, loc_data in circlet_meteorite_table.items()
-                                if loc_data.region == region_name]
-
-            if self.options.circlet_content_enabled:
-                ret.locations += [IslesOfSeaAndSkyAdvancement(self.player, loc_name, loc_data.id, ret)
-                                for loc_name, loc_data in mysterious_table.items()
-                                if loc_data.region == region_name]
-                
-            if self.options.shuffle_meteorites:
-                ret.locations += [IslesOfSeaAndSkyAdvancement(self.player, loc_name, loc_data.id, ret)
-                                for loc_name, loc_data in meteorite_table.items()
-                                if loc_data.region == region_name]
-                
-            # Locksanity Locations
-            if False: # self.options.enable_locksanity:
-                ret.locations += [IslesOfSeaAndSkyAdvancement(self.player, loc_name, loc_data.id, ret)
-                                  for loc_name, loc_data in locksanity_table.items()
-                                  if loc_data.region == region_name]
-            # Snakesanity Locations
-            if False: # self.options.enable_snakesanity:
-                ret.locations += [IslesOfSeaAndSkyAdvancement(self.player, loc_name, loc_data.id, ret)
-                                  for loc_name, loc_data in snakesanity_table.items()
-                                  if loc_data.region == region_name]
-            # Seashell Locations
-            if False: # self.options.include_seashells:
-                ret.locations += [IslesOfSeaAndSkyAdvancement(self.player, loc_name, loc_data.id, ret)
-                                  for loc_name, loc_data in seashell_table.items()
-                                  if loc_data.region == region_name]
-
-            # Jellyfish Locations
-            if False: # self.options.include_jellyfish:
-                ret.locations += [IslesOfSeaAndSkyAdvancement(self.player, loc_name, loc_data.id, ret)
-                                  for loc_name, loc_data in jellyfish_table.items()
-                                  if loc_data.region == region_name]
-
-            # Secretsanity Locations
-            if False: # self.options.secretsanity:
-                ret.locations += [IslesOfSeaAndSkyAdvancement(self.player, loc_name, loc_data.id, ret)
-                                  for loc_name, loc_data in secrets_table.items()
-                                  if loc_data.region == region_name]
-
+                              for loc_name, loc_data in locations]
 
             for region_exit in exits:
                 ret.exits.append(Entrance(self.player, region_exit, ret))
 
             return ret
 
-        regions = list(isles_of_sea_and_sky_regions)
+        # Collect all regions, exits, and items
+        # Declare a dictionary to amalgamate our entrances and items. This allows us to amalgamate our tables in a reasonable amount of time
+        regions: dict[str, tuple[list[str], list[tuple[str, AdvData]]]] = (
+            dict([(region, (entrances.copy(), [])) for region, entrances in isles_of_sea_and_sky_regions]))
+
+        # Amalgamate Entrances
         if self.options.circlet_content_enabled:
-            regions += circlet_regions
+            for region, exits in circlet_regions:
+                if region in regions: regions[region][0].extend(exits)
+                else: regions[region] = (exits.copy(), [])
         if self.options.warps_in_logic:
-            regions += meteorite_regions
-        self.multiworld.regions += [IslesOfSeaAndSkyRegion(*r) for r in regions]
-        link_isles_of_sea_and_sky_areas(self.multiworld, self.player)
+            for region, exits in warp_logic_regions:
+                if region in regions: regions[region][0].extend(exits)
+                else: regions[region] = (exits.copy(), [])
+        if self.options.shuffle_meteorites:
+            for region, exits in meteorite_regions:
+                if region in regions: regions[region][0].extend(exits)
+                else: regions[region] = (exits.copy(), [])
+        if self.options.shuffle_meteorites & self.options.circlet_content_enabled:
+            for region, exits in circlet_meteorite_regions:
+                if region in regions: regions[region][0].extend(exits)
+                else: regions[region] = (exits.copy(), [])
+
+        # Amalgamate locations
+        locations = advancement_table.copy()
+        if self.options.shuffle_notes: locations.update(note_table);
+        if self.options.circlet_content_enabled: locations.update(circlet_table); locations.update(mysterious_table);
+        if self.options.shuffle_meteorites: locations.update(meteorite_table);
+        if self.options.circlet_content_enabled & self.options.shuffle_meteorites: locations.update(circlet_meteorite_table);
+        # if False & self.options.enable_locksanity: locations.update(locksanity_table);
+        # if False & self.options.enable_snakesanity: locations.update(snakesanity_table);
+        # if False & self.options.include_seashells: locations.update(seashell_table);
+        # if False & self.options.include_jellyfish: locations.update(jellyfish_table);
+        # if False & self.options.secretsanity: locations.update(secrets_table);
+        # Assign Locations to their regions
+
+        # Assign Locations to Regions
+        for location_name, advData in locations.items():
+            if advData.region in regions:
+                regions[advData.region][1].append((location_name, advData))
+            else: raise Exception(f"Failed to place location '{location_name}', region '{advData.region}' does not exist!")
+
+        # Create Regions
+        self.multiworld.regions += [IslesOfSeaAndSkyRegion(region, entrances, locations) for region, (entrances, locations) in regions.items()]
+        self.link_regions()
+
+    def link_regions(self):
+        world = self.multiworld
+        player = self.player
+        created_regions = {region.name for region in world.get_regions(player)}
+        created_exits = {region_exit.name
+                         for region in world.get_regions(player)
+                         for region_exit in region.exits}
+        connections = list(mandatory_connections).copy()
+        if self.options.circlet_content_enabled:
+            connections += circlet_connections
+        if self.options.warps_in_logic:
+            connections += warp_logic_connections
+        if self.options.shuffle_meteorites:
+            connections += meteorite_connections
+        if self.options.shuffle_meteorites & self.options.circlet_content_enabled:
+            connections += circlet_meteorite_connections
+
+        for (region_exit, region) in connections:
+            world.get_entrance(region_exit, player).connect(world.get_region(region, player))
 
     def fill_slot_data(self):
         return self._get_isles_of_sea_and_sky_data()
