@@ -78,6 +78,10 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_entrance("Stony Cliffs - Golden Stone to Windy Cliff"),
                    Has("Awaken Wind Elementals"))
+    
+    world.set_rule(world.get_entrance("Stony Cliffs - Windy Cliff to South Coast"),
+                   Has("Awaken Earth Elementals")
+                   | Has("Awaken Wind Elementals"))
 
     world.set_rule(world.get_entrance("Stone Dungeon - North Tunnels to Dirt Chamber"),
                    Has("Gopher Gloves"))
@@ -1374,7 +1378,8 @@ def set_stony_cliffs(world: "IslesOfSeaAndSkyWorld"):
     for i in range(0,3): world.set_rule(locations[i], rules);
     del locations; del rules
 
-    # Notesanity
+    # - - - - - - - - - -
+    # Notes
     if world.options.shuffle_notes:
         world.set_rule(world.get_location("Stone B0 - Music Note"),
                        Has("Ancient Key", 11))
@@ -1539,6 +1544,9 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
 
     # - - - - - - - - - -
     # Star Pieces
+    world.set_rule(world.get_location("Water A2 - N - Star Piece"),
+                   Has("Awaken Water Elementals")
+                   | Has("Kite Cloak"))
     world.set_rule(world.get_location("Water A2 - S - Star Piece"),
                    Has("Awaken Water Elementals")
                    & Has("Frog Flippers"))
@@ -1610,8 +1618,8 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
     ]
     rules = (Has("Awaken Water Elementals") # Mandator
              & (
-                 Has("Music Note", 12)) # Music notes needed if notesanity is off
-                 | ( # Music note regions must be reachable if notesanity is on
+                 Has("Music Note", 12)) # Music notes needed if note shuffle is off
+                 | ( # Music note regions must be reachable if note shuffle is on
                      [OptionFilter(ShuffleNotes, ShuffleNotes.option_false)]
                      & (Has("Sapphire Rune Stone") | Has("Frog Flippers"))
                         & CanReachRegion("Tidal Reef - North-West Low Tide")
@@ -1762,7 +1770,7 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Fire D1 - Ruby"),
                    Has("Ruby Rune Stone")
-                   | CanReachEntrance("Raging Volcano - God Altar to Phoenix"))
+                   | CanReachEntrance("Raging Volcano - Phoenix to God Altar"))
 
     world.set_rule(world.get_location("Fire D2 - W - Ruby"),
                    Has("Ancient Key", 35))
@@ -2005,8 +2013,8 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
     for i in range(0,3): world.set_rule(locations[i], rules);
     del locations; del rules
                    
-
-    # Notesanity
+    # - - - - - - - - - -
+    # Notes
     if world.options.shuffle_notes:
         world.set_rule(world.get_location("Wind B1 - Music Note"),
                        Has("Awaken Wind Elementals"))
@@ -2239,7 +2247,7 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
                         )
 
         world.set_rule(world.get_location("Tropic A1 Serpent Secret - Obsidian"),
-                CanReachRegion("Star Tropic - West") # Through Ancient Rune or Lost Sea)
+                CanReachRegion("Star Tropic - West") # Through Ancient Rune or Lost Sea
                 & Has ("Serpent Circlet")
                 & (
                     [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
@@ -2259,6 +2267,8 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
                         Has("Serpent Circlet")
                         & Has("Ancient Key", 60))
         
+        # - - - - - - - - - -
+        # Eastern Shoal
         # This puzzle is random per save, RequireSerpentClues is ignored
         world.set_rule(world.get_location("Shoal A0 - Pattern Puzzle Pyramidion"),
                    CanReachRegion("Stony Cliffs - South Coast"))
@@ -2289,6 +2299,8 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
                          | CanReachRegion("Raging Volcano - Geyser Pass"))
                     ))
     
+        # - - - - - - - - - -
+        # Forgotten Lagoon
         world.set_rule(world.get_location("Lagoon B0 Serpent Secret - Pyramidion"),
                    Has("Kite Cloak"))
     

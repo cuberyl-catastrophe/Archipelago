@@ -259,7 +259,6 @@ isles_of_sea_and_sky_regions: list[tuple[str, list[str]]] = [
         "Raging Volcano - Idol Room West to Below Hot Spring"
     ]),
     ("Raging Volcano - Below Hot Spring", [
-        "Raging Volcano - Below Hot Spring to God Altar",
         "Raging Volcano - Below Hot Spring to South Coast",
         "Raging Volcano - Below Hot Spring to Idol Room West" # Fire Elementals
     ]),
@@ -614,7 +613,6 @@ mandatory_connections: list[tuple[str, str]] = [
     ("Raging Volcano - Above Volcano to Idol Room West",    "Raging Volcano - Idol Room West"),
     ("Raging Volcano - Idol Room West to South Coast",      "Raging Volcano - South Coast"),
     ("Raging Volcano - Idol Room West to Below Hot Spring", "Raging Volcano - Below Hot Spring"),
-    ("Raging Volcano - Below Hot Spring to God Altar",      "Raging Volcano - God Altar"),
     ("Raging Volcano - Below Hot Spring to South Coast",    "Raging Volcano - South Coast"),
     ("Raging Volcano - Below Hot Spring to Idol Room West", "Raging Volcano - Idol Room West"),
     ("Raging Volcano - North-West to God Altar",            "Raging Volcano - God Altar"),
