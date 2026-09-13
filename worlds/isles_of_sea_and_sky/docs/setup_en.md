@@ -3,7 +3,7 @@
 ### Required Software
 
 - Isles Of Sea And Sky from the [Steam page](https://store.steampowered.com/app/1233070/Isles_of_Sea_and_Sky/)
-- Isles Of Sea And Sky [APWorld](https://github.com/Kim-Delicious/Archipelago_IslesOfSeaAndSky/releases)
+- Isles Of Sea And Sky [APWorld](https://github.com/cuberyl-catastrophe/Archipelago/releases)
 - Archipelago from the [Archipelago Releases Page](https://github.com/ArchipelagoMW/Archipelago/releases)
 
 ## First time setup
@@ -65,7 +65,3 @@ In the modded directory for Isles Of Sea And Sky, there should be a folder calle
 Once you've downloaded the zip folder of Archipelago Utilities, extract it, and copy the folder called `Custom Assets` Into the `Custom Sprites` folder.
 
 And you should be done! Items should now display if you've connected to the Server.
-
-## Setup the Alt Room Randomizer
-
-All information on this can be found [here.](<https://github.com/Kim-Delicious/Archipelago_IslesOfSeaAndSky/blob/master/worlds/isles_of_sea_and_sky/docs/en_Alt%20Room%20Randomizer.md>)
