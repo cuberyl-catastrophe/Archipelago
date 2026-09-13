@@ -212,7 +212,7 @@ advancement_table: dict[str, AdvData] = {
     "Nunatak B0 - Diamond":                         AdvData(111101003, "Sea Nunatak - Turtle"), # diamond quest complete
     "Tropic A1 - Diamond":                          AdvData(113011204, "Star Tropic - Treasure Shore"), # all legendaries
 
-    "Stone A2 - Obsidian":                          AdvData(101021409, "Stony Cliffs - Tablet Slot"),  # stone tablet blue, tablet golda
+    "Stone A2 - Obsidian":                          AdvData(101021409, "Stony Cliffs - Tablet Slot"),  # stone tablet blue, tablet gold
     "Stone D1 - Obsidian":                          AdvData(101312204, "Stony Cliffs - God Altar"),
     "Water C4 - Obsidian":                          AdvData(103241803, "Tidal Reef - Shell Puzzle"),  # shell puzzle, f flippers
     "Water D0 - Obsidian":                          AdvData(103301004, "Tidal Reef - God Altar"), 

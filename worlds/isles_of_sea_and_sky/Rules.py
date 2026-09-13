@@ -1604,7 +1604,9 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
     # Similar to Ice Spire Albatrosses, we want to eventually be able to calculate
     # where the shells are placed on the server to account for them in logic perfectly.
     rules = (Has("Frog Flippers")
-             & Has("Sapphire Rune Stone"))  
+             & Has("Sapphire Rune Stone")
+             & Has("Awaken Water Elementals") # Needed in case a shell is placed in the instrument area
+             )
     
     for i in range(0,3): world.set_rule(locations[i], rules);
     del locations; del rules
