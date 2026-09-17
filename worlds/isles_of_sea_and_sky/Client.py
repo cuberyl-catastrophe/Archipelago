@@ -344,7 +344,7 @@ async def process_isles_of_sea_and_sky_cmd(ctx: IslesOfSeaAndSkyContext, cmd: st
         ctx.includeSeashells =      False # args["slot_data"]["include_seashells"]
         ctx.includeJellyfish =      False # args["slot_data"]["include_jellyfish"]
         ctx.enableLocksanity =      False # args["slot_data"]["enable_locksanity"]
-        ctx.enableSnakesanity =     False # args["slot_data"]["enable_snakesanity"]
+        ctx.enableSnakesanity =     args["slot_data"]["enable_snakesanity"]
         ctx.phoenixAnywhere =       args["slot_data"]["phoenix_anywhere"]
         ctx.death_allowed =         args["slot_data"]["death_link"]
         ctx.death_amnesty_total =   args["slot_data"]["death_amnesty_total"]

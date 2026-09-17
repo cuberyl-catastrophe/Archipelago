@@ -1,6 +1,8 @@
 from BaseClasses import Location
 import typing
 
+from .Options import IslesOfSeaAndSkyOptions
+
 
 class AdvData(typing.NamedTuple):
     id: typing.Optional[int]
@@ -8,6 +10,28 @@ class AdvData(typing.NamedTuple):
 
 class IslesOfSeaAndSkyAdvancement(Location):
     game: str = "Isles Of Sea And Sky"
+
+def get_locations(options: IslesOfSeaAndSkyOptions):
+    # Amalgamate locations from all the tables
+    locations = advancement_table.copy()
+    if options.shuffle_notes: locations.update(note_table);
+    if options.circlet_content_enabled: locations.update(mysterious_table);
+    if options.shuffle_meteorites: locations.update(meteorite_table);
+    if options.circlet_content_enabled & options.shuffle_meteorites: locations.update(
+        circlet_meteorite_table);
+
+    # if False & self.options.enable_locksanity: locations.update(locksanity_table);
+
+    if options.enable_snakesanity:
+        locations.update(snakesanity_table)
+        if options.circlet_content_enabled: locations.update(mysterious_snakesanity_table);
+        if options.shuffle_meteorites: locations.update(meteorite_snakesanity_table);
+        if options.circlet_content_enabled & options.shuffle_meteorites: locations.update(circlet_meteorite_snakesanity_table)
+
+    # if False & self.options.include_seashells: locations.update(seashell_table);
+    # if False & self.options.include_jellyfish: locations.update(jellyfish_table);
+    # if False & self.options.secretsanity: locations.update(secrets_table);
+    return locations
 
 advancement_table: dict[str, AdvData] = {
     "Locked A0 - Ancient Rune Stone":               AdvData(112012104, "Locked Key - Turtle"),
@@ -28,10 +52,10 @@ advancement_table: dict[str, AdvData] = {
     "Fire E0 - Salamander Shirt":                   AdvData(104400804, "Raging Volcano - Phoenix"),
     "Wind A0 - Kite Cloak":                         AdvData(105001805, "Frozen Spire - Post-Rune"),
 
-    "Sanctum A2 - Topaz Shard Hit":                 AdvData(99907021, "Sanctum"),
-    "Sanctum C2 - Sapphire Shard Hit":              AdvData(99907221, "Sanctum"),
-    "Sanctum C0 - Ruby Shard Hit":                  AdvData(99907201, "Sanctum"),
-    "Sanctum A0 - Diamond Shard Hit":               AdvData(99907001, "Sanctum"),
+    "Sanctum A2 - Topaz Shard Hit":                 AdvData(99907021, "Sanctum - Earth Shard"),
+    "Sanctum C2 - Sapphire Shard Hit":              AdvData(99907221, "Sanctum - Water Shard"),
+    "Sanctum C0 - Ruby Shard Hit":                  AdvData(99907201, "Sanctum - Fire Shard"),
+    "Sanctum A0 - Diamond Shard Hit":               AdvData(99907001, "Sanctum - Wind Shard"),
 
     "Stone E3 - Gold Stone Tablet":                 AdvData(101431110, "Stony Cliffs - Golden Stone"),
     "Stone Dungeon A1 - Blue Stone Tablet":         AdvData(102011309, "Stone Dungeon - West Tunnels"),
@@ -54,7 +78,7 @@ advancement_table: dict[str, AdvData] = {
     "Shoal A0 - Star Viewing Orb":                  AdvData(114001209, "Eastern Shoal - North-West"),
 
     # MISC
-    "Ancient B2 - Open Ancient Door":               AdvData(100121002, "Sanctum"), # Placed in next region for logic
+    "Ancient B2 - Open Ancient Door":               AdvData(100121002, "Sanctum - Turtle"), # Placed in next region for logic
     "Stone Dungeon C2 - Open Topaz Door":           AdvData(102221002, "Stony Cliffs - North-West"),
 
     "Stone A1 - Tablet Puzzle Clue":                AdvData(101011206, "Stony Cliffs - Phoenix"),
@@ -62,7 +86,7 @@ advancement_table: dict[str, AdvData] = {
     "Stone E1 - Tablet Puzzle Clue":                AdvData(101411905, "Stony Cliffs - North-East"),
 
     "Stone Dungeon A3 - Tablet Puzzle Clue":        AdvData(102031103, "Stone Dungeon - West Tunnels"),
-    "Stone Dungeon E1 - Tablet Puzzle Clue":        AdvData(102411706, "Stone Dungeon Earth Chamber"),
+    "Stone Dungeon E1 - Tablet Puzzle Clue":        AdvData(102411706, "Stone Dungeon - Earth Chamber"),
     "Stone Dungeon E3 - Tablet Puzzle Clue":        AdvData(102431410, "Stone Dungeon - South Tunnels"),
 
     "Beast A1 - Big Bell Stone":                    AdvData(116121206, "Beast Ridge - Bellstone"),
@@ -99,7 +123,7 @@ advancement_table: dict[str, AdvData] = {
     "Stone Dungeon C1 - Ancient Key":               AdvData(102210411, "Stone Dungeon - Gopher Vault"), #topaz rune, gopher gloves
     "Stone Dungeon D0 - Ancient Key":               AdvData(102301109, "Stone Dungeon - North Tunnels"), #gopher gloves
     "Stone Dungeon D2 - Ancient Key":               AdvData(102320211, "Stone Dungeon - Vault Door"), # t quest
-    "Stone Dungeon E2 - Ancient Key":               AdvData(102420803, "Stone Dungeon Earth Chamber"),
+    "Stone Dungeon E2 - Ancient Key":               AdvData(102420803, "Stone Dungeon - Earth Chamber"),
 
     "Water A0 - E - Ancient Key":                   AdvData(103002110, "Tidal Reef - North-West Low Tide"),
     "Water A0 - S - Ancient Key":                   AdvData(103001712, "Tidal Reef - God Altar"), # frog flippers
@@ -246,7 +270,7 @@ advancement_table: dict[str, AdvData] = {
     "Stone Dungeon B1 - Star Piece":                AdvData(102110412, "Stone Dungeon - Dirt Chamber"), # g gloves
     "Stone Dungeon C1 - Star Piece":                AdvData(102210506, "Stone Dungeon - Gopher Vault"), # g gloves
     "Stone Dungeon C3 - Star Piece":                AdvData(102230803, "Stone Dungeon - Vault Door"), # t quest
-    "Stone Dungeon E1 - Star Piece":                AdvData(102410905, "Stone Dungeon Earth Chamber"), # t quest
+    "Stone Dungeon E1 - Star Piece":                AdvData(102410905, "Stone Dungeon - Earth Chamber"), # t quest
     "Stone Dungeon E2 - Star Piece":                AdvData(102421209, "Stone Dungeon - East Tunnels"), # g gloves, f flippers
 
     "Stone D1 - Music Puzzle Star Piece 1":         AdvData(99901311, "Stony Cliffs - God Altar"), # t rune, t quest, ancient key
@@ -354,8 +378,8 @@ advancement_table: dict[str, AdvData] = {
 
     "Serpent A1 - W - Star Piece":                  AdvData(106010311, "Serpent Stacks - Head"), # o quest
     "Serpent A1 - N - Star Piece":                  AdvData(106011403, "Serpent Stacks - Head"), # o quest
-    "Serpent A2 - Star Piece":                      AdvData(106021904, "Serpent Stacks - Entrance"), # o quest
-    "Serpent A3 - Star Piece":                      AdvData(106031705, "Serpent Stacks - Entrance"), # 
+    "Serpent A2 - Star Piece":                      AdvData(106021904, "Serpent Stacks - Turtle"), # o quest
+    "Serpent A3 - Star Piece":                      AdvData(106031705, "Serpent Stacks - Turtle"), # 
     "Serpent A4 - NW - Star Piece":                 AdvData(106040304, "Serpent Stacks - Core"), # o quest, t quest
     "Serpent A4 - N - Star Piece":                  AdvData(106040903, "Serpent Stacks - Core"), # o quest, t quest
     "Serpent A6 - W - Star Piece":                  AdvData(106060204, "Serpent Stacks - Core"), # s quest, o quest
@@ -370,7 +394,8 @@ advancement_table: dict[str, AdvData] = {
 }
 
 # Mysterious Update Items
-circlet_table: dict[str, AdvData] = {
+mysterious_table: dict[str, AdvData] = {
+    # Serpent Lock and Circlet
     "Serpent A4 - Serpent Lock Shard":              AdvData(106041904, "Serpent Stacks - Post-Rune"),
     "Serpent A5 - NE - Serpent Lock Shard":         AdvData(106052104, "Serpent Stacks - Serpent Lock"),
     "Serpent A5 - SE - Serpent Lock Shard":         AdvData(106052112, "Serpent Stacks - Serpent Lock"),
@@ -380,9 +405,8 @@ circlet_table: dict[str, AdvData] = {
     "Serpent A7 - Serpent Lock Shard":              AdvData(106072006, "Serpent Stacks - Tail"),
     "Serpent A8 - Serpent Lock Shard":              AdvData(106080508, "Serpent Stacks - Tail"),
     "Serpent A5 - Serpent Circlet":                 AdvData(106051108, "Serpent Stacks - Serpent Lock"), # 8 lock shards
-}
-
-mysterious_table: dict[str, AdvData] = {
+    
+    # Pyramidion Quest
     "Sunken A1 Serpent Secret - Ancient Key":       AdvData(109011005, "Sunken Island - Turtle"),
 
     "Fire D3 Serpent Secret - Obsidian":            AdvData(104331811, "Raging Volcano - Below Hot Spring"), # r quest, s shirt
@@ -408,10 +432,10 @@ mysterious_table: dict[str, AdvData] = {
     "Serpent A2 Serpent Secret - NE - Pyramidion":  AdvData(106021206, "Serpent Stacks - A2 Pyramidions"),
     "Serpent A2 Serpent Secret - SE - Pyramidion":  AdvData(106021207, "Serpent Stacks - A2 Pyramidions"),
     "Serpent A5 Serpent Secret - Pyramidion":       AdvData(106050709, "Serpent Stacks - Serpent Lock"),
-    "Serpent A9 - Pyramidion":                      AdvData(106091508, "Serpent Stacks - Tail"), # wind elementals
+    "Serpent A9 - Pyramidion":                      AdvData(106091508, "Serpent Stacks - Mysterious Map"), # wind elementals
 
-    "Sanctum A1 Serpent Secret - Pyramidion":       AdvData(107011709, "Sanctum"), # a lot of keys to unlock sanctum
-    "Sanctum C1 Serpent Secret - Pyramidion":       AdvData(107210609, "Sanctum"), # a lot of keys to unlock sanctum
+    "Sanctum A1 Serpent Secret - Pyramidion":       AdvData(107011709, "Sanctum - Turtle"), # a lot of keys to unlock sanctum
+    "Sanctum C1 Serpent Secret - Pyramidion":       AdvData(107210609, "Sanctum - Turtle"), # a lot of keys to unlock sanctum
 
     "Shoal A0 - Pattern Puzzle Pyramidion":         AdvData(114001305, "Eastern Shoal - North-West"), # Visit Stone A3
     "Shoal A1 - Pyramidion":                        AdvData(114012010, "Eastern Shoal - South"), # Yes, this is possible without flippers.
@@ -592,10 +616,10 @@ locksanity_table: dict[str, AdvData] = {
     # "Wind D1 - Lock":                               AdvData(121455, "Frozen Spire - Post-Rune"),
     # "Wind A0 - Lock (Wind)":                        AdvData(120220, "Frozen Spire"),
 
-    # "Sanctum B2 - W - 3x Lock":                     AdvData(123943, "Sanctum"),
-    # "Sanctum B2 - E - 3x Lock":                     AdvData(123942, "Sanctum"),
-    # "Sanctum A1 - 3x Lock":                         AdvData(124157, "Sanctum"),
-    # "Sanctum C1 - 3x Lock":                         AdvData(124282, "Sanctum"),
+    # "Sanctum B2 - W - 3x Lock":                     AdvData(123943, "Sanctum - Turtle"),
+    # "Sanctum B2 - E - 3x Lock":                     AdvData(123942, "Sanctum - Turtle"),
+    # "Sanctum A1 - 3x Lock":                         AdvData(124157, "Sanctum - Turtle"),
+    # "Sanctum C1 - 3x Lock":                         AdvData(124282, "Sanctum - Turtle"),
 
     # "Rolling B1 - 3x Lock":                         AdvData(104767, "Rolling Rocks - Post-Rune"),
 
@@ -702,219 +726,271 @@ locksanity_table: dict[str, AdvData] = {
     # 
 }
 
-# 196 checks
-snakesanity_table: dict[str, AdvData] = {
-    # "Ancient B3 - Snakeblock":                      AdvData(100223, "Ancient Isle"),
-    # "Ancient B2 - W - Snakeblock":                  AdvData(101292, "Ancient Isle"),
-    # "Ancient B2 - E - Snakeblock":                  AdvData(101294, "Ancient Isle"),
-    # "Ancient A3 - Snakeblock":                      AdvData(100550, "Ancient Isle"),
-    # "Ancient A1 - Snakeblock":                      AdvData(101050, "Ancient Isle"),
-    # "Ancient C2 - E - Snakeblock":                  AdvData(100429, "Ancient Isle"),
-    # "Ancient C2 - S - Snakeblock":                  AdvData(100424, "Ancient Isle"),
-    # "Ancient C2 - W - Snakeblock":                  AdvData(100423, "Ancient Isle"),
-    # "Ancient C3 - Snakeblock":                      AdvData(101434, "Ancient Isle"),
+snakesanity_table: dict[str, AdvData] = { # TODO: Overworld ID
+    "Overworld - Sapphire Sea - Damsnake":          AdvData(199112016, "Sapphire Sea"),
+    "Overworld - Lost Sea - Damsnake":              AdvData(199112227, "Lost Sea"),
+    "Overworld - Beast Sea - Damsnake":             AdvData(199114914, "Beast Sea"),
+    "Overworld - Forgotten Sea - Damsnake":         AdvData(199115007, "Forgotten Sea"),
 
-    # "Stone D2 - Snakeblock":                        AdvData(107090, "Stony Cliffs"),
-    # "Stone E1 - W - Snakeblock":                    AdvData(107760, "Stony Cliffs"),
-    # "Stone C1 - Snakeblock":                        AdvData(107480, "Stony Cliffs"), # topaz Quest
-    # "Stone D1 - Snakeblock":                        AdvData(107164, "Stony Cliffs"), # topaz Quest
-    # "Stone E1 - E - Snakeblock":                    AdvData(107759, "Stony Cliffs Post-Rune"), # t quest
-    # "Stone E0 - Snakeblock":                        AdvData(108233, "Stony Cliffs Post-Rune"),
-    # "Stone B1 - W - Snakeblock":                    AdvData(107048, "Stony Cliffs NW"),
-    # "Stone B0 - Snakeblock":                        AdvData(108013, "Stony Cliffs NW"),
-    # "Stone A2 - N - Snakeblock":                    AdvData(106853, "Stony Cliffs NW"),
-    # "Stone A2 - S - Snakeblock":                    AdvData(106852, "Stony Cliffs Post-Rune"),
-    # "Stone A3 - Snakeblock":                        AdvData(107422, "Stony Cliffs Post-Rune"),
-    # "Stone B3 - S - Snakeblock":                    AdvData(108107, "Stony Cliffs Post-Rune"),
-    # "Stone A4 - W - Snakeblock":                    AdvData(107712, "Stony Cliffs Post-Rune"),
-    # "Stone A0 - Snakeblock":                        AdvData(108155, "Stony Cliffs NW"),
-    # "Stone B1 - E - Snakeblock":                    AdvData(107050, "Stony Cliffs NW"),
-    # "Stone B4 - Snakeblock":                        AdvData(106956, "Stony Cliffs Post-Rune"), #g gloves, 15 stars
-    # "Stone A4 - E - Snakeblock":                    AdvData(107713, "Stony Cliffs Post-Rune"), #g gloves, 15 stars
-    # "Stone C4 - Snakeblock":                        AdvData(107256, "Stony Cliffs Post-Rune"), # t quest
-    # "Stone B3 - N - Snakeblock":                    AdvData(108108, "Stony Cliffs Post-Rune"),
-    # "Stone B2 - W - Snakeblock":                    AdvData(107366, "Stony Cliffs Post-Rune"),
-    # "Stone B2 - E - Snakeblock":                    AdvData(107367, "Stony Cliffs Post-Rune"),
-    # "Stone C2 - Snakeblock":                        AdvData(107591, "Stony Cliffs Post-Rune"),
-    # "Stone E4 - Snakeblock":                        AdvData(107810, "Stony Cliffs Post-Rune"),
-    # "Stone Dungeon C4 - Snakeblock":                AdvData(102913, "Stony Cliffs Post-Rune"), # t quest
-    # "Stone Dungeon C3 - Snakeblock":                AdvData(101712, "Stony Cliffs Post-Rune"), # t quest
-    # "Stone Dungeon B2 - E - Snakeblock":            AdvData(102663, "Stony Cliffs Post-Rune"),
-    # "Stone Dungeon B2 - W - Snakeblock":            AdvData(102664, "Stony Cliffs Post-Rune"),
-    # "Stone Dungeon B2 - N - Snakeblock":            AdvData(102667, "Stony Cliffs Post-Rune"),
-    # "Stone Dungeon B1 - Snakeblock":                AdvData(124810, "Stony Cliffs Post-Rune"),
-    # "Stone Dungeon D2 - E - Snakeblock":            AdvData(102291, "Stony Cliffs Post-Rune"), # t quest
-    # "Stone Dungeon D2 - CE - Snakeblock":           AdvData(102286, "Stony Cliffs Post-Rune"), # t quest
-    # "Stone Dungeon D2 - W - Snakeblock":            AdvData(102290, "Stony Cliffs Post-Rune"), # t quest
-    # "Stone Dungeon D2 - CW - Snakeblock":           AdvData(102287, "Stony Cliffs Post-Rune"), # t quest
-    # "Stone Dungeon D1 - W - Snakeblock":            AdvData(102862, "Stony Cliffs Post-Rune"), # t quest
-    # "Stone Dungeon D1 - CS - Snakeblock":           AdvData(102860, "Stony Cliffs Post-Rune"), # t quest
-    # "Stone Dungeon D1 - CN - Snakeblock":           AdvData(102861, "Stony Cliffs"),
-    # "Stone Dungeon D1 - E - Snakeblock":            AdvData(102863, "Stony Cliffs Post-Rune"), # t quest
-    # "Stone Dungeon E1 - Snakeblock":                AdvData(125459, "Stony Cliffs Post-Rune"), # t quest
-    # "Stone Dungeon E2 - Snakeblock":                AdvData(102455, "Stony Cliffs Post-Rune"), # t quest
-    # "Stone Dungeon C1 - Snakeblock":                AdvData(101827, "Stony Cliffs NW"), # t quest, #g gloves
+    "Ancient A1 - Snakeblock":                      AdvData(100011210, "Ancient Isle - West"),
+    "Ancient A3 - Snakeblock":                      AdvData(100031004, "Ancient Isle - Origin"),
+    "Ancient B2 - W - Snakeblock":                  AdvData(100120208, "Ancient Isle - Origin"),
+    "Ancient B2 - E - Snakeblock":                  AdvData(100122109, "Ancient Isle - Origin"),
+    "Ancient B3 - Snakeblock":                      AdvData(100131205, "Ancient Isle - Origin"),
+    "Ancient C2 - W - Snakeblock":                  AdvData(100221011, "Ancient Isle - Origin"),
+    "Ancient C2 - S - Snakeblock":                  AdvData(100221411, "Ancient Isle - Origin"),
+    "Ancient C2 - E - Snakeblock":                  AdvData(100221808, "Ancient Isle - Origin"),
+    "Ancient C3 - Snakeblock":                      AdvData(100230504, "Ancient Isle - Origin"),
 
-    # "Rolling B0 - Snakeblock":                      AdvData(104885, "Rolling Rocks - Post-Rune"),
+    "Stone A0 - Snakeblock":                        AdvData(101001612, "Stony Cliffs - Phoenix"),
+    "Stone A2 - N - Snakeblock":                    AdvData(101022203, "Stony Cliffs - Phoenix"),
+    "Stone A2 - S - Snakeblock":                    AdvData(101022204, "Stony Cliffs - Tablet Slot"),
+    "Stone A3 - Snakeblock":                        AdvData(101032012, "Stony Cliffs - Tablet Slot"),
+    "Stone A4 - W - Snakeblock":                    AdvData(101040503, "Stony Cliffs - Tablet Slot"),
+    "Stone A4 - E - Snakeblock":                    AdvData(101042209, "Stony Cliffs - South Star Stone"), #g gloves
+    "Stone B0 - Snakeblock":                        AdvData(101101607, "Stony Cliffs - Phoenix"), # Ancient Key
+    "Stone B1 - W - Snakeblock":                    AdvData(101111504, "Stony Cliffs - Phoenix"), # Ancient Key
+    "Stone B1 - E - Snakeblock":                    AdvData(101112206, "Stony Cliffs - Phoenix"), # Entrance from Stone Dungeon
+    "Stone B2 - W - Snakeblock":                    AdvData(101121012, "Stony Cliffs - South Coast"),
+    "Stone B2 - E - Snakeblock":                    AdvData(101121412, "Stony Cliffs - South Coast"),
+    "Stone B3 - S - Snakeblock":                    AdvData(101130312, "Stony Cliffs - Tablet Slot"),
+    "Stone B3 - N - Snakeblock":                    AdvData(101130403, "Stony Cliffs - South Coast"),
+    "Stone B4 - Snakeblock":                        AdvData(101141110, "Stony Cliffs - South Star Stone"), # Earth Elementals
+    "Stone C1 - Snakeblock":                        AdvData(101211108, "Stony Cliffs - God Altar"), # Earth Elementals
+    "Stone C2 - Snakeblock":                        AdvData(101220811, "Stony Cliffs - South Coast"),
+    "Stone C4 - Snakeblock":                        AdvData(101240504, "Stony Cliffs - Windy Cliff"), # Earth | Wind Elementals
+    "Stone D1 - Snakeblock":                        AdvData(101310909, "Stony Cliffs - God Altar"), # Earth Elementals
+    "Stone D2 - Snakeblock":                        AdvData(101320409, "Stony Cliffs - God Altar"),
+    "Stone D3 - W - Snakeblock":                    AdvData(101331111, "Stony Cliffs - Windy Cliff"), # Earth | Wind Elementals
+    "Stone D3 - N - Snakeblock":                    AdvData(101331506, "Stony Cliffs - Windy Cliff"), # Earth & Wind Elementals
+    "Stone D3 - S - Snakeblock":                    AdvData(101331512, "Stony Cliffs - Windy Cliff"),
+    "Stone D4 - Snakeblock":                        AdvData(101340504, "Stony Cliffs - Windy Cliff"), # Earth | Wind Elementals
+    "Stone E0 - Snakeblock":                        AdvData(101400407, "Stony Cliffs - North-East"),
+    "Stone E1 - W - Snakeblock":                    AdvData(101410909, "Stony Cliffs - God Altar"),
+    "Stone E1 - E - Snakeblock":                    AdvData(101411107, "Stony Cliffs - God Altar"), # Entrance from Caverns
+    "Stone E4 - Snakeblock":                        AdvData(101440210, "Stony Cliffs - South Coast"),
+    "Stone Dungeon B1 - Snakeblock":                AdvData(102111111, "Stone Dungeon - West Tunnels"),
+    "Stone Dungeon B2 - W - Snakeblock":            AdvData(102120308, "Stone Dungeon - West Tunnels"),
+    "Stone Dungeon B2 - N - Snakeblock":            AdvData(102121107, "Stone Dungeon - West Tunnels"),
+    "Stone Dungeon B2 - E - Snakeblock":            AdvData(102121509, "Stone Dungeon - Vault Door"),
+    "Stone Dungeon C1 - Snakeblock":                AdvData(102211307, "Stone Dungeon - Gopher Vault"), # Gopher Gloves
+    "Stone Dungeon C3 - Snakeblock":                AdvData(102231206, "Stone Dungeon - Vault Door"),
+    "Stone Dungeon C4 - Snakeblock":                AdvData(102241306, "Stone Dungeon - South Tunnels"), # Earth Elementals
+    "Stone Dungeon D1 - W - Snakeblock":            AdvData(102311011, "Stone Dungeon - Vault Door"),
+    "Stone Dungeon D1 - N - Snakeblock":            AdvData(102311606, "Stone Dungeon - Below Xylophone"),
+    "Stone Dungeon D1 - S - Snakeblock":            AdvData(102311607, "Stone Dungeon - Vault Door"),
+    "Stone Dungeon D1 - E - Snakeblock":            AdvData(102312108, "Stone Dungeon - Vault Door"), # Entrance from Xylophone Room
+    "Stone Dungeon D2 - W - Snakeblock":            AdvData(102320710, "Stone Dungeon - Vault Door"),
+    "Stone Dungeon D2 - CW - Snakeblock":           AdvData(102321208, "Stone Dungeon - Vault Door"),
+    "Stone Dungeon D2 - CE - Snakeblock":           AdvData(102321508, "Stone Dungeon - Vault Door"),
+    "Stone Dungeon D2 - E - Snakeblock":            AdvData(102322007, "Stone Dungeon - Vault Door"),
+    "Stone Dungeon E1 - Snakeblock":                AdvData(102411106, "Stone Dungeon - Earth Chamber"), # East Cavern Entrance
+    "Stone Dungeon E2 - Snakeblock":                AdvData(102420607, "Stone Dungeon - Earth Chamber"),
 
-    # "Aggro B1 - E - Snakeblock":                    AdvData(122861, "Aggro Crag"), # 35 stars
-    # "Aggro B1 - W - Snakeblock":                    AdvData(122832, "Aggro Crag"), # 35 stars, R quest,A rune
-    # "Aggro B0 - E - Snakeblock":                    AdvData(122673, "Aggro Crag"),
-    # "Aggro B0 - W - Snakeblock":                    AdvData(122672, "Aggro Crag"), # 35 stars, R quest, A rune, s shirt
+    "Water A0 - W - Snakeblock":                    AdvData(103001408, "Tidal Reef - North-West"),
+    "Water A0 - S - Snakeblock":                    AdvData(103001609, "Tidal Reef - God Altar"), # f flippers
+    "Water A2 - Snakeblock":                        AdvData(103021406, "Tidal Reef - West Star Stone"),
+    "Water A3 - Snakeblock":                        AdvData(103031004, "Tidal Reef - West Star Stone"),
+    "Water B0 - W -Snakeblock":                     AdvData(103100107, "Tidal Reef - North-West"),
+    "Water B0 - C - Snakeblock":                    AdvData(103100809, "Tidal Reef - God Altar"), # Water Elementals
+    "Water B0 - E - Snakeblock":                    AdvData(103101508, "Tidal Reef - God Altar"), # Water Elementals
+    "Water B1 - C - Snakeblock":                    AdvData(103111309, "Tidal Reef - God Altar"), # Water B1 Star Piece
+    "Water B1 - E - Snakeblock":                    AdvData(103111712, "Tidal Reef - God Altar"), # Water Elementals or Kite Cloak
+    "Water B2 - C - Snakeblock":                    AdvData(103121608, "Tidal Reef - God Altar"),
+    "Water B2 - N - Snakeblock":                    AdvData(103121905, "Tidal Reef - God Altar"),
+    "Water B3 - Snakeblock":                        AdvData(103131003, "Tidal Reef - God Altar"),
+    "Water B4 - Snakeblock":                        AdvData(103141906, "Tidal Reef - Phoenix"),
+    "Water C1 - W - Snakeblock":                    AdvData(103210210, "Tidal Reef - God Altar"),
+    "Water C1 - CW - Snakeblock":                   AdvData(103210808, "Tidal Reef - God Altar"),
+    "Water C1 - CE - Snakeblock":                   AdvData(103211508, "Tidal Reef - God Altar"),
+    "Water C1 - E - Snakeblock":                    AdvData(103211909, "Tidal Reef - God Altar"),
+    "Water C2 - W - Snakeblock":                    AdvData(103220108, "Tidal Reef - God Altar"),
+    "Water C2 - C - Snakeblock":                    AdvData(103221407, "Tidal Reef - God Altar"),
+    "Water C2 - E - Snakeblock":                    AdvData(103221608, "Tidal Reef - God Altar"),
+    "Water C2 - SE - Snakeblock":                   AdvData(103221711, "Tidal Reef - God Altar"),
+    "Water D0 - W - Snakeblock":                    AdvData(103300705, "Tidal Reef - God Altar"),
+    "Water D0 - E - Snakeblock":                    AdvData(103301507, "Tidal Reef - God Altar"), # God Altar to East Entrance
+    "Water D1 - Snakeblock":                        AdvData(103310612, "Tidal Reef - East"),
+    "Water D2 - W - Snakeblock":                    AdvData(103320107, "Tidal Reef - God Altar"),
+    "Water D2 - S - Snakeblock":                    AdvData(103321310, "Tidal Reef - Shell Puzzle"), # Frog Flippers or Water Elementals
+    "Water D2 - E - Snakeblock":                    AdvData(103322104, "Tidal Reef - Shell Puzzle"), # Frog Flippers or Water Elementals
+    "Water D3 - Snakeblock":                        AdvData(103331409, "Tidal Reef - Shell Puzzle"), # Water Elementals
+    "Water E1 - W - Snakeblock":                    AdvData(103410905, "Tidal Reef - East"), # Frog Flippers
+    "Water E1 - E - Snakeblock":                    AdvData(103412006, "Tidal Reef - East"), # Frog Flippers
+    "Water E2 - W - Snakeblock":                    AdvData(103420408, "Tidal Reef - East"),
+    "Water E2 - SW - Snakeblock":                   AdvData(103420611, "Tidal Reef - East"),
+    "Water E2 - NE - Snakeblock":                   AdvData(103421505, "Tidal Reef - East"),
+    "Water E2 - SE - Snakeblock":                   AdvData(103421610, "Tidal Reef - East"),
+    "Water E2 - E - Snakeblock":                    AdvData(103421908, "Tidal Reef - East"), # Water E2 Star Piece
+    "Water E3 - W - Snakeblock":                    AdvData(103430210, "Tidal Reef - East"),
+    "Water E3 - C - Snakeblock":                    AdvData(103430910, "Tidal Reef - East"), # Earth & Water Elementals
 
-    # "Locked A0 - E - Snakeblock":                   AdvData(104287, "Locked Key - Turtle"),
-    # "Locked A0 - C - Snakeblock":                   AdvData(104301, "Locked Key - Turtle"),
-    # "Locked A0 - W - Snakeblock":                   AdvData(104292, "Locked Key - Turtle"),
+    "Fire A0 - W - Snakeblock":                     AdvData(104001109, "Raging Volcano - North-West"),
+    "Fire A0 - E - Snakeblock":                     AdvData(104001707, "Raging Volcano - North-West"),
+    "Fire A1 - N - Snakeblock":                     AdvData(104011805, "Raging Volcano - North-West"),
+    "Fire A1 - E - Snakeblock":                     AdvData(104012007, "Raging Volcano - Geyser Pass"),
+    "Fire A3 - W - Snakeblock":                     AdvData(104031007, "Raging Volcano - Triple Ruby Pit"),
+    "Fire A3 - S - Snakeblock":                     AdvData(104031611, "Raging Volcano - South Coast"),
+    "Fire A3 - SE - Snakeblock":                    AdvData(104032111, "Raging Volcano - Lyre"),
+    "Fire A3 - NE - Snakeblock":                    AdvData(104032206, "Raging Volcano - Lyre"),
+    "Fire A4 - Snakeblock":                         AdvData(104041904, "Raging Volcano - South Coast"),
+    "Fire B0 - Snakeblock":                         AdvData(104100208, "Raging Volcano - North-West Pass"),
+    "Fire B1 - Snakeblock":                         AdvData(104111910, "Raging Volcano - God Altar"), # Salamander Shirt
+    "Fire B2 - W - Snakeblock":                     AdvData(104120608, "Raging Volcano - God Altar"),
+    "Fire B2 - S - Snakeblock":                     AdvData(104120711, "Raging Volcano - Lyre"),
+    "Fire B2 - CW - Snakeblock":                    AdvData(104120809, "Raging Volcano - God Altar"),
+    "Fire B2 - CE - Snakeblock":                    AdvData(104121208, "Raging Volcano - God Altar"),
+    "Fire B2 - E - Snakeblock":                     AdvData(104121908, "Raging Volcano - God Altar"),
+    "Fire B3 - W - Snakeblock":                     AdvData(104130109, "Raging Volcano - Lyre"), # Fire Elementals
+    "Fire B3 - NW - Snakeblock":                    AdvData(104130405, "Raging Volcano - Lyre"), # Fire Elementals
+    "Fire B3 - E - Snakeblock":                     AdvData(104131508, "Raging Volcano - Lyre"), # Fire Elementals
+    "Fire B3 - SE - Snakeblock":                    AdvData(104132209, "Raging Volcano - Above Volcano"),
+    "Fire B4 - W - Snakeblock":                     AdvData(104140708, "Raging Volcano - South Coast"), # Fire Elementals
+    "Fire B4 - E - Snakeblock":                     AdvData(104141908, "Raging Volcano - South Coast"), # Fire Elementals
+    "Fire C1 - Snakeblock":                         AdvData(104212007, "Raging Volcano - God Altar"),
+    "Fire C2 - N - Snakeblock":                     AdvData(104221105, "Raging Volcano - God Altar"),
+    "Fire C2 - NE - Snakeblock":                    AdvData(104221805, "Raging Volcano - God Altar"),
+    "Fire C2 - E - Snakeblock":                     AdvData(104222110, "Raging Volcano - God Altar"),
+    "Fire C3 - W - Snakeblock":                     AdvData(104230206, "Raging Volcano - Lyre"),
+    "Fire C3 - N - Snakeblock":                     AdvData(104230803, "Raging Volcano - God Altar"), # Fire Elementals
+    "Fire C4 - S - Snakeblock":                     AdvData(104241408, "Raging Volcano - Above Volcano"),
+    "Fire C4 - N - Snakeblock":                     AdvData(104241703, "Raging Volcano - Above Volcano"),
+    "Fire D1 - W - Snakeblock":                     AdvData(104310708, "Raging Volcano - God Altar"),
+    "Fire D1 - SW - Snakeblock":                    AdvData(104310711, "Raging Volcano - God Altar"), # Ancient Key x3
+    "Fire D1 - C - Snakeblock":                     AdvData(104311511, "Raging Volcano - God Altar"), # Ruby Rune
+    "Fire D1 - NE - Snakeblock":                    AdvData(104311906, "Raging Volcano - God Altar"), # Entrance from Phoenix or Fire Elementals
+    "Fire D1 - SE - Snakeblock":                    AdvData(104312112, "Raging Volcano - Hot Spring"), # Salamander Shirt
+    "Fire D2 - W - Snakeblock":                     AdvData(104320707, "Raging Volcano - God Altar"),
+    "Fire D2 - C - Snakeblock":                     AdvData(104321511, "Raging Volcano - God Altar"),
+    "Fire D2 - NE - Snakeblock":                    AdvData(104322006, "Raging Volcano - God Altar"),
+    "Fire D2 - SE - Snakeblock":                    AdvData(104322012, "Raging Volcano - Below Hot Spring"),
+    "Fire D3 - W - Snakeblock":                     AdvData(104330107, "Raging Volcano - Idol Room West"), # Salamander Shirt
+    "Fire D3 - SW - Snakeblock":                    AdvData(104330310, "Raging Volcano - Below Hot Spring"), # Fire Elementals
+    "Fire D3 - E - Snakeblock":                     AdvData(104331904, "Raging Volcano - Below Hot Spring"), # Fire Elementals
+    "Fire D4 - W - Snakeblock":                     AdvData(104340508, "Raging Volcano - Idol Room West"),
+    "Fire D4 - E - Snakeblock":                     AdvData(104342008, "Raging Volcano - Below Hot Spring"),
+    "Fire E3 - W - Snakeblock":                     AdvData(104430508, "Raging Volcano - Below Hot Spring"), # Fire and Water Elementals
+    "Fire E3 - CW - Snakeblock":                    AdvData(104430608, "Raging Volcano - Below Hot Spring"), # Fire and Water Elementals
+    "Fire E3 - S - Snakeblock":                     AdvData(104431112, "Raging Volcano - Below Hot Spring"), # Fire and Water Elementals
+    "Fire E4 - W - Snakeblock":                     AdvData(104440208, "Raging Volcano - Below Hot Spring"),
+    "Fire E4 - N - Snakeblock":                     AdvData(104441103, "Raging Volcano - Below Hot Spring"),
+    "Fire E4 - NE - Snakeblock":                    AdvData(104441203, "Raging Volcano - South Coast"),
 
-    # "Nunatak A1 - Snakeblock":                      AdvData(123363, "Sea Nunatak - Turtle"), # a rune, d quest?
+    "Wind A2 - SW - Snakeblock":                    AdvData(105021312, "Frozen Spire"),
+    "Wind A2 - SE - Snakeblock":                    AdvData(105021612, "Frozen Spire"), # Wind Elementals
+    "Wind A3 - Snakeblock":                         AdvData(105030711, "Frozen Spire"),
+    "Wind B0 - W - Snakeblock":                     AdvData(105101111, "Frozen Spire - Post-Rune"),
+    "Wind B0 - E - Snakeblock":                     AdvData(105101610, "Frozen Spire - Post-Rune"),
+    "Wind B1 - Snakeblock":                         AdvData(105111911, "Frozen Spire"), # Wind Elementals
+    "Wind B2 - SW - Snakeblock":                    AdvData(105120412, "Frozen Spire"), # Wind Elementals
+    "Wind B2 - E - Snakeblock":                     AdvData(105121608, "Frozen Spire"),
+    "Wind B3 - SW - Snakeblock":                    AdvData(105130611, "Frozen Spire"),
+    "Wind B3 - NE - Snakeblock":                    AdvData(105131605, "Frozen Spire"), # Kite Cloak
+    "Wind B3 - CE - Snakeblock":                    AdvData(105131606, "Frozen Spire"), # Kite Cloak
+    "Wind B4 - Snakeblock":                         AdvData(105140905, "Frozen Spire - Post-Rune"), # Wind Elementals
+    "Wind C0 - Snakeblock":                         AdvData(105200206, "Frozen Spire - Post-Rune"),
+    "Wind C1 - Snakeblock":                         AdvData(105210604, "Frozen Spire - Post-Rune"),
+    "Wind C2 - Snakeblock":                         AdvData(105220706, "Frozen Spire"), # Collect Ancient Key C2
+    "Wind C4 - N - Snakeblock":                     AdvData(105240804, "Frozen Spire"),
+    "Wind C4 - C - Snakeblock":                     AdvData(105241108, "Frozen Spire"),
+    "Wind C4 - E - Snakeblock":                     AdvData(105241908, "Frozen Spire"),
+    "Wind D2 - SW - Snakeblock":                    AdvData(105320509, "Frozen Spire"),
+    "Wind D2 - SE - Snakeblock":                    AdvData(105322012, "Frozen Spire"),
+    "Wind D4 - Snakeblock":                         AdvData(105341909, "Frozen Spire"), # Ancient Key x3
+    "Wind E1 - W - Snakeblock":                     AdvData(105410709, "Frozen Spire - Post-Rune"), # Fire Elementals
+    "Wind E1 - C - Snakeblock":                     AdvData(105412010, "Frozen Spire - Post-Rune"), # Fire Elementals
+    "Wind E1 - E - Snakeblock":                     AdvData(105412110, "Frozen Spire - Post-Rune"),
+    "Wind E3 - Snakeblock":                         AdvData(105430406, "Frozen Spire - Post-Rune"), # Wind Elementals
+    "Wind E4 - Snakeblock":                         AdvData(105440904, "Frozen Spire - Post-Rune"), # Wind Elementals
 
-    # "Shoal A0 - Snakeblock":                        AdvData(104391, "Eastern Shoal - North-West"), # a rune, k cloak
+    # "Serpent A0 - Snakeblock":                      AdvData(106001009, "Serpent Stacks - ???"), # Beavis' Snakeblock
+    "Serpent A1 - W - Snakeblock":                  AdvData(106010612, "Serpent Stacks - Head"),
+    "Serpent A1 - C - Snakeblock":                  AdvData(106011108, "Serpent Stacks - Head"), # Obsidian Rune Stone
+    "Serpent A1 - CE - Snakeblock":                 AdvData(106011410, "Serpent Stacks - Head"), # Obsidian Rune Stone
+    "Serpent A1 - E - Snakeblock":                  AdvData(106011911, "Serpent Stacks - Head"), # Shadow Elementals
+    "Serpent A6 - NW - Snakeblock":                 AdvData(106060906, "Serpent Stacks - Core"), # Kite Cloak or Shadow + Water Elementals
+    "Serpent A6 - SW - Snakeblock":                 AdvData(106060907, "Serpent Stacks - Core"), # Kite Cloak or Shadow + Water Elementals
+    "Serpent A6 - C - Snakeblock":                  AdvData(106061108, "Serpent Stacks - Core"),
+    "Serpent A6 - E - Snakeblock":                  AdvData(106061609, "Serpent Stacks - Core"), # Kite Cloak or Shadow + Water Elementals
+    "Serpent A8 - E - Snakeblock":                  AdvData(106082108, "Serpent Stacks - Tail"),
 
-    # "Lost B1 - Snakeblock":                         AdvData(128960, "Lost Landing"), # 30 Stars, p flute
+    "Sanctum A0 - W - Snakeblock":                  AdvData(107000109, "Sanctum - Wind Shard"),
+    "Sanctum A0 - CW - Snakeblock":                 AdvData(107000909, "Sanctum - Wind Shard"),
+    "Sanctum A0 - CE - Snakeblock":                 AdvData(107001110, "Sanctum - Wind Shard"),
+    "Sanctum A0 - E - Snakeblock":                  AdvData(107002012, "Sanctum - Wind Shard"),
+    "Sanctum A1 - Snakeblock":                      AdvData(107011907, "Sanctum - Turtle"),
+    "Sanctum A2 - W - Snakeblock":                  AdvData(107020507, "Sanctum - Earth Shard"),
+    "Sanctum A2 - C - Snakeblock":                  AdvData(107020808, "Sanctum - Earth Shard"),
+    "Sanctum A2 - S - Snakeblock":                  AdvData(107021112, "Sanctum - Earth Shard"),
+    "Sanctum C0 - W - Snakeblock":                  AdvData(107200612, "Sanctum - Fire Shard"),
+    "Sanctum C0 - CSW - Snakeblock":                AdvData(107200909, "Sanctum - Fire Shard"),
+    "Sanctum C0 - CN - Snakeblock":                 AdvData(107201007, "Sanctum - Fire Shard"),
+    "Sanctum C0 - CNW - Snakeblock":                AdvData(107201406, "Sanctum - Fire Shard"),
+    "Sanctum C0 - E - Snakeblock":                  AdvData(107201711, "Sanctum - Fire Shard"),
+    "Sanctum C1 - Snakeblock":                      AdvData(107210407, "Sanctum - Turtle"),
+    "Sanctum C2 - W - Snakeblock":                  AdvData(107220906, "Sanctum - Water Shard"),
+    "Sanctum C2 - E - Snakeblock":                  AdvData(107221608, "Sanctum - Water Shard"),
 
-    # "Tropic A0 - W - Snakeblock":                   AdvData(103230, "Star Tropic"), # k cloak
-    # "Tropic A0 - C - Snakeblock":                   AdvData(103234, "Star Tropic"), # k cloak
-    # "Tropic A0 - E - Snakeblock":                   AdvData(103236, "Star Tropic"), # k cloak
-    # "Tropic B0 - N - Snakeblock":                   AdvData(104249, "Star Tropic"), # k cloak
-    # "Tropic B0 - S - Snakeblock":                   AdvData(104245, "Star Tropic"), # k cloak
+    "Rolling B0 - Snakeblock":                      AdvData(108101611, "Rolling Rocks - North-East"), # Ancient Rune Stone
 
-    # "Overworld - Sapphire Sea - Damsnake":          AdvData(108520, "Sapphire Sea"),
-    # "Overworld - Beast Sea - Damsnake":             AdvData(108493, "Beast Sea"),
-    # "Overworld - Lost Sea - Damsnake":              AdvData(108515, "Lost Sea"),
-    # "Overworld - Northeast Sea - Damsnake":         AdvData(108513, "Forgotten Sea"),
+    "Aggro B0 - W - Snakeblock":                    AdvData(110100609, "Aggro Crag - North-West"),
+    "Aggro B0 - S - Snakeblock":                    AdvData(110100710, "Aggro Crag - East"),
+    "Aggro B1 - W - Snakeblock":                    AdvData(110110110, "Aggro Crag - South-West"), # Ancient Rune Stone
+    "Aggro B1 - E - Snakeblock":                    AdvData(110111906, "Aggro Crag - East"), # 35 Star Pieces
 
-    # "Water C2 - W - Snakeblock":                    AdvData(108781, "Tidal Reef"),
-    # "Water C2 - SE - Snakeblock":                   AdvData(108786, "Tidal Reef"),
-    # "Water D2 - W - Snakeblock":                    AdvData(109099, "Tidal Reef"),
-    # "Water C1 - E - Snakeblock":                    AdvData(109448, "Tidal Reef"),
-    # "Water C1 - CE - Snakeblock":                   AdvData(109443, "Tidal Reef"),
-    # "Water C2 - NE - Snakeblock":                   AdvData(108780, "Tidal Reef"),
-    # "Water C2 - CE - Snakeblock":                   AdvData(108778, "Tidal Reef"),
-    # "Water B1 - SE - Snakeblock":                   AdvData(109697, "Tidal Reef"),
-    # "Water B1 - C - Snakeblock":                    AdvData(109695, "Tidal Reef"),
-    # "Water C1 - W - Snakeblock":                    AdvData(109441, "Tidal Reef"),
-    # "Water C1 - CW - Snakeblock":                   AdvData(109442, "Tidal Reef"),
-    # "Water B0 - E - Snakeblock":                    AdvData(113766, "Tidal Reef"), # s quest
-    # "Water B0 - C - Snakeblock":                    AdvData(113757, "Tidal Reef"), # s quest, f flippers
-    # "Water B2 - NE - Snakeblock":                   AdvData(108963, "Tidal Reef"), # s quest,
-    # "Water B2 - C - Snakeblock":                    AdvData(108968, "Tidal Reef"), # s quest,
-    # "Water B3 - Snakeblock":                        AdvData(110853, "Tidal Reef"),
-    # "Water D0 - W - Snakeblock":                    AdvData(110313, "Tidal Reef"),
-    # "Water D0 - E - Snakeblock":                    AdvData(110315, "Tidal Reef Post-Rune"),
-    # "Water D1 - Snakeblock":                        AdvData(109881, "Tidal Reef Post-Rune"),
-    # "Water D2 - C - Snakeblock":                    AdvData(109096, "Tidal Reef Post-Rune"), # f flippers
-    # "Water D2 - E - Snakeblock":                    AdvData(109107, "Tidal Reef Post-Rune"), # f flippers
-    # "Water E1 - W - Snakeblock":                    AdvData(113541, "Tidal Reef Post-Rune"), # f flippers
-    # "Water E1 - E - Snakeblock":                    AdvData(113544, "Tidal Reef Post-Rune"), # f flippers
-    # "Water E2 - E - Snakeblock":                    AdvData(113307, "Tidal Reef Post-Rune"), # f flippers
-    # "Water E2 - W - Snakeblock":                    AdvData(113308, "Tidal Reef Post-Rune"),
-    # "Water E3 - Snakeblock":                        AdvData(114089, "Tidal Reef Post-Rune"),
-    # "Water D3 - Snakeblock":                        AdvData(113121, "Tidal Reef Post-Rune"),
-    # "Water A0 - W - Snakeblock":                    AdvData(111573, "Tidal Reef Post-Rune"),
-    # "Water A0 - S - Snakeblock":                    AdvData(111571, "Tidal Reef Post-Rune"), # f flippers
-    # "Water A2 - Snakeblock":                        AdvData(112437, "Tidal Reef Post-Rune"), # f flippers, s quest, 30 stars
-    # "Water A3 - Snakeblock":                        AdvData(114801, "Tidal Reef Post-Rune"), # f flippers, s quest, 30 stars
-    # "Water B4 - Snakeblock":                        AdvData(126139, "Tidal Reef S"),
-    # "Water B0 - Snakeblock":                        AdvData(113765, "Tidal Reef Post-Rune"),
+    "Nunatak A1 - Snakeblock":                      AdvData(111011807, "Sea Nunatak - Turtle"), # Share Logic with A1 Ancient Key
 
-    # "Fire B2 - W - Snakeblock":                     AdvData(115367, "Raging Volcano"),
-    # "Fire B2 - CW - Snakeblock":                    AdvData(115362, "Raging Volcano"),
-    # "Fire B2 - CE - Snakeblock":                    AdvData(115366, "Raging Volcano"),
-    # "Fire B2 - E - Snakeblock":                     AdvData(115356, "Raging Volcano"),
-    # "Fire B2 - SW - Snakeblock":                    AdvData(115370, "Raging Volcano Post-Rune"),
-    # "Fire C2 - W - Snakeblock":                     AdvData(115500, "Raging Volcano"),
-    # "Fire C2 - NE - Snakeblock":                    AdvData(115511, "Raging Volcano"),
-    # "Fire C2 - E - Snakeblock":                     AdvData(115501, "Raging Volcano"),
-    # "Fire D2 - W - Snakeblock":                     AdvData(115802, "Raging Volcano"),
-    # "Fire D2 - C - Snakeblock":                     AdvData(115810, "Raging Volcano"),
-    # "Fire D2 - NE - Snakeblock":                    AdvData(115800, "Raging Volcano"),
-    # "Fire D2 - SE - Snakeblock":                    AdvData(115803, "Raging Volcano Post-Rune"),
-    # "Fire D1 - SW - Snakeblock":                    AdvData(115988, "Raging Volcano"),
-    # "Fire D1 - W - Snakeblock":                     AdvData(115991, "Raging Volcano"),
-    # "Fire D1 - C - Snakeblock":                     AdvData(115993, "Raging Volcano Post-Rune"),
-    # "Fire D1 - NE - Snakeblock":                    AdvData(116001, "Raging Volcano Post-Rune"),
-    # "Fire D1 - SE - Snakeblock":                    AdvData(116000, "Raging Volcano Post-Rune"), # S shirt
-    # "Fire C1 - Snakeblock":                         AdvData(115683, "Raging Volcano"),
-    # "Fire B1 - Snakeblock":                         AdvData(116901, "Raging Volcano"), # s shirt
-    # "Fire B0 - Snakeblock":                         AdvData(119347, "Raging Volcano Post-Rune"),
-    # "Fire A1 - E - Snakeblock":                     AdvData(116435, "Raging Volcano Post-Rune"),
-    # "Fire A1 - NE - Snakeblock":                    AdvData(116438, "Raging Volcano Post-Rune"),
-    # "Fire A0 - E - Snakeblock":                     AdvData(116597, "Raging Volcano Post-Rune"),
-    # "Fire A0 - W - Snakeblock":                     AdvData(116603, "Raging Volcano Post-Rune"),
-    # "Fire A3 - E - Snakeblock":                     AdvData(116771, "Raging Volcano Post-Rune"),
-    # "Fire A3 - SE - Snakeblock":                    AdvData(116773, "Raging Volcano Post-Rune"),
-    # "Fire A3 - S - Snakeblock":                     AdvData(116774, "Raging Volcano Post-Rune"),
-    # "Fire A3 - W - Snakeblock":                     AdvData(116776, "Raging Volcano Post-Rune"),
-    # "Fire A4 - Snakeblock":                         AdvData(117784, "Raging Volcano Post-Rune"),
-    # "Fire B4 - W - Snakeblock":                     AdvData(118465, "Raging Volcano Post-Rune"), # r quest
-    # "Fire B4 - E - Snakeblock":                     AdvData(118455, "Raging Volcano Post-Rune"), # r quest
-    # "Fire B3 - CW - Snakeblock":                    AdvData(118773, "Raging Volcano Post-Rune"), # r quest
-    # "Fire B3 - W - Snakeblock":                     AdvData(118783, "Raging Volcano Post-Rune"), # r quest
-    # "Fire B3 - CE - Snakeblock":                    AdvData(118784, "Raging Volcano Post-Rune"), # r quest
-    # "Fire B3 - E - Snakeblock":                     AdvData(118780, "Raging Volcano Post-Rune"),
-    # "Fire C3 - E - Snakeblock":                     AdvData(116307, "Raging Volcano Post-Rune"), # r quest
-    # "Fire C3 - W - Snakeblock":                     AdvData(116301, "Raging Volcano Post-Rune"),
-    # "Fire C4 - NE - Snakeblock":                    AdvData(118129, "Raging Volcano Post-Rune"),
-    # "Fire C4 - SE - Snakeblock":                    AdvData(118122, "Raging Volcano Post-Rune"),
-    # "Fire D4 - W - Snakeblock":                     AdvData(118017, "Raging Volcano Post-Rune"),
-    # "Fire D4 - E - Snakeblock":                     AdvData(118018, "Raging Volcano Post-Rune"),# s shirt
-    # "Fire E4 - E - Snakeblock":                     AdvData(117925, "Raging Volcano Post-Rune"),
-    # "Fire E4 - CE - Snakeblock":                    AdvData(117917, "Raging Volcano Post-Rune"), # s shirt
-    # "Fire E4 - W - Snakeblock":                     AdvData(117924, "Raging Volcano Post-Rune"), # s shirt
-    # "Fire D3 - W - Snakeblock":                     AdvData(118990, "Raging Volcano Post-Rune"), # s shirt
-    # "Fire D3 - E - Snakeblock":                     AdvData(119003, "Raging Volcano Post-Rune"), # s shirt, r quest
-    # "Fire D3 - SW - Snakeblock":                    AdvData(119001, "Raging Volcano Post-Rune"), # s shirt, r quest
+    "Locked A0 - W - Snakeblock":                   AdvData(112011010, "Locked Key - Turtle"), # Ancient Key x6
+    "Locked A0 - E - Snakeblock":                   AdvData(112011309, "Locked Key - Turtle"), # Ancient Key x6
 
-    # "Wind C4 - E - Snakeblock":                     AdvData(120164, "Frozen Spire"),
-    # "Wind C4 - C - Snakeblock":                     AdvData(120167, "Frozen Spire"),
-    # "Wind C4 - N - Snakeblock":                     AdvData(120156, "Frozen Spire"),
-    # "Wind D4 - Snakeblock":                         AdvData(122398, "Frozen Spire"),
-    # "Wind B3 - SW - Snakeblock":                    AdvData(121094, "Frozen Spire"),
-    # "Wind B3 - CE - Snakeblock":                    AdvData(121105, "Frozen Spire"), # k cloak
-    # "Wind B3 - NE - Snakeblock":                    AdvData(121103, "Frozen Spire"), # k cloak
-    # "Wind A3 - Snakeblock":                         AdvData(120826, "Frozen Spire"), # D quest
-    # "Wind A2 - SW - Snakeblock":                    AdvData(120730, "Frozen Spire"),
-    # "Wind A2 - SE - Snakeblock":                    AdvData(120735, "Frozen Spire"), # D quest
-    # "Wind B2 - E - Snakeblock":                     AdvData(120993, "Frozen Spire"),
-    # "Wind B2 - SW - Snakeblock":                    AdvData(121002, "Frozen Spire"), # k cloak
-    # "Wind B4 - Snakeblock":                         AdvData(121162, "Frozen Spire"), # k cloak
-    # "Wind B1 - Snakeblock":                         AdvData(120911, "Frozen Spire"),
-    # "Wind D2 - SE - Snakeblock":                    AdvData(121524, "Frozen Spire"),
-    # "Wind D2 - SW - Snakeblock":                    AdvData(121527, "Frozen Spire"),
-    # "Wind B0 - W - Snakeblock":                     AdvData(120364, "Frozen Spire"),
-    # "Wind B0 - E - Snakeblock":                     AdvData(120362, "Frozen Spire"),
-    # "Wind C0 - Snakeblock":                         AdvData(120406, "Frozen Spire"),
-    # "Wind E4 - Snakeblock":                         AdvData(120276, "Frozen Spire - Post-Rune"), # d quest
-    # "Wind E3 - Snakeblock":                         AdvData(121756, "Frozen Spire - Post-Rune"), # d quest
-    # "Wind E1 - Snakeblock":                         AdvData(121559, "Frozen Spire - Post-Rune"), # g gloves
-    # "Wind C1 - Snakeblock":                         AdvData(121259, "Frozen Spire"),
-    # "Wind C2 - Snakeblock":                         AdvData(121370, "Frozen Spire"), # d quest
+    "Tropic A0 - W - Snakeblock":                   AdvData(113001410, "Star Tropic - West"),
+    "Tropic A0 - C - Snakeblock":                   AdvData(113001710, "Star Tropic - West"),
+    "Tropic A0 - E - Snakeblock":                   AdvData(113002011, "Star Tropic - West"),
+    "Tropic B0 - N - Snakeblock":                   AdvData(113100306, "Star Tropic - West"),
+    "Tropic B0 - S - Snakeblock":                   AdvData(113100410, "Star Tropic - West"),
 
-    # "Serpent A1 - W - Snakeblock":                  AdvData(125712, "Serpent Stacks - Post-Rune"),
-    # "Serpent A1 - C - Snakeblock":                  AdvData(125704, "Serpent Stacks - Post-Rune"), #o quest
-    # "Serpent A1 - CE - Snakeblock":                 AdvData(125690, "Serpent Stacks - Post-Rune"), #o quest
-    # "Serpent A1 - E - Snakeblock":                  AdvData(125711, "Serpent Stacks - Post-Rune"), #o quest
-    # "Serpent A6 - SW - Snakeblock":                 AdvData(126815, "Serpent Stacks - Post-Rune"), #o quest, S quest, T quest
-    # "Serpent A6 - NW - Snakeblock":                 AdvData(126807, "Serpent Stacks - Post-Rune"), #o quest, S quest, T quest
-    # "Serpent A6 - C - Snakeblock":                  AdvData(126804, "Serpent Stacks - Post-Rune"), #o quest, S quest, T quest
-    # "Serpent A6 - E - Snakeblock":                  AdvData(126805, "Serpent Stacks - Post-Rune"), #o quest, S quest, T quest
-    # "Serpent A8 - Snakeblock":                      AdvData(127076, "Serpent Stacks - Post-Rune"), #o quest, all quests
+    "Shoal A0 - Snakeblock":                        AdvData(114001307, "Eastern Shoal - North-West"), # Kite Cloak
 
-    # "Sanctum A2 - S - Snakeblock":                  AdvData(123858, "Sanctum"), #all quests
-    # "Sanctum A2 - C - Snakeblock":                  AdvData(123857, "Sanctum"), #all quests
-    # "Sanctum A2 - W - Snakeblock":                  AdvData(123856, "Sanctum"), #all quests
-    # "Sanctum A0 - E - Snakeblock":                  AdvData(124109, "Sanctum"), #all quests
-    # "Sanctum A0 - CE - Snakeblock":                 AdvData(124108, "Sanctum"), #all quests
-    # "Sanctum A0 - CW - Snakeblock":                 AdvData(124121, "Sanctum"), #all quests
-    # "Sanctum A0 - W - Snakeblock":                  AdvData(124111, "Sanctum"), #all quests
-    # "Sanctum C2 - E - Snakeblock":                  AdvData(124026, "Sanctum"), #all quests
-    # "Sanctum C2 - W - Snakeblock":                  AdvData(124023, "Sanctum"), #all quests
-    # "Sanctum C0 - W - Snakeblock":                  AdvData(124238, "Sanctum"), #all quests
-    # "Sanctum C0 - CSW - Snakeblock":                AdvData(124231, "Sanctum"), #all quests
-    # "Sanctum C0 - CNW - Snakeblock":                AdvData(124241, "Sanctum"), #all quests
-    # "Sanctum C0 - CN - Snakeblock":                 AdvData(124251, "Sanctum"), #all quests
-    # "Sanctum C0 - E - Snakeblock":                  AdvData(124250, "Sanctum"), #all quests
+    "Lost B1 - Snakeblock":                         AdvData(115111306, "Lost Landing - Staircase"),
 }
+
+mysterious_snakesanity_table: dict[str, AdvData] = {
+    # Serpent Lock
+    "Serpent A5 - NW - Snakeblock": AdvData(106050804, "Serpent Stacks - Serpent Lock"),
+    "Serpent A5 - NE - Snakeblock": AdvData(106051504, "Serpent Stacks - Serpent Lock"), # Shadow Elementals
+    "Serpent A5 - E - Snakeblock": AdvData(106052007, "Serpent Stacks - Serpent Lock"),
+    
+    # Pyramidion Quests
+    "Water A3 Serpent Secret - W - Snakeblock":         AdvData(103030409, "Tidal Reef - South-West"), # Serpent Circlet
+    "Water A3 Serpent Secret - CW - Snakeblock":        AdvData(103030708, "Tidal Reef - South-West"), # Serpent Circlet
+    "Water A3 Serpent Secret - C - Snakeblock":         AdvData(103030309, "Tidal Reef - South-West"), # Serpent Circlet
+    "Water A3 Serpent Secret - E - Snakeblock":         AdvData(103031308, "Tidal Reef - South-West"), # Serpent Circlet
+    
+    "Serpent A8 - SE - Snakeblock":                     AdvData(106082211, "Serpent Stacks - Mysterious Map"),
+    "Serpent A9 - Snakeblock":                          AdvData(106091804, "Serpent Stacks - Mysterious Map"),
+
+    "Shoal A1 - NW - Snakeblock":                       AdvData(114011003, "Eastern Shoal - South"),  # Kite Cloak
+    "Shoal A1 - SW - Snakeblock":                       AdvData(114011010, "Eastern Shoal - South"),  # Kite Cloak
+    "Shoal A1 - N - Snakeblock":                        AdvData(114011104, "Eastern Shoal - South"),  # Kite Cloak
+    "Shoal A1 - S - Snakeblock":                        AdvData(114011110, "Eastern Shoal - South"),  # Kite Cloak
+    "Shoal B0 - Snakeblock":                            AdvData(114100908, "Eastern Shoal - North-East"),
+    "Shoal B1 - W - Snakeblock":                        AdvData(114110405, "Eastern Shoal - South"), # Frog Flippers, Earth Elementals
+    "Shoal B1 - NW - Snakeblock":                       AdvData(114110603, "Eastern Shoal - South"), # Frog Flippers, Earth, Water and Fire Elementals
+    "Shoal B1 - S - Snakeblock":                        AdvData(114111111, "Eastern Shoal - South"), # Frog Flippers, Earth and Water Elementals
+    "Shoal B1 - NE - Snakeblock":                       AdvData(114111804, "Eastern Shoal - North-East"),
+}
+
+# Warps in Logic adds additional routes in logic that could expect you to travel through some of these snake blocks.
+# Since warps in logic is a logic rule, it won't add these snakeblocks as checks.
+# These snakeblocks are only checks if meteorite randomization is enabled
+meteorite_snakesanity_table: dict[str, AdvData] = {
+    "Ancient Cavern A1 - Snakeblock":                   AdvData(118011408, "Ancient Cavern - North"),
+}
+
+circlet_meteorite_snakesanity_table: dict[str, AdvData] = {
+    "Lagoon A0 - Snakeblock":                           AdvData(117001409, "Forgotten Lagoon - Meteorite"),
+}
+
 
 exclusion_table = {
 

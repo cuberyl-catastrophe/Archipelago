@@ -3,10 +3,11 @@ import warnings
 from typing import Any
 
 from .Items import IslesOfSeaAndSkyItem, item_table, non_key_items, key_items, note_items, \
-    circlet_items, mysterious_items, meteorite_items, mysterious_meteorite_items, junk_weights, progression_items, trap_weights
+    mysterious_items, meteorite_items, mysterious_meteorite_items, junk_weights, progression_items, trap_weights
 from .Locations import IslesOfSeaAndSkyAdvancement, AdvData, advancement_table, exclusion_table, \
-    jellyfish_table, seashell_table, note_table, circlet_table, mysterious_table, meteorite_table,\
-    circlet_meteorite_table, locksanity_table, snakesanity_table, secrets_table
+    jellyfish_table, seashell_table, note_table, mysterious_table, meteorite_table, \
+    circlet_meteorite_table, locksanity_table, snakesanity_table, secrets_table, get_locations, \
+    mysterious_snakesanity_table, meteorite_snakesanity_table, circlet_meteorite_snakesanity_table
 from .Regions import isles_of_sea_and_sky_regions, circlet_regions, meteorite_regions, \
     mandatory_connections, meteorite_connections, circlet_connections, warp_logic_connections, \
     circlet_meteorite_connections, warp_logic_regions, circlet_meteorite_regions
@@ -110,12 +111,14 @@ class IslesOfSeaAndSkyWorld(World):
             {name: data.id for name, data in jellyfish_table.items()} |
             {name: data.id for name, data in seashell_table.items()} |
             {name: data.id for name, data in note_table.items()} |
-            {name: data.id for name, data in circlet_table.items()} |
             {name: data.id for name, data in mysterious_table.items()} |
             {name: data.id for name, data in meteorite_table.items()} |
             {name: data.id for name, data in circlet_meteorite_table.items()} |
             {name: data.id for name, data in locksanity_table.items()} |
             {name: data.id for name, data in snakesanity_table.items()}|
+            {name: data.id for name, data in mysterious_snakesanity_table.items()}|
+            {name: data.id for name, data in meteorite_snakesanity_table.items()}|
+            {name: data.id for name, data in circlet_meteorite_snakesanity_table.items()}|
             {name: data.id for name, data in secrets_table.items()}
     )
 
@@ -139,7 +142,7 @@ class IslesOfSeaAndSkyWorld(World):
             "shuffle_big_bell_hits":        bool(self.options.shuffle_big_bell_hits.value),
             "shuffle_sanctum_shard_hits":   bool(self.options.shuffle_sanctum_shard_hits.value),
             "enable_locksanity":            False, # bool(self.options.enable_locksanity.value),
-            "enable_snakesanity":           False, # bool(self.options.enable_snakesanity.value),
+            "enable_snakesanity":           bool(self.options.enable_snakesanity.value),
             "include_seashells":            False, # bool(self.options.include_seashells.value),
             "include_jellyfish":            False, # bool(self.options.include_jellyfish.value),
             "require_serpent_clues":        bool(self.options.require_serpent_clues.value),
@@ -175,7 +178,7 @@ class IslesOfSeaAndSkyWorld(World):
         options.shuffle_big_bell_hits = passthrough["shuffle_big_bell_hits"]
         options.shuffle_sanctum_shard_hits = passthrough["shuffle_sanctum_shard_hits"]
         # options.enable_locksanity = passthrough["enable_locksanity"]
-        # options.enable_snakesanity = passthrough["enable_snakesanity"]
+        options.enable_snakesanity = passthrough["enable_snakesanity"]
         # options.secretsanity = passthrough["secretsanity"]
         # options.include_seashells = passthrough["include_seashells"]
         # options.include_jellyfish = passthrough["include_jellyfish"]
@@ -219,11 +222,6 @@ class IslesOfSeaAndSkyWorld(World):
         trap_pool = trap_weights.copy()
 
         if self.options.circlet_content_enabled:
-            for name, num in circlet_items.items():
-                if name in progression_pool: progression_pool[name] += num
-                if name in key_pool: key_pool[name] += num
-                if name in non_key_pool: non_key_pool[name] += num
-
             for name, num in mysterious_items.items():
                 if name in progression_pool: progression_pool[name] += num
                 if name in key_pool: key_pool[name] += num
@@ -472,17 +470,8 @@ class IslesOfSeaAndSkyWorld(World):
                 if region in regions: regions[region][0].extend(exits)
                 else: regions[region] = (exits.copy(), [])
 
-        # Amalgamate locations
-        locations = advancement_table.copy()
-        if self.options.shuffle_notes: locations.update(note_table);
-        if self.options.circlet_content_enabled: locations.update(circlet_table); locations.update(mysterious_table);
-        if self.options.shuffle_meteorites: locations.update(meteorite_table);
-        if self.options.circlet_content_enabled & self.options.shuffle_meteorites: locations.update(circlet_meteorite_table);
-        # if False & self.options.enable_locksanity: locations.update(locksanity_table);
-        # if False & self.options.enable_snakesanity: locations.update(snakesanity_table);
-        # if False & self.options.include_seashells: locations.update(seashell_table);
-        # if False & self.options.include_jellyfish: locations.update(jellyfish_table);
-        # if False & self.options.secretsanity: locations.update(secrets_table);
+        # Get Locations
+        locations = get_locations(self.options)
         # Assign Locations to their regions
 
         # Assign Locations to Regions

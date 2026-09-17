@@ -88,11 +88,11 @@ class ShuffleMeteorites(Toggle):
 #     """
 #     display_name = "Enable Locksanity"
 
-# class EnableSnakesanity(Toggle):
-#     """
-#     Turn all snake blocks in the game into location checks. (Snake block = Green directional block with an arrowhead on top)
-#     """
-#     display_name = "Enable Snakesanity"
+class EnableSnakesanity(Toggle):
+    """
+    Turn all snake blocks in the game into location checks. (Snake block = Green directional block with an arrowhead on top)
+    """
+    display_name = "Enable Snakesanity"
 
 # class EnableSecretsanity(Toggle):
 #     """
@@ -188,7 +188,7 @@ class IslesOfSeaAndSkyOptions(PerGameCommonOptions):
     shuffle_pyramidions:                        ShufflePyramidions
     shuffle_meteorites:                         ShuffleMeteorites
     # enable_locksanity:                          EnableLocksanity
-    # enable_snakesanity:                         EnableSnakesanity
+    enable_snakesanity:                         EnableSnakesanity
     # include_seashells:                          IncludeSeashells
     # include_jellyfish:                          IncludeJellyfish
     require_serpent_clues:                      RequireSerpentClues
@@ -222,13 +222,13 @@ isles_of_sea_and_sky_option_groups = [
         ShuffleMeteorites
     ]),
 
-    # OptionGroup("Extra Checks", [
-    #     # EnableLocksanity,
-    #     # EnableSnakesanity,
-    #     # EnableSecretsanity,
-    #     # IncludeSeashells,
-    #     # IncludeJellyfish
-    # ]),
+    OptionGroup("Extra Checks", [
+        # EnableLocksanity,
+        EnableSnakesanity,
+        # EnableSecretsanity,
+        # IncludeSeashells,
+        # IncludeJellyfish
+    ]),
 
     OptionGroup("Logic", [
         RequireSerpentClues,

@@ -62,7 +62,7 @@ isles_of_sea_and_sky_regions: list[tuple[str, list[str]]] = [
     # - - - - - - - - - -
     ("Ancient Isle - Origin", [ # Currently one region to make sphere 1 larger. In the future it may get split into multiple regions
         "Ancient Isle - East Turtle Exit",
-        "Ancient Isle - North Exit",
+        "Ancient Isle - North Turtle Exit",
         "Phoenix Hub - Phoenix Anywhere Entrance"
     ]),
     ("Ancient Isle - West", [
@@ -165,7 +165,7 @@ isles_of_sea_and_sky_regions: list[tuple[str, list[str]]] = [
     ("Stone Dungeon - Below Xylophone",  [
         "Stone Dungeon - Below Xylophone Cavern Exit"
     ]),
-    ("Stone Dungeon Earth Chamber",         [
+    ("Stone Dungeon - Earth Chamber",         [
         "Stone Dungeon - Earth Chamber to East Tunnels", 
         "Stone Dungeon - Earth Chamber East Cavern Exit"
     ]),
@@ -296,11 +296,10 @@ isles_of_sea_and_sky_regions: list[tuple[str, list[str]]] = [
     # - - - - - - - - - -
     # Serpent Stacks
     # - - - - - - - - - -
-    #TODO: Redo regioning to fit with the repository's new regioning standards
     ("Serpent Stacks - Head", []), 
-    ("Serpent Stacks - Entrance", [
-        "Serpent Stacks - Entrance to Post-Rune",
-        "Serpent Stacks - Entrance to Head",
+    ("Serpent Stacks - Turtle", [
+        "Serpent Stacks - Turtle to Post-Rune",
+        "Serpent Stacks - Turtle to Head",
         "Serpent Stacks - Exit"
     ]),
     ("Serpent Stacks - Post-Rune", [
@@ -314,12 +313,20 @@ isles_of_sea_and_sky_regions: list[tuple[str, list[str]]] = [
     # - - - - - - - - - -
     # Sanctum
     # - - - - - - - - - -
-    ("Sanctum", [
+    ("Sanctum - Turtle", [
+        "Sanctum - Turtle to Earth Shard", # Requires Ancient Keys
+        "Sanctum - Turtle to Water Shard", # Requires Ancient Keys
+        "Sanctum - Turtle to Fire Shard",
+        "Sanctum - Turtle to Wind Shard", # Requires Ancient Keys
+        "Sanctum - Elemental Rock Path",
         "Sanctum - Turtle Exit",
-        "Sanctum - Elemental Rock Path"
     ]),
+    ("Sanctum - Earth Shard", []),
+    ("Sanctum - Water Shard", []),
+    ("Sanctum - Fire Shard", []),
+    ("Sanctum - Wind Shard", []),
     ("Sanctum - Peak", []),
-    
+
     # - - - - - - - - - -
     # Rolling Rocks
     # - - - - - - - - - -
@@ -476,7 +483,7 @@ mandatory_connections: list[tuple[str, str]] = [
     ("Tidal Reef - Turtle Entrance",                        "Tidal Reef - God Altar"),
     ("Raging Volcano - Turtle Entrance",                    "Raging Volcano - God Altar"),
     ("Frozen Spire - Turtle Entrance",                      "Frozen Spire"),
-    ("Serpent Stacks - Turtle Entrance",                    "Serpent Stacks - Entrance"),
+    ("Serpent Stacks - Turtle Entrance",                    "Serpent Stacks - Turtle"),
     ("Rolling Rocks - East Turtle Entrance",                "Rolling Rocks - North-East"),
     ("Rolling Rocks - West Turtle Entrance",                "Rolling Rocks - West"),
     ("Sunken Island - Turtle Entrance",                     "Sunken Island - Turtle"),
@@ -495,7 +502,7 @@ mandatory_connections: list[tuple[str, str]] = [
     ("Ancient Isle - West to Origin",                       "Ancient Isle - Origin"),
     ("Ancient Isle - East Turtle Exit",                     "Topaz Sea"),
     ("Ancient Isle - West Turtle Exit",                     "Obsidian Sea"),
-    ("Ancient Isle - North Exit",                           "Sanctum"),
+    ("Ancient Isle - North Turtle Exit",                    "Sanctum - Turtle"),
     ("Phoenix Hub - Phoenix Anywhere Entrance",             "Phoenix Hub"), 
 
     # - - - - - - - - - -
@@ -506,7 +513,7 @@ mandatory_connections: list[tuple[str, str]] = [
     ("Stony Cliffs - God Altar to South Coast",             "Stony Cliffs - South Coast"),
     ("Stony Cliffs - God Altar to Phoenix",                 "Stony Cliffs - Phoenix"),
     ("Stony Cliffs - God Altar Music Cavern Entrance",      "Stone Dungeon - Below Xylophone"),
-    ("Stony Cliffs - God Altar East Cavern Entrance",       "Stone Dungeon Earth Chamber"),
+    ("Stony Cliffs - God Altar East Cavern Entrance",       "Stone Dungeon - Earth Chamber"),
     ("Stony Cliffs - North-East to God Altar",              "Stony Cliffs - God Altar"),
     ("Stony Cliffs - North-East Cavern Entrance",           "Stone Dungeon - North Tunnels"),
     ("Stony Cliffs - South-East to God Altar",              "Stony Cliffs - God Altar"),
@@ -546,7 +553,7 @@ mandatory_connections: list[tuple[str, str]] = [
     ("Stone Dungeon - Vault Door to Gopher Vault",          "Stone Dungeon - Gopher Vault"),
     ("Stone Dungeon - Vault Door to West Tunnels",          "Stone Dungeon - West Tunnels"),
     ("Stone Dungeon - Vault Door to North Tunnels",         "Stone Dungeon - North Tunnels"),
-    ("Stone Dungeon - Vault Door to Earth Chamber",         "Stone Dungeon Earth Chamber"),
+    ("Stone Dungeon - Vault Door to Earth Chamber",         "Stone Dungeon - Earth Chamber"),
     ("Stone Dungeon - Vault Door to East Tunnels",          "Stone Dungeon - East Tunnels"),
     ("Stone Dungeon - Gopher Vault to Vault Door",          "Stone Dungeon - Vault Door"),
     ("Stone Dungeon - Gopher Vault to North Tunnels",       "Stone Dungeon - North Tunnels"),
@@ -641,17 +648,21 @@ mandatory_connections: list[tuple[str, str]] = [
     # Serpent Stacks
     # - - - - - - - - - -
     ("Serpent Stacks - Exit",                               "Obsidian Sea"),
-    ("Serpent Stacks - Entrance to Head",                   "Serpent Stacks - Head"),
-    ("Serpent Stacks - Entrance to Post-Rune",              "Serpent Stacks - Post-Rune"),
+    ("Serpent Stacks - Turtle to Head",                     "Serpent Stacks - Head"),
+    ("Serpent Stacks - Turtle to Post-Rune",                "Serpent Stacks - Post-Rune"),
     ("Serpent Stacks - Post-Rune to Core",                  "Serpent Stacks - Core"),
     ("Serpent Stacks - Core to Tail",                       "Serpent Stacks - Tail"),
 
     # - - - - - - - - - -
     # Sanctum
     # - - - - - - - - - -
-    ("Sanctum - Turtle Exit",                               "Ancient Isle - Origin"),
+    ("Sanctum - Turtle to Earth Shard",                     "Sanctum - Earth Shard"),
+    ("Sanctum - Turtle to Water Shard",                     "Sanctum - Water Shard"),
+    ("Sanctum - Turtle to Fire Shard",                      "Sanctum - Fire Shard"),
+    ("Sanctum - Turtle to Wind Shard",                      "Sanctum - Wind Shard"),
     ("Sanctum - Elemental Rock Path",                       "Sanctum - Peak"),
-    
+    ("Sanctum - Turtle Exit",                               "Ancient Isle - Origin"),
+
     # - - - - - - - - - -
     # Rolling Rocks
     # - - - - - - - - - -
@@ -741,13 +752,17 @@ circlet_regions: list[tuple[str, list[str]]] = [
     
     ("Stony Cliffs - God Altar", ["Stony Cliffs - God Altar to Giant Wheel"]),
     ("Serpent Stacks - Core", ["Serpent Stacks - Core to Serpent Lock"]),
-    ("Serpent Stacks - Entrance", ["Serpent Stacks - Solve A2 Puzzles"]),
+    ("Serpent Stacks - Turtle", ["Serpent Stacks - Solve A2 Puzzles"]),
     ("Eastern Shoal - North-West", ["Eastern Shoal - North-West to South"]),
 
     # Completely new regions
     ("Stony Cliffs - Giant Wheel", []), # Dead end room with 1 entrance, no backwards logic needed.
     ("Serpent Stacks - Serpent Lock", []), # Lock Room A5 with 4 lock shards
     ("Serpent Stacks - A2 Pyramidions", []), # Able to see the code at Water A3
+    ("Serpent Stacks - Tail", [
+        "Serpent Stacks - Tail to Mysterious Map"
+    ]),
+    ("Serpent Stacks - Mysterious Map", []),
 
     ("Eastern Shoal - South", ["Eastern Shoal - South to North-East"]),
     ("Eastern Shoal - North-East", []),
@@ -769,6 +784,7 @@ circlet_connections: list[tuple[str, str]] = [
     ("Stony Cliffs - God Altar to Giant Wheel", "Stony Cliffs - Giant Wheel"),
     ("Serpent Stacks - Core to Serpent Lock", "Serpent Stacks - Serpent Lock"),
     ("Serpent Stacks - Solve A2 Puzzles", "Serpent Stacks - A2 Pyramidions"),
+    ("Serpent Stacks - Tail to Mysterious Map", "Serpent Stacks - Mysterious Map"),
 
     ("Eastern Shoal - North-West to South", "Eastern Shoal - South"),
     ("Eastern Shoal - South to North-East", "Eastern Shoal - North-East"),

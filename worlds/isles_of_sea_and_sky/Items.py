@@ -140,12 +140,9 @@ note_items = { # Music notes are in their own pool until Shuffle Notes gets rewo
     "Music Note":                           24
 }
 
-circlet_items = {
-    "Serpent Lock Shard":                   8,
-    "Serpent Circlet":                      1
-}
-
 mysterious_items = {
+    "Serpent Lock Shard":                   8,
+    "Serpent Circlet":                      1,
     "Ancient Key":                          1,
     "Obsidian":                             4,
     "Pyramidion":                           30
