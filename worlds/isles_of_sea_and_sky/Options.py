@@ -112,13 +112,14 @@ class EnableSnakesanity(Toggle):
 #     """
 #     display_name = "Include Jellyfish"
 
-class RequireSerpentClues(DefaultOnToggle):
+class SerpentPuzzleMemorization(Toggle):
     """
-    If enabled, you will not be expected to complete serpent puzzles before gaining access their clues.
-    If disabled, you are expected to be able to solve serpent puzzles without their clue.
-    This option does nothing is Shuffle Pyramidions is set to false.
+    If enabled, you will be expected to be able to solve serpent puzzles and shoal pattern puzzles by memory.
+    Logic will no longer consider whether you can reach the puzzle's serpent clue.
+    Exceptions are the shoal puzzles in A0 and A1, which are random per save file.
+    This option does nothing if serpent circlet content is not enabled.
     """
-    display_name = "Require Serpent Clues"
+    display_name = "Serpent Puzzle Memorization"
 
 class WarpsInLogic(Toggle):
     """
@@ -191,7 +192,7 @@ class IslesOfSeaAndSkyOptions(PerGameCommonOptions):
     enable_snakesanity:                         EnableSnakesanity
     # include_seashells:                          IncludeSeashells
     # include_jellyfish:                          IncludeJellyfish
-    require_serpent_clues:                      RequireSerpentClues
+    serpent_puzzle_memorization:                SerpentPuzzleMemorization
     warps_in_logic:                             WarpsInLogic
     phoenix_anywhere:                           PhoenixAnywhere
     filler_composition:                         FillerComposition
@@ -231,7 +232,7 @@ isles_of_sea_and_sky_option_groups = [
     ]),
 
     OptionGroup("Logic", [
-        RequireSerpentClues,
+        SerpentPuzzleMemorization,
         WarpsInLogic
     ]),
 

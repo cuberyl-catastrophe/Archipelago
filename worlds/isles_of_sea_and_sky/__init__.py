@@ -145,7 +145,7 @@ class IslesOfSeaAndSkyWorld(World):
             "enable_snakesanity":           bool(self.options.enable_snakesanity.value),
             "include_seashells":            False, # bool(self.options.include_seashells.value),
             "include_jellyfish":            False, # bool(self.options.include_jellyfish.value),
-            "require_serpent_clues":        bool(self.options.require_serpent_clues.value),
+            "serpent_puzzle_memorization":  bool(self.options.serpent_puzzle_memorization.value),
             "warps_in_logic":               bool(self.options.warps_in_logic.value),
             "phoenix_anywhere":             bool(self.options.phoenix_anywhere.value),
             "traps":                        self.options.traps.current_key,
@@ -182,7 +182,7 @@ class IslesOfSeaAndSkyWorld(World):
         # options.secretsanity = passthrough["secretsanity"]
         # options.include_seashells = passthrough["include_seashells"]
         # options.include_jellyfish = passthrough["include_jellyfish"]
-        options.require_serpent_clues = passthrough["require_serpent_clues"]
+        options.serpent_puzzle_memorization = passthrough["serpent_puzzle_memorization"]
         options.warps_in_logic = passthrough["warps_in_logic"]
 
     # UT

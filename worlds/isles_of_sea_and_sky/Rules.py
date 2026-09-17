@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 from rule_builder.options import OptionFilter
 from rule_builder.rules import Has, CanReachRegion, CanReachEntrance, CanReachLocation
 
-from .Options import PhoenixAnywhere, ShuffleNotes, ShuffleMeteorites, RequireSerpentClues, WarpsInLogic
+from .Options import PhoenixAnywhere, ShuffleNotes, ShuffleMeteorites, SerpentPuzzleMemorization, WarpsInLogic
 
 if TYPE_CHECKING:
     from . import IslesOfSeaAndSkyWorld
@@ -403,7 +403,7 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                        & CanReachRegion("Serpent Stacks - Post-Rune")
                        & CanReachRegion("Serpent Stacks - Core")
                        & CanReachRegion("Serpent Stacks - Tail")
-                       & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                       & ([OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
                           | CanReachRegion("Tidal Reef - God Altar")
                           ))
 
@@ -414,7 +414,7 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
         # New Stony Cliffs Room
         world.set_rule(world.get_entrance("Stony Cliffs - God Altar to Giant Wheel"),
                        Has("Serpent Circlet")
-                       & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                       & ([OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
                           | CanReachRegion("Rolling Rocks - South-East")
                           ))
 
@@ -423,7 +423,7 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                        Has("Serpent Circlet")
                        & Has("Kite Cloak"))
         world.set_rule(world.get_entrance("Eastern Shoal - South to North-East"),
-                       [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                       [OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
                        | CanReachRegion("Frozen Spire"))
         # Forgotten Lagoon
         world.set_rule(world.get_entrance("Forgotten Lagoon - Turtle to North"),
@@ -2103,7 +2103,7 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
                         & Has("Awaken Earth Elementals"))
         
         WATER_A3_SERPENT_SECRET = (
-            [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+            [OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
             | CanReachRegion("Aggro Crag - East")
         )
         world.set_rule(world.get_location("Water A3 Serpent Secret - Pyramidion"),
@@ -2115,7 +2115,7 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
                         & Has("Salamander Shirt")
                         & Has("Serpent Circlet"))
         FIRE_E3_SERPENT_SECRET = (
-            [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+            [OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
             | CanReachRegion("Sunken Island - Turtle")
         )
         world.set_rule(world.get_location("Fire E3 Serpent Secret - Pyramidion"),
@@ -2128,7 +2128,7 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
                         Has("Serpent Circlet"))
         
         WIND_E3_SERPENT_SECRET = (
-            [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+            [OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
             | CanReachRegion("Sea Nunatak - Turtle")
         )
         world.set_rule(world.get_location("Wind E3 Serpent Secret - Pyramidion"),
@@ -2146,7 +2146,7 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
         world.set_rule(world.get_location("Rolling B1 Serpent Secret - Pyramidion"),
                         Has("Serpent Circlet")
                         & Has("Ancient Key", 14)
-                        & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                        & ([OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
                             | (CanReachRegion("Raging Volcano - God Altar")
                                | CanReachRegion("Raging Volcano - North-West"))
                         ))
@@ -2155,7 +2155,7 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
                         & Has("Ancient Key", 34)
                         & Has("Ancient Rune Stone")
                         & (
-                            [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                            [OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
                             | CanReachRegion("Sea Nunatak - Turtle")
                         ))
 
@@ -2163,13 +2163,13 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
                         Has("Serpent Circlet")
                         & Has("Star Piece", 21)
                         & Has("Awaken Water Elementals")
-                        & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                        & ([OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
                         | CanReachRegion("Frozen Spire - Post-Rune")
                         ))
         world.set_rule(world.get_location("Aggro A0 Serpent Secret - Obsidian"),
                         Has("Serpent Circlet")
                         & (
-                            [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                            [OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
                             | CanReachRegion("Star Tropic - West")
                         ))
         
@@ -2178,7 +2178,7 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
                         & Has("Star Piece", 35)
                         & Has("Awaken Fire Elementals")
                         & (
-                            [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                            [OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
                             | CanReachRegion("Stony Cliffs - Giant Wheel")
                         ))
         world.set_rule(world.get_location("Nunatak A1 Serpent Secret - Obsidian"),
@@ -2187,7 +2187,7 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
                         & Has("Awaken Wind Elementals")
                         & Has("Star Piece", 49)
                         & (
-                            [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                            [OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
                             | CanReachRegion("Aggro Crag - East"))
                         )
         
@@ -2196,7 +2196,7 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
                         & Has("Awaken Wind Elementals")
                         & Has("Star Piece", 49)
                         & (
-                            [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                            [OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
                             | CanReachRegion("Serpent Stacks - Tail")) # and wind elementals
                         )
 
@@ -2204,7 +2204,7 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
                        CanReachRegion("Star Tropic - West") # Through Ancient Rune or Lost Sea
                        & Has ("Serpent Circlet")
                        & (
-                           [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                           [OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
                            | CanReachRegion("Sunken Island - Turtle"))
                        )
         world.set_rule(world.get_location("Serpent A5 Serpent Secret - Pyramidion"),
@@ -2220,19 +2220,19 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
         
         # - - - - - - - - - -
         # Eastern Shoal
-        # This puzzle is random per save, RequireSerpentClues is ignored
+        # This puzzle is random per save, SerpentPuzzleMemorization is ignored
         world.set_rule(world.get_location("Shoal A0 - Pattern Puzzle Pyramidion"),
                        CanReachRegion("Stony Cliffs - South Coast"))
 
         world.set_rule(world.get_location("Shoal A1 - Pyramidion"),
                        Has("Kite Cloak"))
-        # This puzzle is random per save, RequireSerpentClues is ignored
+        # This puzzle is random per save, SerpentPuzzleMemorization is ignored
         world.set_rule(world.get_location("Shoal A1 - Pattern Puzzle Pyramidion"),
                        Has("Kite Cloak")
                        & CanReachRegion("Tidal Reef - East"))
     
         world.set_rule(world.get_location("Shoal B0 - Pattern Puzzle Pyramidion"),
-                   [OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                   [OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
                     | CanReachRegion("Frozen Spire - Post-Rune") )
         
         world.set_rule(world.get_location("Shoal B1 - Pyramidion"),
@@ -2247,7 +2247,7 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
                        & Has("Awaken Fire Elementals")
                        & Has("Awaken Wind Elementals")
                        & Has("Frog Flippers")
-                       & ([OptionFilter(RequireSerpentClues, RequireSerpentClues.option_false)]
+                       & ([OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
                           | (CanReachRegion("Raging Volcano - North-West")
                              | CanReachRegion("Raging Volcano - Key Triplets")
                              | CanReachRegion("Raging Volcano - North-West Pass")
