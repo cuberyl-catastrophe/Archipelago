@@ -77,6 +77,7 @@ class ShufflePyramidions(Toggle):
 
 class ShuffleMeteorites(Toggle):
     """
+    [EXPERIMENTAL]
     If enabled, 5 meteorites and 8 warp portal patterns will be shuffled into the item pool
     The meteorite location at Lost Lagoon will not be included if the serpent circlet it not in the pool.
     """
@@ -126,7 +127,7 @@ class WarpsInLogic(Toggle):
     If enabled, you may be expected to use warps and other meteor quest mechanics to reach Star Tropic and Forgotten Lagoon.
     If Shuffle Meteorites is enabled then this is forced on.
     """
-    display_name = "Warps In Logic (Experimental)"
+    display_name = "Warps In Logic"
 
 class PhoenixAnywhere(Toggle):
     """
@@ -158,6 +159,7 @@ class DeathLinkAmnesty(Range):
 
 class Traps(Choice):
     """
+    [EXPERIMENTAL]
     When enabled, transforms filler items into traps instead.
     """
     display_name = "Traps (Experimental)"
