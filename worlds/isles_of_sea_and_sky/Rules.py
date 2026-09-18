@@ -67,9 +67,10 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                    Has("Star Piece", 20))
 
     world.set_rule(world.get_entrance("Stony Cliffs - South Coast to South Star Stone"),
-                   Has("Star Piece", 15))
+                   Has("Awaken Earth Elementals")
+                   & Has("Star Piece", 15))
     world.set_rule(world.get_entrance("Stony Cliffs - South Star Stone to South Coast"),
-                   Has("Star Piece", 15) | (Has("Awaken Earth Elementals") & Has("Gopher Gloves")))
+                   Has("Awaken Earth Elementals") & Has("Gopher Gloves"))
 
     world.set_rule(world.get_entrance("Stony Cliffs - Phoenix to West Star Stone"),
                    Has("Star Piece", 5))
@@ -2195,6 +2196,7 @@ def set_mysterious(world: "IslesOfSeaAndSkyWorld"):
                         Has("Serpent Circlet")
                         & Has("Awaken Wind Elementals")
                         & Has("Star Piece", 49)
+                        & Has("Ancient Rune Stone")
                         & (
                             [OptionFilter(SerpentPuzzleMemorization, SerpentPuzzleMemorization.option_true)]
                             | CanReachRegion("Serpent Stacks - Tail")) # and wind elementals
