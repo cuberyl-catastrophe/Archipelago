@@ -336,8 +336,8 @@ async def process_isles_of_sea_and_sky_cmd(ctx: IslesOfSeaAndSkyContext, cmd: st
         ctx.slot_data = args["slot_data"]
 
         ctx.reqRoute =              args["slot_data"]["route_required"]
-        ctx.reqStarPieces =    args["slot_data"]["star_pieces_required"]
-        ctx.reqPyramidions =   args["slot_data"]["pyramidions_required"]
+        ctx.reqStarPieces =         args["slot_data"]["star_pieces_required"]
+        ctx.reqPyramidions =        args["slot_data"]["pyramidions_required"]
         ctx.shuffleNotes =          args["slot_data"]["shuffle_notes"]
         ctx.shufflePyramidions =    args["slot_data"]["shuffle_pyramidions"] | (args["slot_data"]["route_required"] == "mysterious_ending")
         ctx.shuffleMeteorites =     args["slot_data"]["shuffle_meteorites"]
