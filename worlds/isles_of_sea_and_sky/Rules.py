@@ -1091,10 +1091,6 @@ def set_serpent_stacks(world: "IslesOfSeaAndSkyWorld"):
 
     world.set_rule(world.get_location("Serpent A7 - E - Star Piece"),
                    Has("Awaken Fire Elementals"))
-    
-
-    world.set_rule(world.get_location("Serpent A8 - N - Star Piece"),
-                   Has("Awaken Wind Elementals"))
 
     world.set_rule(world.get_location("Serpent A8 - S - Star Piece"),
                    Has("Awaken Wind Elementals"))
@@ -1547,13 +1543,13 @@ def set_tidal_reef(world: "IslesOfSeaAndSkyWorld"):
     ]
     rules = (Has("Awaken Water Elementals") # Mandatory
              & (
-                 Has("Music Note", 12)) # Music notes needed if note shuffle is off
+                 Has("Music Note", 12) # Music notes needed if note shuffle is off
                  | ( # Music note regions must be reachable if note shuffle is on
                      [OptionFilter(ShuffleNotes, ShuffleNotes.option_false)]
                      & (Has("Sapphire Rune Stone") | Has("Frog Flippers"))
                         & CanReachRegion("Tidal Reef - North-West Low Tide")
                         & CanReachRegion("Tidal Reef - East")
-    ))
+    )))
 
     for i in range(0,3): world.set_rule(locations[i], rules);
     del locations; del rules
@@ -1926,7 +1922,8 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
                    Has("Kite Cloak")
                    & Has("Awaken Wind Elementals"))
     world.set_rule(world.get_location("Wind C2 - Star Piece"),
-                   Has("Awaken Wind Elementals"))
+                   Has("Awaken Wind Elementals")
+                   | Has("Kite Cloak"))
     world.set_rule(world.get_location("Wind C3 - NE - Star Piece"),
                    Has("Awaken Wind Elementals"))
     world.set_rule(world.get_location("Wind D2 - Star Piece"),
@@ -2020,9 +2017,11 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
                        Has("Ancient Key", 45))
 
         world.set_rule(world.get_location("Wind E1 - W - Snakeblock"),
-                       Has("Awaken Fire Elementals"))
+                       Has("Awaken Fire Elementals")
+                       & Has("Awaken Fire Elementals"))
         world.set_rule(world.get_location("Wind E1 - C - Snakeblock"),
-                       Has("Awaken Fire Elementals"))
+                       Has("Awaken Fire Elementals")
+                       & Has("Awaken Fire Elementals"))
 
         world.set_rule(world.get_location("Wind E3 - Snakeblock"),
                        Has("Awaken Wind Elementals"))
