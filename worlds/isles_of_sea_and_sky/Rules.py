@@ -1692,7 +1692,8 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
                    Has("Ancient Key", 39))
 
     world.set_rule(world.get_location("Fire C0 - Ruby"),
-                   Has("Ruby Rune Stone"))
+                   Has("Ruby Rune Stone")
+                   | Has("Awaken Fire Elementals"))
 
     world.set_rule(world.get_location("Fire D0 - Ruby"),
                    Has("Salamander Shirt"))
@@ -1994,9 +1995,6 @@ def set_frozen_spire(world: "IslesOfSeaAndSkyWorld"):
     # Snakesanity
     if world.options.enable_snakesanity:
         world.set_rule(world.get_location("Wind A2 - SE - Snakeblock"),
-                       Has("Awaken Wind Elementals"))
-
-        world.set_rule(world.get_location("Wind B1 - Snakeblock"),
                        Has("Awaken Wind Elementals"))
 
         world.set_rule(world.get_location("Wind B2 - SW - Snakeblock"),
