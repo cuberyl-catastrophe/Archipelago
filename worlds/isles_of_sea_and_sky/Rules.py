@@ -840,8 +840,7 @@ def set_sea_nunatak(world: "IslesOfSeaAndSkyWorld"):
     # Obsidian
     world.set_rule(world.get_location("Nunatak B1 - Obsidian"),
                    Has("Awaken Wind Elementals")
-                   & Has("Star Piece", 49)
-                   & Has("Kite Cloak"))
+                   & Has("Star Piece", 49))
     # - - - - - - - - - -
     # Star Pieces
     world.set_rule(world.get_location("Nunatak B0 - Star Piece"),
