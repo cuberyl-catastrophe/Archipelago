@@ -143,11 +143,11 @@ advancement_table: dict[str, AdvData] = {
     "Sunken A0 - Ancient Key":                      AdvData(109001612, "Sunken Island - Turtle"),
     "Sunken B0 - Ancient Key":                      AdvData(109100305, "Sunken Island - Turtle"),
     
-    "Fire A1 - SE - Ancient Key":                   AdvData(104011611, "Raging Volcano - God Altar"), # s shirt
-    "Fire A1 - SW - Ancient Key":                   AdvData(104011012, "Raging Volcano - God Altar"), # r rune, t rune
+    "Fire A1 - SE - Ancient Key":                   AdvData(104011611, "Raging Volcano - Turtle"), # s shirt
+    "Fire A1 - SW - Ancient Key":                   AdvData(104011012, "Raging Volcano - Turtle"), # r rune, t rune
     "Fire A1 - NE - Ancient Key":                   AdvData(104012003, "Raging Volcano - Geyser Pass"),
-    "Fire A2 - N - Ancient Key":                    AdvData(104022205, "Raging Volcano - God Altar"),
-    "Fire A2 - S - Ancient Key":                    AdvData(104022112, "Raging Volcano - God Altar"), # salamander shirt
+    "Fire A2 - N - Ancient Key":                    AdvData(104022205, "Raging Volcano - Turtle"),
+    "Fire A2 - S - Ancient Key":                    AdvData(104022112, "Raging Volcano - Turtle"), # salamander shirt
     "Fire B1 - N1 - Ancient Key":                   AdvData(104110703, "Raging Volcano - Key Triplets"), # r quest
     "Fire B1 - N2 - Ancient Key":                   AdvData(104110803, "Raging Volcano - Key Triplets"), # r quest
     "Fire B1 - N3 - Ancient Key":                   AdvData(104110903, "Raging Volcano - Key Triplets"), # r quest
@@ -491,7 +491,7 @@ note_table: dict[str, AdvData] = {
     "Water E0 - Music Note":                        AdvData(103401810, "Tidal Reef - East"), # s rune
     "Water E2 - Music Note":                        AdvData(103421811, "Tidal Reef - East"), # s rune
 
-    "Fire A2 - Music Note":                         AdvData(104021110, "Raging Volcano - God Altar"),
+    "Fire A2 - Music Note":                         AdvData(104021110, "Raging Volcano - Turtle"),
     "Fire B0 - Music Note":                         AdvData(104101210, "Raging Volcano - Key Triplets"),
     "Fire B2 - Music Note":                         AdvData(104121512, "Raging Volcano - Lyre"),
     "Fire C3 - Music Note":                         AdvData(104231511, "Raging Volcano - Idol Room West"),
@@ -836,9 +836,9 @@ snakesanity_table: dict[str, AdvData] = { # TODO: Overworld ID
     "Fire A4 - Snakeblock":                         AdvData(104041904, "Raging Volcano - South Coast"),
     "Fire B0 - Snakeblock":                         AdvData(104100208, "Raging Volcano - North-West Pass"),
     "Fire B1 - Snakeblock":                         AdvData(104111910, "Raging Volcano - God Altar"), # Salamander Shirt
-    "Fire B2 - W - Snakeblock":                     AdvData(104120608, "Raging Volcano - God Altar"),
+    "Fire B2 - W - Snakeblock":                     AdvData(104120608, "Raging Volcano - Turtle"),
     "Fire B2 - S - Snakeblock":                     AdvData(104120711, "Raging Volcano - Lyre"),
-    "Fire B2 - CW - Snakeblock":                    AdvData(104120809, "Raging Volcano - God Altar"),
+    "Fire B2 - CW - Snakeblock":                    AdvData(104120809, "Raging Volcano - Turtle"),
     "Fire B2 - CE - Snakeblock":                    AdvData(104121208, "Raging Volcano - God Altar"),
     "Fire B2 - E - Snakeblock":                     AdvData(104121908, "Raging Volcano - God Altar"),
     "Fire B3 - W - Snakeblock":                     AdvData(104130109, "Raging Volcano - Lyre"), # Fire Elementals

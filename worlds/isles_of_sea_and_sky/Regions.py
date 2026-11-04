@@ -216,17 +216,20 @@ isles_of_sea_and_sky_regions: list[tuple[str, list[str]]] = [
     # - - - - - - - - - -
     # Raging Volcano
     # - - - - - - - - - -
+    ("Raging Volcano - Turtle", [
+        "Raging Volcano - Turtle to God Altar", # One Way
+        "Raging Volcano - Turtle to Triple Ruby Pit", # Ruby Rune Stone
+        "Raging Volcano - Turtle to North-West", # Ruby Rune Stone
+        "Raging Volcano - Turtle Exit"
+    ]),
     ("Raging Volcano - God Altar", [
         "Raging Volcano - God Altar to Phoenix", # Ruby Rune Stone
         "Raging Volcano - God Altar to South Coast", # Ruby Rune Stone
-        "Raging Volcano - God Altar to Triple Ruby Pit", # Ruby Rune Stone
         "Raging Volcano - God Altar to Lyre", # Ruby Rune Stone
         "Raging Volcano - God Altar to Above Volcano", # Ruby Rune Stone
         "Raging Volcano - God Altar to Below Hot Spring", # Salamander Shirt
-        "Raging Volcano - God Altar to North-West", # Ruby Rune Stone
         "Raging Volcano - God Altar to North-West Pass", # Ruby Rune Stone | Salamander Shirt
-        "Raging Volcano - God Altar to Key Triplets", # Ruby Rune Stone
-        "Raging Volcano - Turtle Exit"
+        "Raging Volcano - God Altar to Key Triplets" # Ruby Rune Stone
     ]),
     ("Raging Volcano - Phoenix", [
         "Raging Volcano - Phoenix to God Altar", # Fire Elementals
@@ -238,14 +241,16 @@ isles_of_sea_and_sky_regions: list[tuple[str, list[str]]] = [
         "Raging Volcano - Hot Spring to Phoenix" # Salamander Shirt
     ]),
     ("Raging Volcano - South Coast", [
+        "Raging Volcano - South Coast to Turtle", # Ruby Rune Stone
         "Raging Volcano - South Coast to God Altar", # Ruby Rune Stone
         "Raging Volcano - South Coast to Triple Ruby Pit"
     ]),
     ("Raging Volcano - Triple Ruby Pit", [
-        "Raging Volcano - Triple Ruby Pit to God Altar" # Ruby Rune Stone
+        "Raging Volcano - Triple Ruby Pit to Turtle" # Ruby Rune Stone
     ]),
     ("Raging Volcano - Lyre", [
-        "Raging Volcano - Lyre to God Altar",
+        "Raging Volcano - Lyre to Turtle",
+        "Raging Volcano - Lyre to God Altar", # Ruby Rune Stone
         "Raging Volcano - Lyre to Triple Ruby Pit"
     ]),
     ("Raging Volcano - Above Volcano", [
@@ -263,7 +268,7 @@ isles_of_sea_and_sky_regions: list[tuple[str, list[str]]] = [
         "Raging Volcano - Below Hot Spring to Idol Room West" # Fire Elementals
     ]),
     ("Raging Volcano - North-West", [
-        "Raging Volcano - North-West to God Altar" # Ruby Rune Stone
+        "Raging Volcano - North-West to Turtle" # Ruby Rune Stone
     ]),
     ("Raging Volcano - North-West Pass", [
         "Raging Volcano - North-West Pass to God Altar", # Ruby Rune Stone
@@ -481,7 +486,7 @@ mandatory_connections: list[tuple[str, str]] = [
     ("Stony Cliffs - East Turtle Entrance",                 "Stony Cliffs - God Altar"),
     ("Stony Cliffs - West Turtle Entrance",                 "Stony Cliffs - West Star Stone"),
     ("Tidal Reef - Turtle Entrance",                        "Tidal Reef - God Altar"),
-    ("Raging Volcano - Turtle Entrance",                    "Raging Volcano - God Altar"),
+    ("Raging Volcano - Turtle Entrance",                    "Raging Volcano - Turtle"),
     ("Frozen Spire - Turtle Entrance",                      "Frozen Spire"),
     ("Serpent Stacks - Turtle Entrance",                    "Serpent Stacks - Turtle"),
     ("Rolling Rocks - East Turtle Entrance",                "Rolling Rocks - North-East"),
@@ -596,13 +601,14 @@ mandatory_connections: list[tuple[str, str]] = [
     # - - - - - - - - - -
     # Raging Volcano
     # - - - - - - - - - -
+    ("Raging Volcano - Turtle to God Altar",                "Raging Volcano - God Altar"),
+    ("Raging Volcano - Turtle to Triple Ruby Pit",          "Raging Volcano - Triple Ruby Pit"),
+    ("Raging Volcano - Turtle to North-West",               "Raging Volcano - North-West"),
     ("Raging Volcano - God Altar to Phoenix",               "Raging Volcano - Phoenix"),
     ("Raging Volcano - God Altar to South Coast",           "Raging Volcano - South Coast"),
-    ("Raging Volcano - God Altar to Triple Ruby Pit",       "Raging Volcano - Triple Ruby Pit"),
     ("Raging Volcano - God Altar to Lyre",                  "Raging Volcano - Lyre"),
     ("Raging Volcano - God Altar to Above Volcano",         "Raging Volcano - Above Volcano"),
     ("Raging Volcano - God Altar to Below Hot Spring",      "Raging Volcano - Below Hot Spring"),
-    ("Raging Volcano - God Altar to North-West",            "Raging Volcano - North-West"),
     ("Raging Volcano - God Altar to North-West Pass",       "Raging Volcano - North-West Pass"),
     ("Raging Volcano - God Altar to Key Triplets",          "Raging Volcano - Key Triplets"),
     ("Raging Volcano - Phoenix to God Altar",               "Raging Volcano - God Altar"),
@@ -610,8 +616,10 @@ mandatory_connections: list[tuple[str, str]] = [
     ("Raging Volcano - Hot Spring to God Altar",            "Raging Volcano - God Altar"),
     ("Raging Volcano - Hot Spring to Phoenix",              "Raging Volcano - Phoenix"),
     ("Raging Volcano - South Coast to God Altar",           "Raging Volcano - God Altar"),
+    ("Raging Volcano - South Coast to Turtle",              "Raging Volcano - Turtle"),
     ("Raging Volcano - South Coast to Triple Ruby Pit",     "Raging Volcano - Triple Ruby Pit"),
-    ("Raging Volcano - Triple Ruby Pit to God Altar",       "Raging Volcano - God Altar"),
+    ("Raging Volcano - Triple Ruby Pit to Turtle",          "Raging Volcano - Turtle"),
+    ("Raging Volcano - Lyre to Turtle",                     "Raging Volcano - Turtle"),
     ("Raging Volcano - Lyre to God Altar",                  "Raging Volcano - God Altar"),
     ("Raging Volcano - Lyre to Triple Ruby Pit",            "Raging Volcano - Triple Ruby Pit"),
     ("Raging Volcano - Above Volcano to God Altar",         "Raging Volcano - God Altar"),
@@ -622,7 +630,7 @@ mandatory_connections: list[tuple[str, str]] = [
     ("Raging Volcano - Idol Room West to Below Hot Spring", "Raging Volcano - Below Hot Spring"),
     ("Raging Volcano - Below Hot Spring to South Coast",    "Raging Volcano - South Coast"),
     ("Raging Volcano - Below Hot Spring to Idol Room West", "Raging Volcano - Idol Room West"),
-    ("Raging Volcano - North-West to God Altar",            "Raging Volcano - God Altar"),
+    ("Raging Volcano - North-West to Turtle",               "Raging Volcano - Turtle"),
     ("Raging Volcano - North-West Pass to God Altar",       "Raging Volcano - God Altar"),
     ("Raging Volcano - North-West Pass to North-East",      "Raging Volcano - North-West"),
     ("Raging Volcano - North-West Pass to Geyser Pass",     "Raging Volcano - Geyser Pass"),

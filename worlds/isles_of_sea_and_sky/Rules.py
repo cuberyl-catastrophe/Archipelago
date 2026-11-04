@@ -174,7 +174,7 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                    Has("Ruby Rune Stone"))
     world.set_rule(world.get_entrance("Raging Volcano - God Altar to South Coast"),
                    Has("Ruby Rune Stone"))
-    world.set_rule(world.get_entrance("Raging Volcano - God Altar to Triple Ruby Pit"),
+    world.set_rule(world.get_entrance("Raging Volcano - Turtle to Triple Ruby Pit"),
                    Has("Ruby Rune Stone"))
     world.set_rule(world.get_entrance("Raging Volcano - God Altar to Lyre"),
                    Has("Ruby Rune Stone"))
@@ -182,7 +182,7 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                    Has("Ruby Rune Stone"))
     world.set_rule(world.get_entrance("Raging Volcano - God Altar to Below Hot Spring"),
                    Has("Salamander Shirt"))
-    world.set_rule(world.get_entrance("Raging Volcano - God Altar to North-West"),
+    world.set_rule(world.get_entrance("Raging Volcano - Turtle to North-West"),
                    Has("Ruby Rune Stone"))
     world.set_rule(world.get_entrance("Raging Volcano - God Altar to North-West Pass"),
                    Has("Ruby Rune Stone")
@@ -197,15 +197,19 @@ def set_rules(world: "IslesOfSeaAndSkyWorld"):
                    Has("Salamander Shirt"))
     world.set_rule(world.get_entrance("Raging Volcano - Hot Spring to Phoenix"),
                    Has("Salamander Shirt"))
+    world.set_rule(world.get_entrance("Raging Volcano - South Coast to Turtle"),
+                   Has("Ruby Rune Stone"))
     world.set_rule(world.get_entrance("Raging Volcano - South Coast to God Altar"),
                    Has("Ruby Rune Stone"))
-    world.set_rule(world.get_entrance("Raging Volcano - Triple Ruby Pit to God Altar"),
+    world.set_rule(world.get_entrance("Raging Volcano - Triple Ruby Pit to Turtle"),
+                   Has("Ruby Rune Stone"))
+    world.set_rule(world.get_entrance("Raging Volcano - Lyre to God Altar"),
                    Has("Ruby Rune Stone"))
     world.set_rule(world.get_entrance("Raging Volcano - Above Volcano to God Altar"),
                    Has("Ruby Rune Stone"))
     world.set_rule(world.get_entrance("Raging Volcano - Below Hot Spring to Idol Room West"),
                    Has("Awaken Fire Elementals"))
-    world.set_rule(world.get_entrance("Raging Volcano - North-West to God Altar"),
+    world.set_rule(world.get_entrance("Raging Volcano - North-West to Turtle"),
                    Has("Ruby Rune Stone"))
     world.set_rule(world.get_entrance("Raging Volcano - North-West Pass to God Altar"),
                    Has("Ruby Rune Stone"))
@@ -1765,7 +1769,8 @@ def set_raging_volcano(world: "IslesOfSeaAndSkyWorld"):
     ]
     # TODO: Server side puzzle generation to account for idol positions in logic
     rules = (
-        CanReachRegion("Raging Volcano - God Altar")
+        CanReachRegion("Raging Volcano - Turtle")
+        & CanReachRegion("Raging Volcano - God Altar")
         & CanReachRegion("Raging Volcano - Phoenix")
         & CanReachRegion("Raging Volcano - Hot Spring")
         & CanReachRegion("Raging Volcano - Below Hot Spring")
